@@ -1,6 +1,8 @@
+import TestComponent from 'components/TestComponent';
+
 const App = () => (
   <div>
-    qwdqwd
+    <TestComponent />
   </div>
 );
 

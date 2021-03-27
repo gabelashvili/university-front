@@ -21,6 +21,9 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/react-in-jsx-scope': 'off',
+    'linebreak-style': 0,
+    'import/prefer-default-export': 'off',
+    'func-names': ['error', 'never'],
   },
   settings: {
     'import/resolver': {
