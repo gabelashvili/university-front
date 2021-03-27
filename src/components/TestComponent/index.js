@@ -11,7 +11,7 @@ const TestComponent = () => {
   }, []);
 
   useEffect(() => {
-    console.log(todo);
+    console.log(todo, process.env.REACT_APP_ENVIROMENT);
   }, [todo]);
 
   return (
