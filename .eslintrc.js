@@ -17,6 +17,16 @@ module.exports = {
   plugins: [
     'react',
   ],
+  ignorePatterns: ['**/node_modules/*', 'reportWebVitals.js'],
   rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/react-in-jsx-scope': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
   },
 };
