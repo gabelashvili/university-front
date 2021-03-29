@@ -24,6 +24,8 @@ module.exports = {
     'linebreak-style': 0,
     'import/prefer-default-export': 'off',
     'func-names': ['error', 'never'],
+    'react/prop-types': 'off',
+    'import/no-named-as-default': 0,
   },
   settings: {
     'import/resolver': {

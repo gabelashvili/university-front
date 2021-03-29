@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { actions as todoActions, selectors as todoSelectors } from 'modules/TestModule';
 import { useSelector, useDispatch } from 'react-redux';
 
-const TestComponent = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   const todo = useSelector(todoSelectors.selectTodo);
 
@@ -16,9 +16,9 @@ const TestComponent = () => {
 
   return (
     <div>
-      TestComponent
+      HomePage
     </div>
   );
 };
 
-export default TestComponent;
+export default HomePage;
