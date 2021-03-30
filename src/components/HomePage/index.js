@@ -11,7 +11,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(todo, process.env.REACT_APP_ENVIROMENT);
+    console.log(todo);
   }, [todo]);
 
   return (
