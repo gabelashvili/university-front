@@ -8,9 +8,9 @@ function* getAuthUser(action) {
   const user = action.payload;
   try {
     const response = yield call(auth, user);
-    yield put(actions.getTodo.succeed(response));
+    yield put(actions.auth.succeed(response));
   } catch (error) {
-    yield put(actions.getTodo.failed(error));
+    yield put(actions.auth.failed(error));
   }
 }
 

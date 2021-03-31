@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import { moduleName } from 'modules/TestModule';
+import { moduleName } from 'modules/Auth';
 
-export const selectTodo = createSelector(
+export const selectUser = createSelector(
   (state) => state[moduleName],
   (data) => data,
 );

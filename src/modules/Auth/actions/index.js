@@ -3,9 +3,7 @@ import { constants } from 'modules/Auth';
 export const auth = ({
   request: (user) => ({
     type: constants.AUTH_REQUESTED,
-    payload: {
-      user,
-    },
+    payload: user,
   }),
   succeed: (response) => ({
     type: constants.AUTH_SUCCEED,
