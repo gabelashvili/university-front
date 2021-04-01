@@ -48,21 +48,21 @@ export const Button = styled.div`
         outline: 0;
     }
     &:hover {
-    background-color: ${({ onHoverBgColor, onHoverBgColorOpacity, theme }) => {
-    if (onHoverBgColor && onHoverBgColorOpacity) {
-      return transparentize(1 - onHoverBgColorOpacity, theme.colors[onHoverBgColor]);
+    background-color: ${({ hoverBgColor, hoverBgColorOpacity, theme }) => {
+    if (hoverBgColor && hoverBgColorOpacity) {
+      return transparentize(1 - hoverBgColorOpacity, theme.colors[hoverBgColor]);
     }
-    if (onHoverBgColor) {
-      return theme.colors[onHoverBgColor];
+    if (hoverBgColor) {
+      return theme.colors[hoverBgColor];
     }
     return 'transparent';
   }};
-    color:  ${({ onHoverTextColorOpacity, textColorOpacity, theme }) => {
-    if (onHoverTextColorOpacity && textColorOpacity) {
-      return transparentize(1 - textColorOpacity, theme.colors[onHoverTextColorOpacity]);
+    color:  ${({ hoverTextColorOpacity, textColorOpacity, theme }) => {
+    if (hoverTextColorOpacity && textColorOpacity) {
+      return transparentize(1 - textColorOpacity, theme.colors[hoverTextColorOpacity]);
     }
-    if (onHoverTextColorOpacity) {
-      return theme.colors[onHoverTextColorOpacity];
+    if (hoverTextColorOpacity) {
+      return theme.colors[hoverTextColorOpacity];
     }
     return theme.colors.white;
   }};

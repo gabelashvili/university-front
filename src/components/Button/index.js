@@ -1,5 +1,5 @@
 import { Button } from 'components/Button/styles';
-import { buttonPropTypes } from 'components/Button/types';
+import { propTypes } from 'components/Button/types';
 
 const ButtonComponent = ({
   children,
@@ -20,10 +20,10 @@ const ButtonComponent = ({
   borderWidth,
   borderStyle,
   spaceBetween,
-  onHoverBgColor,
-  onHoverBgColorOpacity,
-  onHoverTextColor,
-  onHoverTextColorOpacity,
+  hoverBgColor,
+  hoverBgColorOpacity,
+  hoverTextColor,
+  hoverTextColorOpacity,
   textColor,
   textColorOpacity,
   fontSize,
@@ -51,12 +51,12 @@ const ButtonComponent = ({
     borderWidth={borderWidth}
     borderStyle={borderStyle}
     spaceBetween={spaceBetween}
-    onHoverBgColor={onHoverBgColor}
-    onHoverBgColorOpacity={onHoverBgColorOpacity}
+    hoverBgColor={hoverBgColor}
+    hoverBgColorOpacity={hoverBgColorOpacity}
     textColor={textColor}
     textColorOpacity={textColorOpacity}
-    onHoverTextColor={onHoverTextColor}
-    onHoverTextColorOpacity={onHoverTextColorOpacity}
+    hoverTextColor={hoverTextColor}
+    hoverTextColorOpacity={hoverTextColorOpacity}
     fontSize={fontSize}
     fontWeight={fontWeight}
     cursorType={cursorType}
@@ -67,6 +67,6 @@ const ButtonComponent = ({
   </Button>
 );
 
-ButtonComponent.propTypes = buttonPropTypes;
+ButtonComponent.propTypes = propTypes;
 
 export default ButtonComponent;

@@ -2,6 +2,7 @@ import { selectors as navScrollSelector } from 'modules/NavScroll';
 import { useSelector } from 'react-redux';
 import { Nav, NavContainer, Logo } from 'components/Header/Navigation/styles';
 import Button from 'components/Button';
+import { propTypes } from 'components/Header/Navigation/types';
 
 export const Navigation = ({ navigationRef }) => {
   const isScrolled = useSelector(navScrollSelector.selectScrollState);
@@ -18,7 +19,7 @@ export const Navigation = ({ navigationRef }) => {
           paddingTop="10px"
           paddingBottom="10px"
           borderRadius="3px"
-          textColor={isScrolled && 'black'}
+          textColor={isScrolled ? 'black' : 'white'}
         >
           Home
         </Button>
@@ -26,5 +27,7 @@ export const Navigation = ({ navigationRef }) => {
     </Nav>
   );
 };
+
+Navigation.propTypes = propTypes;
 
 export default Navigation;

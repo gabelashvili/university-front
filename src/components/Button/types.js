@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import { ReactNode } from 'react';
 
-export const buttonPropTypes = {
-  children: ReactNode,
+export const propTypes = {
+  children: PropTypes.node,
   bgColor: PropTypes.string,
   bgColorOpacity: PropTypes.number,
   width: PropTypes.string,
