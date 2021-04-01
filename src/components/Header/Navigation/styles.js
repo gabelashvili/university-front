@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
+import Container from 'components/Container';
 
 const navigationAnimation = keyframes`
   from {
@@ -19,4 +20,14 @@ export const Nav = styled.nav`
     border-bottom: 1px solid #e0e0e0;
     z-index: 1;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
+`;
+
+export const NavContainer = styled(Container)`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+`;
+
+export const Logo = styled.h1`
 `;
