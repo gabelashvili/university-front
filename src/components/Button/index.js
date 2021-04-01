@@ -1,9 +1,10 @@
-import React from 'react';
 import { Button } from 'components/Button/styles';
+import { buttonPropTypes } from 'components/Button/types';
 
 const ButtonComponent = ({
   children,
   bgColor,
+  bgColorOpacity,
   width,
   height,
   padding,
@@ -20,8 +21,11 @@ const ButtonComponent = ({
   borderStyle,
   spaceBetween,
   onHoverBgColor,
+  onHoverBgColorOpacity,
   onHoverTextColor,
+  onHoverTextColorOpacity,
   textColor,
+  textColorOpacity,
   fontSize,
   fontWeight,
   type,
@@ -31,6 +35,7 @@ const ButtonComponent = ({
 }) => (
   <Button
     bgColor={bgColor}
+    bgColorOpacity={bgColorOpacity}
     width={width}
     height={height}
     padding={padding}
@@ -47,8 +52,11 @@ const ButtonComponent = ({
     borderStyle={borderStyle}
     spaceBetween={spaceBetween}
     onHoverBgColor={onHoverBgColor}
+    onHoverBgColorOpacity={onHoverBgColorOpacity}
     textColor={textColor}
+    textColorOpacity={textColorOpacity}
     onHoverTextColor={onHoverTextColor}
+    onHoverTextColorOpacity={onHoverTextColorOpacity}
     fontSize={fontSize}
     fontWeight={fontWeight}
     cursorType={cursorType}
@@ -58,5 +66,7 @@ const ButtonComponent = ({
     {children}
   </Button>
 );
+
+ButtonComponent.propTypes = buttonPropTypes;
 
 export default ButtonComponent;

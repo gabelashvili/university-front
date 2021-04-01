@@ -1,8 +1,25 @@
 import styled from 'styled-components';
+import { transparentize } from 'polished';
 
 export const Button = styled.div`
-    background-color: ${({ bgColor, theme }) => (theme.colors[bgColor] || 'transparent')};
-    color: ${({ textColor }) => (textColor || 'white')};
+    background-color : ${({ bgColor, bgColorOpacity, theme }) => {
+    if (bgColor && bgColorOpacity) {
+      return transparentize(1 - bgColorOpacity, theme.colors[bgColor]);
+    }
+    if (bgColor) {
+      return theme.colors[bgColor];
+    }
+    return 'transparent';
+  }};
+    color: ${({ textColor, textColorOpacity, theme }) => {
+    if (textColor && textColorOpacity) {
+      return transparentize(1 - textColorOpacity, theme.colors[textColor]);
+    }
+    if (textColor) {
+      return theme.colors[textColor];
+    }
+    return theme.colors.white;
+  }};
     width: ${({ width }) => (width || 'auto')};
     height: ${({ height }) => (height || 'auto')};
     cursor: ${({ cursorType }) => (cursorType || 'auto')};
@@ -31,7 +48,23 @@ export const Button = styled.div`
         outline: 0;
     }
     &:hover {
-        background-color: ${({ onHoverBgColor, theme }) => (theme.colors[onHoverBgColor] || 'transparent')};
-
+    background-color: ${({ onHoverBgColor, onHoverBgColorOpacity, theme }) => {
+    if (onHoverBgColor && onHoverBgColorOpacity) {
+      return transparentize(1 - onHoverBgColorOpacity, theme.colors[onHoverBgColor]);
+    }
+    if (onHoverBgColor) {
+      return theme.colors[onHoverBgColor];
+    }
+    return 'transparent';
+  }};
+    color:  ${({ onHoverTextColorOpacity, textColorOpacity, theme }) => {
+    if (onHoverTextColorOpacity && textColorOpacity) {
+      return transparentize(1 - textColorOpacity, theme.colors[onHoverTextColorOpacity]);
+    }
+    if (onHoverTextColorOpacity) {
+      return theme.colors[onHoverTextColorOpacity];
+    }
+    return theme.colors.white;
+  }};
     }
 `;

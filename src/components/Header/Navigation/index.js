@@ -4,10 +4,10 @@ import { Nav, NavContainer, Logo } from 'components/Header/Navigation/styles';
 import Button from 'components/Button';
 
 export const Navigation = ({ navigationRef }) => {
-  const navScrollState = useSelector(navScrollSelector.selectScrollState);
+  const isScrolled = useSelector(navScrollSelector.selectScrollState);
 
   return (
-    <Nav ref={navigationRef} isScrolled={navScrollState}>
+    <Nav ref={navigationRef} isScrolled={isScrolled}>
       <NavContainer isCentered>
         <Logo>YOURUniversity</Logo>
         <Button
@@ -18,6 +18,7 @@ export const Navigation = ({ navigationRef }) => {
           paddingTop="10px"
           paddingBottom="10px"
           borderRadius="3px"
+          textColor={isScrolled && 'black'}
         >
           Home
         </Button>
