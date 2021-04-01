@@ -23,8 +23,8 @@ export const Button = styled.div`
     width: ${({ width }) => (width || 'auto')};
     height: ${({ height }) => (height || 'auto')};
     cursor: ${({ cursorType }) => (cursorType || 'auto')};
-    font-size: ${({ fontSize }) => (fontSize || 'auto')};
-    font-weight: ${({ fontWeight }) => (fontWeight || 'auto')};
+    font-size: ${({ fontSize }) => (fontSize || 'initial')};
+    font-weight: ${({ fontWeight }) => (fontWeight || 'initial')};
     padding: ${({ padding }) => (padding || 0)};
     margin-left: ${({ marginLeft }) => (marginLeft || 0)};
     margin-right: ${({ marginRight }) => (marginRight || 0)};
@@ -57,14 +57,14 @@ export const Button = styled.div`
     }
     return 'transparent';
   }};
-    color:  ${({ hoverTextColorOpacity, textColorOpacity, theme }) => {
-    if (hoverTextColorOpacity && textColorOpacity) {
-      return transparentize(1 - textColorOpacity, theme.colors[hoverTextColorOpacity]);
+    color:  ${({ hoverTextColorOpacity, hoverTextColor, theme }) => {
+    if (hoverTextColorOpacity && hoverTextColor) {
+      return transparentize(1 - hoverTextColorOpacity, theme.colors[hoverTextColor]);
     }
-    if (hoverTextColorOpacity) {
-      return theme.colors[hoverTextColorOpacity];
+    if (hoverTextColor) {
+      return theme.colors[hoverTextColor];
     }
-    return theme.colors.white;
+    return theme.colors.hoverTextColor;
   }};
     }
 `;
