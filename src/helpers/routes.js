@@ -1,11 +1,11 @@
-import HomePage from 'components/HomePage';
+import BaseLayout from 'pages/BaseLayout';
 import Register from 'components/Register';
 import Auth from 'components/Auth';
 
 export const routes = [
   {
     name: 'Home',
-    component: HomePage,
+    component: BaseLayout,
     path: '/',
   },
   {
