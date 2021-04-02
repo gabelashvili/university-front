@@ -12,6 +12,7 @@ const ButtonComponent = ({
   marginRight,
   marginTop,
   marginBottom,
+  margin,
   paddingLeft,
   paddingRight,
   paddingTop,
@@ -31,6 +32,7 @@ const ButtonComponent = ({
   type,
   cursorType,
   borderRadius,
+  onClick,
 
 }) => (
   <Button
@@ -39,6 +41,7 @@ const ButtonComponent = ({
     width={width}
     height={height}
     padding={padding}
+    margin={margin}
     marginLeft={marginLeft}
     marginRight={marginRight}
     marginTop={marginTop}
@@ -62,6 +65,7 @@ const ButtonComponent = ({
     cursorType={cursorType}
     borderRadius={borderRadius}
     as={type || 'div'}
+    onClick={onClick}
   >
     {children}
   </Button>

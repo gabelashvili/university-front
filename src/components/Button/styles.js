@@ -29,6 +29,7 @@ export const Button = styled.div`
     margin-right: ${({ marginRight }) => (marginRight || 0)};
     margin-top: ${({ marginTop }) => (marginTop || 0)};
     margin-bottom: ${({ marginBottom }) => (marginBottom || 0)};
+    ${({ margin }) => ({ margin })};
     padding-left: ${({ paddingLeft }) => (paddingLeft || 0)};
     padding-right: ${({ paddingRight }) => (paddingRight || 0)};
     padding-top: ${({ paddingTop }) => (paddingTop || 0)};
@@ -48,14 +49,16 @@ export const Button = styled.div`
         outline: 0;
     }
     &:hover {
-    background-color: ${({ hoverBgColor, hoverBgColorOpacity, theme }) => {
+    background-color: ${({
+    hoverBgColor, hoverBgColorOpacity, theme, bgColor,
+  }) => {
     if (hoverBgColor && hoverBgColorOpacity) {
       return transparentize(1 - hoverBgColorOpacity, theme.colors[hoverBgColor]);
     }
     if (hoverBgColor) {
       return theme.colors[hoverBgColor];
     }
-    return 'transparent';
+    return theme.colors[bgColor] || 'transparent';
   }};
     color:  ${({ hoverTextColorOpacity, hoverTextColor, theme }) => {
     if (hoverTextColorOpacity && hoverTextColor) {

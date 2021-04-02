@@ -1,9 +1,10 @@
-import React from 'react';
+import { Header, Authentication } from 'components/UserPage/';
 
 const userPage = () => (
-  <div>
-    userPage
-  </div>
+  <>
+    <Header />
+    <Authentication />
+  </>
 );
 
 export default userPage;
