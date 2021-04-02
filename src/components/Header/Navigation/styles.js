@@ -46,6 +46,6 @@ export const Wrapper = styled.div`
 export const Icon = styled.div`
   & > svg {
     width: 15px;
-    fill: ${({ isScrolled, theme }) => (isScrolled ? theme.colors.black : theme.colors.white)};
+    fill: ${({ theme }) => theme.colors.black};
   }
 `;

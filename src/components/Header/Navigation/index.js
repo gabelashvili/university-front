@@ -25,7 +25,7 @@ export const Navigation = ({ navigationRef }) => {
               paddingTop="10px"
               paddingBottom="10px"
               borderRadius="3px"
-              textColor={isScrolled ? 'black' : 'white'}
+              textColor="black"
               fontWeight={700}
             >
               Home
@@ -33,16 +33,14 @@ export const Navigation = ({ navigationRef }) => {
           </div>
           <div>
             <Button
-              bgColor={isScrolled ? 'darkWhite' : 'white'}
+              bgColor="darkWhite"
               fontWeight={600}
-              bgColorOpacity={isScrolled ? 1 : 0.1}
-              hoverBgColor={isScrolled ? 'lightGreen' : 'darkWhite'}
-              hoverBgColorOpacity={isScrolled ? 1 : 0.3}
+              hoverBgColor="lightGreen"
               cursorType="pointer"
               borderRadius="3px"
               spaceBetween="10px"
               padding="10px 14px"
-              textColor={isScrolled ? 'black' : 'white'}
+              textColor="black"
               hoverTextColor={isScrolled && 'white'}
             >
               <Icon isScrolled={isScrolled}>
@@ -51,16 +49,14 @@ export const Navigation = ({ navigationRef }) => {
               Sign Up
             </Button>
             <Button
-              bgColor={isScrolled ? 'darkWhite' : 'white'}
+              bgColor="darkWhite"
               fontWeight={600}
-              bgColorOpacity={isScrolled ? 1 : 0.1}
-              hoverBgColor={isScrolled ? 'lightGreen' : 'darkWhite'}
-              hoverBgColorOpacity={isScrolled ? 1 : 0.3}
+              hoverBgColor="lightGreen"
               cursorType="pointer"
               borderRadius="3px"
               spaceBetween="10px"
               padding="10px 14px"
-              textColor={isScrolled ? 'black' : 'white'}
+              textColor="black"
               hoverTextColor={isScrolled && 'white'}
             >
               <Icon isScrolled={isScrolled}>
