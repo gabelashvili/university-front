@@ -6,7 +6,6 @@ import { Div } from 'components/Header/styles';
 const Header = () => {
   const navigationRef = useRef();
   navScrollHooks.handleScrollHook({ navigationRef });
-
   return (
     <Div>
       <Navigation navigationRef={navigationRef} />

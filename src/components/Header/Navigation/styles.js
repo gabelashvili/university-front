@@ -31,3 +31,21 @@ export const NavContainer = styled(Container)`
 
 export const Logo = styled.h1`
 `;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+  }
+`;
+
+export const Icon = styled.div`
+  & > svg {
+    width: 15px;
+    fill: ${({ isScrolled, theme }) => (isScrolled ? theme.colors.black : theme.colors.white)};
+  }
+`;
