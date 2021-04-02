@@ -1,4 +1,4 @@
-import BaseLayout from 'pages/BaseLayout';
+import BaseLayout from 'pages/baseLayout';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +11,7 @@ const App = () => (
     <BaseLayout>
       <Switch>
         {routes.map((route) => (
-          <Route exact path={route.path} component={route.component} key={route.name} />
+          <Route path={route.path} component={route.component} key={route.name} />
         ))}
       </Switch>
     </BaseLayout>

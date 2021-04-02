@@ -1,9 +1,15 @@
 import Header from 'components/Header';
+import PropTypes from 'prop-types';
 
-const BaseLayout = () => (
+const baseLayout = ({ children }) => (
   <>
     <Header />
+    {children}
   </>
 );
 
-export default BaseLayout;
+baseLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+export default baseLayout;

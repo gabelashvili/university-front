@@ -1,10 +1,10 @@
-import Auth from 'components/Auth';
+import userPage from 'pages/userPage';
 
 export const routes = [
   {
     name: 'Login',
-    component: Auth,
-    path: '/auth',
+    component: userPage,
+    path: '/user/:type',
   },
 ];
 
