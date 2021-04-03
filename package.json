@@ -10,7 +10,6 @@
     "clsx": "^1.1.1",
     "components": "^0.1.0",
     "env-cmd": "^10.1.0",
-    "formik": "^2.2.6",
     "polished": "^4.1.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

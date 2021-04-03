@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import LoginFrom from 'components/UserPage/Authentication/Login';
+import RegisterForm from 'components/UserPage/Authentication/Register';
 
 const Authentication = () => {
   const { type } = useParams();
@@ -43,7 +44,7 @@ const Authentication = () => {
         </Button>
       </ButtonWrapper>
       {type === 'login' && <LoginFrom />}
-      {type === 'register' && <p>register</p>}
+      {type === 'register' && <RegisterForm />}
     </Div>
   );
 };
