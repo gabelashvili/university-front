@@ -1,18 +1,25 @@
 /* eslint-disable react/button-has-type */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
 import UserIconLight from 'Icons/UserIconLight';
 import { Div } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
-import { useSnackbar } from 'notistack';
+import { actions as registerActions, selectors as registrationSelectors } from 'modules/Register';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Register = () => {
-  const { enqueueSnackbar } = useSnackbar();
-  const handleClick = () => {
-    enqueueSnackbar('I love hooks', { variant: 'error', autoHideDuration: 1000 });
-  };
+  const dispatch = useDispatch();
+  const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
+  useEffect(() => {
+    if (statuses.isFailed) {
+      alert('Something went wrong');
+    }
+    if (statuses.isSucceed) {
+      alert('Registered');
+    }
+  }, [statuses]);
 
   const [state, setState] = useState({});
   const handleChange = (e, inputName) => {
@@ -22,14 +29,16 @@ const Register = () => {
       [inputName]: inputName === 'checkbox' ? checked : value,
     }));
   };
+  const handleSubmit = () => {
+    dispatch(registerActions.register.request(state));
+  };
   return (
     <Div>
-      <button onClick={handleClick}>Show snackbar</button>
-      <TextInput label="სახელი" Icon={UserIconLight} value={state.firstName} onChange={(e) => handleChange(e, 'firstName')} />
-      <TextInput label="გვარი" Icon={UserIconLight} value={state.lastName} onChange={(e) => handleChange(e, 'lastName')} />
-      <TextInput label="Email" Icon={EmailIcon} value={state.email} onChange={(e) => handleChange(e, 'email')} />
-      <TextInput label="პაროლი" Icon={PasswordIcon} value={state.password} onChange={(e) => handleChange(e, 'password')} type="password" />
-      <TextInput label="გაიმეორე პაროლი" Icon={PasswordIcon} value={state.repeatPassword} onChange={(e) => handleChange(e, 'repeatPassword')} type="password" />
+      <TextInput label="სახელი" Icon={UserIconLight} value={state.firstName || ''} onChange={(e) => handleChange(e, 'firstName')} />
+      <TextInput label="გვარი" Icon={UserIconLight} value={state.lastName || ''} onChange={(e) => handleChange(e, 'lastName')} />
+      <TextInput label="Email" Icon={EmailIcon} value={state.email || ''} onChange={(e) => handleChange(e, 'email')} />
+      <TextInput label="პაროლი" Icon={PasswordIcon} value={state.password || ''} onChange={(e) => handleChange(e, 'password')} type="password" />
+      <TextInput label="გაიმეორე პაროლი" Icon={PasswordIcon} value={state.repeatPassword || ''} onChange={(e) => handleChange(e, 'repeatPassword')} type="password" />
       <Button
         bgColor="lightGreen"
         textColor="white"
@@ -40,7 +49,8 @@ const Register = () => {
         cursorType="pointer"
         marginRight="1px"
         hoverBgColor="black"
-        isLoading
+        handleClick={() => handleSubmit()}
+        isLoading={statuses.isPending}
       >
         Register
       </Button>

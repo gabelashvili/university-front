@@ -6,4 +6,9 @@ export const auth = (user) => axios
   .post('http://localhost:5000/api/auth/logIn', { ...user });
 
 export const registerApi = (user) => axios
-  .post('http://localhost:5000/api/auth/logIn', { ...user });
+  .post('http://localhost:5000/api/auth/signUp', {
+    lastname: user.lastName,
+    firstname: user.firstName,
+    password: user.password,
+    email: user.email,
+  });

@@ -14,6 +14,7 @@ const Login = () => {
       [inputName]: inputName === 'checkbox' ? checked : value,
     }));
   };
+
   return (
     <Div>
       <TextInput label="Email" Icon={EmailIcon} value={state.email} onChange={(e) => handleChange(e, 'email')} />

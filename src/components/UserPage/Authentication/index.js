@@ -26,7 +26,7 @@ const Authentication = () => {
           type="button"
           cursorType="pointer"
           marginRight="1px"
-          onClick={() => handleClick('login')}
+          handleClick={() => handleClick('login')}
         >
           Login
         </Button>
@@ -38,7 +38,7 @@ const Authentication = () => {
           fontWeight={600}
           type="button"
           cursorType="pointer"
-          onClick={() => handleClick('register')}
+          handleClick={() => handleClick('register')}
         >
           Register
         </Button>

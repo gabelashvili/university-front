@@ -6,7 +6,6 @@ import Store from 'helpers/store';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import themes from 'helpers/themes';
-import { SnackbarProvider } from 'notistack';
 
 const store = Store;
 
@@ -14,9 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={themes}>
-        <SnackbarProvider>
-          <App />
-        </SnackbarProvider>
+        <App />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,

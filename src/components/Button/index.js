@@ -32,7 +32,7 @@ const ButtonComponent = ({
   type,
   cursorType,
   borderRadius,
-  onClick,
+  handleClick,
   costumStyles,
   isLoading,
 
@@ -68,7 +68,7 @@ const ButtonComponent = ({
     cursorType={cursorType}
     borderRadius={borderRadius}
     as={type || 'div'}
-    onClick={onClick}
+    onClick={handleClick}
     isLoading
   >
     {children}
