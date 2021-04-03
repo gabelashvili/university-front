@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { transparentize } from 'polished';
 
 export const Button = styled.div`
@@ -71,4 +71,28 @@ export const Button = styled.div`
   }};
     }
   ${({ costumStyles }) => costumStyles}
+`;
+
+const LoaderKeyFrames = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    }
+`;
+
+export const Loader = styled.div`
+   width: 20px;
+   height: 20px;
+   display:inline-block;
+   padding:0px;
+   border-radius:100%;
+   border:5px solid;
+   border-top-color: ${({ theme }) => theme.colors.darkWhite};
+   border-bottom-color:  ${({ theme }) => transparentize(0.7, theme.colors.darkWhite)};
+   border-left-color: ${({ theme }) => theme.colors.darkWhite};
+   border-right-color: ${({ theme }) => transparentize(0.7, theme.colors.darkWhite)};
+   animation: ${LoaderKeyFrames} 1s ease-in-out infinite;
+   margin-left: 10px;
 `;

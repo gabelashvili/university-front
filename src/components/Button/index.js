@@ -1,4 +1,4 @@
-import { Button } from 'components/Button/styles';
+import { Button, Loader } from 'components/Button/styles';
 import { propTypes } from 'components/Button/types';
 
 const ButtonComponent = ({
@@ -34,6 +34,7 @@ const ButtonComponent = ({
   borderRadius,
   onClick,
   costumStyles,
+  isLoading,
 
 }) => (
   <Button
@@ -68,8 +69,10 @@ const ButtonComponent = ({
     borderRadius={borderRadius}
     as={type || 'div'}
     onClick={onClick}
+    isLoading
   >
     {children}
+    {isLoading && <Loader />}
   </Button>
 );
 

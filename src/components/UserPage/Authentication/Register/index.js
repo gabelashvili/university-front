@@ -32,6 +32,7 @@ const Register = () => {
         cursorType="pointer"
         marginRight="1px"
         hoverBgColor="black"
+        isLoading
       >
         Register
       </Button>
