@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import { useState } from 'react';
 import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
@@ -5,8 +6,14 @@ import PasswordIcon from 'Icons/Password';
 import UserIconLight from 'Icons/UserIconLight';
 import { Div } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
+import { useSnackbar } from 'notistack';
 
 const Register = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClick = () => {
+    enqueueSnackbar('I love hooks', { variant: 'error', autoHideDuration: 1000 });
+  };
+
   const [state, setState] = useState({});
   const handleChange = (e, inputName) => {
     const { value, checked } = e.target;
@@ -17,6 +24,7 @@ const Register = () => {
   };
   return (
     <Div>
+      <button onClick={handleClick}>Show snackbar</button>
       <TextInput label="სახელი" Icon={UserIconLight} value={state.firstName} onChange={(e) => handleChange(e, 'firstName')} />
       <TextInput label="გვარი" Icon={UserIconLight} value={state.lastName} onChange={(e) => handleChange(e, 'lastName')} />
       <TextInput label="Email" Icon={EmailIcon} value={state.email} onChange={(e) => handleChange(e, 'email')} />
