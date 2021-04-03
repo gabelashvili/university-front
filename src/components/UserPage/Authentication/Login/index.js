@@ -1,29 +1,23 @@
-import { useState, useEffect } from 'react';
-import { TextInput } from 'components/Inputs/';
+import { useState } from 'react';
+import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
 import { Div } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 
 const Login = () => {
-  const [state, setState] = useState({
-    email: '',
-    password: '',
-  });
+  const [state, setState] = useState({});
   const handleChange = (e, inputName) => {
-    const { value } = e.target;
+    const { value, checked } = e.target;
     setState(() => ({
       ...state,
-      [inputName]: value,
+      [inputName]: inputName === 'checkbox' ? checked : value,
     }));
   };
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
   return (
     <Div>
       <TextInput label="Email" Icon={EmailIcon} value={state.email} onChange={(e) => handleChange(e, 'email')} />
-      <TextInput label="Password" Icon={PasswordIcon} value={state.password} onChange={(e) => handleChange(e, 'password')} />
+      <TextInput label="Password" Icon={PasswordIcon} value={state.password} onChange={(e) => handleChange(e, 'password')} type="password" />
       <Button
         bgColor="lightGreen"
         textColor="white"
@@ -37,6 +31,7 @@ const Login = () => {
       >
         Login
       </Button>
+      <CheckBox handleChange={(e) => handleChange(e, 'checkbox')} isChecked={state.checkbox} label="Remember Me" />
     </Div>
   );
 };
