@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { useState, useEffect } from 'react';
 import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
@@ -7,17 +6,26 @@ import UserIconLight from 'Icons/UserIconLight';
 import { Div } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { actions as registerActions, selectors as registrationSelectors } from 'modules/Register';
+import { hooks as notificationHooks } from 'modules/Notification';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Register = () => {
   const dispatch = useDispatch();
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
+  const notification = notificationHooks.useNotification();
   useEffect(() => {
     if (statuses.isFailed) {
-      alert('Something went wrong');
+      notification.open({
+        type: 'error',
+        duration: 1000,
+        text: 'Someting Went Wrong',
+      });
     }
     if (statuses.isSucceed) {
-      alert('Registered');
+      notification.open({
+        duration: 1000,
+        text: 'Successfully registered',
+      });
     }
   }, [statuses]);
 
