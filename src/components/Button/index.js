@@ -33,9 +33,11 @@ const ButtonComponent = ({
   cursorType,
   borderRadius,
   onClick,
+  costumStyles,
 
 }) => (
   <Button
+    costumStyles={costumStyles}
     bgColor={bgColor}
     bgColorOpacity={bgColorOpacity}
     width={width}

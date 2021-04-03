@@ -70,4 +70,5 @@ export const Button = styled.div`
     return theme.colors.hoverTextColor;
   }};
     }
+  ${({ costumStyles }) => costumStyles}
 `;
