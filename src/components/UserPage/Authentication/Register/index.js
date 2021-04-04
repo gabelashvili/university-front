@@ -36,11 +36,11 @@ const Register = () => {
   }, [statuses]);
 
   const [state, setState] = useState({});
-  const handleChange = (e, inputName) => {
-    const { value, checked } = e.target;
+  const handleChange = (e) => {
+    const { value, checked, name } = e.target;
     setState(() => ({
       ...state,
-      [inputName]: inputName === 'checkbox' ? checked : value,
+      [name]: name === 'checkbox' ? checked : value,
     }));
   };
   const handleSubmit = () => {
@@ -48,11 +48,11 @@ const Register = () => {
   };
   return (
     <Div>
-      <TextInput label="სახელი" Icon={UserIconLight} value={state.firstName || ''} onChange={(e) => handleChange(e, 'firstName')} />
-      <TextInput label="გვარი" Icon={UserIconLight} value={state.lastName || ''} onChange={(e) => handleChange(e, 'lastName')} />
-      <TextInput label="Email" Icon={EmailIcon} value={state.email || ''} onChange={(e) => handleChange(e, 'email')} />
-      <TextInput label="პაროლი" Icon={PasswordIcon} value={state.password || ''} onChange={(e) => handleChange(e, 'password')} type="password" />
-      <TextInput label="გაიმეორე პაროლი" Icon={PasswordIcon} value={state.repeatPassword || ''} onChange={(e) => handleChange(e, 'repeatPassword')} type="password" />
+      <TextInput label="Firstname" Icon={UserIconLight} value={state.firstName || ''} onChange={handleChange} name="firstName" />
+      <TextInput label="Lastname" Icon={UserIconLight} value={state.lastName || ''} onChange={handleChange} name="lastName" />
+      <TextInput label="Email" Icon={EmailIcon} value={state.email || ''} onChange={handleChange} name="email" />
+      <TextInput label="Password" Icon={PasswordIcon} value={state.password || ''} onChange={handleChange} type="password" name="password" />
+      <TextInput label="Repeat Passwod" Icon={PasswordIcon} value={state.repeatPassword || ''} onChange={handleChange} type="password" name="repeatPassword" />
       <Button
         bgColor="lightGreen"
         textColor="white"

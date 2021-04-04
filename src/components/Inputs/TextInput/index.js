@@ -5,7 +5,7 @@ import {
 } from 'components/Inputs/TextInput/styles';
 
 const TextInput = ({
-  label, Icon, iconColor, ref, value, onChange, type,
+  label, Icon, iconColor, ref, value, onChange, type, name,
 }) => (
   <Div>
     <InputLabel>
@@ -15,7 +15,7 @@ const TextInput = ({
     </InputLabel>
     <InputWrapper>
       {Icon && <IconWrapper iconColor={iconColor}><Icon /></IconWrapper>}
-      <Input showIcon={Icon} ref={ref} value={value} onChange={onChange} type={type} />
+      <Input showIcon={Icon} ref={ref} value={value} onChange={onChange} type={type} name={name} />
     </InputWrapper>
   </Div>
 );
@@ -31,6 +31,7 @@ TextInput.propTypes = {
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
   ]),
   type: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default TextInput;
