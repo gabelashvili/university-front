@@ -6,7 +6,7 @@ import PasswordIcon from 'Icons/Password';
 import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
-import { actions as loginActions, selectors as authSelector } from 'modules/Login';
+import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Login = () => {

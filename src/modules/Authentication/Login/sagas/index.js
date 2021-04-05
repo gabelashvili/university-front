@@ -2,7 +2,7 @@ import {
   put, takeLatest, call,
 } from 'redux-saga/effects';
 import { auth } from 'helpers/gateway';
-import { actions, constants } from 'modules/Login';
+import { actions, constants } from 'modules/Authentication/Login';
 
 function* getAuthUser(action) {
   const user = action.payload;

@@ -1,4 +1,4 @@
-import { constants } from 'modules/Login';
+import { constants } from 'modules/Authentication/Login';
 
 const initialState = {
   statuses: {

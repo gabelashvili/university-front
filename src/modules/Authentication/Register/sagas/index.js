@@ -2,7 +2,7 @@ import {
   put, takeLatest, call,
 } from 'redux-saga/effects';
 import { registerApi } from 'helpers/gateway';
-import { actions, constants } from 'modules/Register';
+import { actions, constants } from 'modules/Authentication/Register';
 
 function* registerUser(action) {
   const user = action.payload;

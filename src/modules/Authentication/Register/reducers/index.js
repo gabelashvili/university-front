@@ -1,4 +1,4 @@
-import { constants } from 'modules/Register';
+import { constants } from 'modules/Authentication/Register';
 
 const initialState = {
   statuses: {

@@ -5,7 +5,7 @@ import PasswordIcon from 'Icons/Password';
 import UserIconLight from 'Icons/UserIconLight';
 import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
-import { actions as registerActions, selectors as registrationSelectors } from 'modules/Register';
+import { actions as registerActions, selectors as registrationSelectors } from 'modules/Authentication/Register';
 import { hooks as notificationHooks } from 'modules/Notification';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
