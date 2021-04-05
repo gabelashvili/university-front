@@ -26,6 +26,7 @@ module.exports = {
     'func-names': ['error', 'never'],
     'react/require-default-props': 'off',
     'import/no-named-as-default': 0,
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {

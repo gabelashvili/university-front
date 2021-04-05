@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-unused-vars */
 import { useEffect, useRef } from 'react';
 import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';

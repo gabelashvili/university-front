@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+import { forwardRef, useState } from 'react';
 
 const Div = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ const Input = styled.input`
     -moz-appearance: none;
     outline: none;
     cursor: pointer;
-    border: 2px solid ${({ theme }) => theme.colors.lightGreen};
+    border: 2px solid ${({ theme, isError }) => (isError ? theme.colors.red : theme.colors.lightGreen)};
     transition: all 0.1s;
     margin-right: 10px;
     &:before {
@@ -38,17 +38,25 @@ const Input = styled.input`
 `;
 const Label = styled.p``;
 
-const CheckBox = ({ handleChange, isChecked, label }) => (
-  <Div>
-    <Input type="checkbox" checked={isChecked} onChange={handleChange} />
-    <Label>{label}</Label>
-  </Div>
-);
+const CheckBox = forwardRef((props, ref) => {
+  const {
+    label, isError,
+  } = { ...props };
+  const [state, setSate] = useState(false);
 
-CheckBox.propTypes = {
-  handleChange: PropTypes.func,
-  isChecked: PropTypes.bool,
-  label: PropTypes.string,
-};
+  return (
+    <Div>
+      <Input
+        {...props}
+        type="checkbox"
+        checked={state}
+        onChange={() => setSate(!state)}
+        ref={ref}
+        isError={isError}
+      />
+      <Label>{label}</Label>
+    </Div>
+  );
+});
 
 export default CheckBox;
