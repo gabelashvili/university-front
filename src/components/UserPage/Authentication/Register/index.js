@@ -24,7 +24,7 @@ const Register = () => {
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
   useEffect(() => {
     if (statuses.isFailed) {
-      enqueueSnackbar('Somethin went wronf', {
+      enqueueSnackbar('Somethin went wrong', {
         variant: 'error',
       });
     }
@@ -37,6 +37,11 @@ const Register = () => {
 
   const onSubmit = (data) => {
     dispatch(registerActions.register.request(data));
+  };
+  const onSubmitError = () => {
+    enqueueSnackbar('Please fill all the fields', {
+      variant: 'error',
+    });
   };
   return (
     <Form>
@@ -90,7 +95,7 @@ const Register = () => {
         marginRight="1px"
         hoverBgColor="black"
         type="button"
-        handleClick={handleSubmit(onSubmit)}
+        handleClick={handleSubmit(onSubmit, onSubmitError)}
       >
         Register
       </Button>
