@@ -28,7 +28,6 @@ const Authentication = () => {
   };
   useEffect(() => {
     const { token } = qs.parse(history.location.search, { ignoreQueryPrefix: true });
-    console.log(token);
     if (token) {
       dispatch(activationActions.activate.request(token));
     }
@@ -44,12 +43,12 @@ const Authentication = () => {
       enqueueSnackbar('Activation Failed', {
         variant: 'error',
       });
-      // closeSnackbar(loadingStateRef.current);
+      closeSnackbar(loadingStateRef.current);
     } else if (activationDetails.statuses.isSucceed) {
       enqueueSnackbar('Account Acitavted', {
         variant: 'success',
       });
-      // closeSnackbar(loadingStateRef.current);
+      closeSnackbar(loadingStateRef.current);
     }
   }, [activationDetails]);
   return (
