@@ -12,3 +12,8 @@ export const registerApi = (user) => axios
     password: user.password,
     email: user.email,
   });
+
+export const activateAccountApi = (token) => axios
+  .post('http://localhost:5000/api/auth/confirm', {
+    token,
+  });

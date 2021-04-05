@@ -22,7 +22,6 @@ const Login = () => {
     dispatch(loginActions.auth.request({ email, password }));
   };
   useEffect(() => {
-    console.log(loginDetails);
     if (loginDetails.statuses.isSucceed) {
       localStorage.setItem('token', `${loginDetails.data.token}`);
       localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
