@@ -1,16 +1,16 @@
-import { constants } from 'modules/Auth';
+import { constants } from 'modules/Login';
 
 export const auth = ({
   request: (user) => ({
-    type: constants.AUTH_REQUESTED,
+    type: constants.LOGIN_REQUESTED,
     payload: user,
   }),
   succeed: (response) => ({
-    type: constants.AUTH_SUCCEED,
+    type: constants.LOGIN_SUCCEED,
     response,
   }),
   failed: (error) => ({
-    type: constants.AUTH_FAILED,
+    type: constants.LOGIN_FAILED,
     error,
   }),
 });

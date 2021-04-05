@@ -1,22 +1,33 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
 import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
+import { actions as loginActions, selectors as authSelector } from 'modules/Login';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const loginDetails = useSelector(authSelector.selectLoginDetails);
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({
     criteriaMode: 'all',
     mode: 'all',
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = ({ email, password }) => {
+    dispatch(loginActions.auth.request({ email, password }));
   };
+  useEffect(() => {
+    console.log(loginDetails);
+    if (loginDetails.statuses.isSucceed) {
+      localStorage.setItem('token', `${loginDetails.data.token}`);
+      localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
+    }
+  }, [loginDetails]);
 
   return (
     <Form>
@@ -53,8 +64,6 @@ const Login = () => {
       </Button>
       <CheckBox
         label="Remember Me"
-        {...register('checkbox', { required: true })}
-        isError={!!errors.checkbox}
       />
     </Form>
   );

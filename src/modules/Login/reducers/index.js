@@ -1,4 +1,4 @@
-import { constants } from 'modules/Auth';
+import { constants } from 'modules/Login';
 
 const initialState = {
   statuses: {
@@ -9,9 +9,9 @@ const initialState = {
   data: [],
 };
 
-const authModule = (state = initialState, action) => {
+const loginModule = (state = initialState, action) => {
   switch (action.type) {
-    case constants.AUTH_REQUESTED:
+    case constants.LOGIN_REQUESTED:
       return {
         ...initialState,
         statuses: {
@@ -19,7 +19,7 @@ const authModule = (state = initialState, action) => {
           isPending: true,
         },
       };
-    case constants.AUTH_SUCCEED:
+    case constants.LOGIN_SUCCEED:
       return {
         ...initialState,
         statuses: {
@@ -30,7 +30,7 @@ const authModule = (state = initialState, action) => {
         data: action.response.data,
         statusCode: action.response.status,
       };
-    case constants.AUTH_FAILED:
+    case constants.LOGIN_FAILED:
       return {
         ...initialState,
         statuses: {
@@ -45,4 +45,4 @@ const authModule = (state = initialState, action) => {
   }
 };
 
-export default authModule;
+export default loginModule;

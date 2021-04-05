@@ -2,7 +2,7 @@ import {
   put, takeLatest, call,
 } from 'redux-saga/effects';
 import { auth } from 'helpers/gateway';
-import { actions, constants } from 'modules/Auth';
+import { actions, constants } from 'modules/Login';
 
 function* getAuthUser(action) {
   const user = action.payload;
@@ -15,5 +15,5 @@ function* getAuthUser(action) {
 }
 
 export default function* () {
-  yield takeLatest(constants.AUTH_REQUESTED, getAuthUser);
+  yield takeLatest(constants.LOGIN_REQUESTED, getAuthUser);
 }
