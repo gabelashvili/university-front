@@ -8,9 +8,6 @@ import Button from 'components/Button';
 import { actions as registerActions, selectors as registrationSelectors } from 'modules/Register';
 import { hooks as notificationHooks } from 'modules/Notification';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  useHistory,
-} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const Register = () => {
@@ -25,7 +22,6 @@ const Register = () => {
   password.current = watch('password', '');
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
   const notification = notificationHooks.useNotification();
-  const history = useHistory();
   useEffect(() => {
     if (statuses.isFailed) {
       notification.open({
@@ -36,10 +32,9 @@ const Register = () => {
     }
     if (statuses.isSucceed) {
       notification.open({
-        duration: 1000,
-        text: 'Successfully registered',
+        duration: 5000,
+        text: 'Successfully registered. Please check you email',
       });
-      history.push('/user/login');
     }
   }, [statuses]);
 
