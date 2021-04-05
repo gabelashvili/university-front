@@ -35,4 +35,5 @@ export const Input = styled.input`
     font-weight: 500;
     border: 1px solid #e0e0e0;
     opacity: 1;
+    border: 1px solid ${({ isError, theme }) => (isError ? theme.colors.red : 'transparent')}
 `;

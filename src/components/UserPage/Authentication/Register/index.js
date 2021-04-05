@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef } from 'react';
 import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
 import UserIconLight from 'Icons/UserIconLight';
-import { Div } from 'components/UserPage/Authentication/Login/styles';
+import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { actions as registerActions, selectors as registrationSelectors } from 'modules/Register';
 import { hooks as notificationHooks } from 'modules/Notification';
@@ -11,13 +13,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   useHistory,
 } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const {
+    register, handleSubmit, watch, formState: { errors },
+  } = useForm({
+    criteriaMode: 'all',
+    mode: 'all',
+  });
+  const password = useRef({});
+  password.current = watch('password', '');
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
   const notification = notificationHooks.useNotification();
   const history = useHistory();
-
   useEffect(() => {
     if (statuses.isFailed) {
       notification.open({
@@ -35,40 +45,66 @@ const Register = () => {
     }
   }, [statuses]);
 
-  const [state, setState] = useState({});
-  const handleChange = (e) => {
-    const { value, checked, name } = e.target;
-    setState(() => ({
-      ...state,
-      [name]: name === 'checkbox' ? checked : value,
-    }));
-  };
-  const handleSubmit = () => {
-    dispatch(registerActions.register.request(state));
+  const onSubmit = (data) => {
+    dispatch(registerActions.register.request(data));
   };
   return (
-    <Div>
-      <TextInput label="Firstname" Icon={UserIconLight} value={state.firstName || ''} onChange={handleChange} name="firstName" />
-      <TextInput label="Lastname" Icon={UserIconLight} value={state.lastName || ''} onChange={handleChange} name="lastName" />
-      <TextInput label="Email" Icon={EmailIcon} value={state.email || ''} onChange={handleChange} name="email" />
-      <TextInput label="Password" Icon={PasswordIcon} value={state.password || ''} onChange={handleChange} type="password" name="password" />
-      <TextInput label="Repeat Passwod" Icon={PasswordIcon} value={state.repeatPassword || ''} onChange={handleChange} type="password" name="repeatPassword" />
+    <Form>
+      <TextInput
+        isError={!!errors.firstName}
+        label="Firstname"
+        Icon={UserIconLight}
+        {...register('firstName', { required: true, maxLength: 18, minLength: 2 })}
+      />
+      <TextInput
+        isError={!!errors.lastName}
+        label="Lastname"
+        Icon={UserIconLight}
+        name="lastName"
+        {...register('lastName', { required: true, maxLength: 18, minLength: 2 })}
+      />
+      <TextInput
+        isError={!!errors.email}
+        label="Email"
+        Icon={EmailIcon}
+        name="email"
+        {...register('email', {
+          required: true,
+          pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        })}
+      />
+      <TextInput
+        isError={!!errors.password}
+        label="Password"
+        Icon={PasswordIcon}
+        type="password"
+        {...register('password', { required: true, minLength: 8, pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9\d#?!@$%^&*-]{8,}$/ })}
+      />
+      <TextInput
+        isError={!!errors.repeatPassword}
+        label="Repeat Passwod"
+        Icon={PasswordIcon}
+        type="password"
+        {...register('repeatPassword', {
+          validate: (value) => value === password.current,
+          required: true,
+        })}
+      />
       <Button
         bgColor="lightGreen"
         textColor="white"
         padding="10px 20px"
         borderRadius="3px"
         fontWeight={600}
-        type="button"
         cursorType="pointer"
         marginRight="1px"
         hoverBgColor="black"
-        handleClick={() => handleSubmit()}
-        isLoading={statuses.isPending}
+        type="button"
+        handleClick={handleSubmit(onSubmit)}
       >
         Register
       </Button>
-    </Div>
+    </Form>
   );
 };
 

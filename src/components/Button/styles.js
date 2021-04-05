@@ -82,7 +82,7 @@ const LoaderKeyFrames = keyframes`
     }
 `;
 
-export const Loader = styled.div`
+export const Loader = styled.input`
    width: 20px;
    height: 20px;
    display:inline-block;

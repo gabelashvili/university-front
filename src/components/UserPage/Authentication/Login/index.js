@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
-import { Div } from 'components/UserPage/Authentication/Login/styles';
+import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 
 const Login = () => {
@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   return (
-    <Div>
+    <Form>
       <TextInput label="Email" Icon={EmailIcon} value={state.email || ''} onChange={handleChange} name="email" />
       <TextInput label="Password" Icon={PasswordIcon} value={state.password || ''} onChange={handleChange} type="password" name="password" />
       <Button
@@ -33,7 +33,7 @@ const Login = () => {
         Login
       </Button>
       <CheckBox handleChange={(e) => handleChange(e, 'checkbox')} isChecked={state.checkbox} label="Remember Me" />
-    </Div>
+    </Form>
   );
 };
 
