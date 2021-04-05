@@ -10,12 +10,10 @@ import themes from 'helpers/themes';
 const store = Store;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={themes}>
-        <App />
-      </ThemeProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ThemeProvider theme={themes}>
+      <App />
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root'),
 );

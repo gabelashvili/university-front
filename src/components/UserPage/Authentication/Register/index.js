@@ -6,12 +6,13 @@ import UserIconLight from 'Icons/UserIconLight';
 import { Form } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { actions as registerActions, selectors as registrationSelectors } from 'modules/Authentication/Register';
-import { hooks as notificationHooks } from 'modules/Notification';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm({
@@ -21,19 +22,15 @@ const Register = () => {
   const password = useRef({});
   password.current = watch('password', '');
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
-  const notification = notificationHooks.useNotification();
   useEffect(() => {
     if (statuses.isFailed) {
-      notification.open({
-        type: 'error',
-        duration: 1000,
-        text: 'Someting Went Wrong',
+      enqueueSnackbar('Somethin went wronf', {
+        variant: 'error',
       });
     }
     if (statuses.isSucceed) {
-      notification.open({
-        duration: 5000,
-        text: 'Successfully registered. Please check you email',
+      enqueueSnackbar('Successfully registered. Please check you email', {
+        variant: 'success',
       });
     }
   }, [statuses]);

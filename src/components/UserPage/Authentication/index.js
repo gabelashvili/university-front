@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef } from 'react';
 import {
   Div, ButtonWrapper,
 } from 'components/UserPage/Authentication/styles';
@@ -13,37 +14,42 @@ import RegisterForm from 'components/UserPage/Authentication/Register';
 import { actions as activationActions, selectors as activationSelectors } from 'modules/Authentication/ActivateAccount';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
-import { hooks as notificationHooks } from 'modules/Notification';
+import { useSnackbar } from 'notistack';
 
 const Authentication = () => {
   const { type } = useParams();
   const history = useHistory();
-  const notification = notificationHooks.useNotification();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const loadingStateRef = useRef();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
   const handleClick = (params) => {
     history.push(`/user/${params}`);
   };
   useEffect(() => {
     const { token } = qs.parse(history.location.search, { ignoreQueryPrefix: true });
+    console.log(token);
     if (token) {
       dispatch(activationActions.activate.request(token));
     }
   }, [history]);
 
   useEffect(() => {
-    if (activationDetails.statuses.isFailed) {
-      notification.open({
-        type: 'error',
-        duration: 2000,
-        text: 'Account Activation Failed',
+    if (activationDetails.statuses.isPending) {
+      loadingStateRef.current = enqueueSnackbar('Activating', {
+        variant: 'info',
+        persist: true,
       });
-    }
-    if (activationDetails.statuses.isSucceed) {
-      notification.open({
-        duration: 2000,
-        text: 'Account Activated',
+    } else if (activationDetails.statuses.isFailed) {
+      enqueueSnackbar('Activation Failed', {
+        variant: 'error',
       });
+      // closeSnackbar(loadingStateRef.current);
+    } else if (activationDetails.statuses.isSucceed) {
+      enqueueSnackbar('Account Acitavted', {
+        variant: 'success',
+      });
+      // closeSnackbar(loadingStateRef.current);
     }
   }, [activationDetails]);
   return (
