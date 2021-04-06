@@ -18,7 +18,7 @@ const Modal = ({
   const modalRef = useRef();
 
   const handleClickOutside = (e) => {
-    if (!modalRef.current.contains(e.target)) {
+    if (!modalRef?.current?.contains(e.target)) {
       if (closeOnAwayClick) {
         dispatch(actions.setModalState.close());
       }
