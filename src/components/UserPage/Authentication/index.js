@@ -40,7 +40,11 @@ const Authentication = () => {
   }, [activationDetails]);
   return (
     <Div>
-      <Modal title="Account Activation" showClose={!activationDetails.statuses.isPending}>
+      <Modal
+        title="Account Activation"
+        showClose={!activationDetails.statuses.isPending}
+        closeOnAwayClick={!activationDetails.statuses.isPending}
+      >
         <ModalWrapper>
           {activationDetails.statuses.isPending && (
             <>
