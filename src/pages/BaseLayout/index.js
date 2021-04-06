@@ -20,7 +20,6 @@ const baseLayout = ({ children }) => {
     notistackRef.current.closeSnackbar(key);
   };
   return (
-
     <SnackbarProvider
       maxSnack={3}
       action={(key) => (

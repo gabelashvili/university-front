@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import {
-  Div, ButtonWrapper,
+  Div, ButtonWrapper, ModalWrapper, Loader,
 } from 'components/UserPage/Authentication/styles';
 import Button from 'components/Button';
 import {
@@ -14,14 +13,15 @@ import RegisterForm from 'components/UserPage/Authentication/Register';
 import { actions as activationActions, selectors as activationSelectors } from 'modules/Authentication/ActivateAccount';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSnackbar } from 'notistack';
+import Modal from 'components/Modal';
+import { actions as modalActions } from 'modules/Modal';
+import SuccessIcon from 'Icons/Success';
+import ErrorIcon from 'Icons/Error';
 
 const Authentication = () => {
   const { type } = useParams();
   const history = useHistory();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const loadingStateRef = useRef();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
   const handleClick = (params) => {
     history.push(`/user/${params}`);
@@ -35,24 +35,33 @@ const Authentication = () => {
 
   useEffect(() => {
     if (activationDetails.statuses.isPending) {
-      loadingStateRef.current = enqueueSnackbar('Activating', {
-        variant: 'info',
-        persist: true,
-      });
-    } else if (activationDetails.statuses.isFailed) {
-      enqueueSnackbar('Activation Failed', {
-        variant: 'error',
-      });
-      closeSnackbar(loadingStateRef.current);
-    } else if (activationDetails.statuses.isSucceed) {
-      enqueueSnackbar('Account Acitavted', {
-        variant: 'success',
-      });
-      closeSnackbar(loadingStateRef.current);
+      dispatch(modalActions.setModalState.open());
     }
   }, [activationDetails]);
   return (
     <Div>
+      <Modal title="Account Activation" showClose={!activationDetails.statuses.isPending}>
+        <ModalWrapper>
+          {activationDetails.statuses.isPending && (
+            <>
+              Your account is activating, please wait a few seconds ....
+              <Loader />
+            </>
+          )}
+          {activationDetails.statuses.isSucceed && (
+            <>
+              Your accound has been Successfully activated
+              <SuccessIcon />
+            </>
+          )}
+          {activationDetails.statuses.isFailed && (
+            <>
+              Account activation failed
+              <ErrorIcon />
+            </>
+          )}
+        </ModalWrapper>
+      </Modal>
       <ButtonWrapper>
         <Button
           bgColor={type === 'login' ? 'lightGreen' : 'darkWhite'}
