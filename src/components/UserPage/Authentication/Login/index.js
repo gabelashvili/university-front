@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
@@ -8,9 +8,12 @@ import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSnackbar } from 'notistack';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const logInInfoRef = useRef();
   const loginDetails = useSelector(authSelector.selectLoginDetails);
   const {
     register, handleSubmit, formState: { errors },
@@ -21,10 +24,31 @@ const Login = () => {
   const onSubmit = ({ email, password }) => {
     dispatch(loginActions.auth.request({ email, password }));
   };
+  const onErrorSubmit = () => {
+    enqueueSnackbar('Please Fill All The Fileds', {
+      variant: 'info',
+    });
+  };
   useEffect(() => {
+    if (loginDetails.statuses.isPending) {
+      logInInfoRef.current = enqueueSnackbar('Authorization ...', {
+        variant: 'info',
+        persist: true,
+      });
+    }
     if (loginDetails.statuses.isSucceed) {
       localStorage.setItem('token', `${loginDetails.data.token}`);
       localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
+      enqueueSnackbar('You Have Successfully loged in', {
+        variant: 'success',
+      });
+      closeSnackbar(logInInfoRef.current);
+    }
+    if (loginDetails.statuses.isFailed) {
+      enqueueSnackbar('Something went wrong ...', {
+        variant: 'error',
+      });
+      closeSnackbar(logInInfoRef.current);
     }
   }, [loginDetails]);
 
@@ -57,7 +81,7 @@ const Login = () => {
         cursorType="pointer"
         marginRight="1px"
         hoverBgColor="black"
-        handleClick={handleSubmit(onSubmit)}
+        handleClick={handleSubmit(onSubmit, onErrorSubmit)}
       >
         Login
       </Button>
