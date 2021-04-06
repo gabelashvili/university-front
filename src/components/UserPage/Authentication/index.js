@@ -41,26 +41,26 @@ const Authentication = () => {
   return (
     <Div>
       <Modal
-        title="Account Activation"
+        title="ანგარიშის აქტივაცია"
         showClose={!activationDetails.statuses.isPending}
         closeOnAwayClick={!activationDetails.statuses.isPending}
       >
         <ModalWrapper>
           {activationDetails.statuses.isPending && (
             <>
-              Your account is activating, please wait a few seconds ....
+              ანგარიში აქტიურდბეა, გთხოვ დაელოდოთ ....
               <Loader />
             </>
           )}
           {activationDetails.statuses.isSucceed && (
             <>
-              Your accound has been Successfully activated
+              ანგარიში წარმატებით გააქტიურდა
               <SuccessIcon />
             </>
           )}
           {activationDetails.statuses.isFailed && (
             <>
-              Account activation failed
+              ანგარიში არ გააქტიურდა
               <ErrorIcon />
             </>
           )}
@@ -78,7 +78,7 @@ const Authentication = () => {
           marginRight="1px"
           handleClick={() => handleClick('login')}
         >
-          Login
+          ავტორიზაცია
         </Button>
         <Button
           bgColor={type === 'register' ? 'lightGreen' : 'darkWhite'}
@@ -90,7 +90,7 @@ const Authentication = () => {
           cursorType="pointer"
           handleClick={() => handleClick('register')}
         >
-          Register
+          რეგისტრაცია
         </Button>
       </ButtonWrapper>
       {type === 'login' && <LoginFrom />}

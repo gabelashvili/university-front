@@ -25,13 +25,13 @@ const Login = () => {
     dispatch(loginActions.auth.request({ email, password }));
   };
   const onErrorSubmit = () => {
-    enqueueSnackbar('Please Fill All The Fileds', {
+    enqueueSnackbar('გთხოვთ შეავსოთ ყველა სავალდებულო ველი', {
       variant: 'info',
     });
   };
   useEffect(() => {
     if (loginDetails.statuses.isPending) {
-      logInInfoRef.current = enqueueSnackbar('Authorization ...', {
+      logInInfoRef.current = enqueueSnackbar('მიმდინარეობს ავტორიზაცია ...', {
         variant: 'info',
         persist: true,
       });
@@ -39,13 +39,13 @@ const Login = () => {
     if (loginDetails.statuses.isSucceed) {
       localStorage.setItem('token', `${loginDetails.data.token}`);
       localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
-      enqueueSnackbar('You Have Successfully loged in', {
+      enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
         variant: 'success',
       });
       closeSnackbar(logInInfoRef.current);
     }
     if (loginDetails.statuses.isFailed) {
-      enqueueSnackbar('Something went wrong ...', {
+      enqueueSnackbar('მოხდა შეცდომა ...', {
         variant: 'error',
       });
       closeSnackbar(logInInfoRef.current);
@@ -66,7 +66,7 @@ const Login = () => {
       />
       <TextInput
         isError={!!errors.password}
-        label="Password"
+        label="პაროლი"
         Icon={PasswordIcon}
         type="password"
         {...register('password', { required: true, minLength: 8, pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9\d#?!@$%^&*-]{8,}$/ })}
@@ -83,10 +83,10 @@ const Login = () => {
         hoverBgColor="black"
         handleClick={handleSubmit(onSubmit, onErrorSubmit)}
       >
-        Login
+        ავტორიზაცია
       </Button>
       <CheckBox
-        label="Remember Me"
+        label="დამახსოვრება"
       />
     </Form>
   );

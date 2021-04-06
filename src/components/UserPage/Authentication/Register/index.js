@@ -24,12 +24,12 @@ const Register = () => {
   const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
   useEffect(() => {
     if (statuses.isFailed) {
-      enqueueSnackbar('Somethin went wrong', {
+      enqueueSnackbar('მოხდა შეცდომა', {
         variant: 'error',
       });
     }
     if (statuses.isSucceed) {
-      enqueueSnackbar('Successfully registered. Please check you email', {
+      enqueueSnackbar('რეგისტრაციაა წარმატებით დასრულდა, შეამოწმეთ E-mail', {
         variant: 'success',
       });
     }
@@ -39,7 +39,7 @@ const Register = () => {
     dispatch(registerActions.register.request(data));
   };
   const onSubmitError = () => {
-    enqueueSnackbar('Please fill all the fields', {
+    enqueueSnackbar('გთხოვთ შეავსოთ ყველა სავალდებულო ველი', {
       variant: 'error',
     });
   };
@@ -47,13 +47,13 @@ const Register = () => {
     <Form>
       <TextInput
         isError={!!errors.firstName}
-        label="Firstname"
+        label="სახელი"
         Icon={UserIconLight}
         {...register('firstName', { required: true, maxLength: 18, minLength: 2 })}
       />
       <TextInput
         isError={!!errors.lastName}
-        label="Lastname"
+        label="გვარი"
         Icon={UserIconLight}
         name="lastName"
         {...register('lastName', { required: true, maxLength: 18, minLength: 2 })}
@@ -70,14 +70,14 @@ const Register = () => {
       />
       <TextInput
         isError={!!errors.password}
-        label="Password"
+        label="პაროლი"
         Icon={PasswordIcon}
         type="password"
         {...register('password', { required: true, minLength: 8, pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9\d#?!@$%^&*-]{8,}$/ })}
       />
       <TextInput
         isError={!!errors.repeatPassword}
-        label="Repeat Passwod"
+        label="გაიმეორეთ პაროლი"
         Icon={PasswordIcon}
         type="password"
         {...register('repeatPassword', {
@@ -97,7 +97,7 @@ const Register = () => {
         type="button"
         handleClick={handleSubmit(onSubmit, onSubmitError)}
       >
-        Register
+        რეგისტრაცია
       </Button>
     </Form>
   );
