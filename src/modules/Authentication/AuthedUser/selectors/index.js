@@ -5,3 +5,8 @@ export const selectAuthedUser = createSelector(
   (state) => state[moduleName],
   (data) => data,
 );
+
+export const selectIsAuthed = createSelector(
+  (state) => state[moduleName],
+  (data) => data.isAuthed,
+);
