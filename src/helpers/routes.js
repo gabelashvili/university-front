@@ -1,6 +1,12 @@
 import userPage from 'pages/userPage';
+import homePage from 'pages/homePage';
 
 export const routes = [
+  {
+    name: 'Home',
+    component: homePage,
+    path: '/',
+  },
   {
     name: 'Login',
     component: userPage,
