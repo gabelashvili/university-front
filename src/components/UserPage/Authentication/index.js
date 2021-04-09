@@ -10,7 +10,10 @@ import {
 
 import LoginFrom from 'components/UserPage/Authentication/Login';
 import RegisterForm from 'components/UserPage/Authentication/Register';
-import { actions as activationActions, selectors as activationSelectors } from 'modules/Authentication/ActivateAccount';
+import {
+  actions as activationActions,
+  selectors as activationSelectors,
+} from 'modules/Authentication/ActivateAccount';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'components/Modal';
