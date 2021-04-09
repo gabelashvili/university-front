@@ -4,7 +4,6 @@ import {
 } from 'components/UserPage/Authentication/styles';
 import Button from 'components/Button';
 import {
-  useParams,
   useHistory,
 } from 'react-router-dom';
 
@@ -22,8 +21,8 @@ import SuccessIcon from 'Icons/Success';
 import ErrorIcon from 'Icons/Error';
 
 const Authentication = () => {
-  const { type } = useParams();
   const history = useHistory();
+  const type = history.location.pathname.split('/').slice(2, 3).toString();
   const dispatch = useDispatch();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
   const handleClick = (params) => {

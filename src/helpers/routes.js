@@ -4,7 +4,12 @@ export const routes = [
   {
     name: 'Login',
     component: userPage,
-    path: '/user/:type',
+    path: '/user/login',
+  },
+  {
+    name: 'Register',
+    component: userPage,
+    path: '/user/register',
   },
 ];
 
