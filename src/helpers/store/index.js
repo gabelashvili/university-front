@@ -15,9 +15,8 @@ function* rootSaga() {
   yield all(data.sagas.map((saga) => saga()));
 }
 
-const composeEnhancers = process.env.NODE_ENV === 'development'
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  : null || compose;
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
+
 const enhancer = composeEnhancers(
   applyMiddleware(sagaMiddleware),
 );
