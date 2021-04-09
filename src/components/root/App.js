@@ -21,11 +21,10 @@ const App = () => {
   const authedUser = useSelector(authedUserSelector.selectAuthedUser);
   const checkToken = useSelector(checkTokenSelectors.selectTokenState);
   const token = localStorage.getItem('token');
-
   useEffect(() => {
     if (token) {
       dispatch(authedUserActions.authedUser.set({
-        userName: localStorage.getItem('firstName'),
+        firstName: localStorage.getItem('firstName'),
         token,
       }));
     }
@@ -43,6 +42,9 @@ const App = () => {
     }
   }, [checkToken]);
 
+  useEffect(() => {
+    console.log(authedUser);
+  }, [authedUser]);
   return (
     <Router>
       <BaseLayout>

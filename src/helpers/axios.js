@@ -1,14 +1,22 @@
+/* eslint-disable no-param-reassign */
 // First we need to import axios.js
 import axios from 'axios';
-// Next we make an 'instance' of it
-const instance = axios.create({
-// .. where we make our configurations
-  baseURL: 'https://api.example.com',
+
+const axiosInstance = axios.create({
+  // baseURL: 'http://localhost:3000/',
 });
 
-// Where you would set stuff like your 'Authorization' header, etc ...
-instance.defaults.headers.common.Authorization = localStorage.getItem('token');
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.authorization = token;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
 // Also add/ configure interceptors && all the other cool stuff
 
-export default instance;
+export default axiosInstance;
