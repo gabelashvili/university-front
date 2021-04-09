@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useRef } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
@@ -9,6 +8,9 @@ import { useForm } from 'react-hook-form';
 import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import {
+  actions as authedUserActions,
+} from 'modules/Authentication/AuthedUser';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,10 @@ const Login = () => {
     if (loginDetails.statuses.isSucceed) {
       localStorage.setItem('token', `${loginDetails.data.token}`);
       localStorage.setItem('firstName', loginDetails.data.firstname);
+      dispatch(authedUserActions.authedUser.set({
+        userName: loginDetails.data.firstname,
+        token: loginDetails.data.token,
+      }));
       enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
         variant: 'success',
       });

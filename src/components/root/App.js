@@ -50,8 +50,8 @@ const App = () => {
           {routes.map((route) => (
             <Route
               path={route.path}
-              component={route.component}
               key={route.name}
+              render={route.component}
             />
           ))}
         </Switch>

@@ -6,7 +6,6 @@ import Button from 'components/Button';
 import {
   useHistory,
 } from 'react-router-dom';
-
 import LoginFrom from 'components/UserPage/Authentication/Login';
 import RegisterForm from 'components/UserPage/Authentication/Register';
 import {
@@ -19,15 +18,24 @@ import Modal from 'components/Modal';
 import { actions as modalActions } from 'modules/Modal';
 import SuccessIcon from 'Icons/Success';
 import ErrorIcon from 'Icons/Error';
+import {
+  selectors as authedUserSelector,
+} from 'modules/Authentication/AuthedUser';
 
 const Authentication = () => {
   const history = useHistory();
+  const authedUser = useSelector(authedUserSelector.selectAuthedUser);
   const type = history.location.pathname.split('/').slice(2, 3).toString();
   const dispatch = useDispatch();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
   const handleClick = (params) => {
     history.push(`/user/${params}`);
   };
+  useEffect(() => {
+    if (authedUser.isAuthed === true) {
+      history.push('/');
+    }
+  }, [authedUser]);
   useEffect(() => {
     const { token } = qs.parse(history.location.search, { ignoreQueryPrefix: true });
     if (token) {
