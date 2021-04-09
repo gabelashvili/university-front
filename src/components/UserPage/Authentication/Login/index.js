@@ -42,7 +42,7 @@ const Login = () => {
       localStorage.setItem('token', `${loginDetails.data.token}`);
       localStorage.setItem('firstName', loginDetails.data.firstname);
       dispatch(authedUserActions.authedUser.set({
-        userName: loginDetails.data.firstname,
+        firstName: loginDetails.data.firstname,
         token: loginDetails.data.token,
       }));
       enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
