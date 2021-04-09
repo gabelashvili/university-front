@@ -38,7 +38,7 @@ const Login = () => {
     }
     if (loginDetails.statuses.isSucceed) {
       localStorage.setItem('token', `${loginDetails.data.token}`);
-      localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
+      localStorage.setItem('firstName', loginDetails.data.firstname);
       enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
         variant: 'success',
       });
