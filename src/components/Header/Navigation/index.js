@@ -58,6 +58,7 @@ export const Navigation = ({ navigationRef }) => {
               padding="10px 14px"
               textColor="black"
               hoverTextColor={isScrolled && 'white'}
+              as="link"
             >
               <Icon isScrolled={isScrolled}>
                 <UserIcon />

@@ -8,7 +8,11 @@ export const authedUser = ({
       token: user.token,
     },
   }),
-  remove: () => ({
-    type: constants.REMOVE_AUTHED_USER,
-  }),
+  remove: () => {
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('token');
+    return {
+      type: constants.REMOVE_AUTHED_USER,
+    };
+  },
 });
