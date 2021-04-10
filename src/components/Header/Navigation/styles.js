@@ -30,6 +30,8 @@ export const NavContainer = styled(Container)`
 `;
 
 export const Logo = styled.h1`
+  color: black;
+  margin-right: 25px;
 `;
 
 export const Wrapper = styled.div`
