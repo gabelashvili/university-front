@@ -41,6 +41,9 @@ export const Wrapper = styled.div`
     grid-auto-flow: column;
     grid-column-gap: 10px;
   }
+  & a {
+    text-decoration: none;
+  }
 `;
 
 export const Icon = styled.div`
