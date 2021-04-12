@@ -14,7 +14,7 @@ const navigationAnimation = keyframes`
 export const Nav = styled.nav`
     width: 100%;
     height: 70px;
-    background-color: ${({ isScrolled, theme }) => (isScrolled ? theme.colors.white : 'transparent')};
+    background-color: ${({ theme }) => theme.colors.white};
     position: ${({ isScrolled }) => (isScrolled ? 'fixed' : 'relative')};
     animation: ${({ isScrolled }) => (isScrolled === true ? css`${navigationAnimation} 0.5s` : '')};
     border-bottom: 1px solid #e0e0e0;
