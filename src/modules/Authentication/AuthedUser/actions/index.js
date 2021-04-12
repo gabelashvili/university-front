@@ -1,16 +1,12 @@
 import { constants } from 'modules/Authentication/AuthedUser';
 
 export const authedUser = ({
-  set: (user) => ({
+  set: (data) => ({
     type: constants.SET_AUTHED_USER,
-    payload: {
-      firstName: user.firstName,
-      token: user.token,
-    },
+    payload: data,
   }),
   remove: () => {
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('token');
+    localStorage.removeItem('authedUser');
     return {
       type: constants.REMOVE_AUTHED_USER,
     };

@@ -20,13 +20,10 @@ const App = () => {
   const dispatch = useDispatch();
   const authedUser = useSelector(authedUserSelector.selectAuthedUser);
   const checkToken = useSelector(checkTokenSelectors.selectTokenState);
-  const token = localStorage.getItem('token');
+  const localStorageUserData = JSON.parse(localStorage.getItem('authedUser'));
   useEffect(() => {
-    if (token) {
-      dispatch(authedUserActions.authedUser.set({
-        firstName: localStorage.getItem('firstName'),
-        token,
-      }));
+    if (localStorageUserData) {
+      dispatch(authedUserActions.authedUser.set(localStorageUserData));
     }
   }, []);
 
