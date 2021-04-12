@@ -18,7 +18,7 @@ export const Nav = styled.nav`
     position: ${({ isScrolled }) => (isScrolled ? 'fixed' : 'relative')};
     animation: ${({ isScrolled }) => (isScrolled === true ? css`${navigationAnimation} 0.5s` : '')};
     border-bottom: 1px solid #e0e0e0;
-    z-index: 1;
+    z-index: 3;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
 `;
 
