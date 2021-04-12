@@ -7,10 +7,14 @@ import Button from 'components/Button';
 import { propTypes } from 'components/Header/Navigation/types';
 import UserIcon from 'Icons/UserIcon';
 import { Link } from 'react-router-dom';
+import {
+  selectors as authedUserSelector,
+} from 'modules/Authentication/AuthedUser';
 
 export const Navigation = ({ navigationRef }) => {
   const isScrolled = useSelector(navScrollSelector.selectScrollState);
-
+  const authedUser = useSelector(authedUserSelector.selectAuthedUser);
+  console.log(authedUser);
   return (
     <Nav ref={navigationRef} isScrolled={isScrolled}>
       <NavContainer isCentered>
@@ -35,8 +39,8 @@ export const Navigation = ({ navigationRef }) => {
             </Link>
           </div>
           <div>
+            {!authedUser.isAuthed && (
             <Link to="/user/register">
-
               <Button
                 bgColor="darkWhite"
                 fontWeight={600}
@@ -54,6 +58,7 @@ export const Navigation = ({ navigationRef }) => {
                 Sign Up
               </Button>
             </Link>
+            )}
             <Link to="/user/login">
               <Button
                 bgColor="darkWhite"
@@ -70,7 +75,7 @@ export const Navigation = ({ navigationRef }) => {
                 <Icon isScrolled={isScrolled}>
                   <UserIcon />
                 </Icon>
-                Sign In
+                {authedUser.isAuthed ? authedUser.firstName : 'Sign In'}
               </Button>
             </Link>
           </div>
