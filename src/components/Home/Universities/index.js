@@ -7,10 +7,10 @@ import {
   Card,
   Details,
   Title,
+  Rating,
   Location,
   ButtonStyle,
 } from 'components/Home/Universities/styles';
-import Rating from 'components/Rating';
 
 const Universities = () => (
   <Div>
@@ -18,7 +18,7 @@ const Universities = () => (
       <Card>
         <Details>
           <Title>Caucasus University</Title>
-          <Rating />
+          <Rating>შეფასება: 3.5</Rating>
         </Details>
         <Location>
           <LocationIcon />
