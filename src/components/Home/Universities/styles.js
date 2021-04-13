@@ -33,10 +33,6 @@ export const Title = styled.h1`
   font-size: 18px;
 `;
 
-export const Rating = styled.p`
-  font-size: 12px;
-`;
-
 export const Location = styled.div`
   display: flex;
   justify-self: center;

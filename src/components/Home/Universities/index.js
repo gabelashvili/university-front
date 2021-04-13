@@ -7,18 +7,18 @@ import {
   Card,
   Details,
   Title,
-  Rating,
   Location,
   ButtonStyle,
 } from 'components/Home/Universities/styles';
+import Rating from 'components/Rating';
 
 const Universities = () => (
   <Div>
-    {new Array(5).fill().map(() => (
-      <Card>
+    {new Array(5).fill(1).map((el, index) => (
+      <Card key={`${el}${index + 5}`}>
         <Details>
           <Title>Caucasus University</Title>
-          <Rating>შეფასება: 3.5</Rating>
+          <Rating />
         </Details>
         <Location>
           <LocationIcon />
