@@ -25,7 +25,19 @@ export const Card = styled.div`
 `;
 
 export const Details = styled.div`
-  justify-self: self-start;
+  display: flex;
+  align-items: center;
+`;
+
+export const DetailsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Img = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
 `;
 
 export const Title = styled.h1`

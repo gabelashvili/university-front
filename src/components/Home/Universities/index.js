@@ -9,16 +9,20 @@ import {
   Title,
   Location,
   ButtonStyle,
+  Img,
+  DetailsWrapper,
 } from 'components/Home/Universities/styles';
-import Rating from 'components/Rating';
 
 const Universities = () => (
   <Div>
     {new Array(5).fill(1).map((el, index) => (
       <Card key={`${el}${index + 5}`}>
         <Details>
-          <Title>Caucasus University</Title>
-          <Rating />
+          <Img src="https://upload.wikimedia.org/wikipedia/commons/0/08/CaLogo.jpg" alt="" />
+          <DetailsWrapper>
+            <Title>Caucasus University</Title>
+            <p>rating</p>
+          </DetailsWrapper>
         </Details>
         <Location>
           <LocationIcon />
