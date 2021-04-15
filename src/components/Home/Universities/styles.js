@@ -2,10 +2,8 @@ import { transparentize } from 'polished';
 import styled, { css } from 'styled-components';
 
 export const Div = styled.div`
-  max-width: ${({ theme }) => theme.settings.containerMaxWidth};
   box-shadow: 0px 2px 7px -5px #000000;
   background-color: ${({ theme }) => theme.colors.white};
-  margin: auto;
   margin-top: 50px;
   padding: 0 30px;
 `;
