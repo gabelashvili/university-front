@@ -1,7 +1,7 @@
 import { selectors as navScrollSelector } from 'modules/NavScroll';
 import { useSelector } from 'react-redux';
 import {
-  Nav, NavContainer, Logo, Wrapper, Icon,
+  Nav, navContainer, Logo, Wrapper, Icon,
 } from 'components/Header/Navigation/styles';
 import Button from 'components/Button';
 import { propTypes } from 'components/Header/Navigation/types';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import {
   selectors as authedUserSelector,
 } from 'modules/Authentication/AuthedUser';
+import Container from 'components/Container';
 
 export const Navigation = ({ navigationRef }) => {
   const isScrolled = useSelector(navScrollSelector.selectScrollState);
@@ -17,7 +18,7 @@ export const Navigation = ({ navigationRef }) => {
   console.log(authedUser);
   return (
     <Nav ref={navigationRef} isScrolled={isScrolled}>
-      <NavContainer isCentered>
+      <Container isCentered costumStyles={navContainer}>
         <Logo>YOURUniversity</Logo>
         <Wrapper>
           <div>
@@ -80,7 +81,7 @@ export const Navigation = ({ navigationRef }) => {
             </Link>
           </div>
         </Wrapper>
-      </NavContainer>
+      </Container>
     </Nav>
   );
 };
