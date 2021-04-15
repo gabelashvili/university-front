@@ -21,7 +21,7 @@ export const routes = [
   {
     name: 'University',
     component: universityPage,
-    path: '/university/:id',
+    path: '/university/:id/:tabName',
   },
 ];
 

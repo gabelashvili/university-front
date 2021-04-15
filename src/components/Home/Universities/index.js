@@ -18,7 +18,7 @@ import Container from 'components/Container';
 const Universities = () => {
   const history = useHistory();
   const handleNavigate = (uniId) => {
-    history.push(`/university/${uniId}`);
+    history.push(`/university/${uniId}/details`);
   };
   return (
     <Container isCentered>
