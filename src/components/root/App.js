@@ -51,12 +51,11 @@ const App = () => {
               exact
               path={route.path}
               key={route.name}
-              render={route.component}
+              component={route.component}
             />
           ))}
         </Switch>
       </BaseLayout>
-
     </Router>
   );
 };
