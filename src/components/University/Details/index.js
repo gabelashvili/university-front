@@ -1,7 +1,13 @@
+import styled from 'styled-components';
+
+const Div = styled.div`
+  display: grid;
+`;
+
 const Details = () => (
-  <div>
+  <Div>
     details
-  </div>
+  </Div>
 );
 
 export default Details;
