@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useRef } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
@@ -9,6 +8,9 @@ import { useForm } from 'react-hook-form';
 import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import {
+  actions as authedUserActions,
+} from 'modules/Authentication/AuthedUser';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,13 @@ const Login = () => {
       variant: 'info',
     });
   };
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  };
   useEffect(() => {
     if (loginDetails.statuses.isPending) {
       logInInfoRef.current = enqueueSnackbar('მიმდინარეობს ავტორიზაცია ...', {
@@ -37,8 +46,15 @@ const Login = () => {
       });
     }
     if (loginDetails.statuses.isSucceed) {
-      localStorage.setItem('token', `${loginDetails.data.token}`);
-      localStorage.setItem('user', JSON.stringify(loginDetails.data.firstname));
+      const parsedJwt = parseJwt(loginDetails.data.token);
+      const data = {
+        firstName: loginDetails.data.firstname,
+        userId: parsedJwt.user.id,
+        universityId: parsedJwt.user.UniversityId,
+        token: loginDetails.data.token,
+      };
+      localStorage.setItem('authedUser', JSON.stringify(data));
+      dispatch(authedUserActions.authedUser.set(data));
       enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
         variant: 'success',
       });

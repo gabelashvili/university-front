@@ -7,25 +7,30 @@ import {
 
 const TextInput = React.forwardRef((props, ref) => {
   const {
-    label, Icon, iconColor, value, type, name, isError,
+    label, Icon, iconColor, value, type, name, isError, placeholder, height,
   } = props;
   return (
     <Div>
+      {label
+      && (
       <InputLabel>
         {label}
         {' '}
         :
       </InputLabel>
+      )}
       <InputWrapper>
         {Icon && <IconWrapper iconColor={iconColor}><Icon /></IconWrapper>}
         <Input
           {...props}
           showIcon={Icon}
+          height={height}
           value={value}
           type={type}
           name={name}
           ref={ref}
           isError={isError}
+          placeholder={placeholder}
         />
       </InputWrapper>
     </Div>
@@ -40,6 +45,8 @@ TextInput.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   isError: PropTypes.bool,
+  placeholder: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default TextInput;

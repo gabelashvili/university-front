@@ -31,4 +31,5 @@ export const propTypes = {
   cursorType: PropTypes.string,
   borderRadius: PropTypes.string,
   costumStyles: PropTypes.array,
+  active: PropTypes.bool,
 };

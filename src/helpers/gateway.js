@@ -1,4 +1,5 @@
 import axios from 'axios';
+import costumAxios from 'helpers/axios';
 
 export const getTodo = (todoId) => axios
   .get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
@@ -18,3 +19,6 @@ export const activateAccountApi = (token) => axios
   .post('http://localhost:5000/api/auth/confirm', {
     token,
   });
+
+export const checkTokenApi = () => costumAxios
+  .get('http://localhost:5000/api/auth/status');

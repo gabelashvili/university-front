@@ -3,6 +3,7 @@ import { propTypes } from 'components/Button/types';
 
 const ButtonComponent = ({
   children,
+  active,
   bgColor,
   bgColorOpacity,
   width,
@@ -69,7 +70,8 @@ const ButtonComponent = ({
     borderRadius={borderRadius}
     as={type || 'div'}
     onClick={handleClick}
-    isLoading
+    isLoading={isLoading}
+    active={active}
   >
     {children}
     {isLoading && <Loader />}

@@ -1,5 +1,4 @@
 import styled, { keyframes, css } from 'styled-components';
-import Container from 'components/Container';
 
 const navigationAnimation = keyframes`
   from {
@@ -14,15 +13,15 @@ const navigationAnimation = keyframes`
 export const Nav = styled.nav`
     width: 100%;
     height: 70px;
-    background-color: ${({ isScrolled, theme }) => (isScrolled ? theme.colors.white : 'transparent')};
+    background-color: ${({ theme }) => theme.colors.white};
     position: ${({ isScrolled }) => (isScrolled ? 'fixed' : 'relative')};
     animation: ${({ isScrolled }) => (isScrolled === true ? css`${navigationAnimation} 0.5s` : '')};
     border-bottom: 1px solid #e0e0e0;
-    z-index: 1;
+    z-index: 3;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
 `;
 
-export const NavContainer = styled(Container)`
+export const navContainer = css`
   height: 100%;
   display: flex;
   align-items: center;
@@ -30,6 +29,8 @@ export const NavContainer = styled(Container)`
 `;
 
 export const Logo = styled.h1`
+  color: black;
+  margin-right: 25px;
 `;
 
 export const Wrapper = styled.div`
@@ -40,6 +41,9 @@ export const Wrapper = styled.div`
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: 10px;
+  }
+  & a {
+    text-decoration: none;
   }
 `;
 

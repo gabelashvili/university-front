@@ -8,6 +8,7 @@ export const InputLabel = styled.p`
 
 export const InputWrapper = styled.div`
     position: relative;
+    height: 100%;
 `;
 
 export const IconWrapper = styled.div`
@@ -27,13 +28,13 @@ export const Input = styled.input`
     font-size: 14px;
     color: #909090;
     margin: 0;
+    height: ${({ height }) => (height || '100%')};
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
     display: block;
-    background-color: #fcfcfc;
+    background-color: ${({ theme }) => theme.colors.white};
     font-weight: 500;
-    border: 1px solid #e0e0e0;
     opacity: 1;
-    border: 1px solid ${({ isError, theme }) => (isError ? theme.colors.red : 'transparent')}
+    border: 1px solid ${({ isError, theme }) => (isError ? theme.colors.red : theme.colors.grey)}
 `;
