@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
-import { Form } from 'components/UserPage/Authentication/Login/styles';
+import { Form, Recover, Wrapper } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
@@ -85,9 +85,12 @@ const Login = () => {
       >
         ავტორიზაცია
       </Button>
-      <CheckBox
-        label="დამახსოვრება"
-      />
+      <Wrapper>
+        <CheckBox
+          label="დამახსოვრება"
+        />
+        <Recover>პაროლის აღდგენა</Recover>
+      </Wrapper>
     </Form>
   );
 };
