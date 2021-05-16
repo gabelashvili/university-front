@@ -48,7 +48,7 @@ const App = () => {
         <Switch>
           {routes.map((route) => (
             <Route
-              exact
+              exact={route.path === '/'}
               path={route.path}
               key={route.name}
               component={route.component}

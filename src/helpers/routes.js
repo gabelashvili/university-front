@@ -9,14 +9,9 @@ export const routes = [
     path: '/',
   },
   {
-    name: 'Login',
+    name: 'Authentication',
     component: userPage,
-    path: '/user/login',
-  },
-  {
-    name: 'Register',
-    component: userPage,
-    path: '/user/register',
+    path: '/user/:type',
   },
   {
     name: 'University',

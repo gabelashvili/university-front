@@ -21,6 +21,7 @@ import ErrorIcon from 'Icons/Error';
 import {
   selectors as authedUserSelector,
 } from 'modules/Authentication/AuthedUser';
+import ResetPassword from 'components/UserPage/Authentication/ResetPassword';
 
 const Authentication = () => {
   const history = useHistory();
@@ -96,15 +97,29 @@ const Authentication = () => {
           padding="10px 20px"
           borderRadius="3px"
           fontWeight={600}
+          marginRight="1px"
           type="button"
           cursorType="pointer"
           handleClick={() => handleClick('register')}
         >
           რეგისტრაცია
         </Button>
+        <Button
+          bgColor={type === 'reset-password' ? 'lightGreen' : 'darkWhite'}
+          textColor={type === 'reset-password' ? 'white' : 'black'}
+          padding="10px 20px"
+          borderRadius="3px"
+          fontWeight={600}
+          type="button"
+          cursorType="pointer"
+          handleClick={() => handleClick('reset-password')}
+        >
+          აღდგენა
+        </Button>
       </ButtonWrapper>
       {type === 'login' && <LoginFrom />}
       {type === 'register' && <RegisterForm />}
+      {type === 'reset-password' && <ResetPassword />}
     </Div>
   );
 };
