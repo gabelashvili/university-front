@@ -22,3 +22,8 @@ export const activateAccountApi = (token) => axios
 
 export const checkTokenApi = () => costumAxios
   .get('http://localhost:5000/api/auth/status');
+
+export const forgotPasswordApi = (email) => axios
+  .post('http://localhost:5000/api/auth/forgot/password', {
+    email,
+  });

@@ -1,5 +1,6 @@
-import { Button, Loader } from 'components/Button/styles';
+import { Button, LoaderWrapper } from 'components/Button/styles';
 import { propTypes } from 'components/Button/types';
+import Loader from 'Icons/Loader';
 
 const ButtonComponent = ({
   children,
@@ -74,7 +75,11 @@ const ButtonComponent = ({
     active={active}
   >
     {children}
-    {isLoading && <Loader />}
+    {isLoading && (
+    <LoaderWrapper>
+      <Loader />
+    </LoaderWrapper>
+    )}
   </Button>
 );
 

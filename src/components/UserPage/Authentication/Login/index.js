@@ -113,7 +113,7 @@ const Login = () => {
         <CheckBox
           label="დამახსოვრება"
         />
-        <Recover onClick={() => handleClick('reset-password')}>პაროლის აღდგენა</Recover>
+        <Recover onClick={() => handleClick('forgot-password')}>პაროლის აღდგენა</Recover>
       </Wrapper>
     </Form>
   );

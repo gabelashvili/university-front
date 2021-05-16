@@ -21,6 +21,7 @@ import ErrorIcon from 'Icons/Error';
 import {
   selectors as authedUserSelector,
 } from 'modules/Authentication/AuthedUser';
+import ForgotPassword from 'components/UserPage/Authentication/ForgotPassword';
 import ResetPassword from 'components/UserPage/Authentication/ResetPassword';
 
 const Authentication = () => {
@@ -107,6 +108,7 @@ const Authentication = () => {
       </ButtonWrapper>
       {type === 'login' && <LoginFrom />}
       {type === 'register' && <RegisterForm />}
+      {type === 'forgot-password' && <ForgotPassword />}
       {type === 'reset-password' && <ResetPassword />}
     </Div>
   );

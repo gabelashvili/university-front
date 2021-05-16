@@ -1,7 +1,8 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { transparentize } from 'polished';
 
 export const Button = styled.div`
+  position: relative;
     background-color : ${({ bgColor, bgColorOpacity, theme }) => {
     if (bgColor && bgColorOpacity) {
       return transparentize(1 - bgColorOpacity, theme.colors[bgColor]);
@@ -11,7 +12,12 @@ export const Button = styled.div`
     }
     return 'transparent';
   }};
-    color: ${({ textColor, textColorOpacity, theme }) => {
+    color: ${({
+    textColor, textColorOpacity, theme, isLoading,
+  }) => {
+    if (isLoading) {
+      return `${transparentize(1, theme.colors.white)} !important`;
+    }
     if (textColor && textColorOpacity) {
       return transparentize(1 - textColorOpacity, theme.colors[textColor]);
     }
@@ -60,7 +66,12 @@ export const Button = styled.div`
     }
     return theme.colors[bgColor] || 'transparent';
   }};
-    color:  ${({ hoverTextColorOpacity, hoverTextColor, theme }) => {
+    color:  ${({
+    hoverTextColorOpacity, hoverTextColor, theme, isLoading,
+  }) => {
+    if (isLoading) {
+      return `${transparentize(1, theme.colors.white)} !important`;
+    }
     if (hoverTextColorOpacity && hoverTextColor) {
       return transparentize(1 - hoverTextColorOpacity, theme.colors[hoverTextColor]);
     }
@@ -73,27 +84,9 @@ export const Button = styled.div`
   ${({ costumStyles }) => costumStyles}
 `;
 
-const LoaderKeyFrames = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-    }
-`;
-
-export const Loader = styled.input`
-   width: 20px;
-   height: 20px;
-   display:inline-block;
-   padding:0px;
-   border-radius:100%;
-   border:5px solid;
-   border-top-color: ${({ theme }) => theme.colors.grey};
-   border-bottom-color:  ${({ theme }) => transparentize(0.7, theme.colors.green)};
-   border-left-color: ${({ theme }) => theme.colors.lightGreen};
-   border-right-color: ${({ theme }) => transparentize(0.7, theme.colors.green)};
-   animation: ${LoaderKeyFrames} 1s ease-in-out infinite;
-   margin-left: 10px;
-   cursor: pointer;
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)
 `;
