@@ -89,10 +89,11 @@ export const Loader = styled.input`
    padding:0px;
    border-radius:100%;
    border:5px solid;
-   border-top-color: ${({ theme }) => theme.colors.darkWhite};
-   border-bottom-color:  ${({ theme }) => transparentize(0.7, theme.colors.darkWhite)};
-   border-left-color: ${({ theme }) => theme.colors.darkWhite};
-   border-right-color: ${({ theme }) => transparentize(0.7, theme.colors.darkWhite)};
+   border-top-color: ${({ theme }) => theme.colors.grey};
+   border-bottom-color:  ${({ theme }) => transparentize(0.7, theme.colors.green)};
+   border-left-color: ${({ theme }) => theme.colors.lightGreen};
+   border-right-color: ${({ theme }) => transparentize(0.7, theme.colors.green)};
    animation: ${LoaderKeyFrames} 1s ease-in-out infinite;
    margin-left: 10px;
+   cursor: pointer;
 `;

@@ -104,18 +104,6 @@ const Authentication = () => {
         >
           რეგისტრაცია
         </Button>
-        <Button
-          bgColor={type === 'reset-password' ? 'lightGreen' : 'darkWhite'}
-          textColor={type === 'reset-password' ? 'white' : 'black'}
-          padding="10px 20px"
-          borderRadius="3px"
-          fontWeight={600}
-          type="button"
-          cursorType="pointer"
-          handleClick={() => handleClick('reset-password')}
-        >
-          აღდგენა
-        </Button>
       </ButtonWrapper>
       {type === 'login' && <LoginFrom />}
       {type === 'register' && <RegisterForm />}

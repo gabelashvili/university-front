@@ -11,10 +11,14 @@ import { useSnackbar } from 'notistack';
 import {
   actions as authedUserActions,
 } from 'modules/Authentication/AuthedUser';
+import {
+  useHistory,
+} from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const history = useHistory();
   const logInInfoRef = useRef();
   const loginDetails = useSelector(authSelector.selectLoginDetails);
   const {
@@ -68,6 +72,10 @@ const Login = () => {
     }
   }, [loginDetails]);
 
+  const handleClick = (params) => {
+    history.push(`/user/${params}`);
+  };
+
   return (
     <Form>
       <TextInput
@@ -105,7 +113,7 @@ const Login = () => {
         <CheckBox
           label="დამახსოვრება"
         />
-        <Recover>პაროლის აღდგენა</Recover>
+        <Recover onClick={() => handleClick('reset-password')}>პაროლის აღდგენა</Recover>
       </Wrapper>
     </Form>
   );
