@@ -20,6 +20,7 @@ import SuccessIcon from 'Icons/Success';
 import ErrorIcon from 'Icons/Error';
 import {
   selectors as authedUserSelector,
+  hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 import ForgotPassword from 'components/UserPage/Authentication/ForgotPassword';
 import ResetPassword from 'components/UserPage/Authentication/ResetPassword';
@@ -27,6 +28,7 @@ import ResetPassword from 'components/UserPage/Authentication/ResetPassword';
 const Authentication = () => {
   const history = useHistory();
   const authedUser = useSelector(authedUserSelector.selectAuthedUser);
+  const { loginUser } = authedUserHook.useAuthedUser();
   const type = history.location.pathname.split('/').slice(2, 3).toString();
   const dispatch = useDispatch();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
@@ -48,6 +50,9 @@ const Authentication = () => {
   useEffect(() => {
     if (activationDetails.statuses.isPending) {
       dispatch(modalActions.setModalState.open());
+    }
+    if (activationDetails.statuses.isSucceed) {
+      loginUser(activationDetails.data);
     }
   }, [activationDetails]);
   return (

@@ -21,19 +21,19 @@ const Register = () => {
   });
   const password = useRef({});
   password.current = watch('password', '');
-  const { statuses } = useSelector(registrationSelectors.selectRegisterUser);
+  const registerUser = useSelector(registrationSelectors.selectRegisterUser);
   useEffect(() => {
-    if (statuses.isFailed) {
+    if (registerUser.statuses.isFailed) {
       enqueueSnackbar('მოხდა შეცდომა', {
         variant: 'error',
       });
     }
-    if (statuses.isSucceed) {
-      enqueueSnackbar('რეგისტრაციაა წარმატებით დასრულდა, შეამოწმეთ E-mail', {
+    if (registerUser.statuses.isSucceed) {
+      enqueueSnackbar(registerUser.data.message, {
         variant: 'success',
       });
     }
-  }, [statuses]);
+  }, [registerUser]);
 
   const onSubmit = (data) => {
     dispatch(registerActions.register.request(data));

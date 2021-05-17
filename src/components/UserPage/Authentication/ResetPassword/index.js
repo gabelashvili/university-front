@@ -11,10 +11,12 @@ import {
   useHistory,
 } from 'react-router-dom';
 import qs from 'qs';
+import { hooks as authedUserHook } from 'modules/Authentication/AuthedUser';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const resetPasswordState = useSelector(resetPasswordSelector.selectResetPassword);
+  const { loginUser } = authedUserHook.useAuthedUser();
   const history = useHistory();
   const token = qs.parse(history.location.search, { ignoreQueryPrefix: true });
   const { enqueueSnackbar } = useSnackbar();
@@ -50,6 +52,7 @@ const ResetPassword = () => {
         variant: 'success',
       });
       history.push('/');
+      loginUser(resetPasswordState.data);
     }
   }, [resetPasswordState]);
   return (
