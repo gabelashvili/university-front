@@ -8,13 +8,13 @@ import { propTypes } from 'components/Header/Navigation/types';
 import UserIcon from 'Icons/UserIcon';
 import { Link } from 'react-router-dom';
 import {
-  selectors as authedUserSelector,
+  hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 import Container from 'components/Container';
 
 export const Navigation = ({ navigationRef }) => {
   const isScrolled = useSelector(navScrollSelector.selectScrollState);
-  const authedUser = useSelector(authedUserSelector.selectAuthedUser);
+  const { authedUser, isAuthed } = authedUserHook.useAuthedUser();
   console.log(authedUser);
   return (
     <Nav ref={navigationRef} isScrolled={isScrolled}>
@@ -40,7 +40,7 @@ export const Navigation = ({ navigationRef }) => {
             </Link>
           </div>
           <div>
-            {!authedUser.isAuthed && (
+            {!isAuthed && (
             <Link to="/user/register">
               <Button
                 bgColor="darkWhite"
@@ -76,7 +76,7 @@ export const Navigation = ({ navigationRef }) => {
                 <Icon isScrolled={isScrolled}>
                   <UserIcon />
                 </Icon>
-                {authedUser.isAuthed ? authedUser.firstName : 'Sign In'}
+                {isAuthed ? authedUser.firstName : 'Sign In'}
               </Button>
             </Link>
           </div>

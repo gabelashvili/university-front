@@ -5,22 +5,17 @@ import PasswordIcon from 'Icons/Password';
 import { Form, Recover, Wrapper } from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
-import { actions as loginActions, selectors as authSelector } from 'modules/Authentication/Login';
-import { useSelector, useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import {
-  actions as authedUserActions,
-} from 'modules/Authentication/AuthedUser';
+import { hooks as authedUserHook } from 'modules/Authentication/AuthedUser';
 import {
   useHistory,
 } from 'react-router-dom';
 
 const Login = () => {
-  const dispatch = useDispatch();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { requestUserLogin, loginDetails } = authedUserHook.useAuthedUser();
   const history = useHistory();
   const logInInfoRef = useRef();
-  const loginDetails = useSelector(authSelector.selectLoginDetails);
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({
@@ -28,19 +23,12 @@ const Login = () => {
     mode: 'all',
   });
   const onSubmit = ({ email, password }) => {
-    dispatch(loginActions.auth.request({ email, password }));
+    requestUserLogin(email, password);
   };
   const onErrorSubmit = () => {
     enqueueSnackbar('გთხოვთ შეავსოთ ყველა სავალდებულო ველი', {
       variant: 'info',
     });
-  };
-  const parseJwt = (token) => {
-    try {
-      return JSON.parse(atob(token.split('.')[1]));
-    } catch (e) {
-      return null;
-    }
   };
   useEffect(() => {
     if (loginDetails.statuses.isPending) {
@@ -50,22 +38,13 @@ const Login = () => {
       });
     }
     if (loginDetails.statuses.isSucceed) {
-      const parsedJwt = parseJwt(loginDetails.data.token);
-      const data = {
-        firstName: loginDetails.data.firstname,
-        userId: parsedJwt.user.id,
-        universityId: parsedJwt.user.UniversityId,
-        token: loginDetails.data.token,
-      };
-      localStorage.setItem('authedUser', JSON.stringify(data));
-      dispatch(authedUserActions.authedUser.set(data));
       enqueueSnackbar('თქვენ წარმატებით გაიარეთ ავტორიზაცია', {
         variant: 'success',
       });
       closeSnackbar(logInInfoRef.current);
     }
     if (loginDetails.statuses.isFailed) {
-      enqueueSnackbar('მოხდა შეცდომა ...', {
+      enqueueSnackbar(loginDetails.errorMessage.response.data.message, {
         variant: 'error',
       });
       closeSnackbar(logInInfoRef.current);

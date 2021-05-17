@@ -39,9 +39,6 @@ const App = () => {
     }
   }, [checkToken]);
 
-  useEffect(() => {
-    console.log(authedUser);
-  }, [authedUser]);
   return (
     <Router>
       <BaseLayout>
