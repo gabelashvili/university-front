@@ -1,11 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { InputWrapper, buttonStyle } from 'components/UserPage/Authentication/ResetPassword/styles';
 import PasswordIcon from 'Icons/Password';
 import { TextInput } from 'components/Inputs/';
 import { useForm } from 'react-hook-form';
 import Button from 'components/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions as resetPasswordActions, selectors as resetPasswordSelector } from 'modules/Authentication/ResetPassword';
+import { useSnackbar } from 'notistack';
+import {
+  useHistory,
+} from 'react-router-dom';
+import qs from 'qs';
 
 const ResetPassword = () => {
+  const dispatch = useDispatch();
+  const resetPasswordState = useSelector(resetPasswordSelector.selectResetPassword);
+  const history = useHistory();
+  const token = qs.parse(history.location.search, { ignoreQueryPrefix: true });
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm({
@@ -15,13 +27,31 @@ const ResetPassword = () => {
 
   const password = useRef({});
   password.current = watch('password', '');
-
-  const onSubmit = () => {
-    console.log('submiot');
+  const onSubmit = (data) => {
+    dispatch(resetPasswordActions.resetPassword.request({
+      password: data.password,
+      rePassword: data.repeatPassword,
+      token: token.resetToken,
+    }));
   };
   const onErrorSubmit = () => {
-    console.log('error');
+    enqueueSnackbar('შეავსეთ ყველა სავალდებულო ველი', {
+      variant: 'error',
+    });
   };
+  useEffect(() => {
+    if (resetPasswordState.statuses.isFailed) {
+      enqueueSnackbar(resetPasswordState.errorMessage.response.data.message, {
+        variant: 'error',
+      });
+    }
+    if (resetPasswordState.statuses.isSucceed) {
+      enqueueSnackbar('პაროლი წარმატებით შეიცვალა', {
+        variant: 'success',
+      });
+      history.push('/');
+    }
+  }, [resetPasswordState]);
   return (
     <InputWrapper>
       <TextInput

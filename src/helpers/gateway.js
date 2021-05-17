@@ -27,3 +27,10 @@ export const forgotPasswordApi = (email) => axios
   .post('http://localhost:5000/api/auth/forgot/password', {
     email,
   });
+
+export const resetPasswordApi = ({ password, token, rePassword }) => axios
+  .post('http://localhost:5000/api/auth/reset/password', {
+    password,
+    token,
+    rePassword,
+  });
