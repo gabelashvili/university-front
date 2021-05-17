@@ -11,7 +11,7 @@ const authedUser = (state = initialState, action) => {
         ...initialState,
         isAuthed: true,
         ...action.payload,
-        firstName: action.payload.firstname,
+        firstName: action.payload.firstName,
       };
     case constants.REMOVE_AUTHED_USER:
       return initialState;

@@ -26,7 +26,7 @@ export const useAuthedUser = () => {
       token: data.token,
     };
     localStorage.setItem('authedUser', JSON.stringify(localStorageData));
-    dispatch(authedUserActions.authedUser.set(data));
+    dispatch(authedUserActions.authedUser.set(localStorageData));
   };
 
   useEffect(() => {

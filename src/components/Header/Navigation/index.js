@@ -15,7 +15,6 @@ import Container from 'components/Container';
 export const Navigation = ({ navigationRef }) => {
   const isScrolled = useSelector(navScrollSelector.selectScrollState);
   const { authedUser, isAuthed } = authedUserHook.useAuthedUser();
-  console.log(authedUser);
   return (
     <Nav ref={navigationRef} isScrolled={isScrolled}>
       <Container isCentered costumStyles={navContainer}>
