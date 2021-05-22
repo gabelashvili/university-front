@@ -1,5 +1,5 @@
 import Container from 'components/Container';
-import { Header } from 'components/University';
+import { Header, Feedback } from 'components/University';
 import { useParams } from 'react-router-dom';
 
 const universityPage = () => {
@@ -10,7 +10,7 @@ const universityPage = () => {
       <Container isCentered>
         {tabName === 'details' && 'details'}
         {tabName === 'lectures' && 'lectures'}
-        {tabName === 'feedback' && 'feedback'}
+        {tabName === 'feedback' && <Feedback />}
       </Container>
     </>
   );

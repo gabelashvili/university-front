@@ -1,6 +1,6 @@
 const theme = {
   settings: {
-    containerMaxWidth: '1180px',
+    containerMaxWidth: '1170px',
   },
   colors: {
     white: 'white',
@@ -11,6 +11,7 @@ const theme = {
     darkBlack: 'black',
     lightGrey: '#666',
     red: '#da4932',
+    blue: '#337ab7',
   },
 };
 

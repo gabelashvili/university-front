@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "components": "^0.1.0",
+    "emoji-picker-react": "^3.4.5",
     "notistack": "^1.0.5",
     "polished": "^4.1.1",
     "prop-types": "^15.7.2",
