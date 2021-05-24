@@ -16,6 +16,10 @@ import {
   EmojiWrapper,
   ImgPreview,
   Img,
+  NewPost,
+  Post,
+  TextAreaWrapper,
+  ImgPreviewWrapper,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
@@ -29,6 +33,9 @@ const Feedback = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const [comment, setComment] = useState('');
   const [cursPos, setCursPos] = useState(0);
+  const emojiRef = useRef(null);
+  const textareaRef = useRef();
+
   const handleUpload = (e) => {
     if (e.target.files[0].size > 1024 * 1024 * 2) {
       enqueueSnackbar('Max Upload File Size 2Mib', {
@@ -37,6 +44,7 @@ const Feedback = () => {
     } else {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
+    console.log(112);
   };
   const onEmojiClick = (event, emojiObject) => {
     const newComment = comment.substring(0, cursPos.start) + emojiObject.emoji + comment.substring(cursPos.end, comment.length);
@@ -48,8 +56,6 @@ const Feedback = () => {
   const handleCommentChange = (e) => setComment(e.target.value);
 
   const toggleEmoji = () => setShowEmoji(!showEmoji);
-
-  const emojiRef = useRef(null);
 
   const handleClickOutsideEmoji = (event) => {
     if (emojiRef.current && !emojiRef.current.contains(event.target)) {
@@ -63,41 +69,63 @@ const Feedback = () => {
       document.removeEventListener('click', handleClickOutsideEmoji, true);
     };
   });
+
+  // resize textarea automatically
+  useEffect(() => {
+    textareaRef.current.style.height = '0px';
+    const { scrollHeight } = textareaRef.current;
+    textareaRef.current.style.height = `${scrollHeight}px`;
+  }, [comment]);
   return (
     <Container costumStyles={containerStyles}>
       <Container costumStyles={containerStylesLeft}>
         LeftSide
       </Container>
       <Container costumStyles={containerStylesMiddle}>
-        <TextArea value={comment} onChange={(e) => handleCommentChange(e)} onKeyUp={(e) => handleCursorPosition(e)} onClick={(e) => handleCursorPosition(e)} />
-        <BottomPart>
-          <UploadImage>
-            <UploadLabel htmlFor="upload-image">
-              <CameraIcon />
-            </UploadLabel>
-            <Upload type="file" id="upload-image" accept="image/png, image/jpeg" onInput={(e) => handleUpload(e)} />
-          </UploadImage>
-          <Emoji ref={emojiRef}>
-            <EmojiIcon onClick={toggleEmoji} />
-            {showEmoji && (
-            <EmojiWrapper onClick={handleClickOutsideEmoji}>
-              <Picker
-                onEmojiClick={onEmojiClick}
-                disableAutoFocus
-                skinTone={SKIN_TONE_MEDIUM_DARK}
-                groupNames={{ smileys_people: 'PEOPLE' }}
-                native
-              />
-            </EmojiWrapper>
+        <NewPost>
+          <TextAreaWrapper>
+            <TextArea
+              value={comment}
+              onChange={(e) => handleCommentChange(e)}
+              onKeyUp={(e) => handleCursorPosition(e)}
+              onClick={(e) => handleCursorPosition(e)}
+              ref={textareaRef}
+            />
+            {image && (
+              <ImgPreviewWrapper>
+                <ImgPreview onClick={() => setImage(false)}>
+                  <Img src={image} alt="" />
+                  <CloseIcon />
+                </ImgPreview>
+              </ImgPreviewWrapper>
             )}
-          </Emoji>
-          {image && (
-          <ImgPreview onClick={() => setImage(false)}>
-            <Img src={image} alt="" />
-            <CloseIcon />
-          </ImgPreview>
-          )}
-        </BottomPart>
+          </TextAreaWrapper>
+          <BottomPart>
+            <UploadImage>
+              <UploadLabel htmlFor="upload-image">
+                <CameraIcon />
+              </UploadLabel>
+              <Upload type="file" id="upload-image" accept="image/png, image/jpeg" onInput={(e) => handleUpload(e)} />
+            </UploadImage>
+            <Emoji ref={emojiRef}>
+              <EmojiIcon onClick={toggleEmoji} />
+              {showEmoji && (
+              <EmojiWrapper onClick={handleClickOutsideEmoji}>
+                <Picker
+                  onEmojiClick={onEmojiClick}
+                  disableAutoFocus
+                  skinTone={SKIN_TONE_MEDIUM_DARK}
+                  groupNames={{ smileys_people: 'PEOPLE' }}
+                  native
+                />
+              </EmojiWrapper>
+              )}
+            </Emoji>
+          </BottomPart>
+        </NewPost>
+        <Post>
+          qwdqwd
+        </Post>
       </Container>
       <Container costumStyles={containerStylesRight}>
         RightSide

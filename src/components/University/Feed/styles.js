@@ -19,12 +19,11 @@ export const containerStylesLeft = css`
 `;
 
 export const containerStylesMiddle = css`
-    background-color: ${({ theme }) => theme.colors.white};
     grid-area: middle;
     max-width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-`;
+    display: grid;
+    grid-row-gap: 15px;
+  `;
 
 export const containerStylesRight = css`
     background-color: ${({ theme }) => theme.colors.white};
@@ -33,17 +32,22 @@ export const containerStylesRight = css`
     border-radius: 10px;
 `;
 
+export const TextAreaWrapper = styled.div`
+  
+    border-radius: 5px;
+    padding: 10px;
+    border: ${({ theme }) => `1px solid ${transparentize(0.75, theme.colors.lightGrey)}`};
+       
+`;
+
 export const TextArea = styled.textarea`
     max-width: 100%;
     min-width: 100%;
     width: 100%;
-    border-radius: 5px;
-    resize: vertical;
-    padding: 10px;
+    resize: none;
+    border: none;
     &:focus {
         outline: 0;
-        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
-        border-color :#66afe9;
     }
 `;
 
@@ -80,13 +84,18 @@ export const EmojiWrapper = styled.div`
     position: absolute;
 `;
 
+export const ImgPreviewWrapper = styled.div`
+    width: 100%;
+    border-top: ${({ theme }) => `1px solid ${transparentize(0.3, theme.colors.lightGrey)}`};
+    padding: 10px 0 10px;
+    margin-top: 10px;
+`;
+
 export const ImgPreview = styled.div`
-    margin-left: 30px;
     position: relative;
     border-radius: 10px;
     width: 50px;
     height: 50px;
-    margin-left: auto;
     &:hover:after {
         position: absolute;
         content: "";
@@ -115,5 +124,19 @@ export const ImgPreview = styled.div`
 export const Img = styled.img`
     width: 100%;
     height: 100%;
+    border-radius: 10px;
+`;
+
+export const NewPost = styled.div`
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.white};
+    border-radius: 10px;
+    border: ${({ theme }) => `1px solid ${transparentize(0.75, theme.colors.lightGrey)}`}
+`;
+
+export const Post = styled.div`
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.white};
+    border: ${({ theme }) => `1px solid ${transparentize(0.75, theme.colors.lightGrey)}`};
     border-radius: 10px;
 `;
