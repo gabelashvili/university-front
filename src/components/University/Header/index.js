@@ -49,8 +49,8 @@ const Header = () => {
             hoverBgColor="white"
             hoverBgColorOpacity={0.8}
             costumStyles={buttonStyle}
-            active={tabName === 'feedback'}
-            handleClick={() => handleClick('feedback')}
+            active={tabName === 'feed'}
+            handleClick={() => handleClick('feed')}
           >
             შეფასებები
           </Button>

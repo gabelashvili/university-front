@@ -10,7 +10,7 @@ const universityPage = () => {
       <Container isCentered>
         {tabName === 'details' && 'details'}
         {tabName === 'lectures' && 'lectures'}
-        {tabName === 'feedback' && <Feedback />}
+        {tabName === 'feed' && <Feedback />}
       </Container>
     </>
   );

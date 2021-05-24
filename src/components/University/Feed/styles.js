@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled, { css } from 'styled-components';
+import { transparentize } from 'polished';
 
 export const containerStyles = css`
     padding: 20px;
@@ -77,4 +78,42 @@ export const Emoji = styled.div`
 
 export const EmojiWrapper = styled.div`
     position: absolute;
+`;
+
+export const ImgPreview = styled.div`
+    margin-left: 30px;
+    position: relative;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    &:hover:after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: ${({ theme }) => transparentize(0.1, theme.colors.white)};
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+    }
+    & >svg {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+    &:hover > svg {
+        display: block;
+        z-index: 1;
+    }
+`;
+
+export const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 `;

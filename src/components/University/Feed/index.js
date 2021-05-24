@@ -14,9 +14,12 @@ import {
   Upload,
   Emoji,
   EmojiWrapper,
+  ImgPreview,
+  Img,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
+import CloseIcon from 'Icons/Close';
 import { useSnackbar } from 'notistack';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 
@@ -88,6 +91,12 @@ const Feedback = () => {
             </EmojiWrapper>
             )}
           </Emoji>
+          {image && (
+          <ImgPreview onClick={() => setImage(false)}>
+            <Img src={image} alt="" />
+            <CloseIcon />
+          </ImgPreview>
+          )}
         </BottomPart>
       </Container>
       <Container costumStyles={containerStylesRight}>
