@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { actions as navScrollActions } from 'modules/NavScroll';
@@ -8,9 +9,9 @@ export const handleScrollHook = ({ navigationRef }) => {
     const navigationHeight = navigationRef.current.clientHeight;
     // window.pageYOffset >= navigationHeight / 2
     if (window.pageYOffset >= navigationHeight) {
-      dispatch(navScrollActions.setScrollState.request(true));
+      // dispatch(navScrollActions.setScrollState.request(true));
     } else {
-      dispatch(navScrollActions.setScrollState.request(false));
+      // dispatch(navScrollActions.setScrollState.request(false));
     }
   };
   useEffect(() => {
