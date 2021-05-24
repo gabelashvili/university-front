@@ -20,6 +20,13 @@ import {
   Post,
   TextAreaWrapper,
   ImgPreviewWrapper,
+  PostHeader,
+  AuthorAvatar,
+  AuthorDetails,
+  AuthorUni,
+  AuthorName,
+  PostDesc,
+  PostImg,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
@@ -44,7 +51,6 @@ const Feedback = () => {
     } else {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
-    console.log(112);
   };
   const onEmojiClick = (event, emojiObject) => {
     const newComment = comment.substring(0, cursPos.start) + emojiObject.emoji + comment.substring(cursPos.end, comment.length);
@@ -124,7 +130,17 @@ const Feedback = () => {
           </BottomPart>
         </NewPost>
         <Post>
-          qwdqwd
+          <PostHeader>
+            <AuthorAvatar src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+            <AuthorDetails>
+              <AuthorName>John Doe</AuthorName>
+              <AuthorUni>Caucasus University</AuthorUni>
+            </AuthorDetails>
+          </PostHeader>
+          <PostDesc>
+            lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum
+            <PostImg src="https://media-exp1.licdn.com/dms/image/C4E22AQHoZlqp8dWaog/feedshare-shrink_800/0/1621521849666?e=1624492800&v=beta&t=FANoN4IckroFiIK-YHSE_aBMT_cIs_vQ22rxlXbuRW4" alt="" />
+          </PostDesc>
         </Post>
       </Container>
       <Container costumStyles={containerStylesRight}>

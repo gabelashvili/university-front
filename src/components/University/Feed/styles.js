@@ -6,20 +6,17 @@ export const containerStyles = css`
     padding: 20px;
     display: grid;
     grid-column-gap: 15px;
-    grid-template-areas:
-    'left middle middle middle right'
-    '. middle middle middle .'
+    grid-template-columns: 1fr 2fr 1fr;
 `;
 
 export const containerStylesLeft = css`
     background-color: ${({ theme }) => theme.colors.white};
-    grid-area: left;
     border: 1px solid black;
     border-radius: 10px;
+    height: max-content;
 `;
 
 export const containerStylesMiddle = css`
-    grid-area: middle;
     max-width: 100%;
     display: grid;
     grid-row-gap: 15px;
@@ -27,9 +24,9 @@ export const containerStylesMiddle = css`
 
 export const containerStylesRight = css`
     background-color: ${({ theme }) => theme.colors.white};
-    grid-area: right;
     border: 1px solid green;
     border-radius: 10px;
+    height: max-content;
 `;
 
 export const TextAreaWrapper = styled.div`
@@ -135,8 +132,51 @@ export const NewPost = styled.div`
 `;
 
 export const Post = styled.div`
+    max-width: 100%;
+    width: 100%;
     padding: 10px;
     background-color: ${({ theme }) => theme.colors.white};
     border: ${({ theme }) => `1px solid ${transparentize(0.75, theme.colors.lightGrey)}`};
     border-radius: 10px;
+`;
+
+export const PostHeader = styled.div`
+    display:flex;
+    align-items: center;
+`;
+
+export const AuthorAvatar = styled.img`
+    width: 50px;
+    height: 50px;
+    border: ${({ theme }) => `2px solid ${transparentize(0.2, theme.colors.lightGrey)}`};
+    border-radius: 50%;
+`;
+
+export const AuthorDetails = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+`;
+
+export const AuthorName = styled.p`
+    font-size: 16px;
+    font-weight: 500;    
+`;
+
+export const AuthorUni = styled.p`
+    font-size: 14px;
+`;
+
+export const PostDesc = styled.div`
+    margin-top: 20px;
+    font-size: 14px;
+    width: 100%;
+    word-break: break-word;
+`;
+
+export const PostImg = styled.img`
+    max-height: 300px;
+    height: 100%;
+    width: 100%;
+    margin-top: 15px;
 `;
