@@ -33,6 +33,7 @@ import {
   PostBottom,
   postButton,
   LikeButtonWrapper,
+  ToolTip,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
@@ -160,6 +161,7 @@ const Feedback = () => {
           </PostReactions>
           <PostBottom>
             <LikeButtonWrapper>
+              <ToolTip>qwdqwd</ToolTip>
               <Button costumStyles={postButton} type="button" likeButton>
                 <LikeIcon />
                 Like

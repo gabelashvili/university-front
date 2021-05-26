@@ -224,6 +224,16 @@ export const postButton = css`
     }
 `;
 
+export const ToolTip = styled.div`
+    background: red;
+    opacity: 0;
+    top: 0;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-120%);
+    width: max-content;
+`;
+
 export const LikeButtonWrapper = styled.div`
-    position: relative;
+   
 `;
