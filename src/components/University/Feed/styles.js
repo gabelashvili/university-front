@@ -242,6 +242,11 @@ export const ToolTip = styled.div`
     & svg {
         width: 20px;
         height: 20px;
+        &:hover{
+            transform: scale(1.3);
+            transition: all 0.2s;
+            transform: translateY(-30%) scale(1.3);
+        }
     }
 `;
 
