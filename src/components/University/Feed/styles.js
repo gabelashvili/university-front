@@ -225,15 +225,29 @@ export const postButton = css`
 `;
 
 export const ToolTip = styled.div`
-    background: red;
-    opacity: 0;
+    background: ${({ theme }) => theme.colors.white};
+    visibility: hidden;
     top: 0;
     position: absolute;
     transition: all 0.3s ease-in-out;
     transform: translateY(-120%);
     width: max-content;
+    padding: 10px;
+    border-radius: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 15px;
+    border: ${({ theme }) => `1px solid ${transparentize(0.2, theme.colors.lightGrey)}`};
+    box-shadow: 0px 2px 7px -5px #000000;
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
 `;
 
 export const LikeButtonWrapper = styled.div`
-   
+    position: relative;
+    &:hover ${ToolTip} {
+        visibility: visible;
+    }
 `;

@@ -161,7 +161,13 @@ const Feedback = () => {
           </PostReactions>
           <PostBottom>
             <LikeButtonWrapper>
-              <ToolTip>qwdqwd</ToolTip>
+              <ToolTip>
+                <LikeIcon />
+                <LikeIcon />
+                <LikeIcon />
+                <LikeIcon />
+                <LikeIcon />
+              </ToolTip>
               <Button costumStyles={postButton} type="button" likeButton>
                 <LikeIcon />
                 Like
