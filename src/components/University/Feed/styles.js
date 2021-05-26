@@ -180,3 +180,50 @@ export const PostImg = styled.img`
     width: 100%;
     margin-top: 15px;
 `;
+
+export const PostReactions = styled.div``;
+
+export const Reaction = styled.div`
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    & svg {
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+    };
+    border-bottom: ${({ theme }) => `1px solid ${transparentize(0.8, theme.colors.lightGrey)}`};
+    padding: 5px 0;
+
+`;
+
+export const ReactionsCount = styled.p``;
+
+export const PostBottom = styled.div`
+    margin-top: 10px;
+    display: flex;
+`;
+
+export const postButton = css`
+    color: ${({ theme }) => transparentize(0.6, theme.colors.black)};
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    & > svg {
+        fill: ${({ theme }) => transparentize(0.6, theme.colors.black)};
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        transform: ${({ likeButton }) => likeButton && 'scaleX(-1)'}
+    };
+    &:hover{
+        background-color: ${({ theme }) => transparentize(0.9, theme.colors.black)};
+    }
+`;
+
+export const LikeButtonWrapper = styled.div`
+    position: relative;
+`;

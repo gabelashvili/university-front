@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Container from 'components/Container';
 import {
   containerStyles,
@@ -27,12 +27,21 @@ import {
   AuthorName,
   PostDesc,
   PostImg,
+  PostReactions,
+  Reaction,
+  ReactionsCount,
+  PostBottom,
+  postButton,
+  LikeButtonWrapper,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
 import CloseIcon from 'Icons/Close';
+import LikeIcon from 'Icons/Like';
+import CommentIcon from 'Icons/Comment';
 import { useSnackbar } from 'notistack';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
+import Button from 'components/Button';
 
 const Feedback = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -141,6 +150,26 @@ const Feedback = () => {
             lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum
             <PostImg src="https://media-exp1.licdn.com/dms/image/C4E22AQHoZlqp8dWaog/feedshare-shrink_800/0/1621521849666?e=1624492800&v=beta&t=FANoN4IckroFiIK-YHSE_aBMT_cIs_vQ22rxlXbuRW4" alt="" />
           </PostDesc>
+          <PostReactions>
+            <Reaction>
+              <LikeIcon />
+              <LikeIcon />
+              <LikeIcon />
+              <ReactionsCount>4</ReactionsCount>
+            </Reaction>
+          </PostReactions>
+          <PostBottom>
+            <LikeButtonWrapper>
+              <Button costumStyles={postButton} type="button" likeButton>
+                <LikeIcon />
+                Like
+              </Button>
+            </LikeButtonWrapper>
+            <Button costumStyles={postButton} type="button">
+              <CommentIcon />
+              Comment
+            </Button>
+          </PostBottom>
         </Post>
       </Container>
       <Container costumStyles={containerStylesRight}>
