@@ -21,6 +21,7 @@ import HeartIcon from 'Icons/Heart';
 import CommentIcon from 'Icons/Comment';
 import LaughIcon from 'Icons/Laugh';
 import Button from 'components/Button';
+import Reply from 'components/University/Feed/Reply';
 
 const PostComponent = () => (
   <Post>
@@ -73,6 +74,7 @@ const PostComponent = () => (
         Comment
       </Button>
     </PostBottom>
+    <Reply />
   </Post>
 );
 

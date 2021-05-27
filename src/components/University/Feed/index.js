@@ -29,7 +29,7 @@ const Feedback = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [image, setImage] = useState(null);
   const [showEmoji, setShowEmoji] = useState(false);
-  const [comment, setComment] = useState('');
+  const [postDesc, setPostDesc] = useState('');
   const [cursPos, setCursPos] = useState(0);
   const emojiRef = useRef(null);
   const textareaRef = useRef();
@@ -45,13 +45,13 @@ const Feedback = () => {
   };
   const onEmojiClick = (event, emojiObject) => {
     // eslint-disable-next-line max-len
-    const newComment = comment.substring(0, cursPos.start) + emojiObject.emoji + comment.substring(cursPos.end, comment.length);
-    setComment(newComment);
+    const newComment = `${postDesc.substring(0, cursPos.start)}${emojiObject.emoji}${postDesc.substring(cursPos.end, postDesc.length)}`;
+    setPostDesc(newComment);
   };
   const handleCursorPosition = (e) => {
     setCursPos({ start: e.target.selectionStart, end: e.target.selectionEnd });
   };
-  const handleCommentChange = (e) => setComment(e.target.value);
+  const handleCommentChange = (e) => setPostDesc(e.target.value);
 
   const toggleEmoji = () => setShowEmoji(!showEmoji);
 
@@ -73,7 +73,7 @@ const Feedback = () => {
     textareaRef.current.style.height = '0px';
     const { scrollHeight } = textareaRef.current;
     textareaRef.current.style.height = `${scrollHeight}px`;
-  }, [comment]);
+  }, [postDesc]);
   return (
     <Container costumStyles={containerStyles}>
       <Container costumStyles={containerStylesLeft}>
@@ -83,7 +83,7 @@ const Feedback = () => {
         <NewPost>
           <TextAreaWrapper>
             <TextArea
-              value={comment}
+              value={postDesc}
               onChange={(e) => handleCommentChange(e)}
               onKeyUp={(e) => handleCursorPosition(e)}
               onClick={(e) => handleCursorPosition(e)}
