@@ -34,3 +34,10 @@ export const resetPasswordApi = ({ password, token, rePassword }) => axios
     token,
     rePassword,
   });
+
+export const postNewFeedApi = (image, data) => {
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('data', JSON.stringify(data));
+  return costumAxios.post('http://localhost:5000/api/feed/post', formData);
+};

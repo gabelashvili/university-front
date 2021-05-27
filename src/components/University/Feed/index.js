@@ -24,15 +24,20 @@ import CloseIcon from 'Icons/Close';
 import { useSnackbar } from 'notistack';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import Post from 'components/University/Feed/Post';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { actions as postNewFeedActions } from 'modules/University/Feed';
 
 const Feedback = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [showEmoji, setShowEmoji] = useState(false);
   const [postDesc, setPostDesc] = useState('');
   const [cursPos, setCursPos] = useState(0);
   const emojiRef = useRef(null);
   const textareaRef = useRef();
+  const { id: uniId } = useParams();
 
   const handleUpload = (e) => {
     if (e.target.files[0].size > 1024 * 1024 * 2) {
@@ -43,14 +48,17 @@ const Feedback = () => {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
   };
+
   const onEmojiClick = (event, emojiObject) => {
     // eslint-disable-next-line max-len
     const newComment = `${postDesc.substring(0, cursPos.start)}${emojiObject.emoji}${postDesc.substring(cursPos.end, postDesc.length)}`;
     setPostDesc(newComment);
   };
+
   const handleCursorPosition = (e) => {
     setCursPos({ start: e.target.selectionStart, end: e.target.selectionEnd });
   };
+
   const handleCommentChange = (e) => setPostDesc(e.target.value);
 
   const toggleEmoji = () => setShowEmoji(!showEmoji);
@@ -59,6 +67,15 @@ const Feedback = () => {
     if (emojiRef.current && !emojiRef.current.contains(event.target)) {
       setShowEmoji(false);
     }
+  };
+
+  const handleNewPost = () => {
+    const data = {
+      text: postDesc,
+      category: 'Test',
+      universityId: uniId,
+    };
+    dispatch(postNewFeedActions.postNewFeed.request(image, data));
   };
 
   useEffect(() => {
@@ -119,6 +136,7 @@ const Feedback = () => {
               </EmojiWrapper>
               )}
             </Emoji>
+            <button type="button" onClick={handleNewPost}>Send</button>
           </BottomPart>
         </NewPost>
         <Post />
