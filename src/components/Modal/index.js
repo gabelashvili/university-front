@@ -8,7 +8,7 @@ import {
 } from 'components/Modal/styles';
 
 const Modal = ({
-  title, children, showClose, closeOnAwayClick,
+  title, children, showClose, closeOnAwayClick, costumeStyles, costumeCloseIcon,
 }) => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectors.selectModalState);
@@ -29,16 +29,24 @@ const Modal = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [closeOnAwayClick]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
   return (
     <>
       {isOpen && (
       <Div>
-        <ModalWrapper ref={modalRef}>
+        <ModalWrapper ref={modalRef} costumeStyles={costumeStyles}>
           <Header>
             <ModalTitle>{title}</ModalTitle>
             {showClose && (
             <IconWrapper onClick={handleClick}>
-              <CloseIcon />
+              {costumeCloseIcon || <CloseIcon />}
             </IconWrapper>
             )}
           </Header>
@@ -53,8 +61,11 @@ const Modal = ({
 Modal.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
+  costumeCloseIcon: PropTypes.node,
   showClose: PropTypes.bool,
   closeOnAwayClick: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  costumeStyles: PropTypes.any,
 };
 
 export default Modal;

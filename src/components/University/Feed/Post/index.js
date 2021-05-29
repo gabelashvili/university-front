@@ -15,6 +15,7 @@ import {
   LikeButtonWrapper,
   ToolTip,
   IconWrapper,
+  modalStyles,
 } from 'components/University/Feed/Post/styles';
 import LikeIcon from 'Icons/Like';
 import HeartIcon from 'Icons/Heart';
@@ -22,8 +23,16 @@ import CommentIcon from 'Icons/Comment';
 import LaughIcon from 'Icons/Laugh';
 import Button from 'components/Button';
 import Reply from 'components/University/Feed/Reply';
+import { useState } from 'react';
+import uuid from 'react-uuid';
+import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
+import Modal from 'components/Modal';
+import { actions as modalActions } from 'modules/Modal';
+import { useDispatch } from 'react-redux';
 
 const PostComponent = () => {
+  const dispatch = useDispatch();
+  const [addNewComment, setAddNewComment] = useState(false);
   const reactions = {
     like: {
       title: 'like',
@@ -47,8 +56,18 @@ const PostComponent = () => {
       icon: <LaughIcon />,
     },
   };
+  const showAllReactions = () => dispatch(modalActions.setModalState.open());
   return (
     <Post>
+      <Modal
+        title="რეაქციები"
+        showClose
+        closeOnAwayClick
+        costumeStyles={modalStyles}
+        costumeCloseIcon={<CloseIconWithoutCircle />}
+      >
+        qwdqwd
+      </Modal>
       <PostHeader>
         <AuthorAvatar src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" />
         <AuthorDetails>
@@ -64,7 +83,9 @@ const PostComponent = () => {
           alt=""
         />
       </PostDesc>
-      <PostReactions>
+      <PostReactions
+        onClick={showAllReactions}
+      >
         <Reaction>
           <LikeIcon />
           <LikeIcon />
@@ -79,7 +100,7 @@ const PostComponent = () => {
               <IconWrapper
                 color={reactions[reaction].color}
                 title={reactions[reaction].title}
-                key={reactions[reaction].title}
+                key={uuid()}
               >
                 {reactions[reaction].icon}
               </IconWrapper>
@@ -90,12 +111,12 @@ const PostComponent = () => {
             Like
           </Button>
         </LikeButtonWrapper>
-        <Button costumStyles={postButton} type="button">
+        <Button costumStyles={postButton} type="button" handleClick={() => setAddNewComment(!addNewComment)}>
           <CommentIcon />
           Comment
         </Button>
       </PostBottom>
-      <Reply />
+      {addNewComment && <Reply />}
     </Post>
   );
 };

@@ -10,6 +10,19 @@ export const Post = styled.div`
     border-radius: 10px;
 `;
 
+export const modalStyles = css`
+    max-width: 650px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
+    & > div {
+        border: none;
+        color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+        & > div > svg  {
+           fill: ${({ theme }) => transparentize(0.1, theme.colors.black)}
+        }
+    }
+`;
+
 export const PostHeader = styled.div`
     display:flex;
     align-items: center;
@@ -70,7 +83,7 @@ export const Reaction = styled.div`
 export const ReactionsCount = styled.p``;
 
 export const PostBottom = styled.div`
-    margin-top: 10px;
+    margin: 10px 0;
     display: flex;
 `;
 
