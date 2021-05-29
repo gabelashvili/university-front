@@ -17,6 +17,7 @@ import {
   NewPost,
   TextAreaWrapper,
   ImgPreviewWrapper,
+  postButton,
 } from 'components/University/Feed/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
@@ -27,6 +28,7 @@ import Post from 'components/University/Feed/Post';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { actions as postNewFeedActions } from 'modules/University/Feed';
+import Button from 'components/Button';
 
 const Feedback = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -136,7 +138,7 @@ const Feedback = () => {
               </EmojiWrapper>
               )}
             </Emoji>
-            <button type="button" onClick={handleNewPost}>Send</button>
+            <Button type="button" onClick={handleNewPost} costumStyles={postButton}>დაპოსტვა</Button>
           </BottomPart>
         </NewPost>
         <Post />

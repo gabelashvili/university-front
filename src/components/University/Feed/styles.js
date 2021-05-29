@@ -50,6 +50,7 @@ export const TextArea = styled.textarea`
 export const BottomPart = styled.div`
     display: flex;
     margin-top: 10px;
+    align-items: center;
 `;
 
 export const UploadImage = styled.div`
@@ -128,4 +129,15 @@ export const NewPost = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 10px;
     border: ${({ theme }) => `1px solid ${transparentize(0.75, theme.colors.lightGrey)}`}
+`;
+
+export const postButton = css`
+   padding: 8px 12px;
+   margin-left: auto;
+   font-size: 12px;
+   border-radius: 5px;
+   background-color: ${({ theme }) => theme.colors.green};
+   &:hover {
+      background-color: ${({ theme }) => theme.colors.green};
+   }
 `;
