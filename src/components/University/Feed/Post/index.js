@@ -25,6 +25,7 @@ import Modal from 'components/Modal';
 import { actions as modalActions } from 'modules/Modal';
 import { useDispatch } from 'react-redux';
 import ToolTip from 'components/University/Feed/Reactions';
+import Comments from 'components/University/Feed/Comments';
 
 const PostComponent = () => {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ const PostComponent = () => {
         </Button>
       </PostBottom>
       {addNewComment && <AddComment />}
+      <Comments />
     </Post>
   );
 };
