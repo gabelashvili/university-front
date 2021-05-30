@@ -8,10 +8,9 @@ import {
   comButtonStyle,
   ComContainer,
   ComReplies,
+  ComAuthorUni,
 } from 'components/University/Feed/Comments/styles';
 import Button from 'components/Button';
-import LikeIcon from 'Icons/Like';
-import HeartIcon from 'Icons/Heart';
 
 const Comments = () => (
   <>
@@ -19,7 +18,10 @@ const Comments = () => (
       <Comment>
         <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
         <CommentDetails>
-          <ComAuthor href="/">Lasha</ComAuthor>
+          <ComAuthor href="/">
+            Lasha
+            <ComAuthorUni>Caucasus University</ComAuthorUni>
+          </ComAuthor>
           <ComText>
             Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
             IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
@@ -32,15 +34,11 @@ const Comments = () => (
               costumStyles={comButtonStyle}
               totalLikes
             >
-              <HeartIcon />
-              250 Likes
+              Reactions (20)
             </Button>
             <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-              <LikeIcon />
-              {' '}
-              you like it
+              Like
             </Button>
-            <Button costumStyles={comButtonStyle} type="button" dislike><LikeIcon /></Button>
             <Button
               type="button"
               costumStyles={comButtonStyle}
@@ -54,7 +52,10 @@ const Comments = () => (
         <Comment>
           <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
           <CommentDetails>
-            <ComAuthor href="/">Lasha</ComAuthor>
+            <ComAuthor href="/">
+              Lasha
+              <ComAuthorUni>Caucasus University</ComAuthorUni>
+            </ComAuthor>
             <ComText>
               Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
               IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
@@ -67,16 +68,11 @@ const Comments = () => (
                 costumStyles={comButtonStyle}
                 totalLikes
               >
-                <HeartIcon />
-                250 Likes
+                Reactions (20)
               </Button>
               <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-                <LikeIcon />
-                {' '}
-                you like it
+                Like
               </Button>
-              <Button costumStyles={comButtonStyle} type="button"><LikeIcon /></Button>
-              <Button costumStyles={comButtonStyle} type="button" dislike><LikeIcon /></Button>
               <Button
                 type="button"
                 costumStyles={comButtonStyle}

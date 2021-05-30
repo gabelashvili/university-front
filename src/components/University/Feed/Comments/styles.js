@@ -22,6 +22,11 @@ export const ComAuthor = styled.a`
     color: ${({ theme }) => theme.colors.blue};
 `;
 
+export const ComAuthorUni = styled.p`
+    color: ${({ theme }) => theme.colors.black};
+    font-size: 12px;
+`;
+
 export const ComText = styled.p`
     line-height: 1;
     font-size: 14px;
