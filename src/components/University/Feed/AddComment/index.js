@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Reply,
+  Comment,
   TextArea,
   BottomPart,
   Upload,
@@ -14,14 +14,14 @@ import {
   IconWrapper,
   EmojiWrapper,
   Emoji,
-} from 'components/University/Feed/Reply/styles';
+} from 'components/University/Feed/AddComment/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
 import { useSnackbar } from 'notistack';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 
-const ReplyComponent = () => {
+const CommentComponent = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [showEmoji, setShowEmoji] = useState(false);
   const [cursPos, setCursPos] = useState(0);
@@ -92,7 +92,7 @@ const ReplyComponent = () => {
     };
   });
   return (
-    <Reply>
+    <Comment>
       <Wrapper onClick={() => textareaRef.current.focus()}>
         <TextArea
           onKeyUp={handleCursorPosition}
@@ -139,8 +139,8 @@ const ReplyComponent = () => {
         </ImgWrapper>
       </ImagePreview>
       )}
-    </Reply>
+    </Comment>
   );
 };
 
-export default ReplyComponent;
+export default CommentComponent;

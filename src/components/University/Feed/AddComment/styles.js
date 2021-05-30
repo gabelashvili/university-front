@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { transparentize } from 'polished';
 
-export const Reply = styled.div`
+export const Comment = styled.div`
     min-height: 30px;
     border: ${({ theme }) => `2px solid ${transparentize(0.7, theme.colors.lightGrey)}`};
     border-radius: 20px;

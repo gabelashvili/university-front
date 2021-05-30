@@ -13,49 +13,23 @@ import {
   PostBottom,
   postButton,
   LikeButtonWrapper,
-  ToolTip,
-  IconWrapper,
   modalStyles,
 } from 'components/University/Feed/Post/styles';
 import LikeIcon from 'Icons/Like';
-import HeartIcon from 'Icons/Heart';
 import CommentIcon from 'Icons/Comment';
-import LaughIcon from 'Icons/Laugh';
 import Button from 'components/Button';
-import Reply from 'components/University/Feed/Reply';
+import AddComment from 'components/University/Feed/AddComment';
 import { useState } from 'react';
-import uuid from 'react-uuid';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import Modal from 'components/Modal';
 import { actions as modalActions } from 'modules/Modal';
 import { useDispatch } from 'react-redux';
+import ToolTip from 'components/University/Feed/Reactions';
 
 const PostComponent = () => {
   const dispatch = useDispatch();
   const [addNewComment, setAddNewComment] = useState(false);
-  const reactions = {
-    like: {
-      title: 'like',
-      color: 'blue',
-      icon: <LikeIcon />,
-    },
-    love: {
-      title: 'love',
-      color: 'red',
-      icon: <HeartIcon />,
-    },
-    dislike: {
-      title: 'like',
-      color: 'blue',
-      icon: <LikeIcon />,
-      isDislike: true,
-    },
-    HaHa: {
-      title: 'like',
-      color: null,
-      icon: <LaughIcon />,
-    },
-  };
+
   const showAllReactions = () => dispatch(modalActions.setModalState.open());
   return (
     <Post>
@@ -95,17 +69,7 @@ const PostComponent = () => {
       </PostReactions>
       <PostBottom>
         <LikeButtonWrapper>
-          <ToolTip>
-            {Object.keys(reactions).map((reaction) => (
-              <IconWrapper
-                color={reactions[reaction].color}
-                title={reactions[reaction].title}
-                key={uuid()}
-              >
-                {reactions[reaction].icon}
-              </IconWrapper>
-            ))}
-          </ToolTip>
+          <ToolTip />
           <Button costumStyles={postButton} type="button" likeButton>
             <LikeIcon />
             Like
@@ -116,7 +80,7 @@ const PostComponent = () => {
           Comment
         </Button>
       </PostBottom>
-      {addNewComment && <Reply />}
+      {addNewComment && <AddComment />}
     </Post>
   );
 };
