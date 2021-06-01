@@ -35,7 +35,7 @@ export const resetPasswordApi = ({ password, token, rePassword }) => axios
     rePassword,
   });
 
-export const postNewFeedApi = (image, data) => {
+export const addNewPostApi = (image, data) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));

@@ -1,4 +1,4 @@
-import { constants } from 'modules/University/PostNewFeed';
+import { constants } from 'modules/University/Feed/AddNewPost';
 
 const initialState = {
   statuses: {
@@ -11,7 +11,7 @@ const initialState = {
 
 const feed = (state = initialState, action) => {
   switch (action.type) {
-    case constants.POST_NEW_FEED_REQUESTED:
+    case constants.ADD_NEW_POST_REQUESTED:
       return {
         ...initialState,
         statuses: {
@@ -19,7 +19,7 @@ const feed = (state = initialState, action) => {
           isPending: true,
         },
       };
-    case constants.POST_NEW_FEED_SUCCEED:
+    case constants.ADD_NEW_POST_SUCCEED:
       return {
         ...initialState,
         statuses: {
@@ -30,7 +30,7 @@ const feed = (state = initialState, action) => {
         data: action.response.data,
         statusCode: action.response.status,
       };
-    case constants.POST_NEW_FEED_FAILED:
+    case constants.ADD_NEW_POST_FAILED:
       return {
         ...initialState,
         statuses: {

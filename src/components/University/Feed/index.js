@@ -27,7 +27,7 @@ import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import Post from 'components/University/Feed/Post';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { actions as postNewFeedActions } from 'modules/University/PostNewFeed';
+import { actions as addNewPostActions } from 'modules/University/Feed/AddNewPost';
 import Button from 'components/Button';
 
 const Feedback = () => {
@@ -77,7 +77,7 @@ const Feedback = () => {
       category: 'Test',
       universityId: uniId,
     };
-    dispatch(postNewFeedActions.postNewFeed.request(image, data));
+    dispatch(addNewPostActions.addNewPost.request(image, data));
   };
 
   useEffect(() => {
