@@ -41,3 +41,10 @@ export const addNewPostApi = (image, data) => {
   formData.append('data', JSON.stringify(data));
   return costumAxios.post('http://localhost:5000/api/feed/post', formData);
 };
+
+export const getPostsApi = (offset, limit) => {
+  const formData = new FormData();
+  formData.append('offset', offset);
+  formData.append('limit', limit);
+  return costumAxios.post('http://localhost:5000/api/feed/post', formData);
+};

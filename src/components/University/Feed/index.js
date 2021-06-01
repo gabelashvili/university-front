@@ -28,6 +28,7 @@ import Post from 'components/University/Feed/Post';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { actions as addNewPostActions } from 'modules/University/Feed/AddNewPost';
+import { actions as getAllPostsActions } from 'modules/University/Feed/GetPosts';
 import Button from 'components/Button';
 
 const Feedback = () => {
@@ -93,6 +94,11 @@ const Feedback = () => {
     const { scrollHeight } = textareaRef.current;
     textareaRef.current.style.height = `${scrollHeight}px`;
   }, [postDesc]);
+
+  // fetch posts
+  useEffect(() => {
+    dispatch(getAllPostsActions.getPosts.request());
+  }, []);
   return (
     <Container costumStyles={containerStyles}>
       <Container costumStyles={containerStylesLeft}>

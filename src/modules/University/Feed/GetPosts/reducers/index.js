@@ -1,4 +1,4 @@
-import { constants } from 'modules/University/Feed/AddNewPost';
+import { constants } from 'modules/University/Feed/GetPosts';
 
 const initialState = {
   statuses: {
@@ -9,9 +9,9 @@ const initialState = {
   data: [],
 };
 
-const addNewPost = (state = initialState, action) => {
+const posts = (state = initialState, action) => {
   switch (action.type) {
-    case constants.ADD_NEW_POST_REQUESTED:
+    case constants.GET_POSTS_REQUESTED:
       return {
         ...initialState,
         statuses: {
@@ -19,7 +19,7 @@ const addNewPost = (state = initialState, action) => {
           isPending: true,
         },
       };
-    case constants.ADD_NEW_POST_SUCCEED:
+    case constants.GET_POSTS_SUCCEED:
       return {
         ...initialState,
         statuses: {
@@ -30,7 +30,7 @@ const addNewPost = (state = initialState, action) => {
         data: action.response.data,
         statusCode: action.response.status,
       };
-    case constants.ADD_NEW_POST_FAILED:
+    case constants.GET_POSTS_FAILED:
       return {
         ...initialState,
         statuses: {
@@ -45,4 +45,4 @@ const addNewPost = (state = initialState, action) => {
   }
 };
 
-export default addNewPost;
+export default posts;
