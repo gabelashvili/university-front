@@ -27,7 +27,7 @@ import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import Post from 'components/University/Feed/Post';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { actions as postNewFeedActions } from 'modules/University/Feed';
+import { actions as postNewFeedActions } from 'modules/University/PostNewFeed';
 import Button from 'components/Button';
 
 const Feedback = () => {
@@ -138,7 +138,7 @@ const Feedback = () => {
               </EmojiWrapper>
               )}
             </Emoji>
-            <Button type="button" onClick={handleNewPost} costumStyles={postButton}>დაპოსტვა</Button>
+            <Button type="button" handleClick={handleNewPost} costumStyles={postButton}>დაპოსტვა</Button>
           </BottomPart>
         </NewPost>
         <Post />

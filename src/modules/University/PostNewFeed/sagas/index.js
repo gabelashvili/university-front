@@ -2,7 +2,7 @@ import {
   put, takeLatest, call,
 } from 'redux-saga/effects';
 import { postNewFeedApi } from 'helpers/gateway';
-import { actions, constants } from 'modules/University/Feed';
+import { actions, constants } from 'modules/University/PostNewFeed';
 
 function* postNewFeed(action) {
   const { image, data } = action.payload;

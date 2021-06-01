@@ -1,4 +1,4 @@
-import { constants } from 'modules/University/Feed';
+import { constants } from 'modules/University/PostNewFeed';
 
 const initialState = {
   statuses: {

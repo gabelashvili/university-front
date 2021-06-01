@@ -1,4 +1,4 @@
-import { constants } from 'modules/University/Feed';
+import { constants } from 'modules/University/PostNewFeed';
 
 export const postNewFeed = ({
   request: (image, data) => ({
