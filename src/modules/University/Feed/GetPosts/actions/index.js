@@ -1,12 +1,9 @@
 import { constants } from 'modules/University/Feed/GetPosts';
 
 export const getPosts = ({
-  request: (image, data) => ({
+  request: (data) => ({
     type: constants.GET_POSTS_REQUESTED,
-    payload: {
-      image,
-      data,
-    },
+    payload: data,
   }),
   succeed: (response) => ({
     type: constants.GET_POSTS_SUCCEED,

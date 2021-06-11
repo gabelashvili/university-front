@@ -15,10 +15,13 @@ import AddPost from 'components/University/Feed/AddPost';
 const Feedback = () => {
   const dispatch = useDispatch();
 
-  // fetch posts
   useEffect(() => {
-    // dispatch(getAllPostsActions.getPosts.request());
+    dispatch(getAllPostsActions.getPosts.request({
+      offset: 0,
+      limit: 5,
+    }));
   }, []);
+
   return (
     <Container costumStyles={containerStyles}>
       <Container costumStyles={containerStylesLeft}>
