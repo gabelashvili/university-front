@@ -13,4 +13,7 @@ export const getPosts = ({
     type: constants.GET_POSTS_FAILED,
     error,
   }),
+  reset: () => ({
+    type: constants.GET_POSTS_RESET,
+  }),
 });

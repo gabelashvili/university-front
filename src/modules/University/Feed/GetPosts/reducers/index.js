@@ -40,6 +40,8 @@ const posts = (state = initialState, action) => {
         },
         errorMessage: action.error,
       };
+    case constants.GET_POSTS_RESET:
+      return initialState;
     default:
       return state;
   }

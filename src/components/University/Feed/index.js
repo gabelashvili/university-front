@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { actions as getAllPostsActions } from 'modules/University/Feed/GetPosts';
+
 import Container from 'components/Container';
 import {
   containerStyles,
@@ -11,16 +9,12 @@ import {
 } from 'components/University/Feed/styles';
 import Post from 'components/University/Feed/Post';
 import AddPost from 'components/University/Feed/AddPost';
+import useFeeHook from 'components/University/Feed/hook';
 
 const Feedback = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllPostsActions.getPosts.request({
-      offset: 0,
-      limit: 5,
-    }));
-  }, []);
+  const {
+    fetchedPosts,
+  } = useFeeHook();
 
   return (
     <Container costumStyles={containerStyles}>
@@ -29,7 +23,8 @@ const Feedback = () => {
       </Container>
       <Container costumStyles={containerStylesMiddle}>
         <AddPost />
-        <Post />
+        {fetchedPosts?.totally > 0
+        && fetchedPosts.posts.map((post) => <Post post={post} key={post.id} />)}
       </Container>
       <Container costumStyles={containerStylesRight}>
         RightSide

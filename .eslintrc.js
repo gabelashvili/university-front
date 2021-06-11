@@ -27,6 +27,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/no-named-as-default': 0,
     'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
   },
   settings: {
     'import/resolver': {

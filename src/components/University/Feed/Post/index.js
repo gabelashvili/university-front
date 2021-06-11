@@ -1,3 +1,4 @@
+import { useState, memo } from 'react';
 import {
   Post,
   PostHeader,
@@ -14,24 +15,28 @@ import {
   postButton,
   LikeButtonWrapper,
   modalStyles,
+  EditPost,
 } from 'components/University/Feed/Post/styles';
 import LikeIcon from 'Icons/Like';
 import CommentIcon from 'Icons/Comment';
 import Button from 'components/Button';
 import AddComment from 'components/University/Feed/AddComment';
-import { useState } from 'react';
+
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import Modal from 'components/Modal';
 import { actions as modalActions } from 'modules/Modal';
 import { useDispatch } from 'react-redux';
 import ToolTip from 'components/University/Feed/Reactions';
 import Comments from 'components/University/Feed/Comments';
+import EditIcon from 'Icons/Edit';
+import RemoveIcon from 'Icons/Remove';
 
-const PostComponent = () => {
+const PostComponent = ({ post }) => {
   const dispatch = useDispatch();
   const [addNewComment, setAddNewComment] = useState(false);
-
   const showAllReactions = () => dispatch(modalActions.setModalState.open());
+  console.log(post.id);
+
   return (
     <Post>
       <Modal
@@ -49,6 +54,10 @@ const PostComponent = () => {
           <AuthorName>John Doe</AuthorName>
           <AuthorUni>Caucasus University</AuthorUni>
         </AuthorDetails>
+        <EditPost>
+          <EditIcon handleClick={() => console.log('edit')} />
+          <RemoveIcon handleClick={() => console.log('remove')} />
+        </EditPost>
       </PostHeader>
       <PostDesc>
         lorem ipsumlorem ipsumlorem ipsum lorem ipsum
@@ -87,4 +96,4 @@ const PostComponent = () => {
   );
 };
 
-export default PostComponent;
+export default memo(PostComponent);

@@ -42,4 +42,4 @@ export const addNewPostApi = (image, data) => {
   return costumAxios.post('/api/feed/post', formData);
 };
 
-export const getPostsApi = ({ offset, limit }) => costumAxios.post(`/api/feed/post/${offset}/${limit}`);
+export const getPostsApi = ({ offset, limit, uniId }) => costumAxios.post(`/api/feed/post/${offset}/${limit}`, { universityId: uniId });

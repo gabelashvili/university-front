@@ -111,6 +111,24 @@ export const LikeButtonWrapper = styled.div`
     position: relative;
     &:hover > div {
         visibility: visible;
-        transitions: all 1s;
+        transition: all 1s;
+    }
+`;
+
+export const EditPost = styled.div`
+    align-self: flex-start;
+    margin-left: auto;
+    & svg {
+        width: 20px;
+        height: 20px;
+        fill: ${({ theme }) => theme.colors.lightGrey};
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all 0.3s;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color:  ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
+        }
     }
 `;
