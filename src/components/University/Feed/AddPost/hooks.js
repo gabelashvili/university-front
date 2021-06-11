@@ -10,6 +10,9 @@ import {
   hook as useFetchedPostsHook,
 } from 'modules/University/Feed/FetchedPosts';
 import moment from 'moment';
+import {
+  hooks as authedUserHook,
+} from 'modules/Authentication/AuthedUser';
 
 const useAddPostHook = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -23,6 +26,7 @@ const useAddPostHook = () => {
   const emojiRef = useRef(null);
   const addNewPostState = useSelector(addNewPostSelectors.selectAddNewPost);
   const { addPost } = useFetchedPostsHook();
+  const { authedUser } = authedUserHook.useAuthedUser();
 
   // resize textarea automatically
   const handleUpload = (e) => {
@@ -97,7 +101,10 @@ const useAddPostHook = () => {
         universityId: 1,
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         user: {
-          image: null, firstname: 'Lasha', lastname: 'Gabelashvili', universityId: null,
+          image: null,
+          firstname: authedUser.firstName,
+          lastname: authedUser.lastName,
+          universityId: authedUser.universityId,
         },
         userId: 1,
         yourEmoji: null,
