@@ -14,11 +14,12 @@ export const useAuthedUser = () => {
     dispatch(loginActions.auth.request({ email, password }));
   };
   const loginUser = (data) => {
-    const { firstname } = data;
+    const { user } = data;
     const token = data.token.split(' ')[1];
     const parsedToken = parseJwt(token);
     const localStorageData = {
-      firstName: firstname,
+      firstName: user.firstname,
+      lastName: user.lastname,
       userId: parsedToken.user.id,
       universityId: parsedToken.user.UniversityId,
       exp: parsedToken.exp,
