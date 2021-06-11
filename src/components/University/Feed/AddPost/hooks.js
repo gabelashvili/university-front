@@ -1,8 +1,15 @@
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
-import { actions as addNewPostActions } from 'modules/University/Feed/AddNewPost';
+import {
+  actions as addNewPostActions,
+  selectors as addNewPostSelectors,
+} from 'modules/University/Feed/AddNewPost';
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  hook as useFetchedPostsHook,
+} from 'modules/University/Feed/FetchedPosts';
+import moment from 'moment';
 
 const useAddPostHook = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -14,6 +21,8 @@ const useAddPostHook = () => {
   const textareaRef = useRef();
   const { id: uniId } = useParams();
   const emojiRef = useRef(null);
+  const addNewPostState = useSelector(addNewPostSelectors.selectAddNewPost);
+  const { addPost } = useFetchedPostsHook();
 
   // resize textarea automatically
   const handleUpload = (e) => {
@@ -70,6 +79,32 @@ const useAddPostHook = () => {
     };
     dispatch(addNewPostActions.addNewPost.request(image?.file || null, data));
   };
+
+  useEffect(() => {
+    if (addNewPostState.statuses.isSucceed) {
+      addPost({
+        commentCnt: 0,
+        createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+        emoji: {
+          dislike: { id: 3, quantity: 0 },
+          haha: { id: 4, quantity: 0 },
+          like: { id: 1, quantity: 0 },
+          love: { id: 2, quantity: 0 },
+        },
+        id: addNewPostState.data.id,
+        image: null,
+        text: 'qwd',
+        universityId: 1,
+        updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+        user: {
+          image: null, firstname: 'Lasha', lastname: 'Gabelashvili', universityId: null,
+        },
+        userId: 1,
+        yourEmoji: null,
+      });
+      dispatch(addNewPostActions.addNewPost.reset());
+    }
+  }, [addNewPostState]);
 
   return {
     handleUpload,

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -7,8 +6,8 @@ import {
   selectors as getPostsSelectors,
 } from 'modules/University/Feed/GetPosts';
 import {
-  actions as fetchedPostsActions,
   selectors as fetchedPostsSelectors,
+  hook as useFetchedPostsHook,
 } from 'modules/University/Feed/FetchedPosts';
 
 const useFeedHook = () => {
@@ -16,6 +15,7 @@ const useFeedHook = () => {
   const fetchedPosts = useSelector(fetchedPostsSelectors.selectFetchedPosts);
   const getPosts = useSelector(getPostsSelectors.selectGetPosts);
   const { id: uniId } = useParams();
+  const { updateList } = useFetchedPostsHook();
 
   // fetch five post and set in fetched posts state
   const handleBodyScroll = () => {
@@ -51,7 +51,7 @@ const useFeedHook = () => {
 
   useEffect(() => {
     if (getPosts.statuses.isSucceed && getPosts.data.posts.length > 0) {
-      dispatch(fetchedPostsActions.fetchedPosts.updateList(getPosts.data));
+      updateList(getPosts.data);
       dispatch(getPostsActions.getPosts.reset());
     }
   }, [getPosts]);

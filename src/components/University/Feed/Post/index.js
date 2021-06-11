@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { memo } from 'react';
 import {
   Post,
   PostHeader,
@@ -21,22 +21,21 @@ import LikeIcon from 'Icons/Like';
 import CommentIcon from 'Icons/Comment';
 import Button from 'components/Button';
 import AddComment from 'components/University/Feed/AddComment';
-
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import Modal from 'components/Modal';
-import { actions as modalActions } from 'modules/Modal';
-import { useDispatch } from 'react-redux';
 import ToolTip from 'components/University/Feed/Reactions';
 import Comments from 'components/University/Feed/Comments';
 import EditIcon from 'Icons/Edit';
 import RemoveIcon from 'Icons/Remove';
+import usePostHook from 'components/University/Feed/Post/hook';
 
 const PostComponent = ({ post }) => {
-  const dispatch = useDispatch();
-  const [addNewComment, setAddNewComment] = useState(false);
-  const showAllReactions = () => dispatch(modalActions.setModalState.open());
-  console.log(post.id);
-
+  const {
+    addNewComment,
+    setAddNewComment,
+    handlePostRemove,
+  } = usePostHook(post);
+  console.log(`rendered post id: ${post.id}`);
   return (
     <Post>
       <Modal
@@ -56,7 +55,7 @@ const PostComponent = ({ post }) => {
         </AuthorDetails>
         <EditPost>
           <EditIcon handleClick={() => console.log('edit')} />
-          <RemoveIcon handleClick={() => console.log('remove')} />
+          <RemoveIcon handleClick={() => handlePostRemove(post.id)} />
         </EditPost>
       </PostHeader>
       <PostDesc>
@@ -68,7 +67,7 @@ const PostComponent = ({ post }) => {
         />
       </PostDesc>
       <PostReactions
-        onClick={showAllReactions}
+        onClick={() => console.log('show')}
       >
         <Reaction>
           <LikeIcon />

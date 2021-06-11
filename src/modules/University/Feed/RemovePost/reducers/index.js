@@ -1,4 +1,4 @@
-import { constants } from 'modules/University/Feed/AddNewPost';
+import { constants } from 'modules/University/Feed/RemovePost';
 
 const initialState = {
   statuses: {
@@ -9,9 +9,9 @@ const initialState = {
   data: [],
 };
 
-const addNewPost = (state = initialState, action) => {
+const removePost = (state = initialState, action) => {
   switch (action.type) {
-    case constants.ADD_NEW_POST_REQUESTED:
+    case constants.REMOVE_POST_REQUESTED:
       return {
         ...initialState,
         statuses: {
@@ -19,7 +19,7 @@ const addNewPost = (state = initialState, action) => {
           isPending: true,
         },
       };
-    case constants.ADD_NEW_POST_SUCCEED:
+    case constants.REMOVE_POST_SUCCEED:
       return {
         ...initialState,
         statuses: {
@@ -30,7 +30,7 @@ const addNewPost = (state = initialState, action) => {
         data: action.response.data,
         statusCode: action.response.status,
       };
-    case constants.ADD_NEW_POST_FAILED:
+    case constants.REMOVE_POST_FAILED:
       return {
         ...initialState,
         statuses: {
@@ -40,11 +40,11 @@ const addNewPost = (state = initialState, action) => {
         },
         errorMessage: action.error,
       };
-    case constants.ADD_NEW_POST_RESET:
+    case constants.REMOVE_POST_RESET:
       return initialState;
     default:
       return state;
   }
 };
 
-export default addNewPost;
+export default removePost;

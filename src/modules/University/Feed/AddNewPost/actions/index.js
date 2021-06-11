@@ -16,4 +16,7 @@ export const addNewPost = ({
     type: constants.ADD_NEW_POST_FAILED,
     error,
   }),
+  reset: () => ({
+    type: constants.ADD_NEW_POST_RESET,
+  }),
 });
