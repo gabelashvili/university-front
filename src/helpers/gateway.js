@@ -5,10 +5,10 @@ export const getTodo = (todoId) => axios
   .get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
 
 export const auth = (user) => axios
-  .post('http://localhost:5000/api/auth/logIn', { ...user });
+  .post('/api/auth/logIn', { ...user });
 
 export const registerApi = (user) => axios
-  .post('http://localhost:5000/api/auth/signUp', {
+  .post('/api/auth/signUp', {
     lastname: user.lastName,
     firstname: user.firstName,
     password: user.password,
@@ -16,20 +16,20 @@ export const registerApi = (user) => axios
   });
 
 export const activateAccountApi = (token) => axios
-  .post('http://localhost:5000/api/auth/confirm', {
+  .post('/api/auth/confirm', {
     token,
   });
 
 export const checkTokenApi = () => costumAxios
-  .get('http://localhost:5000/api/auth/status');
+  .get('/api/auth/status');
 
 export const forgotPasswordApi = (email) => axios
-  .post('http://localhost:5000/api/auth/forgot/password', {
+  .post('/api/auth/forgot/password', {
     email,
   });
 
 export const resetPasswordApi = ({ password, token, rePassword }) => axios
-  .post('http://localhost:5000/api/auth/reset/password', {
+  .post('/api/auth/reset/password', {
     password,
     token,
     rePassword,
@@ -39,12 +39,12 @@ export const addNewPostApi = (image, data) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));
-  return costumAxios.post('http://localhost:5000/api/feed/post', formData);
+  return costumAxios.post('/api/feed/post', formData);
 };
 
 export const getPostsApi = (offset, limit) => {
   const formData = new FormData();
   formData.append('offset', offset);
   formData.append('limit', limit);
-  return costumAxios.post('http://localhost:5000/api/feed/post', formData);
+  return costumAxios.post('/api/feed/post', formData);
 };

@@ -49,8 +49,8 @@ const AddPost = () => {
         />
         {image && (
         <ImgPreviewWrapper>
-          <ImgPreview onClick={() => setImage(false)}>
-            <Img src={image} alt="" />
+          <ImgPreview onClick={() => setImage(null)}>
+            <Img src={image.url} alt="" />
             <CloseIcon />
           </ImgPreview>
         </ImgPreviewWrapper>
@@ -61,7 +61,15 @@ const AddPost = () => {
           <UploadLabel htmlFor="upload-image">
             <CameraIcon />
           </UploadLabel>
-          <Upload type="file" id="upload-image" accept="image/png, image/jpeg" onInput={(e) => handleUpload(e)} />
+          <Upload
+            type="file"
+            id="upload-image"
+            accept="image/png, image/jpeg"
+            onInput={(e) => handleUpload(e)}
+            onClick={(e) => {
+              e.target.value = null;
+            }}
+          />
         </UploadImage>
         <Emoji ref={emojiRef}>
           <EmojiIcon onClick={toggleEmoji} />

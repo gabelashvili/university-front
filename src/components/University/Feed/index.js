@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as getAllPostsActions } from 'modules/University/Feed/GetPosts';
@@ -16,7 +17,7 @@ const Feedback = () => {
 
   // fetch posts
   useEffect(() => {
-    dispatch(getAllPostsActions.getPosts.request());
+    // dispatch(getAllPostsActions.getPosts.request());
   }, []);
   return (
     <Container costumStyles={containerStyles}>
