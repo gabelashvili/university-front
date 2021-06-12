@@ -15,6 +15,7 @@ import {
   modalStyles,
   DialogButtonWrapper,
   ComImg,
+  ShowMore,
 } from 'components/University/Feed/Comments/styles';
 import Button from 'components/Button';
 import EditIcon from 'Icons/Edit';
@@ -24,7 +25,9 @@ import Modal from 'components/Modal';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import AddComment from 'components/University/Feed/AddComment';
 
-const Comments = ({ data, postId }) => {
+const Comments = ({
+  data, postId, handleShowMore, total,
+}) => {
   const {
     handleDelete,
     isModalOpen,
@@ -138,6 +141,7 @@ const Comments = ({ data, postId }) => {
         </ComReplies> */}
         </ComContainer>
       ))}
+      {data && data.length < total && <ShowMore onClick={handleShowMore}>მეტის ჩვენება</ShowMore>}
     </>
   );
 };

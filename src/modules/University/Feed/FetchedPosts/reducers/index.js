@@ -49,16 +49,12 @@ const fetchedPosts = (state = initialState, action) => {
       const data = action.payload;
       const postsList = [...state.posts];
       const postIndex = postsList.findIndex((post) => post.id === data.postId);
-      postsList[postIndex] = {
-        ...postsList[postIndex],
-        ...data,
-      };
-      if (postIndex?.comments) {
+      if (postsList[postIndex]?.comments) {
         postsList[postIndex] = {
           ...postsList[postIndex],
           comments: {
             totally: data.comments.totally,
-            list: [...postsList[postIndex].list, ...data.comments.comments],
+            list: [...postsList[postIndex].comments.list, ...data.comments.comments],
           },
         };
       } else {

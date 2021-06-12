@@ -135,3 +135,8 @@ export const ComImg = styled.img`
     height: 70px;
     margin-bottom: 10px;
 `;
+
+export const ShowMore = styled.p`
+    text-align: center;
+    cursor: pointer;
+`;

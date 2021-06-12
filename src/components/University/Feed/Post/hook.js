@@ -52,6 +52,14 @@ const usePostHook = (post) => {
 
   // fetch comments
 
+  const handleShowMore = () => {
+    dispatch(getCommentsActions.getComments.request({
+      offset: post.comments.list.length,
+      limit: LIMIT,
+      postId: post.id,
+    }));
+  };
+
   useEffect(() => {
     if (showComment) {
       dispatch(getCommentsActions.getComments.request({
@@ -85,6 +93,7 @@ const usePostHook = (post) => {
     disagreePostDelete,
     isModalOpen,
     setModalOpen,
+    handleShowMore,
   };
 };
 

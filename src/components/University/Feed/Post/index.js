@@ -41,6 +41,7 @@ const PostComponent = ({ post, setEditPost }) => {
     isModalOpen,
     setModalOpen,
     handleEditComment,
+    handleShowMore,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
@@ -120,6 +121,8 @@ const PostComponent = ({ post, setEditPost }) => {
             data={post?.comments?.list}
             handleEditComment={handleEditComment}
             postId={post.id}
+            handleShowMore={handleShowMore}
+            total={post.commentCnt}
           />
         </>
       )}
