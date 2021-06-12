@@ -36,4 +36,8 @@ export const fetchedPosts = ({
     type: constants.REMOVE_COMMENT,
     payload: data,
   }),
+  updateComment: (data) => ({
+    type: constants.UPDATE_COMMENT,
+    payload: data,
+  }),
 });

@@ -29,7 +29,7 @@ export default (postId, data, setSelectedCom) => {
   const [commentLength, setCommentLength] = useState(0);
   const dispatch = useDispatch();
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
-  const { addComment } = useFetchedPostsHook();
+  const { addComment, updateComment } = useFetchedPostsHook();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const { authedUser } = authedUserHook.useAuthedUser();
   const updateCommentState = useSelector(updateCommentSelectors.selectUpdateComment);
@@ -112,8 +112,15 @@ export default (postId, data, setSelectedCom) => {
   }, [data]);
 
   useEffect(() => {
-    if (updateCommentState) {
-      console.log('ariis');
+    if (updateCommentState.statuses.isSucceed && data?.isEditing) {
+      updateComment({
+        ...data.comment,
+        text: comment,
+        image: image?.url || null,
+        updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+      });
+      handleEditCancel();
+      dispatch(addCommentActions.addComment.reset());
     }
   }, [updateCommentState]);
 

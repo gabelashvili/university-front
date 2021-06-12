@@ -42,6 +42,10 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.removeComment(data));
   };
 
+  const updateComment = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.updateComment(data));
+  };
+
   return {
     updateList,
     removePost,
@@ -52,5 +56,6 @@ export default () => {
     resetList,
     addComment,
     removeComment,
+    updateComment,
   };
 };
