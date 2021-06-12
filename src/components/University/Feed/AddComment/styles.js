@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 
 export const Comment = styled.div`
@@ -113,4 +113,21 @@ export const Img = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50%;
+`;
+
+export const CommentWrapper = styled.div`
+    margin-bottom: 15px;
+`;
+
+export const buttonStyles = css`
+    background-color: ${({ theme }) => theme.colors.green};
+    width: max-content;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 8px 12px 0 auto;
+    &:hover {
+        background-color: ${({ theme }) => theme.colors.green};
+    }
 `;

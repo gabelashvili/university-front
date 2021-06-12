@@ -7,6 +7,7 @@ import {
   ComButtons,
   comButtonStyle,
   ComContainer,
+  // eslint-disable-next-line no-unused-vars
   ComReplies,
   ComAuthorUni,
 } from 'components/University/Feed/Comments/styles';
@@ -48,7 +49,7 @@ const Comments = () => (
           </ComButtons>
         </CommentDetails>
       </Comment>
-      <ComReplies>
+      {/* <ComReplies>
         <Comment>
           <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
           <CommentDetails>
@@ -82,7 +83,7 @@ const Comments = () => (
             </ComButtons>
           </CommentDetails>
         </Comment>
-      </ComReplies>
+      </ComReplies> */}
     </ComContainer>
   </>
 );
