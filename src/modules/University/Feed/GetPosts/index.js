@@ -4,7 +4,7 @@ import reducers from 'modules/University/Feed/GetPosts/reducers';
 import * as selectors from 'modules/University/Feed/GetPosts/selectors';
 import sagas from 'modules/University/Feed/GetPosts/sagas';
 
-const moduleName = 'University/Feed/GetAllPosts';
+const moduleName = 'University/Feed/GetPosts';
 
 export {
   constants,

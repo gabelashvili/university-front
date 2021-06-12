@@ -34,8 +34,8 @@ import DefaultAvatar from 'Icons/DefaultAvatar';
 
 const PostComponent = ({ post, setEditPost }) => {
   const {
-    addNewComment,
-    setAddNewComment,
+    showComment,
+    setShowComment,
     handlePostRemove,
     agreePostDelete,
     disagreePostDelete,
@@ -101,13 +101,18 @@ const PostComponent = ({ post, setEditPost }) => {
             Like
           </Button>
         </LikeButtonWrapper>
-        <Button costumStyles={postButton} type="button" handleClick={() => setAddNewComment(!addNewComment)}>
+        <Button costumStyles={postButton} type="button" handleClick={() => setShowComment(!showComment)}>
           <CommentIcon />
           Comment
         </Button>
       </PostBottom>
-      {addNewComment && <AddComment />}
-      <Comments />
+      {showComment && (
+        <>
+          <AddComment />
+          <Comments />
+        </>
+      )}
+
     </Post>
   );
 };

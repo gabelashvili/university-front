@@ -54,3 +54,5 @@ export const updatePostApi = ({ image, data }) => {
   formData.append('data', JSON.stringify(data));
   return costumAxios.put('/api/feed/post', formData);
 };
+
+export const getCommentsApi = ({ offset, limit, postId }) => costumAxios.post(`/api/feed/post/${offset}/${limit}`, { postId });

@@ -8,13 +8,19 @@ import {
   selectors as removePostSelectors,
 } from 'modules/University/Feed/RemovePost';
 import { actions as modalActions } from 'modules/Modal';
+import {
+  actions as getCommentsActions,
+  selectors as getCommentstSelectors,
+} from 'modules/University/Feed/GetComments';
 
 const usePostHook = (post) => {
   const dispatch = useDispatch();
-  const [addNewComment, setAddNewComment] = useState(false);
+  const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
   const { removePost } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
+  const getComments = useSelector(getCommentstSelectors.selectGetComments);
+  const LIMIT = 5;
 
   // remove post
 
@@ -40,9 +46,22 @@ const usePostHook = (post) => {
     }
   }, [removePostState, selectedPostId]);
 
+  // fetch comments
+
+  useEffect(() => {
+    if (showComment) {
+      console.log(getComments);
+      dispatch(getCommentsActions.getComments.request({
+        offset: 0,
+        limit: LIMIT,
+        postId: post.id,
+      }));
+    }
+  }, [showComment]);
+
   return {
-    addNewComment,
-    setAddNewComment,
+    showComment,
+    setShowComment,
     handlePostRemove,
     agreePostDelete,
     disagreePostDelete,
