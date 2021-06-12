@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -12,6 +12,7 @@ import {
 
 const useFeedHook = () => {
   const dispatch = useDispatch();
+  const [editPost, setEditPost] = useState(null);
   const fetchedPosts = useSelector(fetchedPostsSelectors.selectFetchedPosts);
   const getPosts = useSelector(getPostsSelectors.selectGetPosts);
   const { id: uniId } = useParams();
@@ -63,6 +64,8 @@ const useFeedHook = () => {
 
   return {
     fetchedPosts,
+    editPost,
+    setEditPost,
   };
 };
 

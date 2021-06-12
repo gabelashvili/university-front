@@ -107,8 +107,14 @@ export const postButton = css`
     margin-left: auto;
     font-size: 12px;
     border-radius: 5px;
-    background-color: ${({ theme }) => theme.colors.green};
+    background-color: ${({ theme, isCancel }) => (isCancel ? theme.colors.red : theme.colors.green)};
     &:hover {
-    background-color: ${({ theme }) => theme.colors.green};
+        background-color: ${({ theme, isCancel }) => (isCancel ? theme.colors.red : theme.colors.green)};
     }
+`;
+
+export const PostButtonWrapper = styled.div`
+   margin-left: auto;
+   display: flex;
+   gap: 10px;
 `;

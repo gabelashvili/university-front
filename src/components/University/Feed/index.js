@@ -14,17 +14,27 @@ import useFeeHook from 'components/University/Feed/hook';
 const Feedback = () => {
   const {
     fetchedPosts,
+    editPost,
+    setEditPost,
   } = useFeeHook();
-
   return (
     <Container costumStyles={containerStyles}>
       <Container costumStyles={containerStylesLeft}>
         LeftSide
       </Container>
       <Container costumStyles={containerStylesMiddle}>
-        <AddPost />
+        <AddPost
+          editPost={editPost}
+          setEditPost={setEditPost}
+        />
         {fetchedPosts?.totally > 0
-        && fetchedPosts.posts.map((post) => <Post post={post} key={post.id} />)}
+        && fetchedPosts.posts.map((post) => (
+          <Post
+            post={post}
+            key={post.id}
+            setEditPost={setEditPost}
+          />
+        ))}
       </Container>
       <Container costumStyles={containerStylesRight}>
         RightSide

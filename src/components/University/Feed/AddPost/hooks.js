@@ -14,7 +14,7 @@ import {
   hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 
-const useAddPostHook = () => {
+const useAddPostHook = (editPost, setEditPost) => {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
@@ -113,6 +113,23 @@ const useAddPostHook = () => {
     }
   }, [addNewPostState]);
 
+  // edit post
+  const handlePostEditCancel = () => {
+    setEditPost(null);
+    setImage(null);
+    setPostDesc('');
+  };
+
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    if (editPost) {
+      setImage(editPost.image && {
+        url: editPost.image,
+      });
+      setPostDesc(editPost.text);
+    }
+  }, [editPost]);
+
   return {
     handleUpload,
     handleNewPost,
@@ -127,6 +144,7 @@ const useAddPostHook = () => {
     emojiRef,
     showEmoji,
     handleClickOutsideEmoji,
+    handlePostEditCancel,
   };
 };
 

@@ -18,10 +18,11 @@ import {
   TextAreaWrapper,
   ImgPreviewWrapper,
   postButton,
+  PostButtonWrapper,
 } from 'components/University/Feed/AddPost/styles';
 import useAddPostHook from 'components/University/Feed/AddPost/hooks';
 
-const AddPost = () => {
+const AddPost = ({ editPost, setEditPost }) => {
   const {
     handleUpload,
     handleNewPost,
@@ -36,7 +37,8 @@ const AddPost = () => {
     emojiRef,
     showEmoji,
     handleClickOutsideEmoji,
-  } = useAddPostHook();
+    handlePostEditCancel,
+  } = useAddPostHook(editPost, setEditPost);
   return (
     <NewPost>
       <TextAreaWrapper>
@@ -85,7 +87,26 @@ const AddPost = () => {
           </EmojiWrapper>
           )}
         </Emoji>
-        <Button type="button" handleClick={handleNewPost} costumStyles={postButton}>დაპოსტვა</Button>
+        <PostButtonWrapper>
+          {editPost && (
+          <Button
+            type="button"
+            handleClick={handlePostEditCancel}
+            costumStyles={postButton}
+            isCancel
+          >
+            გაუქმება
+          </Button>
+          )}
+          <Button
+            type="button"
+            handleClick={editPost ? undefined : handleNewPost}
+            costumStyles={postButton}
+            // isLoading={newPostsIsPending}
+          >
+            {editPost ? 'შენახვა' : 'დაპოსტვა'}
+          </Button>
+        </PostButtonWrapper>
       </BottomPart>
     </NewPost>
   );

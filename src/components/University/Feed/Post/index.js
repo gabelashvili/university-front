@@ -32,7 +32,7 @@ import RemoveIcon from 'Icons/Remove';
 import usePostHook from 'components/University/Feed/Post/hook';
 import DefaultAvatar from 'Icons/DefaultAvatar';
 
-const PostComponent = ({ post }) => {
+const PostComponent = ({ post, setEditPost }) => {
   const {
     addNewComment,
     setAddNewComment,
@@ -70,7 +70,7 @@ const PostComponent = ({ post }) => {
           <AuthorUni>{post.user.universityId || 'უნივერსიტეტიიიი'}</AuthorUni>
         </AuthorDetails>
         <EditPost>
-          <EditIcon handleClick={() => console.log('edit')} />
+          <EditIcon handleClick={() => setEditPost(post)} />
           <RemoveIcon handleClick={handlePostRemove} />
         </EditPost>
       </PostHeader>
