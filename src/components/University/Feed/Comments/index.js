@@ -111,7 +111,7 @@ const Comments = ({
               </ComButtons>
             </CommentDetails>
           </Comment>
-          {showReply && comment.id in showReply && showReply[comment.id] && (
+          {showReply && comment.id in showReply && showReply[comment.id].isShow && (
           <ComReplies>
             <AddComment
               postId={postId}
