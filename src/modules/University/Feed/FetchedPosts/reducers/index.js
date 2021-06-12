@@ -177,6 +177,11 @@ const fetchedPosts = (state = initialState, action) => {
         posts: postsList,
       };
     }
+    case constants.ADD_REPLY_IN_REPLIES_IN_COMMENT: {
+      const data = action.payload;
+      console.log(data);
+      return state;
+    }
     default:
       return state;
   }

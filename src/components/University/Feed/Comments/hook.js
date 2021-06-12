@@ -86,7 +86,6 @@ export default (postId) => {
   };
 
   const handleShowMoreReply = (parentId, curLength) => {
-    console.log(parentId, curLength);
     dispatch(getCommentsActions.getComments.request({
       offset: curLength,
       limit: 5,

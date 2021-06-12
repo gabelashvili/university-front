@@ -54,6 +54,10 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.resetReplies(data));
   };
 
+  const addReply = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.addReply(data));
+  };
+
   return {
     updateList,
     removePost,
@@ -67,5 +71,6 @@ export default () => {
     updateComment,
     inserReplies,
     resetReplies,
+    addReply,
   };
 };

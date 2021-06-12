@@ -48,4 +48,8 @@ export const fetchedPosts = ({
     type: constants.RESET_REPLIES_IN_COMMENT,
     payload: data,
   }),
+  addReply: (data) => ({
+    type: constants.ADD_REPLY_IN_REPLIES_IN_COMMENT,
+    payload: data,
+  }),
 });
