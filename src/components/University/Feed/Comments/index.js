@@ -14,6 +14,7 @@ import {
   HeaderWrapper,
   modalStyles,
   DialogButtonWrapper,
+  ComImg,
 } from 'components/University/Feed/Comments/styles';
 import Button from 'components/Button';
 import EditIcon from 'Icons/Edit';
@@ -79,6 +80,7 @@ const Comments = ({ data, postId }) => {
               <ComText>
                 {comment.text}
               </ComText>
+              {comment.image && <ComImg alt="" src={comment.image} />}
               <ComButtons>
                 <Button
                   type="button"

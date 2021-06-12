@@ -129,3 +129,9 @@ export const DialogButtonWrapper = styled.div`
         }
     }
 `;
+
+export const ComImg = styled.img`
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+`;
