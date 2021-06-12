@@ -44,14 +44,13 @@ export const ComButtons = styled.div`
 `;
 
 export const comButtonStyle = css`
-    border: ${({ theme }) => `1px solid ${theme.colors.lightGrey}`};
     color: ${({ theme }) => theme.colors.black};
+    background-color:  ${({ theme }) => transparentize(0.9, theme.colors.lightGrey)};
     padding: 5px 10px;
     border-radius: 3px;
     font-size: 12px;
     line-height: 1;
     cursor: pointer;
-    background-color: ${({ theme, alreadyLiked }) => alreadyLiked && transparentize(0.6, theme.colors.lightGrey)};
     width: max-content;
     & > svg {
         width: 15px;
@@ -60,14 +59,14 @@ export const comButtonStyle = css`
         margin-right: ${({ alreadyLiked }) => alreadyLiked && '5px'};
     };
     &:hover {
-        background-color:  ${({ theme, totalLikes }) => !totalLikes && transparentize(0.7, theme.colors.lightGrey)};
+        background-color:  ${({ theme }) => transparentize(0.7, theme.colors.lightGrey)};
     }
 `;
 
 export const ComContainer = styled.div``;
 
 export const ComReplies = styled.div`
-    padding: 20px 0px 0 60px;
+    padding: 0px 0px 0 60px;
 `;
 
 export const EditComment = styled.div`

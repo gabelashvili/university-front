@@ -128,9 +128,7 @@ const fetchedPosts = (state = initialState, action) => {
       const postIndex = postsList.findIndex((post) => post.id === data.postId);
       postsList[postIndex] = {
         ...postsList[postIndex],
-        commentCnt: postsList[postIndex].commentCnt -= 1,
         comments: {
-          totally: postsList[postIndex].comments.totally - 1,
           list: postsList[postIndex].comments.list
             .map((comment) => {
               if (comment.id === data.id) {

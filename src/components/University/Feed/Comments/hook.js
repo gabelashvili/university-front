@@ -13,7 +13,7 @@ export default () => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedCom, setSelectedCom] = useState(null);
-  const [editPostData, setEditPostData] = useState(null);
+  const [showReply, setShowReply] = useState({});
   const removeCommenState = useSelector(removeCommentSelectors.selectRemoveComment);
   const {
     removeComment,
@@ -56,6 +56,14 @@ export default () => {
     document.getElementById(`add-comment-${comment.postId}`).scrollIntoView({ behavior: 'smooth' });
   };
 
+  // replies
+  const handleShowReply = (comId) => {
+    setShowReply({
+      ...showReply,
+      [comId]: !showReply[comId],
+    });
+  };
+
   return {
     handleDelete,
     isModalOpen,
@@ -65,5 +73,7 @@ export default () => {
     handleCommentEdit,
     selectedCom,
     setSelectedCom,
+    showReply,
+    handleShowReply,
   };
 };

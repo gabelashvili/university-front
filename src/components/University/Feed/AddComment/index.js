@@ -24,7 +24,9 @@ import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import useAddCommentHook from 'components/University/Feed/AddComment/hook';
 import Button from 'components/Button';
 
-const CommentComponent = ({ postId, data, setSelectedCom }) => {
+const CommentComponent = ({
+  postId, data, setSelectedCom, parent,
+}) => {
   const {
     handleCursorPosition,
     textareaRef,
@@ -44,7 +46,7 @@ const CommentComponent = ({ postId, data, setSelectedCom }) => {
     handleAdd,
     handleEditCancel,
     handleEditFinish,
-  } = useAddCommentHook(postId, data, setSelectedCom);
+  } = useAddCommentHook(postId, data, setSelectedCom, parent);
   return (
     <CommentWrapper id={`add-comment-${postId}`}>
       <Comment>

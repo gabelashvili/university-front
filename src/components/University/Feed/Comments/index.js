@@ -37,6 +37,8 @@ const Comments = ({
     handleCommentEdit,
     selectedCom,
     setSelectedCom,
+    showReply,
+    handleShowReply,
   } = useComment();
   return (
     <>
@@ -88,7 +90,6 @@ const Comments = ({
                 <Button
                   type="button"
                   costumStyles={comButtonStyle}
-                  totalLikes
                 >
                   Reactions (20)
                 </Button>
@@ -98,47 +99,61 @@ const Comments = ({
                 <Button
                   type="button"
                   costumStyles={comButtonStyle}
+                  handleClick={() => handleShowReply(comment.id)}
                 >
-                  Comment
+                  Reply
+                  {' '}
+                  (
+                  {' '}
+                  {comment.replyCnt}
+                  )
                 </Button>
               </ComButtons>
             </CommentDetails>
           </Comment>
-          {/* <ComReplies>
-          <Comment>
-            <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-            <CommentDetails>
-              <ComAuthor href="/">
-                Lasha
-                <ComAuthorUni>Caucasus University</ComAuthorUni>
-              </ComAuthor>
-              <ComText>
-                Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-                IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-                IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-                IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-              </ComText>
-              <ComButtons>
-                <Button
-                  type="button"
-                  costumStyles={comButtonStyle}
-                  totalLikes
-                >
-                  Reactions (20)
-                </Button>
-                <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-                  Like
-                </Button>
-                <Button
-                  type="button"
-                  costumStyles={comButtonStyle}
-                >
-                  Comment
-                </Button>
-              </ComButtons>
-            </CommentDetails>
-          </Comment>
-        </ComReplies> */}
+          {showReply && comment.id in showReply && showReply[comment.id] && (
+          <ComReplies>
+            <AddComment
+              postId={postId}
+              parent={comment.id}
+              // data={selectedCom?.isEditing && selectedCom}
+              // setSelectedCom={setSelectedCom}
+            />
+            <Comment>
+              <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+              <CommentDetails>
+                <ComAuthor href="/">
+                  Lasha
+                  <ComAuthorUni>Caucasus University</ComAuthorUni>
+                </ComAuthor>
+                <ComText>
+                  Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+                </ComText>
+                <ComButtons>
+                  <Button
+                    type="button"
+                    costumStyles={comButtonStyle}
+                    totalLikes
+                  >
+                    Reactions (20)
+                  </Button>
+                  <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
+                    Like
+                  </Button>
+                  <Button
+                    type="button"
+                    costumStyles={comButtonStyle}
+                  >
+                    Comment
+                  </Button>
+                </ComButtons>
+              </CommentDetails>
+            </Comment>
+          </ComReplies>
+          )}
         </ComContainer>
       ))}
       {data && data.length < total && <ShowMore onClick={handleShowMore}>მეტის ჩვენება</ShowMore>}

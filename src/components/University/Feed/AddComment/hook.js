@@ -17,7 +17,7 @@ import {
   hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 
-export default (postId, data, setSelectedCom) => {
+export default (postId, data, setSelectedCom, parent) => {
   const { enqueueSnackbar } = useSnackbar();
   const [showEmoji, setShowEmoji] = useState(false);
   const [cursPos, setCursPos] = useState(0);
@@ -42,6 +42,7 @@ export default (postId, data, setSelectedCom) => {
       data: {
         postId,
         text: comment,
+        parent,
       },
     }));
   };
