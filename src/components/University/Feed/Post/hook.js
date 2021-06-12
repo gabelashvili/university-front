@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   hook as useFetchedPostsHook,
@@ -7,9 +7,9 @@ import {
   actions as removePostActions,
   selectors as removePostSelectors,
 } from 'modules/University/Feed/RemovePost';
+import { actions as modalActions } from 'modules/Modal';
 
 const usePostHook = (post) => {
-  // eslint-disable-next-line no-unused-vars
   const dispatch = useDispatch();
   const [addNewComment, setAddNewComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
@@ -18,10 +18,20 @@ const usePostHook = (post) => {
 
   // remove post
 
-  const handlePostRemove = useCallback((postId) => {
+  const handlePostRemove = () => {
+    dispatch(modalActions.setModalState.open());
+  };
+
+  const agreePostDelete = (postId) => {
     dispatch(removePostActions.removePost.request(postId));
+    dispatch(modalActions.setModalState.close());
     setselectedPostId(postId);
-  }, []);
+  };
+
+  const disagreePostDelete = () => {
+    setselectedPostId(null);
+    dispatch(modalActions.setModalState.close());
+  };
 
   useEffect(() => {
     if (removePostState.statuses.isSucceed && post.id === selectedPostId) {
@@ -34,6 +44,8 @@ const usePostHook = (post) => {
     addNewComment,
     setAddNewComment,
     handlePostRemove,
+    agreePostDelete,
+    disagreePostDelete,
   };
 };
 

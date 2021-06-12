@@ -16,6 +16,8 @@ import {
   LikeButtonWrapper,
   modalStyles,
   EditPost,
+  Avatar,
+  DialogButtonWrapper,
 } from 'components/University/Feed/Post/styles';
 import LikeIcon from 'Icons/Like';
 import CommentIcon from 'Icons/Comment';
@@ -28,43 +30,58 @@ import Comments from 'components/University/Feed/Comments';
 import EditIcon from 'Icons/Edit';
 import RemoveIcon from 'Icons/Remove';
 import usePostHook from 'components/University/Feed/Post/hook';
+import DefaultAvatar from 'Icons/DefaultAvatar';
 
 const PostComponent = ({ post }) => {
   const {
     addNewComment,
     setAddNewComment,
     handlePostRemove,
+    agreePostDelete,
+    disagreePostDelete,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
     <Post>
       <Modal
-        title="რეაქციები"
+        title="პოსტის წაშლა"
         showClose
         closeOnAwayClick
         costumeStyles={modalStyles}
         costumeCloseIcon={<CloseIconWithoutCircle />}
       >
-        qwdqwd
+        ნამდვილად გსურთ არჩეული პოსტის წაშლა?
+        <DialogButtonWrapper>
+          <Button type="button" handleClick={disagreePostDelete}>არა</Button>
+          <Button
+            type="button"
+            handleClick={() => agreePostDelete(post.id)}
+          >
+            კი
+          </Button>
+        </DialogButtonWrapper>
       </Modal>
       <PostHeader>
-        <AuthorAvatar src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+        <AuthorAvatar>
+          {post.user.image ? <Avatar alt="" src={post.user.image} /> : <DefaultAvatar />}
+        </AuthorAvatar>
         <AuthorDetails>
-          <AuthorName>John Doe</AuthorName>
-          <AuthorUni>Caucasus University</AuthorUni>
+          <AuthorName>{`${post.user.firstname} ${post.user.lastname}`}</AuthorName>
+          <AuthorUni>{post.user.universityId || 'უნივერსიტეტიიიი'}</AuthorUni>
         </AuthorDetails>
         <EditPost>
           <EditIcon handleClick={() => console.log('edit')} />
-          <RemoveIcon handleClick={() => handlePostRemove(post.id)} />
+          <RemoveIcon handleClick={handlePostRemove} />
         </EditPost>
       </PostHeader>
       <PostDesc>
-        lorem ipsumlorem ipsumlorem ipsum lorem ipsum
-        lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum
+        {post.text}
+        {post.image && (
         <PostImg
-          src="https://media-exp1.licdn.com/dms/image/C4E22AQHoZlqp8dWaog/feedshare-shrink_800/0/1621521849666?e=1624492800&v=beta&t=FANoN4IckroFiIK-YHSE_aBMT_cIs_vQ22rxlXbuRW4"
+          src={post.image}
           alt=""
         />
+        )}
       </PostDesc>
       <PostReactions
         onClick={() => console.log('show')}

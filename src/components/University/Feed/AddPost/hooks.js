@@ -96,8 +96,8 @@ const useAddPostHook = () => {
           love: { id: 2, quantity: 0 },
         },
         id: addNewPostState.data.id,
-        image: null,
-        text: 'qwd',
+        image: image?.url || null,
+        text: postDesc,
         universityId: 1,
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         user: {

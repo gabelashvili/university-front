@@ -1,6 +1,7 @@
 import LaughIcon from 'Icons/Laugh';
 import HeartIcon from 'Icons/Heart';
 import LikeIcon from 'Icons/Like';
+import DislikeIcon from 'Icons/Dislike';
 import uuid from 'react-uuid';
 import { ToolTip, IconWrapper } from 'components/University/Feed/Reactions/styles';
 
@@ -17,13 +18,13 @@ const Reactions = () => {
       icon: <HeartIcon />,
     },
     dislike: {
-      title: 'like',
+      title: 'dislike',
       color: 'blue',
-      icon: <LikeIcon />,
+      icon: <DislikeIcon />,
       isDislike: true,
     },
     HaHa: {
-      title: 'like',
+      title: 'haha',
       color: null,
       icon: <LaughIcon />,
     },

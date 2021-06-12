@@ -28,12 +28,19 @@ export const PostHeader = styled.div`
     align-items: center;
 `;
 
-export const AuthorAvatar = styled.img`
+export const AuthorAvatar = styled.div`
     width: 50px;
     height: 50px;
     border: ${({ theme }) => `2px solid ${transparentize(0.2, theme.colors.lightGrey)}`};
     border-radius: 50%;
+    & > img, svg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
 `;
+
+export const Avatar = styled.img``;
 
 export const AuthorDetails = styled.div`
     display: flex;
@@ -129,6 +136,30 @@ export const EditPost = styled.div`
         cursor: pointer;
         &:hover {
             background-color:  ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
+        }
+    }
+`;
+
+export const DialogButtonWrapper = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    & button {
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        background-color: ${({ theme }) => theme.colors.green};
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.green}
+        };
+        border-radius: 5px;
+    }
+    & button:first-child {
+        padding: 10px;
+        background-color: ${({ theme }) => theme.colors.red};
+        margin-right: 5px;
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.red};
         }
     }
 `;
