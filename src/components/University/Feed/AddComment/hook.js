@@ -5,6 +5,13 @@ import {
   actions as addCommentActions,
   selectors as addCommentSelectors,
 } from 'modules/University/Feed/AddComment';
+import {
+  hook as useFetchedPostsHook,
+} from 'modules/University/Feed/FetchedPosts';
+import moment from 'moment';
+import {
+  hooks as authedUserHook,
+} from 'modules/Authentication/AuthedUser';
 
 export default (postData) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -18,6 +25,9 @@ export default (postData) => {
   const [commentLength, setCommentLength] = useState(0);
   const dispatch = useDispatch();
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
+  const { addComment } = useFetchedPostsHook();
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const { authedUser } = authedUserHook.useAuthedUser();
 
   // set textarea styles
   const handleCommentChange = (e) => {
@@ -86,7 +96,8 @@ export default (postData) => {
   });
 
   // add new comment || reply
-  const handleAdd = () => {
+  const handleAdd = (postId) => {
+    setSelectedPostId(postId);
     dispatch(addCommentActions.addComment.request({
       image: image?.file || null,
       data: {
@@ -97,10 +108,38 @@ export default (postData) => {
   };
 
   useEffect(() => {
-    if (addCommentState.statuses.isSucceed) {
-      console.log(11);
+    if (addCommentState.statuses.isSucceed && postData.id === selectedPostId) {
+      addComment({
+        postId: selectedPostId,
+        data: {
+          createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+          emoji: {
+            dislike: { id: 3, quantity: 0 },
+            haha: { id: 4, quantity: 0 },
+            like: { id: 1, quantity: 0 },
+            love: { id: 2, quantity: 0 },
+          },
+          id: addCommentState.data.id,
+          image: image?.url || null,
+          parent: null,
+          postId: 63,
+          replyCnt: 0,
+          text: comment,
+          updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+          user: {
+            image: authedUser.image,
+            firstname: authedUser.firstName,
+            lastname: authedUser.lastName,
+            universityId: authedUser.universityId,
+          },
+          userId: authedUser.userId,
+          yourEmoji: null,
+        },
+      });
+      setSelectedPostId(null);
+      dispatch(addCommentActions.addComment.reset());
     }
-  }, [addCommentState]);
+  }, [addCommentState, selectedPostId]);
 
   return {
     handleCursorPosition,

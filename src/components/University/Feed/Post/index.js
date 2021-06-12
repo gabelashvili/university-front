@@ -103,7 +103,11 @@ const PostComponent = ({ post, setEditPost }) => {
         </LikeButtonWrapper>
         <Button costumStyles={postButton} type="button" handleClick={() => setShowComment(!showComment)}>
           <CommentIcon />
-          Comment
+          comments
+          {' '}
+          (
+          {post.commentCnt}
+          )
         </Button>
       </PostBottom>
       {showComment && (

@@ -97,7 +97,7 @@ const CommentComponent = ({ postData }) => {
 
       </Comment>
       {(commentLength > 0 || comment.length > 0 || image) && (
-      <Button handleClick={handleAdd} costumStyles={buttonStyles} type="button">დამატება</Button>
+      <Button handleClick={() => handleAdd(postData.id)} costumStyles={buttonStyles} type="button">დამატება</Button>
       )}
     </CommentWrapper>
   );

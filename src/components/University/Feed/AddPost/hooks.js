@@ -106,12 +106,12 @@ const useAddPostHook = (editPost, setEditPost) => {
         universityId: 1,
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         user: {
-          image: null,
+          image: authedUser.image,
           firstname: authedUser.firstName,
           lastname: authedUser.lastName,
           universityId: authedUser.universityId,
         },
-        userId: 1,
+        userId: authedUser.userId,
         yourEmoji: null,
       });
       dispatch(addNewPostActions.addNewPost.reset());

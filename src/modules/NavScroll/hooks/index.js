@@ -6,7 +6,7 @@ import { actions as navScrollActions } from 'modules/NavScroll';
 export const handleScrollHook = ({ navigationRef }) => {
   const dispatch = useDispatch();
   const handleScroll = () => {
-    const navigationHeight = navigationRef.current.clientHeight;
+    const navigationHeight = navigationRef?.current?.clientHeight;
     // window.pageYOffset >= navigationHeight / 2
     if (window.pageYOffset >= navigationHeight) {
       // dispatch(navScrollActions.setScrollState.request(true));

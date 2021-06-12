@@ -21,14 +21,11 @@ const Comments = ({ data }) => (
           <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
           <CommentDetails>
             <ComAuthor href="/">
-              Lasha
-              <ComAuthorUni>Caucasus University</ComAuthorUni>
+              {`${comment.user.firstname} ${comment.user.lastname}`}
+              <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
             </ComAuthor>
             <ComText>
-              Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-              IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-              IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-              IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+              {comment.text}
             </ComText>
             <ComButtons>
               <Button

@@ -28,4 +28,8 @@ export const fetchedPosts = ({
   resetList: () => ({
     type: constants.RESET_FETCHED_POST,
   }),
+  addComment: (comment) => ({
+    type: constants.ADD_COMMENT,
+    payload: comment,
+  }),
 });

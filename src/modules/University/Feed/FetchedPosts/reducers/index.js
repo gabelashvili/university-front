@@ -90,6 +90,24 @@ const fetchedPosts = (state = initialState, action) => {
     }
     case constants.RESET_FETCHED_POST:
       return initialState;
+    case constants.ADD_COMMENT: {
+      const comment = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === comment.postId);
+      postsList[postIndex] = {
+        ...postsList[postIndex],
+        commentCnt: postsList[postIndex].commentCnt += 1,
+        comments: {
+          totally: postsList[postIndex]?.comments ? postsList[postIndex]?.comments.totally + 1 : 1,
+          list: postsList[postIndex]?.comments
+            ? [comment.data, ...postsList[postIndex]?.comments?.list] : [comment.data],
+        },
+      };
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
     default:
       return state;
   }
