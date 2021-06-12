@@ -31,10 +31,16 @@ const Comments = ({ data, postId }) => {
     handleDeleteDisagree,
     handleDeleteAgree,
     handleCommentEdit,
+    selectedCom,
+    setSelectedCom,
   } = useComment();
   return (
     <>
-      <AddComment postId={postId} />
+      <AddComment
+        postId={postId}
+        data={selectedCom?.isEditing && selectedCom}
+        setSelectedCom={setSelectedCom}
+      />
       <Modal
         title="კომენტარის წაშლა"
         showClose
@@ -56,7 +62,7 @@ const Comments = ({ data, postId }) => {
         </DialogButtonWrapper>
       </Modal>
       {data && data.map((comment) => (
-        <ComContainer key={comment.id}>
+        <ComContainer key={comment.id} id={`comment-${comment.id}`}>
           <Comment>
             <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
             <CommentDetails>

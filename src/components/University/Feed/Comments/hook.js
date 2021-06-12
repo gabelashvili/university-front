@@ -49,7 +49,10 @@ export default () => {
   // edit comment
 
   const handleCommentEdit = (comment) => {
-    console.log(comment);
+    setSelectedCom({
+      isEditing: true,
+      comment,
+    });
     document.getElementById(`add-comment-${comment.postId}`).scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -60,5 +63,7 @@ export default () => {
     handleDeleteDisagree,
     handleDeleteAgree,
     handleCommentEdit,
+    selectedCom,
+    setSelectedCom,
   };
 };

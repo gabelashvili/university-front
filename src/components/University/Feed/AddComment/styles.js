@@ -120,14 +120,20 @@ export const CommentWrapper = styled.div`
 `;
 
 export const buttonStyles = css`
-    background-color: ${({ theme }) => theme.colors.green};
+    background-color: ${({ theme, isCancel }) => theme.colors[isCancel ? 'red' : 'green']};
     width: max-content;
     padding: 5px;
     font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
-    margin: 8px 12px 0 auto;
     &:hover {
-        background-color: ${({ theme }) => theme.colors.green};
+        background-color: ${({ theme, isCancel }) => theme.colors[isCancel ? 'red' : 'green']};
     }
+`;
+
+export const ButtonWrapper = styled.div`
+    display: flex;
+    margin: 8px 12px 0 auto;
+    justify-content: flex-end;
+    gap: 15px;
 `;

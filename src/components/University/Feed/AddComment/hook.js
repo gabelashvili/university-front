@@ -13,7 +13,7 @@ import {
   hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 
-export default (postId) => {
+export default (postId, data, setSelectedCom) => {
   const { enqueueSnackbar } = useSnackbar();
   const [showEmoji, setShowEmoji] = useState(false);
   const [cursPos, setCursPos] = useState(0);
@@ -144,6 +144,23 @@ export default (postId) => {
     }
   }, [addCommentState, selectedPostId]);
 
+  // edit comment
+  const handleEditCancel = () => {
+    setSelectedCom(null);
+    setImage(null);
+    setComment('');
+    document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (data) {
+      setComment(data.comment.text);
+      setImage(data.comment.image && {
+        url: data.comment.image,
+      });
+    }
+  }, [data]);
+
   return {
     handleCursorPosition,
     textareaRef,
@@ -161,5 +178,6 @@ export default (postId) => {
     handleUpload,
     commentLength,
     handleAdd,
+    handleEditCancel,
   };
 };

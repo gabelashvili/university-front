@@ -15,6 +15,7 @@ import {
   Emoji,
   CommentWrapper,
   buttonStyles,
+  ButtonWrapper,
 } from 'components/University/Feed/AddComment/styles';
 import CameraIcon from 'Icons/Camera';
 import EmojiIcon from 'Icons/Emoji';
@@ -23,7 +24,7 @@ import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import useAddCommentHook from 'components/University/Feed/AddComment/hook';
 import Button from 'components/Button';
 
-const CommentComponent = ({ postId }) => {
+const CommentComponent = ({ postId, data, setSelectedCom }) => {
   const {
     handleCursorPosition,
     textareaRef,
@@ -41,7 +42,8 @@ const CommentComponent = ({ postId }) => {
     handleUpload,
     commentLength,
     handleAdd,
-  } = useAddCommentHook(postId);
+    handleEditCancel,
+  } = useAddCommentHook(postId, data, setSelectedCom);
   return (
     <CommentWrapper id={`add-comment-${postId}`}>
       <Comment>
@@ -76,10 +78,10 @@ const CommentComponent = ({ postId }) => {
               )}
             </Emoji>
             <UploadImage>
-              <UploadLabel htmlFor={`upload-image-comment-${comment.id}`}>
+              <UploadLabel htmlFor={`upload-image-comment-${postId}`}>
                 <CameraIcon />
               </UploadLabel>
-              <Upload type="file" id={`upload-image-comment-${comment.id}`} accept="image/png, image/jpeg" onChange={(e) => handleUpload(e)} />
+              <Upload type="file" id={`upload-image-comment-${postId}`} accept="image/png, image/jpeg" onChange={(e) => handleUpload(e)} />
             </UploadImage>
           </BottomPart>
         </Wrapper>
@@ -96,7 +98,10 @@ const CommentComponent = ({ postId }) => {
 
       </Comment>
       {(commentLength > 0 || comment.length > 0 || image) && (
-      <Button handleClick={() => handleAdd(postId)} costumStyles={buttonStyles} type="button">დამატება</Button>
+        <ButtonWrapper>
+          <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>
+          <Button handleClick={data?.isEditing ? undefined : () => handleAdd(postId)} costumStyles={buttonStyles} type="button">დამატება</Button>
+        </ButtonWrapper>
       )}
     </CommentWrapper>
   );
