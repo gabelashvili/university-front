@@ -39,7 +39,7 @@ const Comments = ({
     setSelectedCom,
     showReply,
     handleShowReply,
-  } = useComment();
+  } = useComment(postId);
   return (
     <>
       <AddComment
@@ -119,39 +119,52 @@ const Comments = ({
               // data={selectedCom?.isEditing && selectedCom}
               // setSelectedCom={setSelectedCom}
             />
-            <Comment>
-              <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-              <CommentDetails>
-                <ComAuthor href="/">
-                  Lasha
-                  <ComAuthorUni>Caucasus University</ComAuthorUni>
-                </ComAuthor>
-                <ComText>
-                  Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-                  IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-                </ComText>
-                <ComButtons>
-                  <Button
-                    type="button"
-                    costumStyles={comButtonStyle}
-                    totalLikes
-                  >
-                    Reactions (20)
-                  </Button>
-                  <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-                    Like
-                  </Button>
-                  <Button
-                    type="button"
-                    costumStyles={comButtonStyle}
-                  >
-                    Comment
-                  </Button>
-                </ComButtons>
-              </CommentDetails>
-            </Comment>
+            {comment?.replies
+            && comment.replies.list.length > 0
+            && comment.replies.list.map((reply) => (
+              <Comment key={reply.id}>
+                <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                <CommentDetails>
+                  <HeaderWrapper>
+                    <ComAuthor href="/">
+                      {`${comment.user.firstname} ${comment.user.lastname}`}
+                      <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
+                    </ComAuthor>
+                    <EditComment>
+                      <EditIcon handleClick={() => handleCommentEdit(comment)} />
+                      <RemoveIcon handleClick={() => handleDelete(comment)} />
+                    </EditComment>
+                  </HeaderWrapper>
+                  <ComText>
+                    {comment.text}
+                  </ComText>
+                  {comment.image && <ComImg alt="" src={comment.image} />}
+                  <ComButtons>
+                    <Button
+                      type="button"
+                      costumStyles={comButtonStyle}
+                    >
+                      Reactions (20)
+                    </Button>
+                    <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
+                      Like
+                    </Button>
+                    <Button
+                      type="button"
+                      costumStyles={comButtonStyle}
+                      handleClick={() => handleShowReply(comment.id)}
+                    >
+                      Reply
+                      {' '}
+                      (
+                      {' '}
+                      {comment.replyCnt}
+                      )
+                    </Button>
+                  </ComButtons>
+                </CommentDetails>
+              </Comment>
+            ))}
           </ComReplies>
           )}
         </ComContainer>

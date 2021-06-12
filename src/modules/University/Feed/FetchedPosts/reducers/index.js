@@ -146,8 +146,32 @@ const fetchedPosts = (state = initialState, action) => {
     case constants.INSER_REPLIES_IN_COMMENT: {
       const data = action.payload;
       const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === data.comments[0].postId);
+      const comentIndex = postsList[postIndex].comments.list
+        .findIndex((com) => com.id === data.comments[0].parent);
+      if (postsList[postIndex].comments.list[comentIndex].replies) {
+        postsList[postIndex].comments.list[comentIndex].replies = {
+          totally: data.totally,
+          list: [...postsList[postIndex].comments.list[comentIndex].replies.list, ...data.comments],
+        };
+      } else {
+        postsList[postIndex].comments.list[comentIndex].replies = {
+          totally: data.totally,
+          list: data.comments,
+        };
+      }
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
+    case constants.RESET_REPLIES_IN_COMMENT: {
+      const data = action.payload;
+      const postsList = [...state.posts];
       const postIndex = postsList.findIndex((post) => post.id === data.postId);
-      console.log(postIndex);
+      const comentIndex = postsList[postIndex].comments.list
+        .findIndex((com) => com.id === data.parentId);
+      postsList[postIndex].comments.list[comentIndex].replies = null;
       return {
         totally: state.totally,
         posts: postsList,

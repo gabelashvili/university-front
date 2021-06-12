@@ -29,7 +29,7 @@ export default (postId, data, setSelectedCom, parent) => {
   const [commentLength, setCommentLength] = useState(0);
   const dispatch = useDispatch();
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
-  const { addComment, updateComment, inserReplies } = useFetchedPostsHook();
+  const { addComment, updateComment } = useFetchedPostsHook();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const { authedUser } = authedUserHook.useAuthedUser();
   const updateCommentState = useSelector(updateCommentSelectors.selectUpdateComment);
@@ -77,9 +77,6 @@ export default (postId, data, setSelectedCom, parent) => {
             yourEmoji: null,
           },
         });
-      }
-      if (parent) {
-        inserReplies(1);
       }
       setSelectedPostId(null);
       dispatch(addCommentActions.addComment.reset());

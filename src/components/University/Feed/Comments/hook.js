@@ -8,15 +8,22 @@ import {
 import {
   hook as useFetchedPostsHook,
 } from 'modules/University/Feed/FetchedPosts';
+import {
+  selectors as getCommentsSelectors,
+  actions as getCommentsActions,
+} from 'modules/University/Feed/GetComments';
 
-export default () => {
+export default (postId) => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedCom, setSelectedCom] = useState(null);
   const [showReply, setShowReply] = useState({});
   const removeCommenState = useSelector(removeCommentSelectors.selectRemoveComment);
+  const getCommentsState = useSelector(getCommentsSelectors.selectGetComments);
   const {
+    inserReplies,
     removeComment,
+    resetReplies,
   } = useFetchedPostsHook();
 
   // delete comment
@@ -58,11 +65,34 @@ export default () => {
 
   // replies
   const handleShowReply = (comId) => {
+    if (!showReply[comId]) {
+      dispatch(getCommentsActions.getComments.request({
+        offset: 0,
+        limit: 5,
+        parentId: comId,
+        postId,
+      }));
+    }
+    if (showReply[comId]) {
+      resetReplies({
+        parentId: comId,
+        postId,
+      });
+    }
     setShowReply({
       ...showReply,
       [comId]: !showReply[comId],
     });
   };
+
+  useEffect(() => {
+    if (getCommentsState.statuses.isSucceed
+       && getCommentsState.data.comments.length > 0
+       && getCommentsState.data.comments[0].parent) {
+      inserReplies(getCommentsState.data);
+      dispatch(getCommentsActions.getComments.reset());
+    }
+  }, [getCommentsState]);
 
   return {
     handleDelete,

@@ -76,7 +76,9 @@ const usePostHook = (post) => {
   useEffect(() => {
     if (getComments.statuses.isSucceed) {
       dispatch(getCommentsActions.getComments.reset());
-      if (getComments.data.comments.length > 0 && post.id === getComments.data.comments[0].postId) {
+      if (getComments.data.comments.length > 0
+        && post.id === getComments.data.comments[0].postId
+        && !getComments.data.comments[0].parent) {
         setComments({
           postId: post.id,
           comments: getComments.data,
