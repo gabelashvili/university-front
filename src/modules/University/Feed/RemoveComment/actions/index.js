@@ -1,6 +1,6 @@
 import { constants } from 'modules/University/Feed/RemoveComment';
 
-export const removePost = ({
+export const removeComment = ({
   request: (commentId) => ({
     type: constants.REMOVE_COMMENT_REQUESTED,
     payload: commentId,

@@ -39,7 +39,7 @@ export default () => {
   };
 
   const removeComment = (data) => {
-    dispatch(fetchedPostsActions.fetchedPosts.addComment(data));
+    dispatch(fetchedPostsActions.fetchedPosts.removeComment(data));
   };
 
   return {

@@ -25,6 +25,10 @@ import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 const Comments = ({ data }) => {
   const {
     handleDelete,
+    isModalOpen,
+    setModalOpen,
+    handleDeleteDisagree,
+    handleDeleteAgree,
   } = useComment();
   return (
     <>
@@ -34,13 +38,15 @@ const Comments = ({ data }) => {
         closeOnAwayClick
         costumeStyles={modalStyles}
         costumeCloseIcon={<CloseIconWithoutCircle />}
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
       >
         ნამდვილად გსურთ არჩეული კომენტარის წაშლა?
         <DialogButtonWrapper>
-          <Button type="button" handleClick={undefined}>არა</Button>
+          <Button type="button" handleClick={handleDeleteDisagree}>არა</Button>
           <Button
             type="button"
-            // handleClick={() => agreePostDelete(post.id)}
+            handleClick={handleDeleteAgree}
           >
             კი
           </Button>
@@ -58,7 +64,7 @@ const Comments = ({ data }) => {
                 </ComAuthor>
                 <EditComment>
                   <EditIcon handleClick={() => console.log('edit')} />
-                  <RemoveIcon handleClick={() => handleDelete(comment.id)} />
+                  <RemoveIcon handleClick={() => handleDelete(comment.id, comment.postId)} />
                 </EditComment>
               </HeaderWrapper>
               <ComText>

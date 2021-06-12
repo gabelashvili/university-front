@@ -122,7 +122,7 @@ export default (postData) => {
           id: addCommentState.data.id,
           image: image?.url || null,
           parent: null,
-          postId: 63,
+          postId: postData.id,
           replyCnt: 0,
           text: comment,
           updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),

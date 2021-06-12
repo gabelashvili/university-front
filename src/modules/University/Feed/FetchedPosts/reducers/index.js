@@ -117,7 +117,8 @@ const fetchedPosts = (state = initialState, action) => {
         commentCnt: postsList[postIndex].commentCnt -= 1,
         comments: {
           totally: postsList[postIndex].comments.totally - 1,
-          list: postsList[postIndex].comments.list.map((comment) => comment.id !== data.commentId),
+          list: postsList[postIndex].comments.list
+            .filter((comment) => comment.id !== data.commentId),
         },
       };
       return {

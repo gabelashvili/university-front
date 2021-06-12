@@ -24,7 +24,6 @@ import useAddCommentHook from 'components/University/Feed/AddComment/hook';
 import Button from 'components/Button';
 
 const CommentComponent = ({ postData }) => {
-  console.log(11);
   const {
     handleCursorPosition,
     textareaRef,
