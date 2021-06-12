@@ -69,3 +69,63 @@ export const ComContainer = styled.div``;
 export const ComReplies = styled.div`
     padding: 20px 0px 0 60px;
 `;
+
+export const EditComment = styled.div`
+    align-self: flex-start;
+    margin-left: auto;
+    & svg {
+        width: 15px;
+        height: 15px;
+        fill: ${({ theme }) => theme.colors.lightGrey};
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all 0.3s;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color:  ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
+        }
+    }
+`;
+
+export const HeaderWrapper = styled.div`
+    display: flex;
+    justify-content: space-between
+`;
+
+export const modalStyles = css`
+    max-width: 650px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
+    & > div {
+        border: none;
+        color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+        & > div > svg  {
+           fill: ${({ theme }) => transparentize(0.1, theme.colors.black)}
+        }
+    }
+`;
+
+export const DialogButtonWrapper = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    & button {
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        background-color: ${({ theme }) => theme.colors.green};
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.green}
+        };
+        border-radius: 5px;
+    }
+    & button:first-child {
+        padding: 10px;
+        background-color: ${({ theme }) => theme.colors.red};
+        margin-right: 5px;
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.red};
+        }
+    }
+`;

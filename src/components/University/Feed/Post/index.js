@@ -39,6 +39,8 @@ const PostComponent = ({ post, setEditPost }) => {
     handlePostRemove,
     agreePostDelete,
     disagreePostDelete,
+    isModalOpen,
+    setModalOpen,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
@@ -49,6 +51,8 @@ const PostComponent = ({ post, setEditPost }) => {
         closeOnAwayClick
         costumeStyles={modalStyles}
         costumeCloseIcon={<CloseIconWithoutCircle />}
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
       >
         ნამდვილად გსურთ არჩეული პოსტის წაშლა?
         <DialogButtonWrapper>

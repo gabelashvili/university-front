@@ -7,7 +7,6 @@ import {
   actions as removePostActions,
   selectors as removePostSelectors,
 } from 'modules/University/Feed/RemovePost';
-import { actions as modalActions } from 'modules/Modal';
 import {
   actions as getCommentsActions,
   selectors as getCommentstSelectors,
@@ -17,11 +16,11 @@ const usePostHook = (post) => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const {
     removePost,
     setComments,
     resetComments,
-    resetList,
   } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
   const getComments = useSelector(getCommentstSelectors.selectGetComments);
@@ -30,18 +29,18 @@ const usePostHook = (post) => {
   // remove post
 
   const handlePostRemove = () => {
-    dispatch(modalActions.setModalState.open());
+    setModalOpen(true);
   };
 
   const agreePostDelete = (postId) => {
     dispatch(removePostActions.removePost.request(postId));
-    dispatch(modalActions.setModalState.close());
+    setModalOpen(false);
     setselectedPostId(postId);
   };
 
   const disagreePostDelete = () => {
     setselectedPostId(null);
-    dispatch(modalActions.setModalState.close());
+    setModalOpen(false);
   };
 
   useEffect(() => {
@@ -79,16 +78,14 @@ const usePostHook = (post) => {
   }, [getComments]);
 
   // on unmount
-  useEffect(() => () => {
-    resetList();
-  }, []);
-
   return {
     showComment,
     setShowComment,
     handlePostRemove,
     agreePostDelete,
     disagreePostDelete,
+    isModalOpen,
+    setModalOpen,
   };
 };
 

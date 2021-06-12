@@ -1,26 +1,22 @@
 import { useEffect, useRef } from 'react';
 import CloseIcon from 'Icons/Close';
 import PropTypes from 'prop-types';
-import { selectors, actions } from 'modules/Modal';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   Div, ModalWrapper, Header, ModalTitle, IconWrapper,
 } from 'components/Modal/styles';
 
 const Modal = ({
-  title, children, showClose, closeOnAwayClick, costumeStyles, costumeCloseIcon,
+  title, children, showClose, closeOnAwayClick, costumeStyles, costumeCloseIcon, isOpen, onClose,
 }) => {
-  const dispatch = useDispatch();
-  const isOpen = useSelector(selectors.selectModalState);
   const handleClick = () => {
-    dispatch(actions.setModalState.close());
+    onClose();
   };
   const modalRef = useRef();
 
   const handleClickOutside = (e) => {
     if (!modalRef?.current?.contains(e.target)) {
-      if (closeOnAwayClick) {
-        dispatch(actions.setModalState.close());
+      if (closeOnAwayClick && onClose) {
+        onClose();
       }
     }
   };
