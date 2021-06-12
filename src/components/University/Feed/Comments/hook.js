@@ -12,43 +12,46 @@ import {
 export default () => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [comId, setComid] = useState(null);
-  const [postId, setPostId] = useState(null);
+  const [selectedCom, setSelectedCom] = useState(null);
+  const [editPostData, setEditPostData] = useState(null);
   const removeCommenState = useSelector(removeCommentSelectors.selectRemoveComment);
   const {
     removeComment,
   } = useFetchedPostsHook();
 
   // delete comment
-  const handleDelete = (commentId, comPostId) => {
+  const handleDelete = (com) => {
     setModalOpen(true);
-    setComid(commentId);
-    setPostId(comPostId);
+    setSelectedCom(com);
   };
 
   const handleDeleteDisagree = () => {
-    setComid(null);
+    setSelectedCom(null);
     setModalOpen(false);
-    setPostId(null);
   };
 
   const handleDeleteAgree = () => {
     setModalOpen(false);
-    dispatch(removeCommentActions.removeComment.request(comId));
+    dispatch(removeCommentActions.removeComment.request(selectedCom.id));
   };
 
   useEffect(() => {
-    if (removeCommenState.statuses.isSucceed && comId && postId) {
+    if (removeCommenState.statuses.isSucceed && selectedCom) {
       removeComment({
-        commentId: comId,
-        postId,
+        commentId: selectedCom.id,
+        postId: selectedCom.postId,
       });
-      console.log(comId, postId);
       dispatch(removeCommentActions.removeComment.reset());
-      setComid(null);
-      setPostId(null);
+      setSelectedCom(null);
     }
-  }, [removeCommenState, comId, postId]);
+  }, [removeCommenState, setSelectedCom]);
+
+  // edit comment
+
+  const handleCommentEdit = (comment) => {
+    console.log(comment);
+    document.getElementById(`add-comment-${comment.postId}`).scrollIntoView({ behavior: 'smooth' });
+  };
 
   return {
     handleDelete,
@@ -56,5 +59,6 @@ export default () => {
     setModalOpen,
     handleDeleteDisagree,
     handleDeleteAgree,
+    handleCommentEdit,
   };
 };

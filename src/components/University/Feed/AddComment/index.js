@@ -42,9 +42,8 @@ const CommentComponent = ({ postId }) => {
     commentLength,
     handleAdd,
   } = useAddCommentHook(postId);
-  console.log(postId);
   return (
-    <CommentWrapper>
+    <CommentWrapper id={`add-comment-${postId}`}>
       <Comment>
         <Wrapper onClick={() => textareaRef.current.focus()}>
           <TextArea

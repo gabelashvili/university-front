@@ -30,6 +30,7 @@ const Comments = ({ data, postId }) => {
     setModalOpen,
     handleDeleteDisagree,
     handleDeleteAgree,
+    handleCommentEdit,
   } = useComment();
   return (
     <>
@@ -65,8 +66,8 @@ const Comments = ({ data, postId }) => {
                   <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
                 </ComAuthor>
                 <EditComment>
-                  <EditIcon handleClick={() => console.log('edit')} />
-                  <RemoveIcon handleClick={() => handleDelete(comment.id, comment.postId)} />
+                  <EditIcon handleClick={() => handleCommentEdit(comment)} />
+                  <RemoveIcon handleClick={() => handleDelete(comment)} />
                 </EditComment>
               </HeaderWrapper>
               <ComText>
