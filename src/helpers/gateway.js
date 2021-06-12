@@ -65,3 +65,12 @@ export const addCommentApi = ({ image, data }) => {
 };
 
 export const removeCommentApi = (commentId) => costumAxios.delete(`/api/feed/comment/${commentId}`);
+
+export const updateCommenApi = ({ image, data }) => {
+  const formData = new FormData();
+  if (image) {
+    formData.append('image', image);
+  }
+  formData.append('data', JSON.stringify(data));
+  return costumAxios.put('/api/feed/comment', formData);
+};

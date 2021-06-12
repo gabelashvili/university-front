@@ -43,6 +43,7 @@ const CommentComponent = ({ postId, data, setSelectedCom }) => {
     commentLength,
     handleAdd,
     handleEditCancel,
+    handleEditFinish,
   } = useAddCommentHook(postId, data, setSelectedCom);
   return (
     <CommentWrapper id={`add-comment-${postId}`}>
@@ -109,7 +110,7 @@ const CommentComponent = ({ postId, data, setSelectedCom }) => {
         <ButtonWrapper>
           {data?.isEditing && <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>}
           <Button
-            handleClick={data?.isEditing ? undefined : () => handleAdd(postId)}
+            handleClick={data?.isEditing ? handleEditFinish : () => handleAdd(postId)}
             costumStyles={buttonStyles}
             type="button"
           >

@@ -6,6 +6,10 @@ import {
   selectors as addCommentSelectors,
 } from 'modules/University/Feed/AddComment';
 import {
+  actions as updateCommentActions,
+  selectors as updateCommentSelectors,
+} from 'modules/University/Feed/UpdateComment';
+import {
   hook as useFetchedPostsHook,
 } from 'modules/University/Feed/FetchedPosts';
 import moment from 'moment';
@@ -28,6 +32,7 @@ export default (postId, data, setSelectedCom) => {
   const { addComment } = useFetchedPostsHook();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const { authedUser } = authedUserHook.useAuthedUser();
+  const updateCommentState = useSelector(updateCommentSelectors.selectUpdateComment);
 
   // add new comment || reply
   const handleAdd = (postId) => {
@@ -86,6 +91,17 @@ export default (postId, data, setSelectedCom) => {
     document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleEditFinish = () => {
+    dispatch(updateCommentActions.updateComment.request({
+      image: image?.file,
+      data: {
+        commentId: data.comment.id,
+        text: comment,
+        image: image?.url || null,
+      },
+    }));
+  };
+
   useEffect(() => {
     if (data) {
       setComment(data.comment.text);
@@ -94,6 +110,12 @@ export default (postId, data, setSelectedCom) => {
       });
     }
   }, [data]);
+
+  useEffect(() => {
+    if (updateCommentState) {
+      console.log('ariis');
+    }
+  }, [updateCommentState]);
 
   // set textarea styles
   const handleCommentChange = (e) => {
@@ -184,5 +206,6 @@ export default (postId, data, setSelectedCom) => {
     commentLength,
     handleAdd,
     handleEditCancel,
+    handleEditFinish,
   };
 };
