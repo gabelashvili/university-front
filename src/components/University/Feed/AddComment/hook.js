@@ -97,7 +97,7 @@ export default (postId, data, setSelectedCom) => {
 
   // set textarea styles
   const handleCommentChange = (e) => {
-    setCommentLength(e.target.textContent.length);
+    setCommentLength();
     if (data?.isEditing) {
       if (e.target.textContent.length === 0 && !image) {
         handleEditCancel();
