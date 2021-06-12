@@ -60,10 +60,7 @@ export default () => {
   const handleShowReply = (comId) => {
     setShowReply({
       ...showReply,
-      [comId]: {
-        isShow: !showReply[comId]?.isShow,
-        data: {},
-      },
+      [comId]: !showReply[comId],
     });
   };
 
