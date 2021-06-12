@@ -143,6 +143,16 @@ const fetchedPosts = (state = initialState, action) => {
         posts: postsList,
       };
     }
+    case constants.INSER_REPLIES_IN_COMMENT: {
+      const data = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === data.postId);
+      console.log(postIndex);
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
     default:
       return state;
   }

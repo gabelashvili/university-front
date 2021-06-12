@@ -40,4 +40,8 @@ export const fetchedPosts = ({
     type: constants.UPDATE_COMMENT,
     payload: data,
   }),
+  inserReplies: (data) => ({
+    type: constants.INSER_REPLIES_IN_COMMENT,
+    payload: data,
+  }),
 });
