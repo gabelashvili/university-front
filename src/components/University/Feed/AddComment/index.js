@@ -81,7 +81,15 @@ const CommentComponent = ({ postId, data, setSelectedCom }) => {
               <UploadLabel htmlFor={`upload-image-comment-${postId}`}>
                 <CameraIcon />
               </UploadLabel>
-              <Upload type="file" id={`upload-image-comment-${postId}`} accept="image/png, image/jpeg" onChange={(e) => handleUpload(e)} />
+              <Upload
+                type="file"
+                id={`upload-image-comment-${postId}`}
+                accept="image/png, image/jpeg"
+                onChange={(e) => handleUpload(e)}
+                onClick={(e) => {
+                  e.target.value = null;
+                }}
+              />
             </UploadImage>
           </BottomPart>
         </Wrapper>
@@ -99,8 +107,14 @@ const CommentComponent = ({ postId, data, setSelectedCom }) => {
       </Comment>
       {(commentLength > 0 || comment.length > 0 || image) && (
         <ButtonWrapper>
-          <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>
-          <Button handleClick={data?.isEditing ? undefined : () => handleAdd(postId)} costumStyles={buttonStyles} type="button">დამატება</Button>
+          {data?.isEditing && <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>}
+          <Button
+            handleClick={data?.isEditing ? undefined : () => handleAdd(postId)}
+            costumStyles={buttonStyles}
+            type="button"
+          >
+            {data?.isEditing ? 'შენახვა' : 'დამატება'}
+          </Button>
         </ButtonWrapper>
       )}
     </CommentWrapper>
