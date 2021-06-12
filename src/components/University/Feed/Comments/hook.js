@@ -85,6 +85,16 @@ export default (postId) => {
     });
   };
 
+  const handleShowMoreReply = (parentId, curLength) => {
+    console.log(parentId, curLength);
+    dispatch(getCommentsActions.getComments.request({
+      offset: curLength,
+      limit: 5,
+      parentId,
+      postId,
+    }));
+  };
+
   useEffect(() => {
     if (getCommentsState.statuses.isSucceed
        && getCommentsState.data.comments.length > 0
@@ -105,5 +115,6 @@ export default (postId) => {
     setSelectedCom,
     showReply,
     handleShowReply,
+    handleShowMoreReply,
   };
 };

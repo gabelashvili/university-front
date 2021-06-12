@@ -39,6 +39,7 @@ const Comments = ({
     setSelectedCom,
     showReply,
     handleShowReply,
+    handleShowMoreReply,
   } = useComment(postId);
   return (
     <>
@@ -165,6 +166,14 @@ const Comments = ({
                 </CommentDetails>
               </Comment>
             ))}
+            {comment?.replies && comment.replies.list.length < comment.replies.totally
+            && (
+            <ShowMore
+              onClick={() => handleShowMoreReply(comment.id, comment.replies.list.length)}
+            >
+              მეტის ჩვენება
+            </ShowMore>
+            )}
           </ComReplies>
           )}
         </ComContainer>
