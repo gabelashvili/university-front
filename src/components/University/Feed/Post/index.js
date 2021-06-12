@@ -109,7 +109,7 @@ const PostComponent = ({ post, setEditPost }) => {
       {showComment && (
         <>
           <AddComment postData={post} />
-          <Comments />
+          <Comments data={[]} />
         </>
       )}
 

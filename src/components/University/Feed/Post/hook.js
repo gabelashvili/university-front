@@ -50,7 +50,6 @@ const usePostHook = (post) => {
 
   useEffect(() => {
     if (showComment) {
-      console.log(getComments);
       dispatch(getCommentsActions.getComments.request({
         offset: 0,
         limit: LIMIT,
@@ -58,6 +57,12 @@ const usePostHook = (post) => {
       }));
     }
   }, [showComment]);
+
+  useEffect(() => {
+    if (getComments.statuses.isSucceed && getComments.data.comments.length > 0) {
+      console.log(getComments);
+    }
+  }, [getComments]);
 
   return {
     showComment,
