@@ -88,6 +88,8 @@ const fetchedPosts = (state = initialState, action) => {
         posts: postsList,
       };
     }
+    case constants.RESET_FETCHED_POST:
+      return initialState;
     default:
       return state;
   }

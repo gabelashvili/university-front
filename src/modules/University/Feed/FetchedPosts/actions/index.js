@@ -25,4 +25,7 @@ export const fetchedPosts = ({
     type: constants.RESET_COMMENTS_POST,
     payload: postId,
   }),
+  resetList: () => ({
+    type: constants.RESET_FETCHED_POST,
+  }),
 });

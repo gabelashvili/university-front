@@ -17,7 +17,12 @@ const usePostHook = (post) => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
-  const { removePost, setComments, resetComments } = useFetchedPostsHook();
+  const {
+    removePost,
+    setComments,
+    resetComments,
+    resetList,
+  } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
   const getComments = useSelector(getCommentstSelectors.selectGetComments);
   const LIMIT = 5;
@@ -72,6 +77,11 @@ const usePostHook = (post) => {
       }
     }
   }, [getComments]);
+
+  // on unmount
+  useEffect(() => () => {
+    resetList();
+  }, []);
 
   return {
     showComment,

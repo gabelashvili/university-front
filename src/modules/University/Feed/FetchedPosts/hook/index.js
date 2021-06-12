@@ -30,6 +30,10 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.resetComments(postId));
   };
 
+  const resetList = () => {
+    dispatch(fetchedPostsActions.fetchedPosts.resetList());
+  };
+
   return {
     updateList,
     removePost,
@@ -37,5 +41,6 @@ export default () => {
     updatePost,
     setComments,
     resetComments,
+    resetList,
   };
 };
