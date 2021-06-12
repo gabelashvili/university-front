@@ -45,6 +45,49 @@ const fetchedPosts = (state = initialState, action) => {
         posts: postsList,
       };
     }
+    case constants.SET_COMMENTS_POST: {
+      const data = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === data.postId);
+      postsList[postIndex] = {
+        ...postsList[postIndex],
+        ...data,
+      };
+      if (postIndex?.comments) {
+        postsList[postIndex] = {
+          ...postsList[postIndex],
+          comments: {
+            totally: data.comments.totally,
+            list: [...postsList[postIndex].list, ...data.comments.comments],
+          },
+        };
+      } else {
+        postsList[postIndex] = {
+          ...postsList[postIndex],
+          comments: {
+            totally: data.comments.totally,
+            list: data.comments.comments,
+          },
+        };
+      }
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
+    case constants.RESET_COMMENTS_POST: {
+      const postId = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === postId);
+      postsList[postIndex] = {
+        ...postsList[postIndex],
+        comments: null,
+      };
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
     default:
       return state;
   }

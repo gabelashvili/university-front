@@ -22,10 +22,20 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.updatePost(data));
   };
 
+  const setComments = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.setComments(data));
+  };
+
+  const resetComments = (postId) => {
+    dispatch(fetchedPostsActions.fetchedPosts.resetComments(postId));
+  };
+
   return {
     updateList,
     removePost,
     addPost,
     updatePost,
+    setComments,
+    resetComments,
   };
 };

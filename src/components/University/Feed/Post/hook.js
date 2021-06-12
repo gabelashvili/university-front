@@ -17,7 +17,7 @@ const usePostHook = (post) => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
-  const { removePost } = useFetchedPostsHook();
+  const { removePost, setComments, resetComments } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
   const getComments = useSelector(getCommentstSelectors.selectGetComments);
   const LIMIT = 5;
@@ -56,11 +56,20 @@ const usePostHook = (post) => {
         postId: post.id,
       }));
     }
+    if (!showComment && post.comments) {
+      resetComments(post.id);
+    }
   }, [showComment]);
 
   useEffect(() => {
-    if (getComments.statuses.isSucceed && getComments.data.comments.length > 0) {
-      console.log(getComments);
+    if (getComments.statuses.isSucceed) {
+      dispatch(getCommentsActions.getComments.reset());
+      if (getComments.data.comments.length > 0) {
+        setComments({
+          postId: post.id,
+          comments: getComments.data,
+        });
+      }
     }
   }, [getComments]);
 

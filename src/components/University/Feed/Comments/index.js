@@ -15,7 +15,7 @@ import Button from 'components/Button';
 
 const Comments = ({ data }) => (
   <>
-    {data.map(() => (
+    {data && data.map(() => (
       <ComContainer key={1}>
         <Comment>
           <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />

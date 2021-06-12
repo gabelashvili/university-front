@@ -17,4 +17,12 @@ export const fetchedPosts = ({
     type: constants.UPDATE_POST,
     payload: data,
   }),
+  setComments: (data) => ({
+    type: constants.SET_COMMENTS_POST,
+    payload: data,
+  }),
+  resetComments: (postId) => ({
+    type: constants.RESET_COMMENTS_POST,
+    payload: postId,
+  }),
 });
