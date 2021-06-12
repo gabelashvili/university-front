@@ -43,7 +43,7 @@ const CommentComponent = ({ postData }) => {
     handleAdd,
   } = useAddCommentHook(postData);
   return (
-    <CommentWrapper>
+    <CommentWrapper id={`comment-${postData.id}`}>
       <Comment>
         <Wrapper onClick={() => textareaRef.current.focus()}>
           <TextArea
@@ -76,10 +76,10 @@ const CommentComponent = ({ postData }) => {
               )}
             </Emoji>
             <UploadImage>
-              <UploadLabel htmlFor="upload-image-comment">
+              <UploadLabel htmlFor={`upload-image-comment-${comment.id}`}>
                 <CameraIcon />
               </UploadLabel>
-              <Upload type="file" id="upload-image-comment" accept="image/png, image/jpeg" onChange={(e) => handleUpload(e)} />
+              <Upload type="file" id={`upload-image-comment-${comment.id}`} accept="image/png, image/jpeg" onChange={(e) => handleUpload(e)} />
             </UploadImage>
           </BottomPart>
         </Wrapper>
