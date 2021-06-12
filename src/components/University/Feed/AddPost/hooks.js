@@ -13,6 +13,10 @@ import moment from 'moment';
 import {
   hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
+import {
+  actions as updatePostActions,
+  selectors as updatePostSelectors,
+} from 'modules/University/Feed/UpdatePost';
 
 const useAddPostHook = (editPost, setEditPost) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -27,6 +31,7 @@ const useAddPostHook = (editPost, setEditPost) => {
   const addNewPostState = useSelector(addNewPostSelectors.selectAddNewPost);
   const { addPost } = useFetchedPostsHook();
   const { authedUser } = authedUserHook.useAuthedUser();
+  const updatePostState = useSelector(updatePostSelectors.selectUpdatePost);
 
   // resize textarea automatically
   const handleUpload = (e) => {
@@ -120,6 +125,19 @@ const useAddPostHook = (editPost, setEditPost) => {
     setPostDesc('');
   };
 
+  const handlePostEditSave = () => {
+    console.log(updatePostState);
+    dispatch(updatePostActions.updatePost.request({
+      image: image?.file,
+      data: {
+        universityId: uniId,
+        postId: editPost.id,
+        text: postDesc,
+        image: image?.url || null,
+      },
+    }));
+  };
+
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     if (editPost) {
@@ -145,6 +163,7 @@ const useAddPostHook = (editPost, setEditPost) => {
     showEmoji,
     handleClickOutsideEmoji,
     handlePostEditCancel,
+    handlePostEditSave,
   };
 };
 

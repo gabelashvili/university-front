@@ -38,6 +38,7 @@ const AddPost = ({ editPost, setEditPost }) => {
     showEmoji,
     handleClickOutsideEmoji,
     handlePostEditCancel,
+    handlePostEditSave,
   } = useAddPostHook(editPost, setEditPost);
   return (
     <NewPost>
@@ -100,7 +101,7 @@ const AddPost = ({ editPost, setEditPost }) => {
           )}
           <Button
             type="button"
-            handleClick={editPost ? undefined : handleNewPost}
+            handleClick={editPost ? handlePostEditSave : handleNewPost}
             costumStyles={postButton}
             // isLoading={newPostsIsPending}
           >

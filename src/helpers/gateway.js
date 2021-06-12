@@ -45,3 +45,12 @@ export const addNewPostApi = (image, data) => {
 export const getPostsApi = ({ offset, limit, uniId }) => costumAxios.post(`/api/feed/post/${offset}/${limit}`, { universityId: uniId });
 
 export const removePostApi = (postId) => costumAxios.delete(`/api/feed/post/${postId}`);
+
+export const updatePostApi = ({ image, data }) => {
+  const formData = new FormData();
+  if (image) {
+    formData.append('image', image);
+  }
+  formData.append('data', JSON.stringify(data));
+  return costumAxios.put('/api/feed/post', formData);
+};
