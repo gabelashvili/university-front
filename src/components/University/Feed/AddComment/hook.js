@@ -13,7 +13,7 @@ import {
   hooks as authedUserHook,
 } from 'modules/Authentication/AuthedUser';
 
-export default (postData) => {
+export default (postId) => {
   const { enqueueSnackbar } = useSnackbar();
   const [showEmoji, setShowEmoji] = useState(false);
   const [cursPos, setCursPos] = useState(0);
@@ -101,14 +101,14 @@ export default (postData) => {
     dispatch(addCommentActions.addComment.request({
       image: image?.file || null,
       data: {
-        postId: postData.id,
+        postId,
         text: comment,
       },
     }));
   };
 
   useEffect(() => {
-    if (addCommentState.statuses.isSucceed && postData.id === selectedPostId) {
+    if (addCommentState.statuses.isSucceed && postId === selectedPostId) {
       addComment({
         postId: selectedPostId,
         data: {
@@ -122,7 +122,7 @@ export default (postData) => {
           id: addCommentState.data.id,
           image: image?.url || null,
           parent: null,
-          postId: postData.id,
+          postId,
           replyCnt: 0,
           text: comment,
           updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),

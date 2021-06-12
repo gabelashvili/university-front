@@ -23,7 +23,7 @@ import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import useAddCommentHook from 'components/University/Feed/AddComment/hook';
 import Button from 'components/Button';
 
-const CommentComponent = ({ postData }) => {
+const CommentComponent = ({ postId }) => {
   const {
     handleCursorPosition,
     textareaRef,
@@ -41,9 +41,10 @@ const CommentComponent = ({ postData }) => {
     handleUpload,
     commentLength,
     handleAdd,
-  } = useAddCommentHook(postData);
+  } = useAddCommentHook(postId);
+  console.log(postId);
   return (
-    <CommentWrapper id={`comment-${postData.id}`}>
+    <CommentWrapper>
       <Comment>
         <Wrapper onClick={() => textareaRef.current.focus()}>
           <TextArea
@@ -96,7 +97,7 @@ const CommentComponent = ({ postData }) => {
 
       </Comment>
       {(commentLength > 0 || comment.length > 0 || image) && (
-      <Button handleClick={() => handleAdd(postData.id)} costumStyles={buttonStyles} type="button">დამატება</Button>
+      <Button handleClick={() => handleAdd(postId)} costumStyles={buttonStyles} type="button">დამატება</Button>
       )}
     </CommentWrapper>
   );

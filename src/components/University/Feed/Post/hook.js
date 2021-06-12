@@ -77,7 +77,6 @@ const usePostHook = (post) => {
     }
   }, [getComments]);
 
-  // on unmount
   return {
     showComment,
     setShowComment,

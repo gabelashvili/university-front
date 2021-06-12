@@ -22,7 +22,6 @@ import {
 import LikeIcon from 'Icons/Like';
 import CommentIcon from 'Icons/Comment';
 import Button from 'components/Button';
-import AddComment from 'components/University/Feed/AddComment';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import Modal from 'components/Modal';
 import ToolTip from 'components/University/Feed/Reactions';
@@ -41,6 +40,7 @@ const PostComponent = ({ post, setEditPost }) => {
     disagreePostDelete,
     isModalOpen,
     setModalOpen,
+    handleEditComment,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
@@ -116,8 +116,11 @@ const PostComponent = ({ post, setEditPost }) => {
       </PostBottom>
       {showComment && (
         <>
-          <AddComment postData={post} />
-          <Comments data={post?.comments?.list} />
+          <Comments
+            data={post?.comments?.list}
+            handleEditComment={handleEditComment}
+            postId={post.id}
+          />
         </>
       )}
 

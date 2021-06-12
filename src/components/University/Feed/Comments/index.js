@@ -21,8 +21,9 @@ import RemoveIcon from 'Icons/Remove';
 import useComment from 'components/University/Feed/Comments/hook';
 import Modal from 'components/Modal';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
+import AddComment from 'components/University/Feed/AddComment';
 
-const Comments = ({ data }) => {
+const Comments = ({ data, postId }) => {
   const {
     handleDelete,
     isModalOpen,
@@ -32,6 +33,7 @@ const Comments = ({ data }) => {
   } = useComment();
   return (
     <>
+      <AddComment postId={postId} />
       <Modal
         title="კომენტარის წაშლა"
         showClose

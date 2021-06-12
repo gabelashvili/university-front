@@ -28,6 +28,7 @@ module.exports = {
     'import/no-named-as-default': 0,
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'no-shadow': 'off',
   },
   settings: {
     'import/resolver': {
