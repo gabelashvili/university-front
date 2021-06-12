@@ -138,6 +138,9 @@ export default (postData) => {
       });
       setSelectedPostId(null);
       dispatch(addCommentActions.addComment.reset());
+      setImage(null);
+      setComment('');
+      setCommentLength(0);
     }
   }, [addCommentState, selectedPostId]);
 

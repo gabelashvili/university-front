@@ -15,6 +15,9 @@ export const Avatar = styled.img`
 `;
 
 export const CommentDetails = styled.div`
+    border-bottom: ${({ theme }) => `1px solid ${transparentize(0.8, theme.colors.lightGrey)}`};
+    width: 100%;
+    margin-bottom: 15px;
 `;
 
 export const ComAuthor = styled.a`
@@ -37,7 +40,6 @@ export const ComButtons = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(max-content, 0));
     grid-column-gap: 10px;
-    border-bottom: ${({ theme }) => `1px solid ${transparentize(0.8, theme.colors.lightGrey)}`};
     padding-bottom: 20px;
 `;
 

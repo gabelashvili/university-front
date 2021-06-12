@@ -108,6 +108,23 @@ const fetchedPosts = (state = initialState, action) => {
         posts: postsList,
       };
     }
+    case constants.REMOVE_COMMENT: {
+      const data = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === data.postId);
+      postsList[postIndex] = {
+        ...postsList[postIndex],
+        commentCnt: postsList[postIndex].commentCnt -= 1,
+        comments: {
+          totally: postsList[postIndex].comments.totally - 1,
+          list: postsList[postIndex].comments.list.map((comment) => comment.id !== data.commentId),
+        },
+      };
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
     default:
       return state;
   }

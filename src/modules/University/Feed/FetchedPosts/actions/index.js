@@ -32,4 +32,8 @@ export const fetchedPosts = ({
     type: constants.ADD_COMMENT,
     payload: comment,
   }),
+  removeComment: (data) => ({
+    type: constants.REMOVE_COMMENT,
+    payload: data,
+  }),
 });
