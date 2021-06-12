@@ -42,7 +42,7 @@ const PostComponent = ({ post, setEditPost }) => {
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
-    <Post>
+    <Post id={`post-${post.id}`}>
       <Modal
         title="პოსტის წაშლა"
         showClose

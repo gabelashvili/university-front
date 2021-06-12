@@ -18,9 +18,14 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.addPost(postId));
   };
 
+  const updatePost = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.updatePost(data));
+  };
+
   return {
     updateList,
     removePost,
     addPost,
+    updatePost,
   };
 };

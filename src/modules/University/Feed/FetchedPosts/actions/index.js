@@ -13,4 +13,8 @@ export const fetchedPosts = ({
     type: constants.ADD_POST,
     payload: data,
   }),
+  updatePost: (data) => ({
+    type: constants.UPDATE_POST,
+    payload: data,
+  }),
 });

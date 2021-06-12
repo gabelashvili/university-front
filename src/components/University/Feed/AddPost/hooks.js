@@ -29,7 +29,7 @@ const useAddPostHook = (editPost, setEditPost) => {
   const { id: uniId } = useParams();
   const emojiRef = useRef(null);
   const addNewPostState = useSelector(addNewPostSelectors.selectAddNewPost);
-  const { addPost } = useFetchedPostsHook();
+  const { addPost, updatePost } = useFetchedPostsHook();
   const { authedUser } = authedUserHook.useAuthedUser();
   const updatePostState = useSelector(updatePostSelectors.selectUpdatePost);
 
@@ -126,7 +126,6 @@ const useAddPostHook = (editPost, setEditPost) => {
   };
 
   const handlePostEditSave = () => {
-    console.log(updatePostState);
     dispatch(updatePostActions.updatePost.request({
       image: image?.file,
       data: {
@@ -139,14 +138,28 @@ const useAddPostHook = (editPost, setEditPost) => {
   };
 
   useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     if (editPost) {
       setImage(editPost.image && {
         url: editPost.image,
       });
       setPostDesc(editPost.text);
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }
   }, [editPost]);
+
+  useEffect(() => {
+    if (updatePostState.statuses.isSucceed) {
+      updatePost({
+        id: editPost.id,
+        text: postDesc,
+        image: image?.url || null,
+        updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+      });
+      dispatch(updatePostActions.updatePost.reset());
+      handlePostEditCancel();
+      document.getElementById(`post-${editPost.id}`).scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [updatePostState, editPost]);
 
   return {
     handleUpload,

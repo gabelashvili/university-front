@@ -32,6 +32,19 @@ const fetchedPosts = (state = initialState, action) => {
         posts: [data, ...state.posts],
       };
     }
+    case constants.UPDATE_POST: {
+      const data = action.payload;
+      const postsList = [...state.posts];
+      const postIndex = postsList.findIndex((post) => post.id === data.id);
+      postsList[postIndex] = {
+        ...postsList[postIndex],
+        ...data,
+      };
+      return {
+        totally: state.totally,
+        posts: postsList,
+      };
+    }
     default:
       return state;
   }
