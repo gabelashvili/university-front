@@ -29,7 +29,7 @@ export default (postId, data, setSelectedCom, parent) => {
   const [commentLength, setCommentLength] = useState(0);
   const dispatch = useDispatch();
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
-  const { addComment, updateComment } = useFetchedPostsHook();
+  const { addComment, updateComment, addReply } = useFetchedPostsHook();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const { authedUser } = authedUserHook.useAuthedUser();
   const updateCommentState = useSelector(updateCommentSelectors.selectUpdateComment);
@@ -63,6 +63,34 @@ export default (postId, data, setSelectedCom, parent) => {
             id: addCommentState.data.id,
             image: image?.url || null,
             parent: null,
+            postId,
+            replyCnt: 0,
+            text: comment,
+            updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+            user: {
+              image: authedUser.image,
+              firstname: authedUser.firstName,
+              lastname: authedUser.lastName,
+              universityId: authedUser.universityId,
+            },
+            userId: authedUser.userId,
+            yourEmoji: null,
+          },
+        });
+      }
+      if (parent) {
+        addReply({
+          data: {
+            createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+            emoji: {
+              dislike: { id: 3, quantity: 0 },
+              haha: { id: 4, quantity: 0 },
+              like: { id: 1, quantity: 0 },
+              love: { id: 2, quantity: 0 },
+            },
+            id: addCommentState.data.id,
+            image: image?.url || null,
+            parent,
             postId,
             replyCnt: 0,
             text: comment,

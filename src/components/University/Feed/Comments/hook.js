@@ -24,6 +24,7 @@ export default (postId) => {
     inserReplies,
     removeComment,
     resetReplies,
+    removeReply,
   } = useFetchedPostsHook();
 
   // delete comment
@@ -48,6 +49,13 @@ export default (postId) => {
       if (!selectedCom.parent) {
         removeComment({
           commentId: selectedCom.id,
+          postId: selectedCom.postId,
+        });
+      }
+      if (selectedCom.parent) {
+        removeReply({
+          id: selectedCom.id,
+          parent: selectedCom.parent,
           postId: selectedCom.postId,
         });
       }

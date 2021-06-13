@@ -52,4 +52,8 @@ export const fetchedPosts = ({
     type: constants.ADD_REPLY_IN_REPLIES_IN_COMMENT,
     payload: data,
   }),
+  removeReply: (data) => ({
+    type: constants.REMOVE_REPLY_IN_REPLIES_IN_COMMENT,
+    payload: data,
+  }),
 });

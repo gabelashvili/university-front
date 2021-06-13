@@ -58,6 +58,10 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.addReply(data));
   };
 
+  const removeReply = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.removeReply(data));
+  };
+
   return {
     updateList,
     removePost,
@@ -72,5 +76,6 @@ export default () => {
     inserReplies,
     resetReplies,
     addReply,
+    removeReply,
   };
 };

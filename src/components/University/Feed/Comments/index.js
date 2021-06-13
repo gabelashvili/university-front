@@ -128,7 +128,7 @@ const Comments = ({
                 <CommentDetails>
                   <HeaderWrapper>
                     <ComAuthor href="/">
-                      {`${comment.user.firstname} ${comment.user.lastname}`}
+                      {`${reply.user.firstname} ${reply.user.lastname}`}
                       <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
                     </ComAuthor>
                     <EditComment>
@@ -137,9 +137,9 @@ const Comments = ({
                     </EditComment>
                   </HeaderWrapper>
                   <ComText>
-                    {comment.text}
+                    {reply.text}
                   </ComText>
-                  {comment.image && <ComImg alt="" src={comment.image} />}
+                  {reply.image && <ComImg alt="" src={reply.image} />}
                   <ComButtons>
                     <Button
                       type="button"
@@ -149,18 +149,6 @@ const Comments = ({
                     </Button>
                     <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
                       Like
-                    </Button>
-                    <Button
-                      type="button"
-                      costumStyles={comButtonStyle}
-                      handleClick={() => handleShowReply(comment.id)}
-                    >
-                      Reply
-                      {' '}
-                      (
-                      {' '}
-                      {comment.replyCnt}
-                      )
                     </Button>
                   </ComButtons>
                 </CommentDetails>

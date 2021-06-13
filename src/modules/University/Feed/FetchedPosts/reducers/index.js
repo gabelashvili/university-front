@@ -178,9 +178,67 @@ const fetchedPosts = (state = initialState, action) => {
       };
     }
     case constants.ADD_REPLY_IN_REPLIES_IN_COMMENT: {
+      const { data } = action.payload;
+      return {
+        totally: state.totally,
+        posts: state.posts.map((post) => {
+          if (post.id === data.postId) {
+            return {
+              ...post,
+              comments: {
+                ...post.comments,
+                list: post.comments.list.map((com) => {
+                  if (com.id === data.parent) {
+                    return {
+                      ...com,
+                      replyCnt: com.replyCnt + 1,
+                      replies: com.replies ? {
+                        totally: com.replies.totally + 1,
+                        list: [data, ...com.replies.list],
+                      } : {
+                        totally: 1,
+                        list: [data],
+                      },
+                    };
+                  }
+                  return com;
+                }),
+              },
+            };
+          }
+          return post;
+        }),
+      };
+    }
+    case constants.REMOVE_REPLY_IN_REPLIES_IN_COMMENT: {
       const data = action.payload;
-      console.log(data);
-      return state;
+      return {
+        totally: state.totally,
+        posts: state.posts.map((post) => {
+          if (post.id === data.postId) {
+            return {
+              ...post,
+              comments: {
+                ...post.comments,
+                list: post.comments.list.map((com) => {
+                  if (com.id === data.parent) {
+                    return {
+                      ...com,
+                      replyCnt: com.replyCnt - 1,
+                      replies: {
+                        totally: com.replies.totally - 1,
+                        list: com.replies.list.filter((rep) => rep.id !== data.id),
+                      },
+                    };
+                  }
+                  return com;
+                }),
+              },
+            };
+          }
+          return post;
+        }),
+      };
     }
     default:
       return state;
