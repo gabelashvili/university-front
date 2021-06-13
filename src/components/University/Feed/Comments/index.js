@@ -127,7 +127,6 @@ const Comments = ({
                   Reply
                   {' '}
                   (
-                  {' '}
                   {comment.replyCnt}
                   )
                 </Button>
