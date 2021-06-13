@@ -79,7 +79,11 @@ export default (postId) => {
       isEditing: true,
       comment,
     });
-    document.getElementById(`add-comment-${comment.postId}`).scrollIntoView({ behavior: 'smooth' });
+    if (!comment.parent) {
+      document.getElementById(`add-comment-${comment.postId}`).scrollIntoView({ behavior: 'smooth' });
+    } else {
+      document.getElementById(`add-comment-${comment.parent}`).scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // replies
