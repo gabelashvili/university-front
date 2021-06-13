@@ -7,7 +7,6 @@ import {
   ComButtons,
   comButtonStyle,
   ComContainer,
-  // eslint-disable-next-line no-unused-vars
   ComReplies,
   ComAuthorUni,
   EditComment,
@@ -16,6 +15,7 @@ import {
   DialogButtonWrapper,
   ComImg,
   ShowMore,
+  LikeButtonWrapper,
 } from 'components/University/Feed/Comments/styles';
 import Button from 'components/Button';
 import EditIcon from 'Icons/Edit';
@@ -24,6 +24,7 @@ import useComment from 'components/University/Feed/Comments/hook';
 import Modal from 'components/Modal';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import AddComment from 'components/University/Feed/AddComment';
+import ToolTip from 'components/University/Feed/Reactions';
 
 const Comments = ({
   data, postId, handleShowMore, total,
@@ -40,6 +41,8 @@ const Comments = ({
     showReply,
     handleShowReply,
     handleShowMoreReply,
+    sendReaction,
+    getEmojiBytid,
   } = useComment(postId);
   return (
     <>
@@ -92,11 +95,30 @@ const Comments = ({
                   type="button"
                   costumStyles={comButtonStyle}
                 >
-                  Reactions (20)
+                  Reactions
+                  (
+                  {Object.keys(comment.emoji)
+                    .reduce((acc, cur) => acc + comment.emoji[cur].quantity, 0)}
+                  )
                 </Button>
-                <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-                  Like
-                </Button>
+                <LikeButtonWrapper>
+                  <ToolTip
+                    handleClick={sendReaction}
+                    comData={{
+                      postId: comment.postId,
+                      commentId: comment.id,
+                      parent: comment.parent,
+                    }}
+                  />
+                  <Button costumStyles={comButtonStyle} type="button" iconColor={comment.yourEmoji && getEmojiBytid(comment.yourEmoji).color}>
+                    {comment.yourEmoji ? (
+                      <>
+                        {getEmojiBytid(comment.yourEmoji).icon}
+                        {getEmojiBytid(comment.yourEmoji).title}
+                      </>
+                    ) : 'Like'}
+                  </Button>
+                </LikeButtonWrapper>
                 <Button
                   type="button"
                   costumStyles={comButtonStyle}
@@ -145,11 +167,30 @@ const Comments = ({
                       type="button"
                       costumStyles={comButtonStyle}
                     >
-                      Reactions (20)
+                      Reactions
+                      (
+                      {Object.keys(reply.emoji)
+                        .reduce((acc, cur) => acc + reply.emoji[cur].quantity, 0)}
+                      )
                     </Button>
-                    <Button costumStyles={comButtonStyle} type="button" alreadyLiked>
-                      Like
-                    </Button>
+                    <LikeButtonWrapper>
+                      <ToolTip
+                        handleClick={sendReaction}
+                        comData={{
+                          postId: reply.postId,
+                          commentId: reply.id,
+                          parent: reply.parent,
+                        }}
+                      />
+                      <Button costumStyles={comButtonStyle} type="button" iconColor={reply.yourEmoji && getEmojiBytid(reply.yourEmoji).color}>
+                        {reply.yourEmoji ? (
+                          <>
+                            {getEmojiBytid(reply.yourEmoji).icon}
+                            {getEmojiBytid(reply.yourEmoji).title}
+                          </>
+                        ) : 'Like'}
+                      </Button>
+                    </LikeButtonWrapper>
                   </ComButtons>
                 </CommentDetails>
               </Comment>

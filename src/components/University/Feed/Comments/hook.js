@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
+import { reactions } from 'components/University/Feed/Reactions/reactions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectors as removeCommentSelectors,
@@ -12,19 +13,26 @@ import {
   selectors as getCommentsSelectors,
   actions as getCommentsActions,
 } from 'modules/University/Feed/GetComments';
+import {
+  selectors as sendComEmojiSelectors,
+  actions as sendComEmojiActions,
+} from 'modules/University/Feed/SendComEmoji';
 
 export default (postId) => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedCom, setSelectedCom] = useState(null);
+  const [selectedReaction, setSelectedReaction] = useState(null);
   const [showReply, setShowReply] = useState({});
   const removeCommenState = useSelector(removeCommentSelectors.selectRemoveComment);
   const getCommentsState = useSelector(getCommentsSelectors.selectGetComments);
+  const sendComEmojiState = useSelector(sendComEmojiSelectors.selectSendComEmoji);
   const {
     inserReplies,
     removeComment,
     resetReplies,
     removeReply,
+    updateComReaction,
   } = useFetchedPostsHook();
 
   // delete comment
@@ -117,6 +125,27 @@ export default (postId) => {
     }
   }, [getCommentsState]);
 
+  // send reaction
+  const sendReaction = (reaction, comData) => {
+    setSelectedCom(comData);
+    setSelectedReaction(reaction);
+    dispatch(sendComEmojiActions.sendComEmoji.request({
+      commentId: comData.commentId,
+      emojiId: reaction.id,
+    }));
+  };
+
+  const getEmojiBytid = (emojiId) => reactions.find((el) => el.id === emojiId);
+
+  useEffect(() => {
+    if (sendComEmojiState.statuses.isSucceed && postId === selectedCom?.postId) {
+      dispatch(sendComEmojiActions.sendComEmoji.reset());
+      updateComReaction({ reaction: selectedReaction, comData: selectedCom });
+      setSelectedCom(null);
+      setSelectedReaction(null);
+    }
+  }, [sendComEmojiState, selectedCom, selectedReaction]);
+
   return {
     handleDelete,
     isModalOpen,
@@ -129,5 +158,7 @@ export default (postId) => {
     showReply,
     handleShowReply,
     handleShowMoreReply,
+    sendReaction,
+    getEmojiBytid,
   };
 };

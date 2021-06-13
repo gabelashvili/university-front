@@ -52,11 +52,12 @@ export const comButtonStyle = css`
     line-height: 1;
     cursor: pointer;
     width: max-content;
+    color: ${({ iconColor, theme }) => iconColor && theme.colors[iconColor]};
     & > svg {
         width: 15px;
         height: 15px;
-        transform: ${({ dislike }) => dislike && 'scaleX(-1) rotate(180deg)'};
-        margin-right: ${({ alreadyLiked }) => alreadyLiked && '5px'};
+        fill: ${({ iconColor, theme }) => iconColor && theme.colors[iconColor]};
+        margin-right: 5px;
     };
     &:hover {
         background-color:  ${({ theme }) => transparentize(0.7, theme.colors.lightGrey)};
@@ -138,4 +139,12 @@ export const ComImg = styled.img`
 export const ShowMore = styled.p`
     text-align: center;
     cursor: pointer;
+`;
+
+export const LikeButtonWrapper = styled.div`
+    position: relative;
+    &:hover > div {
+        visibility: visible;
+        transition: all 1s;
+    }
 `;

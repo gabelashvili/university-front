@@ -1,4 +1,5 @@
 import { constants } from 'modules/University/Feed/FetchedPosts';
+import { reactions } from 'components/University/Feed/Reactions/reactions';
 
 const initialState = {
   totally: 0,
@@ -228,6 +229,136 @@ const fetchedPosts = (state = initialState, action) => {
                       replies: {
                         totally: com.replies.totally - 1,
                         list: com.replies.list.filter((rep) => rep.id !== data.id),
+                      },
+                    };
+                  }
+                  return com;
+                }),
+              },
+            };
+          }
+          return post;
+        }),
+      };
+    }
+    case constants.UPDATE_COM_REACTION: {
+      const { comData, reaction } = action.payload;
+      if (!comData.parent) {
+        return {
+          totally: state.totally,
+          posts: state.posts.map((post) => {
+            if (post.id === comData.postId) {
+              return {
+                ...post,
+                comments: {
+                  ...post.comments,
+                  list: post.comments.list.map((com) => {
+                    if (com.id === comData.commentId) {
+                      const newYourEmojiId = com.yourEmoji === reaction.id ? null : reaction.id;
+                      const oldEmojiData = reactions.find((el) => el.id === com.yourEmoji);
+                      let newEmojiData = {};
+                      if (!com.yourEmoji) {
+                        newEmojiData = {
+                          ...com.emoji,
+                          [reaction.title.toLowerCase()]: {
+                            ...com.emoji[reaction.title.toLowerCase()],
+                            quantity: com.emoji[reaction.title.toLowerCase()].quantity + 1,
+                          },
+                        };
+                      } else if (newYourEmojiId !== com.yourEmoji) {
+                        newEmojiData = {
+                          ...com.emoji,
+                          [reaction.title.toLowerCase()]: {
+                            ...com.emoji[reaction.title.toLowerCase()],
+                            quantity: com.emoji[reaction.title.toLowerCase()].quantity + 1,
+                          },
+                          [oldEmojiData.title.toLowerCase()]: {
+                            ...com.emoji[oldEmojiData.title.toLowerCase()],
+                            quantity: com.emoji[oldEmojiData.title.toLowerCase()].quantity - 1,
+                          },
+                        };
+                      } else {
+                        newEmojiData = {
+                          ...com.emoji,
+                          [reaction.title.toLowerCase()]: {
+                            ...com.emoji[reaction.title.toLowerCase()],
+                            quantity: com.emoji[reaction.title.toLowerCase()].quantity - 1,
+                          },
+                        };
+                      }
+                      return {
+                        ...com,
+                        emoji: { ...newEmojiData },
+                        yourEmoji: newYourEmojiId,
+                      };
+                    }
+                    return com;
+                  }),
+                },
+              };
+            }
+            return post;
+          }),
+        };
+      }
+      return {
+        totally: state.totally,
+        posts: state.posts.map((post) => {
+          if (post.id === comData.postId) {
+            return {
+              ...post,
+              comments: {
+                ...post.comments,
+                list: post.comments.list.map((com) => {
+                  if (com.id === comData.parent) {
+                    return {
+                      ...com,
+                      replies: {
+                        totally: com.replies.totally,
+                        list: com.replies.list.map((reply) => {
+                          if (reply.id === comData.commentId) {
+                            const newYourEmojiId = reply.yourEmoji === reaction.id
+                              ? null : reaction.id;
+                            const oldEmojiData = reactions.find((el) => el.id === reply.yourEmoji);
+                            let newEmojiData = {};
+                            if (!reply.yourEmoji) {
+                              newEmojiData = {
+                                ...reply.emoji,
+                                [reaction.title.toLowerCase()]: {
+                                  ...reply.emoji[reaction.title.toLowerCase()],
+                                  quantity: reply.emoji[reaction.title.toLowerCase()].quantity + 1,
+                                },
+                              };
+                            } else if (newYourEmojiId !== reply.yourEmoji) {
+                              newEmojiData = {
+                                ...reply.emoji,
+                                [reaction.title.toLowerCase()]: {
+                                  ...reply.emoji[reaction.title.toLowerCase()],
+                                  quantity: reply.emoji[reaction.title.toLowerCase()].quantity + 1,
+                                },
+                                [oldEmojiData.title.toLowerCase()]: {
+                                  ...reply.emoji[oldEmojiData.title.toLowerCase()],
+                                  quantity: reply.emoji[oldEmojiData.title.toLowerCase()]
+                                    .quantity - 1,
+                                },
+                              };
+                            } else {
+                              newEmojiData = {
+                                ...reply.emoji,
+                                [reaction.title.toLowerCase()]: {
+                                  ...reply.emoji[reaction.title.toLowerCase()],
+                                  quantity: reply.emoji[reaction.title.toLowerCase()].quantity - 1,
+                                },
+                              };
+                            }
+                            return {
+                              ...reply,
+                              emoji: { ...newEmojiData },
+                              yourEmoji: newYourEmojiId,
+                            };
+                          }
+                          return reply;
+                        }),
                       },
                     };
                   }

@@ -56,4 +56,8 @@ export const fetchedPosts = ({
     type: constants.REMOVE_REPLY_IN_REPLIES_IN_COMMENT,
     payload: data,
   }),
+  updateComReaction: (data) => ({
+    type: constants.UPDATE_COM_REACTION,
+    payload: data,
+  }),
 });
