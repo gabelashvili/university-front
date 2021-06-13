@@ -27,6 +27,7 @@ const usePostHook = (post) => {
     removePost,
     setComments,
     resetComments,
+    updatePostReaction,
   } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
   const getComments = useSelector(getCommentstSelectors.selectGetComments);
@@ -107,13 +108,16 @@ const usePostHook = (post) => {
   const getEmojiBytid = (emojiId) => reactions.find((el) => el.id === emojiId);
 
   useEffect(() => {
-    if (sendPostEmojiState.statuses.isSucceed && post.id === 1) {
-      console.log(selectedReaction);
+    if (sendPostEmojiState.statuses.isSucceed && post.id === selectedPostId) {
+      updatePostReaction({
+        postId: selectedPostId,
+        reaction: selectedReaction,
+      });
       setselectedPostId(null);
       setSelectedReaction(null);
       dispatch(sendPostEmojiActions.sendPostEmoji.reset());
     }
-  }, [sendPostEmojiState]);
+  }, [sendPostEmojiState, selectedReaction, selectedPostId]);
 
   return {
     showComment,

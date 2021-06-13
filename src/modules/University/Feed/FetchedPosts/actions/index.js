@@ -60,4 +60,8 @@ export const fetchedPosts = ({
     type: constants.UPDATE_COM_REACTION,
     payload: data,
   }),
+  updatePostReaction: (data) => ({
+    type: constants.UPDATE_POST_REACTION,
+    payload: data,
+  }),
 });

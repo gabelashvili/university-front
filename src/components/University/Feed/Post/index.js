@@ -97,7 +97,12 @@ const PostComponent = ({ post, setEditPost }) => {
           <LikeIcon />
           <LikeIcon />
           <LikeIcon />
-          <ReactionsCount>4</ReactionsCount>
+          <ReactionsCount>
+            (
+            {Object.keys(post.emoji)
+              .reduce((acc, cur) => acc + post.emoji[cur].quantity, 0)}
+            )
+          </ReactionsCount>
         </Reaction>
       </PostReactions>
       <PostBottom>

@@ -66,6 +66,10 @@ export default () => {
     dispatch(fetchedPostsActions.fetchedPosts.updateComReaction(data));
   };
 
+  const updatePostReaction = (data) => {
+    dispatch(fetchedPostsActions.fetchedPosts.updatePostReaction(data));
+  };
+
   return {
     updateList,
     removePost,
@@ -82,5 +86,6 @@ export default () => {
     addReply,
     removeReply,
     updateComReaction,
+    updatePostReaction,
   };
 };

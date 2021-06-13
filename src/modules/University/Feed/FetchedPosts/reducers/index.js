@@ -371,6 +371,57 @@ const fetchedPosts = (state = initialState, action) => {
         }),
       };
     }
+    case constants.UPDATE_POST_REACTION: {
+      const { postId, reaction } = action.payload;
+      return {
+        totally: state.totally,
+        posts: state.posts.map((post) => {
+          if (post.id === postId) {
+            const newYourEmojiId = post.yourEmoji === reaction.id
+              ? null : reaction.id;
+            const oldEmojiData = reactions.find((el) => el.id === post.yourEmoji);
+            console.log(newYourEmojiId);
+            let newEmojiData = {};
+            if (!post.yourEmoji) {
+              newEmojiData = {
+                ...post.emoji,
+                [reaction.title.toLowerCase()]: {
+                  ...post.emoji[reaction.title.toLowerCase()],
+                  quantity: post.emoji[reaction.title.toLowerCase()].quantity + 1,
+                },
+              };
+            } else if (newYourEmojiId !== post.yourEmoji) {
+              newEmojiData = {
+                ...post.emoji,
+                [reaction.title.toLowerCase()]: {
+                  ...post.emoji[reaction.title.toLowerCase()],
+                  quantity: post.emoji[reaction.title.toLowerCase()].quantity + 1,
+                },
+                [oldEmojiData.title.toLowerCase()]: {
+                  ...post.emoji[oldEmojiData.title.toLowerCase()],
+                  quantity: post.emoji[oldEmojiData.title.toLowerCase()]
+                    .quantity - 1,
+                },
+              };
+            } else {
+              newEmojiData = {
+                ...post.emoji,
+                [reaction.title.toLowerCase()]: {
+                  ...post.emoji[reaction.title.toLowerCase()],
+                  quantity: post.emoji[reaction.title.toLowerCase()].quantity - 1,
+                },
+              };
+            }
+            return {
+              ...post,
+              yourEmoji: newYourEmojiId,
+              emoji: { ...newEmojiData },
+            };
+          }
+          return post;
+        }),
+      };
+    }
     default:
       return state;
   }
