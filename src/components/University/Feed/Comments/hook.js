@@ -30,6 +30,7 @@ export default (postId) => {
   const handleDelete = (com) => {
     setModalOpen(true);
     setSelectedCom(com);
+    console.log(com);
   };
 
   const handleDeleteDisagree = () => {
@@ -43,11 +44,13 @@ export default (postId) => {
   };
 
   useEffect(() => {
-    if (removeCommenState.statuses.isSucceed && selectedCom) {
-      removeComment({
-        commentId: selectedCom.id,
-        postId: selectedCom.postId,
-      });
+    if (removeCommenState.statuses.isSucceed && selectedCom && selectedCom.postId === postId) {
+      if (!selectedCom.parent) {
+        removeComment({
+          commentId: selectedCom.id,
+          postId: selectedCom.postId,
+        });
+      }
       dispatch(removeCommentActions.removeComment.reset());
       setSelectedCom(null);
     }

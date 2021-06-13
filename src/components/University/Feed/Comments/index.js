@@ -132,8 +132,8 @@ const Comments = ({
                       <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
                     </ComAuthor>
                     <EditComment>
-                      <EditIcon handleClick={() => handleCommentEdit(comment)} />
-                      <RemoveIcon handleClick={() => handleDelete(comment)} />
+                      <EditIcon handleClick={() => handleCommentEdit(reply)} />
+                      <RemoveIcon handleClick={() => handleDelete(reply)} />
                     </EditComment>
                   </HeaderWrapper>
                   <ComText>
