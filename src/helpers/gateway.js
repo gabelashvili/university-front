@@ -76,3 +76,5 @@ export const updateCommenApi = ({ image, data }) => {
   formData.append('data', JSON.stringify(data));
   return costumAxios.put('/api/feed/comment', formData);
 };
+
+export const sendComEmojiApi = ({ comentId, emojiId }) => costumAxios.delete(`/api/feed/post/emoji/${comentId}/${emojiId}`);
