@@ -42,6 +42,7 @@ const PostComponent = ({ post, setEditPost }) => {
     setModalOpen,
     handleEditComment,
     handleShowMore,
+    handleEmojiSend,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
@@ -100,7 +101,10 @@ const PostComponent = ({ post, setEditPost }) => {
       </PostReactions>
       <PostBottom>
         <LikeButtonWrapper>
-          <ToolTip />
+          <ToolTip
+            handleClick={handleEmojiSend}
+            data={{ postId: post.id }}
+          />
           <Button costumStyles={postButton} type="button" likeButton>
             <LikeIcon />
             Like

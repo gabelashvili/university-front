@@ -87,6 +87,11 @@ const usePostHook = (post) => {
     }
   }, [getComments]);
 
+  // send emoji post
+  const handleEmojiSend = (reaction, data) => {
+    console.log(reaction, data);
+  };
+
   return {
     showComment,
     setShowComment,
@@ -96,6 +101,7 @@ const usePostHook = (post) => {
     isModalOpen,
     setModalOpen,
     handleShowMore,
+    handleEmojiSend,
   };
 };
 
