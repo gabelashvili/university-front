@@ -104,7 +104,7 @@ const Comments = ({
                 <LikeButtonWrapper>
                   <ToolTip
                     handleClick={sendReaction}
-                    comData={{
+                    data={{
                       postId: comment.postId,
                       commentId: comment.id,
                       parent: comment.parent,

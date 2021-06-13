@@ -126,11 +126,11 @@ export default (postId) => {
   }, [getCommentsState]);
 
   // send reaction
-  const sendReaction = (reaction, comData) => {
-    setSelectedCom(comData);
+  const sendReaction = (reaction, data) => {
+    setSelectedCom(data);
     setSelectedReaction(reaction);
     dispatch(sendComEmojiActions.sendComEmoji.request({
-      commentId: comData.commentId,
+      commentId: data.commentId,
       emojiId: reaction.id,
     }));
   };
