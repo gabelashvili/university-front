@@ -50,6 +50,7 @@ const Comments = ({
         postId={postId}
         data={selectedCom?.isEditing && selectedCom}
         setSelectedCom={setSelectedCom}
+        parent={null}
       />
       <Modal
         title="კომენტარის წაშლა"
@@ -138,8 +139,8 @@ const Comments = ({
             <AddComment
               postId={postId}
               parent={comment.id}
-              // data={selectedCom?.isEditing && selectedCom}
-              // setSelectedCom={setSelectedCom}
+              data={selectedCom?.isEditing && selectedCom}
+              setSelectedCom={setSelectedCom}
             />
             {comment?.replies
             && comment.replies.list.length > 0

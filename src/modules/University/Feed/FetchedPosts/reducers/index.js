@@ -125,23 +125,56 @@ const fetchedPosts = (state = initialState, action) => {
     }
     case constants.UPDATE_COMMENT: {
       const data = action.payload;
-      const postsList = [...state.posts];
-      const postIndex = postsList.findIndex((post) => post.id === data.postId);
-      postsList[postIndex] = {
-        ...postsList[postIndex],
-        comments: {
-          list: postsList[postIndex].comments.list
-            .map((comment) => {
-              if (comment.id === data.id) {
-                return data;
-              }
-              return comment;
-            }),
-        },
-      };
+      if (!data.parent) {
+        const postsList = [...state.posts];
+        const postIndex = postsList.findIndex((post) => post.id === data.postId);
+        postsList[postIndex] = {
+          ...postsList[postIndex],
+          comments: {
+            list: postsList[postIndex].comments.list
+              .map((comment) => {
+                if (comment.id === data.id) {
+                  return data;
+                }
+                return comment;
+              }),
+          },
+        };
+        return {
+          totally: state.totally,
+          posts: postsList,
+        };
+      }
       return {
         totally: state.totally,
-        posts: postsList,
+        posts: state.posts.map((post) => {
+          if (post.id === data.postId) {
+            return {
+              ...post,
+              comments: {
+                ...post.comments,
+                list: post.comments.list.map((com) => {
+                  if (com.id === data.parent) {
+                    return {
+                      ...com,
+                      replies: {
+                        ...com.replies,
+                        list: com.replies.list.map((reply) => {
+                          if (reply.id === data.id) {
+                            return data;
+                          }
+                          return reply;
+                        }),
+                      },
+                    };
+                  }
+                  return com;
+                }),
+              },
+            };
+          }
+          return post;
+        }),
       };
     }
     case constants.INSER_REPLIES_IN_COMMENT: {

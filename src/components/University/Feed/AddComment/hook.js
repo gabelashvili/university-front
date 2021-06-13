@@ -119,7 +119,7 @@ export default (postId, data, setSelectedCom, parent) => {
     setSelectedCom(null);
     setImage(null);
     setComment('');
-    document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
+    // document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleEditFinish = () => {
@@ -134,7 +134,7 @@ export default (postId, data, setSelectedCom, parent) => {
   };
 
   useEffect(() => {
-    if (data) {
+    if (data && parent === data.comment.parent) {
       setComment(data.comment.text);
       setImage(data.comment.image && {
         url: data.comment.image,
@@ -143,7 +143,8 @@ export default (postId, data, setSelectedCom, parent) => {
   }, [data]);
 
   useEffect(() => {
-    if (updateCommentState.statuses.isSucceed && data?.isEditing) {
+    if (updateCommentState.statuses.isSucceed
+       && data?.isEditing && data.comment.parent === parent) {
       updateComment({
         ...data.comment,
         text: comment,

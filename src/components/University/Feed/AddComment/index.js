@@ -110,9 +110,10 @@ const CommentComponent = ({
       </Comment>
       {(commentLength > 0 || comment.length > 0 || image) && (
         <ButtonWrapper>
-          {data?.isEditing && <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>}
+          {data?.isEditing && data.comment.parent === parent && <Button isCancel handleClick={handleEditCancel} costumStyles={buttonStyles} type="button">გაუქმება</Button>}
           <Button
-            handleClick={data?.isEditing ? handleEditFinish : () => handleAdd(postId)}
+            handleClick={data?.isEditing
+            && data.comment.parent === parent ? handleEditFinish : () => handleAdd(postId)}
             costumStyles={buttonStyles}
             type="button"
           >
