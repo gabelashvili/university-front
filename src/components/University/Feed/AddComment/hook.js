@@ -119,7 +119,7 @@ export default (postId, data, setSelectedCom, parent) => {
     setSelectedCom(null);
     setImage(null);
     setComment('');
-    // document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(`comment-${data.comment.id}`).scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleEditFinish = () => {

@@ -145,7 +145,7 @@ const Comments = ({
             {comment?.replies
             && comment.replies.list.length > 0
             && comment.replies.list.map((reply) => (
-              <Comment key={reply.id}>
+              <Comment key={reply.id} id={`comment-${reply.id}`}>
                 <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
                 <CommentDetails>
                   <HeaderWrapper>
