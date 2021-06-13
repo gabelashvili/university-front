@@ -117,7 +117,7 @@ const CommentComponent = ({
             costumStyles={buttonStyles}
             type="button"
           >
-            {data?.isEditing ? 'შენახვა' : 'დამატება'}
+            {data?.isEditing && data.comment.parent === parent ? 'შენახვა' : 'დამატება'}
           </Button>
         </ButtonWrapper>
       )}
