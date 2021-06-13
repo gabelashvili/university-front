@@ -11,11 +11,16 @@ import {
   actions as getCommentsActions,
   selectors as getCommentstSelectors,
 } from 'modules/University/Feed/GetComments';
+import {
+  actions as sendPostEmojiActions,
+  selectors as sendPostEmojitSelectors,
+} from 'modules/University/Feed/SendPostEmoji';
 
 const usePostHook = (post) => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
+  const [selectedReaction, setSelectedReaction] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const {
     removePost,
@@ -24,6 +29,7 @@ const usePostHook = (post) => {
   } = useFetchedPostsHook();
   const removePostState = useSelector(removePostSelectors.selectRemovePost);
   const getComments = useSelector(getCommentstSelectors.selectGetComments);
+  const sendPostEmojiState = useSelector(sendPostEmojitSelectors.selectSendPostEmoji);
   const LIMIT = 5;
 
   // remove post
@@ -89,8 +95,22 @@ const usePostHook = (post) => {
 
   // send emoji post
   const handleEmojiSend = (reaction, data) => {
-    console.log(reaction, data);
+    dispatch(sendPostEmojiActions.sendPostEmoji.request({
+      postId: data.postId,
+      emojiId: reaction.id,
+    }));
+    setselectedPostId(data.postId);
+    setSelectedReaction(reaction);
   };
+
+  useEffect(() => {
+    if (sendPostEmojiState.statuses.isSucceed && post.id === 1) {
+      console.log(selectedReaction);
+      setselectedPostId(null);
+      setSelectedReaction(null);
+      dispatch(sendPostEmojiActions.sendPostEmoji.reset());
+    }
+  }, [sendPostEmojiState]);
 
   return {
     showComment,
