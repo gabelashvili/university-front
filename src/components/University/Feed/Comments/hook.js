@@ -95,11 +95,14 @@ export default (postId) => {
   };
 
   useEffect(() => {
-    if (getCommentsState.statuses.isSucceed
-       && getCommentsState.data.comments.length > 0
-       && getCommentsState.data.comments[0].parent) {
-      inserReplies(getCommentsState.data);
+    if (getCommentsState.statuses.isSucceed) {
       dispatch(getCommentsActions.getComments.reset());
+      if (getCommentsState.data.comments.length > 0
+        && getCommentsState.data.comments[0].parent
+        && getCommentsState.data.comments[0].postId === postId
+      ) {
+        inserReplies(getCommentsState.data);
+      }
     }
   }, [getCommentsState]);
 
