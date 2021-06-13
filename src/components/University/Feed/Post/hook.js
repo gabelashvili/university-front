@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { reactions } from 'components/University/Feed/Reactions/reactions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   hook as useFetchedPostsHook,
@@ -103,6 +104,8 @@ const usePostHook = (post) => {
     setSelectedReaction(reaction);
   };
 
+  const getEmojiBytid = (emojiId) => reactions.find((el) => el.id === emojiId);
+
   useEffect(() => {
     if (sendPostEmojiState.statuses.isSucceed && post.id === 1) {
       console.log(selectedReaction);
@@ -122,6 +125,7 @@ const usePostHook = (post) => {
     setModalOpen,
     handleShowMore,
     handleEmojiSend,
+    getEmojiBytid,
   };
 };
 

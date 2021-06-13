@@ -95,7 +95,7 @@ export const PostBottom = styled.div`
 `;
 
 export const postButton = css`
-    color: ${({ theme }) => transparentize(0.6, theme.colors.black)};
+    color: ${({ theme, iconColor }) => transparentize(iconColor ? 0.2 : 0.6, theme.colors[iconColor || 'black'])};
     font-weight: 500;
     cursor: pointer;
     display: flex;
@@ -103,7 +103,7 @@ export const postButton = css`
     padding: 10px;
     border-radius: 5px;
     & > svg {
-        fill: ${({ theme }) => transparentize(0.6, theme.colors.black)};
+        fill: ${({ theme, iconColor }) => transparentize(iconColor ? 0.2 : 0.6, theme.colors[iconColor || 'black'])};
         width: 16px;
         height: 16px;
         margin-right: 5px;

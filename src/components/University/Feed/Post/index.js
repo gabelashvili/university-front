@@ -43,6 +43,7 @@ const PostComponent = ({ post, setEditPost }) => {
     handleEditComment,
     handleShowMore,
     handleEmojiSend,
+    getEmojiBytid,
   } = usePostHook(post);
   console.log(`rendered post id: ${post.id}`);
   return (
@@ -105,9 +106,18 @@ const PostComponent = ({ post, setEditPost }) => {
             handleClick={handleEmojiSend}
             data={{ postId: post.id }}
           />
-          <Button costumStyles={postButton} type="button" likeButton>
-            <LikeIcon />
-            Like
+          <Button costumStyles={postButton} type="button" iconColor={post.yourEmoji && getEmojiBytid(post.yourEmoji).color}>
+            {post.yourEmoji ? (
+              <>
+                {getEmojiBytid(post.yourEmoji).icon}
+                {getEmojiBytid(post.yourEmoji).title}
+              </>
+            ) : (
+              <>
+                <LikeIcon />
+                Like
+              </>
+            )}
           </Button>
         </LikeButtonWrapper>
         <Button costumStyles={postButton} type="button" handleClick={() => setShowComment(!showComment)}>
