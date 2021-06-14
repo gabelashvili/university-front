@@ -30,6 +30,12 @@ export const useAuthedUser = () => {
     dispatch(authedUserActions.authedUser.set(localStorageData));
   };
 
+  const logoutUser = () => {
+    if (authedUser.isAuthed) {
+      dispatch(authedUserActions.authedUser.remove());
+    }
+  };
+
   useEffect(() => {
     if (loginDetails.statuses.isSucceed) {
       loginUser(loginDetails.data);
@@ -42,5 +48,6 @@ export const useAuthedUser = () => {
     loginUser,
     authedUser,
     isAuthed: authedUser.isAuthed,
+    logoutUser,
   };
 };

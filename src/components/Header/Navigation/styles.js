@@ -53,3 +53,11 @@ export const Icon = styled.div`
     fill: ${({ theme }) => theme.colors.black};
   }
 `;
+
+export const menuButtonStyle = css`
+    cursor: pointer;
+    padding: 10px 14px 10px 14px;
+    border-radius: 3px;
+    color: black;
+    font-weight: 700;
+`;
