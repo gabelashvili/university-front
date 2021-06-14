@@ -60,4 +60,7 @@ export const menuButtonStyle = css`
     border-radius: 3px;
     color: black;
     font-weight: 700;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.lightGreen};
+    }
 `;
