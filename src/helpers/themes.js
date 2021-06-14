@@ -12,6 +12,7 @@ const theme = {
     lightGrey: '#666',
     red: '#da4932',
     blue: '#337ab7',
+    yellow: '#ffd43b',
   },
 };
 

@@ -13,6 +13,7 @@ import {
 } from 'components/Home/Universities/styles';
 import Container from 'components/Container';
 import useUnisHook from 'components/Home/Universities/hook';
+import Raiting from 'components/Raiting';
 
 const Universities = () => {
   const {
@@ -28,7 +29,7 @@ const Universities = () => {
               <Img src={uni.image} alt="" />
               <DetailsWrapper>
                 <Title>{uni.name}</Title>
-                <p>rating</p>
+                <Raiting />
               </DetailsWrapper>
             </Details>
             <Location>
