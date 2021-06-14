@@ -82,3 +82,5 @@ export const sendComEmojiApi = ({ commentId, emojiId }) => costumAxios.post('/ap
 export const sendPostEmojiApi = ({ postId, emojiId }) => costumAxios.post('/api/feed/post/emoji', { postId, emojiId });
 
 export const getUniListApi = ({ offset, limit }) => costumAxios.get(`/api/university/${offset}/${limit}`);
+
+export const getFilteredUniListApi = ({ university, location }) => costumAxios.post('/api/university/filter', { university, location });
