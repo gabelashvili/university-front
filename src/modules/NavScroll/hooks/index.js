@@ -7,11 +7,11 @@ export const handleScrollHook = ({ navigationRef }) => {
   const dispatch = useDispatch();
   const handleScroll = () => {
     const navigationHeight = navigationRef?.current?.clientHeight;
-    // window.pageYOffset >= navigationHeight / 2
-    if (window.pageYOffset >= navigationHeight) {
-      // dispatch(navScrollActions.setScrollState.request(true));
+
+    if (window.pageYOffset >= navigationHeight / 2) {
+      dispatch(navScrollActions.setScrollState.request(true));
     } else {
-      // dispatch(navScrollActions.setScrollState.request(false));
+      dispatch(navScrollActions.setScrollState.request(false));
     }
   };
   useEffect(() => {
