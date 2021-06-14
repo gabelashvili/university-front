@@ -30,12 +30,39 @@ const Universities = () => {
     history.push(`/university/${uniId}/details`);
   };
 
+  const handleBodyScroll = () => {
+    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const { body } = document;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight,
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight
+      && uniList.data.universities.length < uniList.data.totally) {
+      dispatch(getUniListActions.getUniList.request({
+        offset: uniList.data.universities.length,
+        limit: LIMIT,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleBodyScroll);
+    return () => window.removeEventListener('scroll', handleBodyScroll);
+  }, [uniList]);
+
   useEffect(() => {
     dispatch(getUniListActions.getUniList.request({
       offset: 0,
       limit: LIMIT,
     }));
   }, []);
+  console.log(uniList);
 
   return (
     <Container isCentered>

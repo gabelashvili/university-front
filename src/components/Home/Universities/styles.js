@@ -5,6 +5,7 @@ export const Div = styled.div`
   margin-top: 50px;
   display: grid;
   grid-row-gap: 10px;
+  padding-bottom: 50px;
 `;
 
 export const Card = styled.div`

@@ -21,6 +21,9 @@ const getUniList = (state = initialState, action) => {
           ...initialState.statuses,
           isPending: true,
         },
+        data: {
+          ...state.data,
+        },
       };
     case constants.GET_UNI_LIST_SUCCEED:
       return {

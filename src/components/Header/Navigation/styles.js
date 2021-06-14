@@ -21,6 +21,10 @@ export const Nav = styled.nav`
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
 `;
 
+export const NavWrapper = styled.div`
+  height: 70px;
+`;
+
 export const navContainer = css`
   height: 100%;
   display: flex;

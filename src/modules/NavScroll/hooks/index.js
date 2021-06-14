@@ -9,9 +9,9 @@ export const handleScrollHook = ({ navigationRef }) => {
     const navigationHeight = navigationRef?.current?.clientHeight;
 
     if (window.pageYOffset >= navigationHeight) {
-      dispatch(navScrollActions.setScrollState.request(true));
+      // dispatch(navScrollActions.setScrollState.request(true));
     } else {
-      dispatch(navScrollActions.setScrollState.request(false));
+      // dispatch(navScrollActions.setScrollState.request(false));
     }
   };
   useEffect(() => {
