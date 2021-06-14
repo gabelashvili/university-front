@@ -29,9 +29,9 @@ const Universities = () => {
               <Img src={uni.image} alt="" />
               <DetailsWrapper>
                 <Title>{uni.name}</Title>
-                <Raiting />
               </DetailsWrapper>
             </Details>
+            <Raiting />
             <Location>
               <LocationIcon />
               {uni.location}

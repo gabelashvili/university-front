@@ -10,7 +10,7 @@ export const Div = styled.div`
 
 export const Card = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     align-items: center;
     cursor: pointer;
     color: ${({ theme }) => theme.colors.lightGrey};
