@@ -20,9 +20,9 @@ export const Card = styled.div`
     };
     border: 1px solid ${({ theme }) => transparentize(0.7, theme.colors.lightGrey)};
     padding: 20px 20px;
+    transition: all 0.5s;
     &:hover {
       box-shadow: 0px 0px 30px rgb(0 0 0 / 20%);
-      transition: all 0.5s;
       transform: scale(1.02)
     };
     border-radius: 5px
