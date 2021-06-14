@@ -1,5 +1,5 @@
 import { transparentize } from 'polished';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const IconWrapper = styled.div`
     display: flex;
@@ -17,8 +17,10 @@ export const Stars = styled.div`
         &:nth-child(2n + 1) {
             transform: scaleX(-1) translateX(0.45px);
         }
-        &:hover ~ ${IconWrapper} svg, :hover${IconWrapper} svg {
+        ${({ isDisabled }) => !isDisabled && css`
+            &:hover ~ ${IconWrapper} svg, :hover${IconWrapper} svg {
             fill: ${({ theme }) => transparentize(0, theme.colors.yellow)};
         }
+        `}
     }
 `;
