@@ -62,7 +62,6 @@ const Universities = () => {
       limit: LIMIT,
     }));
   }, []);
-  console.log(uniList);
 
   return (
     <Container isCentered>
