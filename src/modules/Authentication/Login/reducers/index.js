@@ -40,6 +40,8 @@ const loginModule = (state = initialState, action) => {
         },
         errorMessage: action.error,
       };
+    case constants.LOGIN_RESET:
+      return initialState;
     default:
       return state;
   }

@@ -33,6 +33,7 @@ export const useAuthedUser = () => {
   const logoutUser = () => {
     if (authedUser.isAuthed) {
       dispatch(authedUserActions.authedUser.remove());
+      dispatch(loginActions.auth.reset());
     }
   };
 

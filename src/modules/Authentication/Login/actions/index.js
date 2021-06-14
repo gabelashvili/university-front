@@ -13,4 +13,7 @@ export const auth = ({
     type: constants.LOGIN_FAILED,
     error,
   }),
+  reset: () => ({
+    type: constants.LOGIN_RESET,
+  }),
 });
