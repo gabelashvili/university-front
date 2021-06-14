@@ -6,7 +6,10 @@ const initialState = {
     isSucceed: false,
     isFailed: false,
   },
-  data: [],
+  data: {
+    totally: 0,
+    universities: [],
+  },
 };
 
 const getUniList = (state = initialState, action) => {
@@ -21,13 +24,15 @@ const getUniList = (state = initialState, action) => {
       };
     case constants.GET_UNI_LIST_SUCCEED:
       return {
-        ...initialState,
         statuses: {
           ...initialState.statuses,
           isSucceed: true,
           isPending: false,
         },
-        data: action.response.data,
+        data: {
+          totally: action.response.data.totally,
+          universities: [...state.data.universities, ...action.response.data.universities],
+        },
         statusCode: action.response.status,
       };
     case constants.GET_UNI_LIST_FAILED:

@@ -4,7 +4,7 @@ import reducers from 'modules/University/GetUniList/reducers';
 import * as selectors from 'modules/University/GetUniList/selectors';
 import sagas from 'modules/University/GetUniList/sagas';
 
-const moduleName = 'University/GetUniversitiesList';
+const moduleName = 'University/GetUniList';
 
 export {
   constants,

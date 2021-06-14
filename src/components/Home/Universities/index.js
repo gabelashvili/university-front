@@ -21,10 +21,9 @@ import {
 } from 'modules/University/GetUniList';
 
 const Universities = () => {
-  const LIMIT = 5;
+  const LIMIT = 10;
   const dispatch = useDispatch();
   const uniList = useSelector(getUniListSelectors.selectGetUniList);
-  console.log(uniList);
   const history = useHistory();
 
   const handleNavigate = (uniId) => {
@@ -41,20 +40,20 @@ const Universities = () => {
   return (
     <Container isCentered>
       <Div>
-        {new Array(5).fill(1).map((el, index) => (
-          <Card key={`${el}${index + 5}`}>
+        {uniList?.data?.universities && uniList.data.universities.map((uni) => (
+          <Card key={uni.id}>
             <Details>
-              <Img src="https://upload.wikimedia.org/wikipedia/commons/0/08/CaLogo.jpg" alt="" />
+              <Img src={uni.image} alt="" />
               <DetailsWrapper>
-                <Title>Caucasus University</Title>
+                <Title>{uni.name}</Title>
                 <p>rating</p>
               </DetailsWrapper>
             </Details>
             <Location>
               <LocationIcon />
-              Tbilisi
+              {uni.location}
             </Location>
-            <Button costumStyles={ButtonStyle} type="button" handleClick={() => handleNavigate(el + index)}>
+            <Button costumStyles={ButtonStyle} type="button" handleClick={() => handleNavigate(uni.id)}>
               გადასვლა
               <ArrowIcon />
             </Button>

@@ -8,7 +8,7 @@ export const handleScrollHook = ({ navigationRef }) => {
   const handleScroll = () => {
     const navigationHeight = navigationRef?.current?.clientHeight;
 
-    if (window.pageYOffset >= navigationHeight / 2) {
+    if (window.pageYOffset >= navigationHeight) {
       dispatch(navScrollActions.setScrollState.request(true));
     } else {
       dispatch(navScrollActions.setScrollState.request(false));
