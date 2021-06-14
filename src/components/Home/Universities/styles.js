@@ -2,10 +2,9 @@ import { transparentize } from 'polished';
 import styled, { css } from 'styled-components';
 
 export const Div = styled.div`
-  box-shadow: 0px 2px 7px -5px #000000;
-  background-color: ${({ theme }) => theme.colors.white};
   margin-top: 50px;
-  padding: 0 30px;
+  display: grid;
+  grid-row-gap: 10px;
 `;
 
 export const Card = styled.div`
@@ -14,12 +13,19 @@ export const Card = styled.div`
     align-items: center;
     cursor: pointer;
     color: ${({ theme }) => theme.colors.lightGrey};
+    background-color: ${({ theme }) => theme.colors.white};
     font-weight: 600;
     & > button {
       justify-self: self-end;
     };
-    border-bottom: 1px solid ${({ theme }) => transparentize(0.7, theme.colors.lightGrey)};
-    padding: 20px 0;
+    border: 1px solid ${({ theme }) => transparentize(0.7, theme.colors.lightGrey)};
+    padding: 20px 20px;
+    &:hover {
+      box-shadow: 0px 0px 30px rgb(0 0 0 / 20%);
+      transition: all 0.5s;
+      transform: scale(1.02)
+    };
+    border-radius: 5px
 `;
 
 export const Details = styled.div`
