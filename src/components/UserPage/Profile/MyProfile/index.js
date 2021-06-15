@@ -33,6 +33,8 @@ const MyProfile = () => {
     onPassworChangeSubmitError,
     handlePasswordChange,
     passwordChangeErrors,
+    image,
+    handleUpload,
   } = useMyProfileHook();
   return (
     <Div>
@@ -40,9 +42,16 @@ const MyProfile = () => {
         <Title>მომხმარებლის დეტალები</Title>
         <Content>
           <ProfilePhoto>
-            <Img src={DefaultAvatar} alt="" />
+            <Img src={image?.url || DefaultAvatar} alt="" />
             <Button costumStyles={uploadButton}>
-              <UploadInput type="file" accept="image/png, image/jpeg" />
+              <UploadInput
+                type="file"
+                accept="image/png, image/jpeg"
+                onInput={(e) => handleUpload(e)}
+                onClick={(e) => {
+                  e.target.value = null;
+                }}
+              />
               <UploadIcon />
               სურათის ატვირთვა
             </Button>
