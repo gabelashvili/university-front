@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Stars,
   IconWrapper,
@@ -11,7 +10,7 @@ const isDisabled = false;
 const Raiting = () => (
   <Stars raiting={1} isDisabled={isDisabled}>
     {new Array(10).fill().map((el, index) => (
-      <IconWrapper checked={(10 - index) <= raiting / 0.5}>
+      <IconWrapper checked={(10 - index) <= raiting / 0.5} key={`Raiting-${2 * index}`}>
         <HalfStar />
       </IconWrapper>
     ))}
