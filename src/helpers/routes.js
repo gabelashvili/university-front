@@ -11,7 +11,7 @@ export const routes = [
   {
     name: 'Authentication',
     component: userPage,
-    path: '/user/:type',
+    path: '/user/:type/:userId?',
   },
   {
     name: 'University',

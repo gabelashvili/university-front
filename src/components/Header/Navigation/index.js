@@ -53,7 +53,7 @@ export const Navigation = ({ navigationRef }) => {
                 </Button>
               </Link>
               )}
-              <Link to={authedUser.isAuthed ? '/user/profile' : '/user/login'}>
+              <Link to={authedUser.isAuthed ? `/user/profile/${authedUser.userId}` : '/user/login'}>
                 <Button
                   bgColor="darkWhite"
                   fontWeight={600}

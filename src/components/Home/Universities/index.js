@@ -31,7 +31,7 @@ const Universities = () => {
                 <Title>{uni.name}</Title>
               </DetailsWrapper>
             </Details>
-            <Raiting />
+            <Raiting raiting={uni.rate} />
             <Location>
               <LocationIcon />
               {uni.location}

@@ -20,8 +20,6 @@ export default () => {
     history.push(`/university/${uniId}/details`);
   };
 
-  console.log(filteredUniList);
-
   const handleBodyScroll = () => {
     const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
     const { body } = document;
@@ -58,6 +56,11 @@ export default () => {
       dispatch(getUniListActions.getUniList.reset());
     }
   }, [filteredUniList.data.universities]);
+
+  useEffect(() => () => {
+    dispatch(getUniListActions.getUniList.reset());
+  }, []);
+
   return {
     uniList: filteredUniList.data.universities
       ? filteredUniList.data.universities

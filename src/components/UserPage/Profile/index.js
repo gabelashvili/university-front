@@ -1,7 +1,13 @@
+import { useParams } from 'react-router-dom';
+import { hooks as authedUserHook } from 'modules/Authentication/AuthedUser';
+
 const Profile = () => {
-  console.log(12);
+  const { userId } = useParams();
+  const { authedUser } = authedUserHook.useAuthedUser();
   return (
-    <p>qwdqwd</p>
+    <>
+      {parseInt(userId, 10) === authedUser.userId ? <p>avtorizirebulis</p> : <p>sxvisi</p>}
+    </>
   );
 };
 
