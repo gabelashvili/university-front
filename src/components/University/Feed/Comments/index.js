@@ -25,6 +25,7 @@ import Modal from 'components/Modal';
 import CloseIconWithoutCircle from 'Icons/CloseIconWithoutCircle';
 import AddComment from 'components/University/Feed/AddComment';
 import ToolTip from 'components/University/Feed/Reactions';
+import DefaultAvatar from 'Icons/DefaultAvatar';
 
 const Comments = ({
   data, postId, handleShowMore, total,
@@ -75,7 +76,9 @@ const Comments = ({
       {data && data.map((comment) => (
         <ComContainer key={comment.id} id={`comment-${comment.id}`}>
           <Comment>
-            <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+            <>
+              {comment.user.image ? <Avatar alt="" src={comment.user.image} /> : <DefaultAvatar />}
+            </>
             <CommentDetails>
               <HeaderWrapper>
                 <ComAuthor href="/">
@@ -146,7 +149,7 @@ const Comments = ({
             && comment.replies.list.length > 0
             && comment.replies.list.map((reply) => (
               <Comment key={reply.id} id={`comment-${reply.id}`}>
-                <Avatar src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                {reply.user.image ? <Avatar alt="" src={reply.user.image} /> : <DefaultAvatar />}
                 <CommentDetails>
                   <HeaderWrapper>
                     <ComAuthor href="/">
