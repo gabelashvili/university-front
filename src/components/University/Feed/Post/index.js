@@ -45,7 +45,6 @@ const PostComponent = ({ post, setEditPost }) => {
     handleEmojiSend,
     getEmojiBytid,
   } = usePostHook(post);
-  console.log(`rendered post id: ${post.id}`);
   return (
     <Post id={`post-${post.id}`}>
       <Modal

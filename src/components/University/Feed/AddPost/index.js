@@ -19,6 +19,7 @@ import {
   ImgPreviewWrapper,
   postButton,
   PostButtonWrapper,
+  IconWrapper,
 } from 'components/University/Feed/AddPost/styles';
 import useAddPostHook from 'components/University/Feed/AddPost/hooks';
 
@@ -60,34 +61,36 @@ const AddPost = ({ editPost, setEditPost }) => {
         )}
       </TextAreaWrapper>
       <BottomPart>
-        <UploadImage>
-          <UploadLabel htmlFor="upload-image">
-            <CameraIcon />
-          </UploadLabel>
-          <Upload
-            type="file"
-            id="upload-image"
-            accept="image/png, image/jpeg"
-            onInput={(e) => handleUpload(e)}
-            onClick={(e) => {
-              e.target.value = null;
-            }}
-          />
-        </UploadImage>
-        <Emoji ref={emojiRef}>
-          <EmojiIcon onClick={toggleEmoji} />
-          {showEmoji && (
-          <EmojiWrapper onClick={handleClickOutsideEmoji}>
-            <Picker
-              onEmojiClick={onEmojiClick}
-              disableAutoFocus
-              skinTone={SKIN_TONE_MEDIUM_DARK}
-              groupNames={{ smileys_people: 'PEOPLE' }}
-              native
+        <IconWrapper>
+          <UploadImage>
+            <UploadLabel htmlFor="upload-image">
+              <CameraIcon />
+            </UploadLabel>
+            <Upload
+              type="file"
+              id="upload-image"
+              accept="image/png, image/jpeg"
+              onInput={(e) => handleUpload(e)}
+              onClick={(e) => {
+                e.target.value = null;
+              }}
             />
-          </EmojiWrapper>
-          )}
-        </Emoji>
+          </UploadImage>
+          <Emoji ref={emojiRef}>
+            <EmojiIcon onClick={toggleEmoji} />
+            {showEmoji && (
+            <EmojiWrapper onClick={handleClickOutsideEmoji}>
+              <Picker
+                onEmojiClick={onEmojiClick}
+                disableAutoFocus
+                skinTone={SKIN_TONE_MEDIUM_DARK}
+                groupNames={{ smileys_people: 'PEOPLE' }}
+                native
+              />
+            </EmojiWrapper>
+            )}
+          </Emoji>
+        </IconWrapper>
         <PostButtonWrapper>
           {editPost && (
           <Button

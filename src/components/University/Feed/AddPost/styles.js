@@ -118,3 +118,21 @@ export const PostButtonWrapper = styled.div`
    display: flex;
    gap: 10px;
 `;
+
+export const IconWrapper = styled.div`
+    display: flex;
+    & svg {
+        width: 20px;
+        height: 20px;
+        fill: ${({ theme }) => theme.colors.lightGrey};
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all 0.3s;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color:  ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
+            border-radius: 50%;
+        }
+    }
+`;
