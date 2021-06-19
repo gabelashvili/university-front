@@ -16,7 +16,7 @@ export default () => {
   // change pers info
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const { authedUser } = authedUserHook.useAuthedUser();
+  const { authedUser, loginUser } = authedUserHook.useAuthedUser();
   const userData = useSelector(getUserSelectors.selectUser);
   const updateUserData = useSelector(updateUserInfoSelectors.selectUpdateUserInfo);
 
@@ -108,6 +108,7 @@ export default () => {
   useEffect(() => {
     if (updateUserData.statuses.isSucceed) {
       enqueueSnackbar('ინფორმაცია განახლდა', { variant: 'success' });
+      loginUser(updateUserData.data);
       dispatch(updateUserInfoActions.updateUserInfo.reset());
     }
     if (updateUserData.statuses.isFailed) {
