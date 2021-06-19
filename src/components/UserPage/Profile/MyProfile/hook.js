@@ -1,18 +1,32 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import { hooks as authedUserHook } from 'modules/Authentication/AuthedUser';
+import {
+  actions as getuserActions,
+  selectors as getUserSelectors,
+} from 'modules/User/GetUser';
 
 export default () => {
   // change pers info
   const { enqueueSnackbar } = useSnackbar();
-  const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const { authedUser } = authedUserHook.useAuthedUser();
+  const userData = useSelector(getUserSelectors.selectUser);
+  const [image, setImage] = useState({
+    url: null,
+    file: null,
+  });
   const {
     register: registerPersInfo,
     handleSubmit: handlePersInfoSubmit,
-    formState: { errors: persInfoErrors },
+    formState: { errors: persInfoErrors, dirtyFields: persInfoDirtyFileds },
+    reset,
   } = useForm({
     criteriaMode: 'all',
     mode: 'all',
+    defaultValues: async () => ({ data: 'test' }),
   });
 
   const onPersInfoSubmit = (data) => {
@@ -56,6 +70,25 @@ export default () => {
     console.log(error, 'ერორებია');
   };
 
+  // get user
+  useEffect(() => {
+    dispatch(getuserActions.getUser.request(authedUser.userId));
+  }, []);
+
+  useEffect(() => {
+    if (userData.statuses.isSucceed) {
+      reset({
+        firstName: userData.data.firstname,
+        lastName: userData.data.lastname,
+        email: userData.data.email,
+        facebook: userData.data.facebook,
+      });
+    }
+  }, [userData]);
+
+  const isPersInfoButtonDisabled = Object.keys(persInfoDirtyFileds).length > 0
+    || image.url !== userData.data.image;
+
   return {
     onPersInfoSubmit,
     onPersInfoSubmitError,
@@ -70,5 +103,7 @@ export default () => {
     newPassword: newPasswordRef.current,
     image,
     handleUpload,
+    persInfoDirtyFileds,
+    isPersInfoButtonDisabled: !isPersInfoButtonDisabled,
   };
 };

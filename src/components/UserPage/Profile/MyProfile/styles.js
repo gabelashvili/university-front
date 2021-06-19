@@ -139,4 +139,7 @@ export const saveButton = css`
     &:hover{
         background-color: ${({ theme }) => theme.colors.black};
     }
+    &:disabled {
+        cursor: not-allowed;
+    }
 `;

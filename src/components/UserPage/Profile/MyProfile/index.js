@@ -35,6 +35,7 @@ const MyProfile = () => {
     passwordChangeErrors,
     image,
     handleUpload,
+    isPersInfoButtonDisabled,
   } = useMyProfileHook();
   return (
     <Div>
@@ -88,6 +89,7 @@ const MyProfile = () => {
             <Input
               isError={!!persInfoErrors.email}
               type="text"
+              disabled
               {...registerPersInfo('email', {
                 required: { value: true, message: 'შეიყვანეთ Email' },
                 pattern: {
@@ -102,12 +104,15 @@ const MyProfile = () => {
               <FbIcon />
               Facebook
             </Label>
-            <Input type="text" />
+            <Input
+              type="text"
+            />
           </InputWrapper>
           <Button
             costumStyles={saveButton}
             type="button"
             handleClick={handlePersInfoSubmit(onPersInfoSubmit, onPersInfoSubmitError)}
+            disabled={isPersInfoButtonDisabled}
           >
             ცვლილებების შენახვა
           </Button>
