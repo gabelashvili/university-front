@@ -98,3 +98,9 @@ export const updateUserDataApi = ({ data, image }) => {
   }));
   return costumAxios.put('/api/user', formData);
 };
+
+export const changePasswordApi = ({ password, newPassword, reNewPassword }) => costumAxios.put('/api/user/password', {
+  password,
+  newPassword,
+  reNewPassword,
+});

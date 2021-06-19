@@ -12,6 +12,11 @@ import {
   selectors as updateUserInfoSelectors,
 } from 'modules/User/UpdateUserInfo';
 
+import {
+  actions as changePasswordActions,
+  selectors as changePasswordSelectors,
+} from 'modules/User/ChangePassword';
+
 export default () => {
   // change pers info
   const { enqueueSnackbar } = useSnackbar();
@@ -19,6 +24,7 @@ export default () => {
   const { authedUser, loginUser } = authedUserHook.useAuthedUser();
   const userData = useSelector(getUserSelectors.selectUser);
   const updateUserData = useSelector(updateUserInfoSelectors.selectUpdateUserInfo);
+  const changePassword = useSelector(changePasswordSelectors.selectChangePassword);
 
   const [image, setImage] = useState({
     url: null,
@@ -72,7 +78,11 @@ export default () => {
   newPasswordRef.current = watch('newPassword', '');
 
   const onPasswordChangeSubmit = (data) => {
-    console.log(data);
+    dispatch(changePasswordActions.changePassword.request({
+      password: data.oldPassword,
+      newPassword: data.newPassword,
+      reNewPassword: data.repeatPassword,
+    }));
   };
 
   // get user
@@ -109,6 +119,13 @@ export default () => {
       dispatch(updateUserInfoActions.updateUserInfo.reset());
     }
   }, [updateUserData]);
+
+  useEffect(() => {
+    if (changePassword.statuses.isSucceed) {
+      enqueueSnackbar('პაროლი შეიცვალა', { variant: 'success' });
+      dispatch(changePasswordActions.changePassword.reset());
+    }
+  }, [changePassword]);
 
   return {
     onPersInfoSubmit,

@@ -1,0 +1,49 @@
+import { constants } from 'modules/User/ChangePassword';
+
+const initialState = {
+  statuses: {
+    isPending: false,
+    isSucceed: false,
+    isFailed: false,
+  },
+  data: {},
+};
+
+const changePassword = (state = initialState, action) => {
+  switch (action.type) {
+    case constants.CHANGE_PASSWORD_REQUESTED:
+      return {
+        ...initialState,
+        statuses: {
+          ...initialState.statuses,
+          isPending: true,
+        },
+      };
+    case constants.CHANGE_PASSWORD_SUCCEED:
+      return {
+        statuses: {
+          ...initialState.statuses,
+          isSucceed: true,
+          isPending: false,
+        },
+        data: action.response.data,
+        statusCode: action.response.status,
+      };
+    case constants.CHANGE_PASSWORD_FAILED:
+      return {
+        ...initialState,
+        statuses: {
+          ...initialState.statuses,
+          isFailed: true,
+          isPending: false,
+        },
+        errorMessage: action.error,
+      };
+    case constants.CHANGE_PASSWORD_RESET:
+      return initialState;
+    default:
+      return state;
+  }
+};
+
+export default changePassword;

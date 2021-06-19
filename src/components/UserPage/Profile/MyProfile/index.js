@@ -125,7 +125,7 @@ const MyProfile = () => {
             {passwordChangeErrors.oldPassword
              && <Error>{passwordChangeErrors.oldPassword.message}</Error>}
             <Input
-              type="text"
+              type="password"
               isError={!!passwordChangeErrors.oldPassword}
               {...registerPasswordChange('oldPassword', {
                 required: {
@@ -140,7 +140,7 @@ const MyProfile = () => {
             {passwordChangeErrors.newPassword
              && <Error>{passwordChangeErrors.newPassword.message}</Error>}
             <Input
-              type="text"
+              type="password"
               isError={!!passwordChangeErrors.newPassword}
               {...registerPasswordChange('newPassword', {
                 required: {
