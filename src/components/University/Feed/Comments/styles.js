@@ -31,9 +31,10 @@ export const ComAuthorUni = styled.p`
 `;
 
 export const ComText = styled.p`
-    line-height: 1;
+    line-height: 1.2;
     font-size: 14px;
     margin: 5px 0 15px;
+    word-break: break-all;
 `;
 
 export const ComButtons = styled.div`
