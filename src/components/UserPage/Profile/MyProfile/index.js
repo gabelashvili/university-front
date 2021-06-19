@@ -106,6 +106,7 @@ const MyProfile = () => {
             </Label>
             <Input
               type="text"
+              {...registerPersInfo('facebook')}
             />
           </InputWrapper>
           <Button

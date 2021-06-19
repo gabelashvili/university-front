@@ -86,3 +86,15 @@ export const getUniListApi = ({ offset, limit }) => costumAxios.get(`/api/univer
 export const getFilteredUniListApi = ({ university, location }) => costumAxios.post('/api/university/filter', { university, location });
 
 export const getUserApi = (id) => costumAxios.get('/api/user', { id });
+
+export const updateUserDataApi = ({ data, image }) => {
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('data', JSON.stringify({
+    firstname: data.firstName,
+    lastname: data.lastName,
+    facebook: data.facebook,
+    image: data.image,
+  }));
+  return costumAxios.put('/api/user', formData);
+};

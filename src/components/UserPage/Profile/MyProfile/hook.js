@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { hooks as authedUserHook } from 'modules/Authentication/AuthedUser';
 import {
-  actions as getuserActions,
+  actions as getUserActions,
   selectors as getUserSelectors,
 } from 'modules/User/GetUser';
+import {
+  actions as updateUserInfoActions,
+  selectors as updateUserInfoSelectors,
+} from 'modules/User/UpdateUserInfo';
 
 export default () => {
   // change pers info
@@ -14,6 +18,8 @@ export default () => {
   const dispatch = useDispatch();
   const { authedUser } = authedUserHook.useAuthedUser();
   const userData = useSelector(getUserSelectors.selectUser);
+  const updateUserData = useSelector(updateUserInfoSelectors.selectUpdateUserInfo);
+
   const [image, setImage] = useState({
     url: null,
     file: null,
@@ -30,7 +36,13 @@ export default () => {
   });
 
   const onPersInfoSubmit = (data) => {
-    console.log(data);
+    dispatch(updateUserInfoActions.updateUserInfo.request({
+      image: image.file,
+      data: {
+        ...data,
+        image: !image.file && image.url,
+      },
+    }));
   };
   const onPersInfoSubmitError = (persInfoErrors) => {
     console.log(persInfoErrors, 'ერორებია');
@@ -72,7 +84,7 @@ export default () => {
 
   // get user
   useEffect(() => {
-    dispatch(getuserActions.getUser.request(authedUser.userId));
+    dispatch(getUserActions.getUser.request(authedUser.userId));
   }, []);
 
   useEffect(() => {
@@ -83,11 +95,26 @@ export default () => {
         email: userData.data.email,
         facebook: userData.data.facebook,
       });
+      setImage({
+        ...image,
+        url: userData.data.image,
+      });
     }
   }, [userData]);
 
   const isPersInfoButtonDisabled = Object.keys(persInfoDirtyFileds).length > 0
     || image.url !== userData.data.image;
+
+  useEffect(() => {
+    if (updateUserData.statuses.isSucceed) {
+      enqueueSnackbar('ინფორმაცია განახლდა', { variant: 'success' });
+      dispatch(updateUserInfoActions.updateUserInfo.reset());
+    }
+    if (updateUserData.statuses.isFailed) {
+      enqueueSnackbar(updateUserData.errorMessage, { variant: 'error' });
+      dispatch(updateUserInfoActions.updateUserInfo.reset());
+    }
+  }, [updateUserData]);
 
   return {
     onPersInfoSubmit,
