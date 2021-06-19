@@ -20,6 +20,7 @@ export const useAuthedUser = () => {
     const localStorageData = {
       firstName: user.firstname,
       lastName: user.lastname,
+      image: user.image,
       userId: parsedToken.user.id,
       universityId: parsedToken.user.UniversityId,
       exp: parsedToken.exp,

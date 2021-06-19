@@ -44,10 +44,6 @@ export default () => {
       },
     }));
   };
-  const onPersInfoSubmitError = (persInfoErrors) => {
-    console.log(persInfoErrors, 'ერორებია');
-  };
-
   const handleUpload = (e) => {
     if (e.target.files[0].size > 1024 * 1024 * 2) {
       enqueueSnackbar('Max Upload File Size 2Mib', {
@@ -77,9 +73,6 @@ export default () => {
 
   const onPasswordChangeSubmit = (data) => {
     console.log(data);
-  };
-  const onPassworChangeSubmitError = (error) => {
-    console.log(error, 'ერორებია');
   };
 
   // get user
@@ -119,7 +112,6 @@ export default () => {
 
   return {
     onPersInfoSubmit,
-    onPersInfoSubmitError,
     registerPersInfo,
     handlePersInfoSubmit,
     persInfoErrors,
@@ -127,7 +119,6 @@ export default () => {
     handlePasswordChange,
     passwordChangeErrors,
     onPasswordChangeSubmit,
-    onPassworChangeSubmitError,
     newPassword: newPasswordRef.current,
     image,
     handleUpload,

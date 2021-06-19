@@ -23,14 +23,12 @@ import DefaultAvatar from '../../../../assets/defaultProfile.png';
 const MyProfile = () => {
   const {
     onPersInfoSubmit,
-    onPersInfoSubmitError,
     registerPersInfo,
     handlePersInfoSubmit,
     persInfoErrors,
     registerPasswordChange,
     newPassword,
     onPasswordChangeSubmit,
-    onPassworChangeSubmitError,
     handlePasswordChange,
     passwordChangeErrors,
     image,
@@ -112,7 +110,7 @@ const MyProfile = () => {
           <Button
             costumStyles={saveButton}
             type="button"
-            handleClick={handlePersInfoSubmit(onPersInfoSubmit, onPersInfoSubmitError)}
+            handleClick={handlePersInfoSubmit(onPersInfoSubmit)}
             disabled={isPersInfoButtonDisabled}
           >
             ცვლილებების შენახვა
@@ -179,7 +177,7 @@ const MyProfile = () => {
           <Button
             costumStyles={saveButton}
             type="button"
-            handleClick={handlePasswordChange(onPasswordChangeSubmit, onPassworChangeSubmitError)}
+            handleClick={handlePasswordChange(onPasswordChangeSubmit)}
           >
             შეცვლა
           </Button>
