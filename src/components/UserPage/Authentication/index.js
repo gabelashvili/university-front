@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Div, ButtonWrapper, ModalWrapper, Loader,
 } from 'components/UserPage/Authentication/styles';
@@ -15,7 +15,6 @@ import {
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'components/Modal';
-import { actions as modalActions } from 'modules/Modal';
 import SuccessIcon from 'Icons/Success';
 import ErrorIcon from 'Icons/Error';
 import {
@@ -29,6 +28,7 @@ const Authentication = () => {
   const history = useHistory();
   const authedUser = useSelector(authedUserSelector.selectAuthedUser);
   const { loginUser } = authedUserHook.useAuthedUser();
+  const [isModalOpen, setModalOpen] = useState(false);
   const type = history.location.pathname.split('/').slice(2, 3).toString();
   const dispatch = useDispatch();
   const activationDetails = useSelector(activationSelectors.selectActivationDetails);
@@ -49,7 +49,7 @@ const Authentication = () => {
 
   useEffect(() => {
     if (activationDetails.statuses.isPending) {
-      dispatch(modalActions.setModalState.open());
+      setModalOpen(true);
     }
     if (activationDetails.statuses.isSucceed) {
       loginUser(activationDetails.data);
@@ -61,6 +61,8 @@ const Authentication = () => {
         title="ანგარიშის აქტივაცია"
         showClose={!activationDetails.statuses.isPending}
         closeOnAwayClick={!activationDetails.statuses.isPending}
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
       >
         <ModalWrapper>
           {activationDetails.statuses.isPending && (
