@@ -44,6 +44,7 @@ const PostComponent = ({ post, setEditPost }) => {
     handleShowMore,
     handleEmojiSend,
     getEmojiBytid,
+    handleShowAllReaction,
   } = usePostHook(post);
   return (
     <Post id={`post-${post.id}`}>
@@ -90,7 +91,7 @@ const PostComponent = ({ post, setEditPost }) => {
         )}
       </PostDesc>
       <PostReactions
-        onClick={() => console.log('show')}
+        onClick={handleShowAllReaction}
       >
         <Reaction>
           <LikeIcon />

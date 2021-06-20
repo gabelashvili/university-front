@@ -16,6 +16,9 @@ import {
   actions as sendPostEmojiActions,
   selectors as sendPostEmojitSelectors,
 } from 'modules/University/Feed/SendPostEmoji';
+import {
+  actions as getPostReactionsActions,
+} from 'modules/University/Feed/GetPostReactions';
 
 const usePostHook = (post) => {
   const dispatch = useDispatch();
@@ -119,6 +122,16 @@ const usePostHook = (post) => {
     }
   }, [sendPostEmojiState, selectedReaction, selectedPostId]);
 
+  // show all reaction
+
+  const handleShowAllReaction = () => {
+    dispatch(getPostReactionsActions.getPostReactions.request({
+      offset: 0,
+      limit: 5,
+      postId: post.id,
+    }));
+  };
+
   return {
     showComment,
     setShowComment,
@@ -130,6 +143,7 @@ const usePostHook = (post) => {
     handleShowMore,
     handleEmojiSend,
     getEmojiBytid,
+    handleShowAllReaction,
   };
 };
 

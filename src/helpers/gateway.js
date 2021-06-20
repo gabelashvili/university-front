@@ -104,3 +104,7 @@ export const changePasswordApi = ({ password, newPassword, reNewPassword }) => c
   newPassword,
   reNewPassword,
 });
+
+export const getPostReactionApi = ({
+  offset, limit, postId, emojiId,
+}) => costumAxios.post(`/api/feed/post/emoji/${offset}/${limit}`, { postId, emojiId });
