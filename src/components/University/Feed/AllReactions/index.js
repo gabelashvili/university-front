@@ -46,7 +46,7 @@ const AllReaction = ({ data }) => {
         ))}
       </Header>
       <UserList>
-        {filteredData.map(({ user }) => (
+        {filteredData && filteredData.map(({ user }) => (
           <User key={user.image}>
             <AvatarWrapper>
               {user.image ? <Avatar alt="" src={user.image} /> : <DefaultAvatar />}
