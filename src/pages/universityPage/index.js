@@ -1,5 +1,7 @@
 import Container from 'components/Container';
-import { Header, Feedback } from 'components/University';
+import {
+  Header, Feedback, Details, Lectures,
+} from 'components/University';
 import { useParams } from 'react-router-dom';
 import {
   hook as useFetchedPostsHook,
@@ -23,8 +25,8 @@ const universityPage = () => {
     <>
       <Header />
       <Container isCentered>
-        {tabName === 'details' && 'details'}
-        {tabName === 'lectures' && 'lectures'}
+        {tabName === 'details' && <Details />}
+        {tabName === 'lectures' && <Lectures />}
         {tabName === 'news' && <Feedback />}
       </Container>
     </>
