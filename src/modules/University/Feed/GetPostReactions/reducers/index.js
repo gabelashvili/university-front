@@ -11,7 +11,7 @@ const initialState = {
 
 const getPostReactions = (state = initialState, action) => {
   switch (action.type) {
-    case constants.GET_POST_REACTION_REQUESTED:
+    case constants.GET_POST_REACTIONS_REQUESTED:
       return {
         ...initialState,
         statuses: {
@@ -19,7 +19,7 @@ const getPostReactions = (state = initialState, action) => {
           isPending: true,
         },
       };
-    case constants.GET_POST_REACTION_SUCCEED:
+    case constants.GET_POST_REACTIONS_SUCCEED:
       return {
         ...initialState,
         statuses: {
@@ -30,7 +30,7 @@ const getPostReactions = (state = initialState, action) => {
         data: action.response.data,
         statusCode: action.response.status,
       };
-    case constants.GET_POST_REACTION_FAILED:
+    case constants.GET_POST_REACTIONS_FAILED:
       return {
         ...initialState,
         statuses: {
@@ -40,7 +40,7 @@ const getPostReactions = (state = initialState, action) => {
         },
         errorMessage: action.error,
       };
-    case constants.GET_POST_REACTION_RESET:
+    case constants.GET_POST_REACTIONS_RESET:
       return initialState;
     default:
       return state;

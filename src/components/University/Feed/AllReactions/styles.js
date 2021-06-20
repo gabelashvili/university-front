@@ -56,11 +56,13 @@ export const IconWrapper = styled.div`
 
 export const UserList = styled.div`
     padding: 15px;
+    max-height: 400px;
+    overflow: auto;
 `;
 
 export const User = styled.div`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 `;
 
 export const UserReaction = styled.div`
@@ -100,6 +102,7 @@ export const UserDetail = styled.div`
     border-bottom: 1px solid ${({ theme }) => transparentize(0.6, theme.colors.lightGrey)};
     width: 100%;
     padding-bottom: 15px;
+    margin-top: 15px;
 `;
 
 export const UserName = styled.p`

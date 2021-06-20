@@ -15,41 +15,49 @@ import {
 } from 'components/University/Feed/AllReactions/styles';
 import { reactions } from 'components/University/Feed/Reactions/reactions';
 import DefaultAvatar from 'Icons/DefaultAvatar';
+import { groupBy, filter } from 'lodash';
 
-const AllReaction = () => {
-  const [selected, setSelected] = useState('all');
+const AllReaction = ({ data }) => {
+  const [selected, setSelected] = useState(0);
+  const getEmojiByid = (id) => reactions.find((el) => el.id === parseInt(id, 10));
+  const groupedData = groupBy(data, (item) => item.emojiId);
+  const filteredData = selected === 0 ? data : filter(data, (item) => item.emojiId === selected);
   return (
     <Div>
       <Header>
         <Text
-          selected={selected === 'all'}
-          onClick={() => setSelected('all')}
+          selected={selected === 0}
+          onClick={() => setSelected(0)}
         >
-          All 168
+          All
+          {' '}
+          {Object.keys(groupedData).reduce((acc, cur) => acc + groupedData[cur].length, 0)}
         </Text>
-        {reactions.map((reaction) => (
+        {Object.keys(groupedData).map((key) => (
           <IconWrapper
-            key={reaction.id}
-            color={reaction.color}
-            selected={selected === reaction.title}
-            onClick={() => setSelected(reaction.title)}
+            key={getEmojiByid(key).id}
+            color={getEmojiByid(key).color}
+            selected={selected === getEmojiByid(key).id}
+            onClick={() => setSelected(getEmojiByid(key).id)}
           >
-            {reaction.icon}
-            168
+            {getEmojiByid(key).icon}
+            {groupedData[key].length}
           </IconWrapper>
         ))}
       </Header>
       <UserList>
-        <User>
-          <AvatarWrapper>
-            {false ? <Avatar alt="" src="" /> : <DefaultAvatar />}
-            <UserReaction>{reactions[0].icon}</UserReaction>
-          </AvatarWrapper>
-          <UserDetail>
-            <UserName>Lasha Gabelashvili</UserName>
-            <UserUni>Caucasus Uni</UserUni>
-          </UserDetail>
-        </User>
+        {filteredData.map(() => (
+          <User>
+            <AvatarWrapper>
+              {false ? <Avatar alt="" src="" /> : <DefaultAvatar />}
+              <UserReaction>{reactions[0].icon}</UserReaction>
+            </AvatarWrapper>
+            <UserDetail>
+              <UserName>Lasha Gabelashvili</UserName>
+              <UserUni>Caucasus Uni</UserUni>
+            </UserDetail>
+          </User>
+        ))}
       </UserList>
     </Div>
   );

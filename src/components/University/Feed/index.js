@@ -18,7 +18,8 @@ const Feedback = () => {
     editPost,
     setEditPost,
     isModalOpen,
-    setModalOpne,
+    setModalOpen,
+    reactionsData,
   } = useFeeHook();
   return (
     <>
@@ -26,11 +27,11 @@ const Feedback = () => {
         isOpen={isModalOpen}
         title="რეაქციები"
         closeOnAwayClick
-        onClose={() => setModalOpne(false)}
+        onClose={() => setModalOpen(false)}
         showClose
         costumeStyles={modalStyles}
       >
-        <AllReaction />
+        <AllReaction data={reactionsData} />
       </Modal>
       <Container costumStyles={containerStyles}>
         <Container costumStyles={containerStylesLeft}>
