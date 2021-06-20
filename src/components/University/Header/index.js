@@ -50,9 +50,9 @@ const Header = () => {
             hoverBgColorOpacity={0.8}
             costumStyles={buttonStyle}
             active={tabName === 'feed'}
-            handleClick={() => handleClick('feed')}
+            handleClick={() => handleClick('news')}
           >
-            შეფასებები
+            სიახლეები
           </Button>
         </Tabs>
       </Container>

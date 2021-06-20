@@ -91,7 +91,7 @@ const PostComponent = ({ post, setEditPost }) => {
         )}
       </PostDesc>
       <PostReactions
-        onClick={handleShowAllReaction}
+        onClick={post.commentCnt > 0 ? handleShowAllReaction : undefined}
       >
         <Reaction>
           <LikeIcon />
