@@ -77,6 +77,7 @@ export const Reaction = styled.div`
     display: flex;
     font-size: 12px;
     align-items: center;
+    margin-top: 10px;
     & svg {
         width: 10px;
         height: 10px;
@@ -161,5 +162,22 @@ export const DialogButtonWrapper = styled.div`
         &:hover {
             background-color: ${({ theme }) => theme.colors.red};
         }
+    }
+`;
+
+export const IconWrapper = styled.div`
+    width: 13px;
+    height: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 3px;
+    & svg {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        fill: ${({ theme, color }) => theme.colors[color]};
+        margin-right: 0;
     }
 `;

@@ -72,117 +72,6 @@ const useFeedHook = () => {
 
   // hande modal open
 
-  const fakeData = [
-    {
-      emojiId: 2,
-      id: 24,
-      user: {
-        firstname: 'Lasha',
-        image: 'http://localhost:5000/public\\images\\64d72d90-c577-44a2-b22a-198dc455b201.png',
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 3,
-      id: 24,
-      user: {
-        firstname: 'Vigaca',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 1,
-      id: 24,
-      user: {
-        firstname: 'Ragac',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-    {
-      emojiId: 4,
-      id: 24,
-      user: {
-        firstname: 'Nika',
-        image: null,
-        lastname: 'Gabelashvili',
-      },
-    },
-  ];
-
   useEffect(() => {
     if (getPostReactions.statuses.isSucceed) {
       setModalOpen(true);
@@ -201,7 +90,7 @@ const useFeedHook = () => {
     setEditPost,
     isModalOpen,
     setModalOpen,
-    reactionsData: fakeData,
+    reactionsData: getPostReactions.data.userEmojiList,
   };
 };
 

@@ -132,6 +132,9 @@ const usePostHook = (post) => {
     }));
   };
 
+  const totalEmoji = (data) => data
+  && Object.keys(data).reduce((acc, cur) => acc + data[cur].quantity, 0);
+
   return {
     showComment,
     setShowComment,
@@ -144,6 +147,7 @@ const usePostHook = (post) => {
     handleEmojiSend,
     getEmojiBytid,
     handleShowAllReaction,
+    totalEmoji,
   };
 };
 

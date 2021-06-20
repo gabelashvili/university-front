@@ -46,15 +46,15 @@ const AllReaction = ({ data }) => {
         ))}
       </Header>
       <UserList>
-        {filteredData.map(() => (
-          <User>
+        {filteredData.map(({ user }) => (
+          <User key={user.image}>
             <AvatarWrapper>
-              {false ? <Avatar alt="" src="" /> : <DefaultAvatar />}
+              {user.image ? <Avatar alt="" src={user.image} /> : <DefaultAvatar />}
               <UserReaction>{reactions[0].icon}</UserReaction>
             </AvatarWrapper>
             <UserDetail>
-              <UserName>Lasha Gabelashvili</UserName>
-              <UserUni>Caucasus Uni</UserUni>
+              <UserName>{`${user.firstname} ${user.lastname}`}</UserName>
+              <UserUni>User</UserUni>
             </UserDetail>
           </User>
         ))}

@@ -18,6 +18,7 @@ import {
   EditPost,
   Avatar,
   DialogButtonWrapper,
+  IconWrapper,
 } from 'components/University/Feed/Post/styles';
 import LikeIcon from 'Icons/Like';
 import CommentIcon from 'Icons/Comment';
@@ -30,6 +31,7 @@ import EditIcon from 'Icons/Edit';
 import RemoveIcon from 'Icons/Remove';
 import usePostHook from 'components/University/Feed/Post/hook';
 import DefaultAvatar from 'Icons/DefaultAvatar';
+import uuid from 'react-uuid';
 
 const PostComponent = ({ post, setEditPost }) => {
   const {
@@ -45,6 +47,7 @@ const PostComponent = ({ post, setEditPost }) => {
     handleEmojiSend,
     getEmojiBytid,
     handleShowAllReaction,
+    totalEmoji,
   } = usePostHook(post);
   return (
     <Post id={`post-${post.id}`}>
@@ -91,19 +94,26 @@ const PostComponent = ({ post, setEditPost }) => {
         )}
       </PostDesc>
       <PostReactions
-        onClick={post.commentCnt > 0 ? handleShowAllReaction : undefined}
+        onClick={handleShowAllReaction}
       >
+        { totalEmoji(post.emoji) > 0 && (
         <Reaction>
-          <LikeIcon />
-          <LikeIcon />
-          <LikeIcon />
+          {Object.keys(post.emoji).map((key) => (
+            <div key={uuid()}>
+              {post.emoji[key].quantity > 0 && (
+              <IconWrapper color={getEmojiBytid(post.emoji[key].id).color}>
+                {getEmojiBytid(post.emoji[key].id).icon}
+              </IconWrapper>
+              )}
+            </div>
+          ))}
           <ReactionsCount>
             (
-            {Object.keys(post.emoji)
-              .reduce((acc, cur) => acc + post.emoji[cur].quantity, 0)}
+            {totalEmoji(post.emoji)}
             )
           </ReactionsCount>
         </Reaction>
+        )}
       </PostReactions>
       <PostBottom>
         <LikeButtonWrapper>
