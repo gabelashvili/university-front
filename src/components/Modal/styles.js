@@ -11,7 +11,7 @@ z-index: 2;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+background-color: ${({ theme }) => transparentize(0.6, theme.colors.black)};
 `;
 
 export const ModalWrapper = styled.div`

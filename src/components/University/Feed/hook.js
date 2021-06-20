@@ -13,6 +13,7 @@ import {
 const useFeedHook = () => {
   const dispatch = useDispatch();
   const [editPost, setEditPost] = useState(null);
+  const [isModalOpen, setModalOpne] = useState(true);
   const fetchedPosts = useSelector(fetchedPostsSelectors.selectFetchedPosts);
   const getPosts = useSelector(getPostsSelectors.selectGetPosts);
   const { id: uniId } = useParams();
@@ -66,6 +67,8 @@ const useFeedHook = () => {
     fetchedPosts,
     editPost,
     setEditPost,
+    isModalOpen,
+    setModalOpne,
   };
 };
 

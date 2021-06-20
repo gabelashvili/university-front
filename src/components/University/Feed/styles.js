@@ -1,3 +1,4 @@
+import { transparentize } from 'polished';
 import { css } from 'styled-components';
 
 export const containerStyles = css`
@@ -25,4 +26,17 @@ export const containerStylesRight = css`
     border: 1px solid green;
     border-radius: 10px;
     height: max-content;
+`;
+
+export const modalStyles = css`
+   max-width: 650px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
+    & > div {
+        border: none;
+        color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+        & > div > svg  {
+           fill: ${({ theme }) => transparentize(0.1, theme.colors.black)}
+        }
+    }
 `;
