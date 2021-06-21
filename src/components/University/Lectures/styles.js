@@ -119,3 +119,43 @@ export const Li = styled.li`
         color: ${({ theme }) => transparentize(0.3, theme.colors.lightGreen)};
     }
 `;
+
+export const modalStyles = css`
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
+    background-color: ${({ theme }) => theme.colors.white};
+    & > div {
+        color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+        & > div > svg  {
+           fill: ${({ theme }) => transparentize(0.1, theme.colors.black)}
+        }
+    }
+`;
+
+export const AddComment = styled.div`
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+`;
+
+export const Textarea = styled.textarea`
+    width: 100%;
+    &:focus {
+        outline: 0;
+    };
+    resize: none;
+    margin-right: 15px;
+    padding: 8px;
+`;
+
+export const addButtonStyles = css`
+    border: 1px solid ${({ theme }) => theme.colors.lightGreen};
+    color: ${({ theme }) => theme.colors.black};
+    height: max-content;
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+        background-color: ${({ theme }) => transparentize(0.1, theme.colors.lightGreen)};
+        color: ${({ theme }) => theme.colors.white};
+    };
+`;
