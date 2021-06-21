@@ -18,7 +18,6 @@ export const Lectures = styled.div`
 
 export const ButtonWrapper = styled.div`
     transform: scaleY(0) translateY(100%);
-    transition: all 0.1s;
 `;
 
 export const buttonStyles = css`
@@ -43,11 +42,13 @@ export const Lecture = styled.div`
     cursor: pointer;
     position: relative;
     &:hover {
+        transition: 0.5s;
         padding-bottom: 68px;
         margin-bottom: -75px;
         z-index: 1;
         & ${ButtonWrapper} {
             transform: scaleY(1) translateY(100%);
+            transition: all 0.3s;
         }
     }
 `;
