@@ -18,7 +18,7 @@ export const Lectures = styled.div`
 
 export const ButtonWrapper = styled.div`
     transform: scaleY(0) translateY(100%);
-    transition: all 0.3s;
+    transition: all 0.1s;
 `;
 
 export const buttonStyles = css`
@@ -42,7 +42,6 @@ export const Lecture = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     cursor: pointer;
     position: relative;
-    transition: all 0.5s;
     &:hover {
         padding-bottom: 68px;
         margin-bottom: -75px;
