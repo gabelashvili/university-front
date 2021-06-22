@@ -25,6 +25,7 @@ export const buttonStyles = css`
     color: ${({ theme }) => theme.colors.black};
     border-radius: 5px;
     padding: 8px;
+    height: 100%;
     cursor: pointer;
     &:hover {
         background-color: ${({ theme }) => transparentize(0.9, theme.colors.blue)};
@@ -133,7 +134,9 @@ export const modalStyles = css`
 `;
 
 export const AddComment = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-column-gap: 20px;
     margin-top: 20px;
     align-items: center;
 `;
