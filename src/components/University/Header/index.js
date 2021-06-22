@@ -49,7 +49,7 @@ const Header = () => {
             hoverBgColor="white"
             hoverBgColorOpacity={0.8}
             costumStyles={buttonStyle}
-            active={tabName === 'feed'}
+            active={tabName === 'news'}
             handleClick={() => handleClick('news')}
           >
             სიახლეები
