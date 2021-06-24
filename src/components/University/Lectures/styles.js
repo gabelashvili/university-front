@@ -21,14 +21,14 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const buttonStyles = css`
-    border: 1px solid ${({ theme }) => transparentize(0.1, theme.colors.blue)};
+    border: 1px solid ${({ theme }) => transparentize(0.1, theme.colors.green)};
     color: ${({ theme }) => theme.colors.black};
     border-radius: 5px;
     padding: 8px;
     height: 100%;
     cursor: pointer;
     &:hover {
-        background-color: ${({ theme }) => transparentize(0.9, theme.colors.blue)};
+        background-color: ${({ theme }) => transparentize(0.9, theme.colors.green)};
     }
 `;
 
