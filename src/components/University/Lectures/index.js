@@ -17,18 +17,44 @@ import {
   Textarea,
   AddComment,
   addButtonStyles,
+  Comments,
+  Comment,
+  ComAvatar,
+  ComAvatarImg,
+  ComDetails,
+  ComAuthor,
+  ComText,
+  EditCom,
+  ComAuthorWrapper,
+  Emoji,
+  EmojiWrapper,
+  ButtonsWrapper,
 } from 'components/University/Lectures/styles';
 import Container from 'components/Container';
 import Raiting from 'components/Raiting';
 import Button from 'components/Button';
 import Modal from 'components/Modal';
 import useLecturesHook from 'components/University/Lectures/hook';
+import DefaultAvatar from 'Icons/DefaultAvatar';
+import EditIcon from 'Icons/Edit';
+import RemoveIcon from 'Icons/Remove';
+import EmojiIcon from 'Icons/Emoji';
+import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 
 const LecturesComponent = () => {
   const {
     isModalOpen,
     handleLectureClick,
     setModalOpen,
+    toggleEmoji,
+    showEmoji,
+    emojiRef,
+    handleClickOutsideEmoji,
+    comment,
+    handleCommentChange,
+    handleCursorPosition,
+    textareaRef,
+    onEmojiClick,
   } = useLecturesHook();
   return (
     <>
@@ -40,9 +66,55 @@ const LecturesComponent = () => {
         onClose={() => setModalOpen(false)}
       >
         <AddComment>
-          <Textarea rows={2} />
-          <Button costumStyles={addButtonStyles}>დამატება</Button>
+          <Textarea
+            rows={2}
+            value={comment}
+            onChange={(e) => handleCommentChange(e)}
+            onKeyUp={(e) => handleCursorPosition(e)}
+            onClick={(e) => handleCursorPosition(e)}
+            ref={textareaRef}
+          />
+          <ButtonsWrapper>
+            <Emoji ref={emojiRef}>
+              <EmojiIcon onClick={toggleEmoji} />
+              {showEmoji && (
+              <EmojiWrapper onClick={handleClickOutsideEmoji}>
+                <Picker
+                  onEmojiClick={onEmojiClick}
+                  disableAutoFocus
+                  skinTone={SKIN_TONE_MEDIUM_DARK}
+                  groupNames={{ smileys_people: 'PEOPLE' }}
+                  native
+                />
+              </EmojiWrapper>
+              )}
+            </Emoji>
+            <Button costumStyles={addButtonStyles}>დამატება</Button>
+          </ButtonsWrapper>
         </AddComment>
+        <Comments>
+          {new Array(20).fill().map(() => (
+            <Comment>
+              <ComAvatar>
+                {false ? <ComAvatarImg src="" /> : <DefaultAvatar />}
+              </ComAvatar>
+              <ComDetails>
+                <ComAuthorWrapper>
+                  <ComAuthor>Lasha Gabelashvili</ComAuthor>
+                  <EditCom>
+                    <EditIcon handleClick={() => console.log('Edit')} />
+                    <RemoveIcon handleClick={() => console.log('Remove')} />
+                  </EditCom>
+                </ComAuthorWrapper>
+                <ComText>
+                  qwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwqqwdqwqwdqwdqwdqwdqwdqwdqwqwqqwd
+                  wdqwqwdqwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwdqwdqw
+                  qwdqwd
+                </ComText>
+              </ComDetails>
+            </Comment>
+          ))}
+        </Comments>
       </Modal>
       <Container costumStyles={containerStyles}>
         <Filters>

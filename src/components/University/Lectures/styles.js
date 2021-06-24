@@ -125,6 +125,9 @@ export const modalStyles = css`
     border-radius: 10px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
     background-color: ${({ theme }) => theme.colors.white};
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
     & > div {
         color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
         & > div > svg  {
@@ -134,11 +137,11 @@ export const modalStyles = css`
 `;
 
 export const AddComment = styled.div`
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-    grid-column-gap: 20px;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.colors.black)};
+    padding: 20px 0;
 `;
 
 export const Textarea = styled.textarea`
@@ -146,8 +149,7 @@ export const Textarea = styled.textarea`
     &:focus {
         outline: 0;
     };
-    resize: none;
-    margin-right: 15px;
+    resize: vertical;
     padding: 8px;
 `;
 
@@ -156,9 +158,122 @@ export const addButtonStyles = css`
     color: ${({ theme }) => theme.colors.black};
     height: max-content;
     padding: 8px;
+    font-size: 13px;
     cursor: pointer;
+    color: ${({ theme }) => theme.colors.white};
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: ${({ theme }) => transparentize(0.2, theme.colors.lightGreen)};
     &:hover {
-        background-color: ${({ theme }) => transparentize(0.1, theme.colors.lightGreen)};
-        color: ${({ theme }) => theme.colors.white};
+        background-color: ${({ theme }) => transparentize(0.05, theme.colors.lightGreen)};
     };
+`;
+
+export const Comments = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    max-height: 100%;
+    overflow: auto;
+    
+&::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar
+    {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: ${({ theme }) => transparentize(0.2, theme.colors.lightGrey)};
+        border: 2px solid ${({ theme }) => transparentize(0.2, theme.colors.lightGrey)};
+    }
+
+`;
+
+export const Comment = styled.div`
+    display: flex;
+    margin-top: 15px;
+`;
+
+export const ComAvatar = styled.div`
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    & > img,svg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+`;
+
+export const ComAvatarImg = styled.img``;
+
+export const ComDetails = styled.div`
+    margin-left: 10px;
+    border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.colors.black)};
+    padding-bottom: 10px;
+`;
+
+export const ComAuthor = styled.p`
+    font-weight: 700;
+`;
+
+export const ComAuthorWrapper = styled.div`
+    display: flex;
+    padding-right: 20px;
+`;
+
+export const ComText = styled.p`
+    word-break: break-word;
+    font-size: 14px;
+`;
+
+export const EditCom = styled.div`
+    align-self: flex-start;
+    margin-left: auto;
+    & svg {
+        width: 15px;
+        height: 15px;
+        fill: ${({ theme }) => theme.colors.lightGrey};
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all 0.3s;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color:  ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
+        }
+    }
+`;
+
+export const Emoji = styled.div`
+    position: relative;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+      & svg {
+        width: 20px;
+        height: 20px;
+    }
+`;
+
+export const EmojiWrapper = styled.div`
+    position: absolute;
+    transform: translate(-50%, 10%);
+`;
+
+export const ButtonsWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
 `;
