@@ -95,7 +95,7 @@ export const modalStyles = css`
     display: flex;
     flex-direction: column;
     max-height: 70vh;
-    & > div {
+    & > div:first-child {
         color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
         margin-bottom: 30px;
         & > div > svg  {
