@@ -62,7 +62,9 @@ export const SectionTitle = styled.h1`
     }
 `;
 
-export const Ul = styled.ul``;
+export const Ul = styled.ul`
+    padding-left: 20px;
+`;
 
 export const Li = styled.li`
     list-style: none;
@@ -70,6 +72,7 @@ export const Li = styled.li`
     font-size: 16px;
     position: relative;
     margin-bottom: 10px;
+    cursor: pointer;
     &::after {
         position: absolute;
         content: ' ';
@@ -82,5 +85,21 @@ export const Li = styled.li`
         top: 0;
         left: 0;
         transform: translate(-200% , 70%);
+    }
+`;
+
+export const modalStyles = css`
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 12px 18px 1px rgb(0 0 0 / 20%);
+    background-color: ${({ theme }) => theme.colors.white};
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+    & > div {
+        color: ${({ theme }) => transparentize(0.1, theme.colors.black)};
+        margin-bottom: 30px;
+        & > div > svg  {
+           fill: ${({ theme }) => transparentize(0.1, theme.colors.black)}
+        }
     }
 `;
