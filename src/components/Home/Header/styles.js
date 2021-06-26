@@ -25,6 +25,18 @@ export const Filters = styled.div`
   z-index: 1;
   max-width: ${({ theme }) => theme.settings.containerMaxWidth};
   margin: auto;
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding: 130px 0;
+  }
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding: 90px 0;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 70px 0;
+  }
+  @media ${({ theme }) => theme.device.mobileL} {
+    padding: 50px 0;
+  }
 `;
 
 export const Title = styled.h1`
@@ -32,6 +44,22 @@ export const Title = styled.h1`
     color: ${({ theme }) => theme.colors.white};
     margin-bottom: 30px;
     letter-spacing: 1px;
+    @media ${({ theme }) => theme.device.laptopL} {
+      font-size: 32px;
+      margin-bottom: 26px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    @media ${({ theme }) => theme.device.mobileL} {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
 `;
 
 export const FiltersWrapper = styled.div`
@@ -39,12 +67,62 @@ export const FiltersWrapper = styled.div`
     grid-template-columns: 5fr 5fr 1fr;
     grid-column-gap: 30px;
     height: 60px;
+    @media ${({ theme }) => theme.device.laptopL} {
+      grid-column-gap: 26px;
+      height: 50px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+      grid-column-gap: 24px;
+      height: 40px;
+      & > div > div > input {
+        font-size: 12px;
+      }
+      & > div > div > div > svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+      grid-column-gap: 18px;
+      height: 30px;
+      & > div > div > div > svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    @media ${({ theme }) => theme.device.mobileL} {
+      grid-column-gap: 15px;
+      height: 20px;
+      grid-template-columns: 1fr;
+      height: max-content;
+      grid-row-gap: 15px;
+      & > div > div > input {
+        font-size: 11px;
+        height: 35px;
+      }
+      & > div > div > div > svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
 `;
 
 export const IconWrapper = styled.div`
   & svg {
     width: 24px;
     display: flex;
-    fill: ${({ theme }) => theme.colors.darkWhite}
+    fill: ${({ theme }) => theme.colors.darkWhite};
+    @media ${({ theme }) => theme.device.laptopL} {
+      width: 22px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+      width: 20px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+      width: 18px;
+    }
+    @media ${({ theme }) => theme.device.mobileL} {
+      width: 16px;
+    }
   }
 `;

@@ -10,6 +10,7 @@ import UniversityIcon from 'Icons/University';
 import LocationIcon from 'Icons/Location';
 import SearchIcon from 'Icons/Search';
 import { actions as getFilteredUniListActions } from 'modules/University/GetFilteredUniList';
+import Container from 'components/Container';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -34,33 +35,37 @@ const Header = () => {
   return (
     <Div>
       <Filters>
-        <Title>იპოვე შენი უნივერსიტეტი</Title>
-        <FiltersWrapper>
-          <Input
-            value={search.university}
-            type="text"
-            placeholder="უნივერსიტეტი"
-            Icon={UniversityIcon}
-            onChange={(e) => setSearch({ ...search, university: e.target.value })}
-          />
-          <Input
-            value={search.location}
-            type="text"
-            placeholder="მდებარეობა"
-            Icon={LocationIcon}
-            onChange={(e) => setSearch({ ...search, location: e.target.value })}
-          />
-          <Button
-            bgColor="lightGreen"
-            cursorType="pointer"
-            hoverBgColor="green"
-            borderRadius="5px"
-          >
-            <IconWrapper>
-              <SearchIcon />
-            </IconWrapper>
-          </Button>
-        </FiltersWrapper>
+        <Container>
+
+          <Title>იპოვე შენი უნივერსიტეტი</Title>
+          <FiltersWrapper>
+            <Input
+              value={search.university}
+              type="text"
+              placeholder="უნივერსიტეტი"
+              Icon={UniversityIcon}
+              onChange={(e) => setSearch({ ...search, university: e.target.value })}
+            />
+            <Input
+              value={search.location}
+              type="text"
+              placeholder="მდებარეობა"
+              Icon={LocationIcon}
+              onChange={(e) => setSearch({ ...search, location: e.target.value })}
+            />
+            <Button
+              bgColor="lightGreen"
+              cursorType="pointer"
+              hoverBgColor="green"
+              borderRadius="5px"
+              type="button"
+            >
+              <IconWrapper>
+                <SearchIcon />
+              </IconWrapper>
+            </Button>
+          </FiltersWrapper>
+        </Container>
       </Filters>
     </Div>
   );
