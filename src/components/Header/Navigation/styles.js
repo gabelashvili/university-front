@@ -35,17 +35,14 @@ export const navContainer = css`
 export const Logo = styled.h1`
   color: black;
   margin-right: 25px;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  & > div {
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 10px;
-  }
+  justify-content: flex-end;
+  gap: 10px;
   & a {
     text-decoration: none;
   }
@@ -56,15 +53,4 @@ export const Icon = styled.div`
     width: 15px;
     fill: ${({ theme }) => theme.colors.black};
   }
-`;
-
-export const menuButtonStyle = css`
-    cursor: pointer;
-    padding: 10px 14px 10px 14px;
-    border-radius: 3px;
-    color: black;
-    font-weight: 700;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.lightGreen};
-    }
 `;
