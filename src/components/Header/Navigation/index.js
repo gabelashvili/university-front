@@ -1,7 +1,7 @@
 import { selectors as navScrollSelector } from 'modules/NavScroll';
 import { useSelector } from 'react-redux';
 import {
-  Nav, navContainer, Logo, Wrapper, Icon, NavWrapper,
+  Nav, navContainer, Logo, Wrapper, Icon, NavWrapper, buttonStyles,
 } from 'components/Header/Navigation/styles';
 import Button from 'components/Button';
 import { propTypes } from 'components/Header/Navigation/types';
@@ -30,11 +30,9 @@ export const Navigation = ({ navigationRef }) => {
                   fontWeight={600}
                   hoverBgColor="lightGreen"
                   cursorType="pointer"
-                  borderRadius="3px"
-                  spaceBetween="10px"
-                  padding="10px 14px"
                   textColor="black"
                   hoverTextColor={isScrolled && 'white'}
+                  costumStyles={buttonStyles}
                 >
                   <Icon isScrolled={isScrolled}>
                     <UserIcon />
@@ -49,12 +47,10 @@ export const Navigation = ({ navigationRef }) => {
                 fontWeight={600}
                 hoverBgColor="lightGreen"
                 cursorType="pointer"
-                borderRadius="3px"
-                spaceBetween="10px"
-                padding="10px 14px"
                 textColor="black"
                 hoverTextColor={isScrolled && 'white'}
                 as="link"
+                costumStyles={buttonStyles}
               >
                 <Icon isScrolled={isScrolled}>
                   <UserIcon />
@@ -67,14 +63,11 @@ export const Navigation = ({ navigationRef }) => {
                 bgColor="darkWhite"
                 fontWeight={600}
                 hoverBgColor="lightGreen"
-                cursorType="pointer"
-                borderRadius="3px"
-                spaceBetween="10px"
-                padding="10px 14px"
                 textColor="black"
                 hoverTextColor={isScrolled && 'white'}
                 as="link"
                 handleClick={logoutUser}
+                costumStyles={buttonStyles}
               >
                 <Icon isScrolled={isScrolled}>
                   <LogoutIcon />
