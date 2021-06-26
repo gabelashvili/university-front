@@ -12,7 +12,51 @@ import {
 } from 'components/University/Details/styles';
 import Container from 'components/Container';
 import Modal from 'components/Modal';
-import Chart from 'react-google-charts';
+
+import { Bar } from 'react-chartjs-2';
+
+const data = {
+  labels: ['2011', '2012', '2013', '2014', '2015', '2016'],
+  datasets: [
+    {
+      label: '100% გრანტი',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: 'rgb(255, 99, 132)',
+    },
+    {
+      label: '70% გრანტი',
+      data: [2, 3, 20, 5, 1, 4],
+      backgroundColor: 'rgb(54, 162, 235)',
+    },
+    {
+      label: '50% გრანტი',
+      data: [3, 10, 13, 15, 22, 30],
+      backgroundColor: 'rgb(3, 252, 211)',
+    },
+    {
+      label: 'უგრანტო',
+      data: [3, 10, 13, 15, 22, 30],
+      backgroundColor: 'rgb(185, 227, 93)',
+    },
+    {
+      label: 'შეუვსებელი ადგილები',
+      data: [3, 10, 13, 15, 22, 30],
+      backgroundColor: 'rgb(75, 192, 192)',
+    },
+  ],
+};
+
+const options = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+};
 
 const Details = () => {
   const [openSection, setOpenSection] = useState(1);
@@ -34,27 +78,7 @@ const Details = () => {
         showClose
         onClose={() => setModalOpen(false)}
       >
-        <Chart
-          chartType="Bar"
-          loader={<div>Loading Statistics</div>}
-          data={[
-            ['Year', '100% გრანტი', '70% გრანტი', '50% გრანტი', 'უგრანტო'],
-            ['2014', 1000, 400, 600, 2],
-            ['2015', 888, 400, 600, 20],
-            ['2014', 1000, 400, 600, 2],
-            ['2015', 888, 400, 600, 20],
-            ['2014', 1000, 400, 600, 2],
-            ['2015', 888, 400, 600, 1800],
-          ]}
-          options={{
-            // Material design options
-            chart: {
-              subtitle: '',
-            },
-          }}
-     // For tests
-          rootProps={{ 'data-testid': '2' }}
-        />
+        <Bar data={data} options={options} />
       </Modal>
       <Container costumStyles={containerStyles}>
         <SectionList>
