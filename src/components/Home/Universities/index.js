@@ -10,6 +10,8 @@ import {
   ButtonStyle,
   Img,
   DetailsWrapper,
+  RaitingWrapper,
+  ButtonText,
 } from 'components/Home/Universities/styles';
 import Container from 'components/Container';
 import useUnisHook from 'components/Home/Universities/hook';
@@ -31,13 +33,15 @@ const Universities = () => {
                 <Title>{uni.name}</Title>
               </DetailsWrapper>
             </Details>
-            <Raiting raiting={uni.rate} />
+            <RaitingWrapper>
+              <Raiting raiting={uni.rate} />
+            </RaitingWrapper>
             <Location>
               <LocationIcon />
               {uni.location}
             </Location>
             <Button costumStyles={ButtonStyle} type="button" handleClick={() => handleNavigate(uni.id)}>
-              გადასვლა
+              <ButtonText>გადასვლა</ButtonText>
               <ArrowIcon />
             </Button>
           </Card>

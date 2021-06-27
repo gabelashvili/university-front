@@ -29,7 +29,6 @@ export const Nav = styled.nav`
       height: 40px;
     }
     @media ${({ theme }) => theme.device.mobileL} {
-      height: 35px;
     }
 `;
 
