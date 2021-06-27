@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const rotate360 = keyframes`
   from {
@@ -45,4 +45,12 @@ export const Loader = styled.div`
   height: 60px;
   border-radius: 50%;
   margin-top: 20px;
+`;
+
+export const buttonStyles = css`
+  padding:  10px 20px;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 1px;
 `;

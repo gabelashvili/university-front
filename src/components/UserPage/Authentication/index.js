@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Div, ButtonWrapper, ModalWrapper, Loader,
+  Div, ButtonWrapper, ModalWrapper, Loader, buttonStyles,
 } from 'components/UserPage/Authentication/styles';
 import Button from 'components/Button';
 import {
@@ -89,12 +89,8 @@ const Authentication = () => {
         <Button
           bgColor={type === 'login' ? 'lightGreen' : 'darkWhite'}
           textColor={type === 'login' ? 'white' : 'black'}
-          padding="10px 20px"
-          borderRadius="3px"
-          fontWeight={600}
+          costumStyles={buttonStyles}
           type="button"
-          cursorType="pointer"
-          marginRight="1px"
           handleClick={() => handleClick('login')}
         >
           ავტორიზაცია
@@ -102,12 +98,8 @@ const Authentication = () => {
         <Button
           bgColor={type === 'register' ? 'lightGreen' : 'darkWhite'}
           textColor={type === 'register' ? 'white' : 'black'}
-          padding="10px 20px"
-          borderRadius="3px"
-          fontWeight={600}
-          marginRight="1px"
+          costumStyles={buttonStyles}
           type="button"
-          cursorType="pointer"
           handleClick={() => handleClick('register')}
         >
           რეგისტრაცია
