@@ -2,7 +2,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  Div, Filters, Title, FiltersWrapper, IconWrapper,
+  Div,
+  Filters,
+  Title,
+  FiltersWrapper,
+  IconWrapper,
+  buttonStyles,
+  ButtonText,
 } from 'components/Home/Header/styles';
 import Input from 'components/Inputs/TextInput';
 import Button from 'components/Button';
@@ -59,10 +65,12 @@ const Header = () => {
               hoverBgColor="green"
               borderRadius="5px"
               type="button"
+              costumStyles={buttonStyles}
             >
               <IconWrapper>
                 <SearchIcon />
               </IconWrapper>
+              <ButtonText>ძებნა</ButtonText>
             </Button>
           </FiltersWrapper>
         </Container>

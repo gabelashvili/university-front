@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import mainBanner from 'assets/mainBanner.jpg';
 
 export const Div = styled.div`
@@ -57,8 +57,8 @@ export const Title = styled.h1`
       margin-bottom: 20px;
     }
     @media ${({ theme }) => theme.device.mobileL} {
-      font-size: 18px;
-      margin-bottom: 16px;
+      font-size: 15px;
+      margin-bottom: 14px;
     }
 `;
 
@@ -123,6 +123,23 @@ export const IconWrapper = styled.div`
     }
     @media ${({ theme }) => theme.device.mobileL} {
       width: 16px;
+    }
+  }
+`;
+
+export const ButtonText = styled.p`
+  display: none;
+`;
+
+export const buttonStyles = css`
+  padding: 10px;
+  @media ${({ theme }) => theme.device.mobileL} {
+    padding: 8px;
+    & > ${ButtonText} {
+      display: block;
+    }
+    & > ${IconWrapper} {
+      display: none;
     }
   }
 `;
