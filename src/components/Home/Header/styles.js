@@ -137,6 +137,7 @@ export const buttonStyles = css`
     padding: 8px;
     & > ${ButtonText} {
       display: block;
+      font-size: 13px;
     }
     & > ${IconWrapper} {
       display: none;

@@ -99,6 +99,11 @@ export const Title = styled.h1`
   }
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 21vw;
+    height: 1.2em;
+    white-space: nowrap;
   }
   @media ${({ theme }) => theme.device.mobileL} {
     font-size: 12px;
@@ -178,8 +183,10 @@ export const ButtonStyle = css`
   @media ${({ theme }) => theme.device.tablet} {
     padding: 4px 12px;
   }
+  @media (max-width: 650px) {
+    padding: 3px 5px;
+  }  
   @media ${({ theme }) => theme.device.mobileL} {
-    padding: 3px 10px;
     font-size: 12px;
   }  
 `;
