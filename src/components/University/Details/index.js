@@ -112,7 +112,7 @@ const Details = () => {
             >
               ფაკულტეტები
             </SectionTitle>
-            <SectionDesc>
+            <SectionDesc as="div">
               <Ul>
                 <Li onClick={() => setModalOpen(true)}>
                   ბიზნეს ადმინისტრირება
