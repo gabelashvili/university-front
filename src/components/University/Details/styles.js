@@ -13,6 +13,7 @@ export const containerStyles = css`
 export const SectionList = styled.div`
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
 `;
 
 export const RightSide = styled.div`

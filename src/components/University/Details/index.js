@@ -104,7 +104,6 @@ const Details = () => {
               Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.
             </SectionDesc>
           </Section>
-
           <Section isOpen={openSection === 2}>
             <SectionTitle
               onClick={() => setOpen(2)}
