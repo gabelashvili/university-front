@@ -16,9 +16,19 @@ export const Div = styled.div`
     margin-top: 40px;
 `;
 
+export const containerStyles = css`
+  margin: auto;
+`;
+
 export const ButtonWrapper = styled.div`
     display: flex;
     margin-bottom: 30px;
+    @media ${({ theme }) => theme.device.laptopL} {
+      margin-bottom: 25px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+      margin-bottom: 20px;
+    }
 `;
 
 export const ModalWrapper = styled.div`
@@ -53,4 +63,18 @@ export const buttonStyles = css`
   font-weight: 600;
   cursor: pointer;
   margin-right: 1px;
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding:  8px 16px;
+    font-size: 15px;
+  }
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding:  7px 14px;
+    font-size: 14px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    padding:  7px 12px;
+    font-size: 13px;
+  }
+  @media ${({ theme }) => theme.device.mobileL} {
+  }  
 `;

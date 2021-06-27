@@ -15,7 +15,6 @@ const TextInput = React.forwardRef((props, ref) => {
       && (
       <InputLabel>
         {label}
-        {' '}
         :
       </InputLabel>
       )}

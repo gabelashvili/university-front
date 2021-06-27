@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Div, ButtonWrapper, ModalWrapper, Loader, buttonStyles,
+  Div, ButtonWrapper, ModalWrapper, Loader, buttonStyles, containerStyles,
 } from 'components/UserPage/Authentication/styles';
 import Button from 'components/Button';
 import {
@@ -23,6 +23,7 @@ import {
 } from 'modules/Authentication/AuthedUser';
 import ForgotPassword from 'components/UserPage/Authentication/ForgotPassword';
 import ResetPassword from 'components/UserPage/Authentication/ResetPassword';
+import Container from 'components/Container';
 
 const Authentication = () => {
   const history = useHistory();
@@ -56,60 +57,63 @@ const Authentication = () => {
     }
   }, [activationDetails]);
   return (
-    <Div>
-      <Modal
-        title="ანგარიშის აქტივაცია"
-        showClose={!activationDetails.statuses.isPending}
-        closeOnAwayClick={!activationDetails.statuses.isPending}
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-      >
-        <ModalWrapper>
-          {activationDetails.statuses.isPending && (
+    <Container costumStyles={containerStyles}>
+      <Div>
+        <Modal
+          title="ანგარიშის აქტივაცია"
+          showClose={!activationDetails.statuses.isPending}
+          closeOnAwayClick={!activationDetails.statuses.isPending}
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+        >
+          <ModalWrapper>
+            {activationDetails.statuses.isPending && (
             <>
               ანგარიში აქტიურდბეა, გთხოვ დაელოდოთ ....
               <Loader />
             </>
-          )}
-          {activationDetails.statuses.isSucceed && (
+            )}
+            {activationDetails.statuses.isSucceed && (
             <>
               ანგარიში წარმატებით გააქტიურდა
               <SuccessIcon />
             </>
-          )}
-          {activationDetails.statuses.isFailed && (
+            )}
+            {activationDetails.statuses.isFailed && (
             <>
               ანგარიში არ გააქტიურდა
               <ErrorIcon />
             </>
-          )}
-        </ModalWrapper>
-      </Modal>
-      <ButtonWrapper>
-        <Button
-          bgColor={type === 'login' ? 'lightGreen' : 'darkWhite'}
-          textColor={type === 'login' ? 'white' : 'black'}
-          costumStyles={buttonStyles}
-          type="button"
-          handleClick={() => handleClick('login')}
-        >
-          ავტორიზაცია
-        </Button>
-        <Button
-          bgColor={type === 'register' ? 'lightGreen' : 'darkWhite'}
-          textColor={type === 'register' ? 'white' : 'black'}
-          costumStyles={buttonStyles}
-          type="button"
-          handleClick={() => handleClick('register')}
-        >
-          რეგისტრაცია
-        </Button>
-      </ButtonWrapper>
-      {type === 'login' && <LoginFrom />}
-      {type === 'register' && <RegisterForm />}
-      {type === 'forgot-password' && <ForgotPassword />}
-      {type === 'reset-password' && <ResetPassword />}
-    </Div>
+            )}
+          </ModalWrapper>
+        </Modal>
+        <ButtonWrapper>
+          <Button
+            bgColor={type === 'login' ? 'lightGreen' : 'darkWhite'}
+            textColor={type === 'login' ? 'white' : 'black'}
+            costumStyles={buttonStyles}
+            type="button"
+            handleClick={() => handleClick('login')}
+          >
+            ავტორიზაცია
+          </Button>
+          <Button
+            bgColor={type === 'register' ? 'lightGreen' : 'darkWhite'}
+            textColor={type === 'register' ? 'white' : 'black'}
+            costumStyles={buttonStyles}
+            type="button"
+            handleClick={() => handleClick('register')}
+          >
+            რეგისტრაცია
+          </Button>
+        </ButtonWrapper>
+        {type === 'login' && <LoginFrom />}
+        {type === 'register' && <RegisterForm />}
+        {type === 'forgot-password' && <ForgotPassword />}
+        {type === 'reset-password' && <ResetPassword />}
+      </Div>
+    </Container>
+
   );
 };
 
