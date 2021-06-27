@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react';
 import { TextInput, CheckBox } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
-import { Form, Recover, Wrapper } from 'components/UserPage/Authentication/Login/styles';
+import {
+  Form, Recover, Wrapper, buttonStyles,
+} from 'components/UserPage/Authentication/Login/styles';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
@@ -77,13 +79,9 @@ const Login = () => {
       <Button
         bgColor="lightGreen"
         textColor="white"
-        padding="10px 20px"
-        borderRadius="3px"
-        fontWeight={600}
-        type="button"
-        cursorType="pointer"
-        marginRight="1px"
         hoverBgColor="black"
+        type="button"
+        costumStyles={buttonStyles}
         handleClick={handleSubmit(onSubmit, onErrorSubmit)}
       >
         ავტორიზაცია

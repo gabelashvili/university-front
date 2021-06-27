@@ -8,7 +8,7 @@ export const Div = styled.div`
   @media ${({ theme }) => theme.device.laptopL} {
     margin: 45px 0;
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     margin: 40px 0;
   }
   @media ${({ theme }) => theme.device.tablet} {
@@ -41,7 +41,7 @@ export const Card = styled.div`
     @media ${({ theme }) => theme.device.laptopL} {
       padding: 18px;
     }
-    @media ${({ theme }) => theme.device.laptopL} {
+    @media ${({ theme }) => theme.device.laptop} {
       padding: 14px;
     }
     @media ${({ theme }) => theme.device.tablet} {
@@ -74,7 +74,7 @@ export const Img = styled.img`
     width: 40px;
     height: 40px;
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     width: 30px;
     height: 30px;
   }
@@ -94,7 +94,7 @@ export const Title = styled.h1`
   @media ${({ theme }) => theme.device.laptopL} {
     font-size: 17px;
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     font-size: 15px;
   }
   @media ${({ theme }) => theme.device.tablet} {
@@ -126,7 +126,7 @@ export const Location = styled.div`
       fill: ${({ theme }) => theme.colors.lightGrey};
     }; 
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     font-size: 14px;
     & > svg {
       width: 16px;
@@ -176,7 +176,7 @@ export const ButtonStyle = css`
     padding: 5px 20px;
     font-size: 14px;
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     padding: 5px 16px;
     font-size: 13px;
   }
@@ -195,7 +195,7 @@ export const RaitingWrapper = styled.div`
   @media ${({ theme }) => theme.device.laptopL} {
     transform: scale(0.95);
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     transform: scale(0.85);
   }
   @media ${({ theme }) => theme.device.tablet} {

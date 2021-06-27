@@ -67,7 +67,7 @@ export const buttonStyles = css`
     padding:  8px 16px;
     font-size: 15px;
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.laptop} {
     padding:  7px 14px;
     font-size: 14px;
   }

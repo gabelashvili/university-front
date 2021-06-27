@@ -14,7 +14,7 @@ export const Div = styled.div`
     @media ${({ theme }) => theme.device.laptopL} {
         padding: 36px 0;
     }
-    @media ${({ theme }) => theme.device.laptopL} {
+    @media ${({ theme }) => theme.device.laptop} {
         padding: 32px 0;
     }
     @media ${({ theme }) => theme.device.tablet} {
@@ -34,7 +34,7 @@ export const Title = styled.h1`
         font-size: 26px;
         margin-bottom: 8px;
     }
-    @media ${({ theme }) => theme.device.laptopL} {
+    @media ${({ theme }) => theme.device.laptop} {
         font-size: 22px;
         margin-bottom: 7px;
     }
@@ -51,7 +51,7 @@ export const BreadCrumb = styled.div`
     @media ${({ theme }) => theme.device.laptopL} {
         font-size: 16px;
     }
-    @media ${({ theme }) => theme.device.laptopL} {
+    @media ${({ theme }) => theme.device.laptop} {
         font-size: 15px;
     }
     @media ${({ theme }) => theme.device.tablet} {
