@@ -5,8 +5,10 @@ export const Div = styled.div`
     display: flex;
     width: 100%;
     gap: 20px;
-    margin-top: 50px;
-    padding-bottom: 30px;
+    margin: 50px 0;
+    @media ${({ theme }) => theme.device.tablet} {
+        flex-direction: column;
+    }
 `;
 
 export const Box = styled.div`
@@ -30,10 +32,31 @@ export const Title = styled.h3`
     border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.colors.lightGrey)};
     border-radius: 4px 4px 0 0;
     background-color: ${({ theme }) => transparentize(0.95, theme.colors.black)};
+    @media ${({ theme }) => theme.device.laptopL} {
+        padding: 13px 26px;
+        font-size: 15px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        padding: 11px 20px;
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        padding: 9px 17px;
+        font-size: 13px;
+    }
 `;
 
 export const Content = styled.div`
     padding: 30px;
+    @media ${({ theme }) => theme.device.laptopL} {
+        padding: 26px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        padding: 20px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        padding: 17px;
+    }
 `;
 
 export const ProfilePhoto = styled.div`
@@ -41,6 +64,19 @@ export const ProfilePhoto = styled.div`
     height: 250px;
     position: relative;
     margin-bottom: 30px;
+    @media ${({ theme }) => theme.device.laptopL} {
+        width: 230px;
+        height: 230px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        width: 190px;
+        height: 190px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        width: 160px;
+        height: 160px;
+        margin: auto;
+    }
 `;
 
 export const Img = styled.img`
@@ -71,6 +107,14 @@ export const uploadButton = css`
     &:hover{
         background-color: ${({ theme }) => transparentize(0.2, theme.colors.lightGreen)};
     }
+    @media ${({ theme }) => theme.device.laptopL} {
+        padding: 10px 18px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        padding: 8px 16px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+    }
 `;
 
 export const UploadInput = styled.input`
@@ -96,6 +140,12 @@ export const Label = styled.p`
         width: 12px;
         height: 12px;
         margin-right: 5px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 13px;
     }
 `;
 
@@ -125,6 +175,16 @@ export const Input = styled.input`
     &:focus {
         outline: none;
     }
+    @media ${({ theme }) => theme.device.laptopL} {
+        padding: 12px 16px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        padding: 11px 15px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 `;
 
 export const saveButton = css`
@@ -138,8 +198,20 @@ export const saveButton = css`
     margin-left: auto;
     &:hover{
         background-color: ${({ theme }) => theme.colors.black};
-    }
+    };
     &:disabled {
         cursor: not-allowed;
+    };
+    @media ${({ theme }) => theme.device.laptopL} {
+        padding: 11px 13px;
+        font-size: 15px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        padding: 9px 11px;
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        padding: 9px 11px;
+        font-size: 13px;
     }
 `;
