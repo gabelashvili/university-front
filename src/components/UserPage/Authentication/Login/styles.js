@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
 export const Recover = styled.p`
     font-weight: 500;
     cursor: pointer;
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 16px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 14px;
+    }
 `;
 
 export const buttonStyles = css`

@@ -34,9 +34,31 @@ const Input = styled.input`
         `)};
         transition: all 0.1s;
         background: ${({ theme }) => theme.colors.lightGreen};
+    };
+    @media ${({ theme }) => theme.device.laptopL} {
+        width: 18px;
+        height: 18px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        width: 16px;
+        height: 16px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        width: 14px;
+        height: 14px;
     }
 `;
-const Label = styled.p``;
+const Label = styled.p`
+    @media ${({ theme }) => theme.device.laptopL} {
+      font-size: 16px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        font-size: 13px;
+    }
+`;
 
 const CheckBox = forwardRef((props, ref) => {
   const {

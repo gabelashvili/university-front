@@ -3,7 +3,7 @@ import { TextInput } from 'components/Inputs/';
 import EmailIcon from 'Icons/Email';
 import PasswordIcon from 'Icons/Password';
 import UserIconLight from 'Icons/UserIconLight';
-import { Form } from 'components/UserPage/Authentication/Login/styles';
+import { Form, buttonStyles } from 'components/UserPage/Authentication/Register/styles';
 import Button from 'components/Button';
 import { actions as registerActions, selectors as registrationSelectors } from 'modules/Authentication/Register';
 import { useDispatch, useSelector } from 'react-redux';
@@ -88,13 +88,9 @@ const Register = () => {
       <Button
         bgColor="lightGreen"
         textColor="white"
-        padding="10px 20px"
-        borderRadius="3px"
-        fontWeight={600}
-        cursorType="pointer"
-        marginRight="1px"
         hoverBgColor="black"
         type="button"
+        costumStyles={buttonStyles}
         handleClick={handleSubmit(onSubmit, onSubmitError)}
       >
         რეგისტრაცია
