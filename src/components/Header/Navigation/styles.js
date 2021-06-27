@@ -14,7 +14,7 @@ export const Nav = styled.nav`
     width: 100%;
     height: 70px;
     background-color: ${({ theme }) => theme.colors.white};
-    position: ${({ isScrolled }) => (isScrolled ? 'fixed' : 'relative')};
+    position: ${({ isScrolled }) => (isScrolled ? 'fixed' : 'fixed')};
     animation: ${({ isScrolled }) => (isScrolled === true ? css`${navigationAnimation} 0.5s` : '')};
     border-bottom: 1px solid #e0e0e0;
     z-index: 3;

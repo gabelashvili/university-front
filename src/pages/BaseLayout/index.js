@@ -14,6 +14,19 @@ const IconWrapper = styled.div`
   }
 `;
 
+const Div = styled.div`
+  padding-top: 70px;
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding-top: 60px;
+  }
+  @media ${({ theme }) => theme.device.laptopL} {
+    padding-top: 50px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    padding-top: 40px;
+  }
+`;
+
 const baseLayout = ({ children }) => {
   const notistackRef = createRef(); // or React.createRef
   const onClickDismiss = (key) => () => {
@@ -37,7 +50,9 @@ const baseLayout = ({ children }) => {
       autoHideDuration={2000}
     >
       <Header />
-      {children}
+      <Div>
+        {children}
+      </Div>
     </SnackbarProvider>
   );
 };

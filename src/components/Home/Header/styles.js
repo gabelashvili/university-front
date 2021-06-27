@@ -32,10 +32,10 @@ export const Filters = styled.div`
     padding: 90px 0;
   }
   @media ${({ theme }) => theme.device.tablet} {
-    padding: 70px 0;
+    padding: 50px 0;
   }
   @media ${({ theme }) => theme.device.mobileL} {
-    padding: 50px 0;
+    padding: 20px 0;
   }
 `;
 
