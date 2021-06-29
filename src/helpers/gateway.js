@@ -108,3 +108,5 @@ export const changePasswordApi = ({ password, newPassword, reNewPassword }) => c
 export const getPostReactionApi = ({
   offset, limit, postId, emojiId,
 }) => costumAxios.post(`/api/feed/post/emoji/${offset}/${limit}`, { postId, emojiId });
+
+export const getUniInfoApi = (uniId) => costumAxios.get(`/api/university/detail/${uniId}`);

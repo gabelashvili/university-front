@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   containerStyles,
   SectionList,
@@ -12,8 +13,8 @@ import {
 } from 'components/University/Details/styles';
 import Container from 'components/Container';
 import Modal from 'components/Modal';
-
 import { Bar } from 'react-chartjs-2';
+import { actions as getUniInfoActions } from 'modules/University/GetUniInfo';
 
 const data = {
   labels: ['2011', '2012', '2013', '2014', '2015', '2016'],
@@ -61,7 +62,7 @@ const options = {
 const Details = () => {
   const [openSection, setOpenSection] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
   const setOpen = (id) => {
     if (id === openSection) {
       setOpenSection(null);
@@ -69,6 +70,11 @@ const Details = () => {
       setOpenSection(id);
     }
   };
+
+  useEffect(() => {
+    dispatch(getUniInfoActions.getUniInfo.request(1));
+  }, []);
+
   return (
     <>
       <Modal
