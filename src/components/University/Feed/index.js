@@ -1,6 +1,6 @@
 import Container from 'components/Container';
 import {
-  containerStyles,
+  Div,
   containerStylesLeft,
   containerStylesRight,
   containerStylesMiddle,
@@ -33,7 +33,7 @@ const Feedback = () => {
       >
         <AllReaction data={reactionsData} />
       </Modal>
-      <Container costumStyles={containerStyles}>
+      <Div>
         <Container costumStyles={containerStylesLeft}>
           LeftSide
         </Container>
@@ -54,7 +54,7 @@ const Feedback = () => {
         <Container costumStyles={containerStylesRight}>
           RightSide
         </Container>
-      </Container>
+      </Div>
     </>
   );
 };

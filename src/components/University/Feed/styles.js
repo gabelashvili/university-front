@@ -1,11 +1,10 @@
 import { transparentize } from 'polished';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const containerStyles = css`
-    padding: 20px;
+export const Div = styled.div`
     display: grid;
-    grid-column-gap: 15px;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-column-gap: 35px;
+    grid-template-columns: 1fr 2.3fr 1fr;
 `;
 
 export const containerStylesLeft = css`
@@ -19,6 +18,8 @@ export const containerStylesMiddle = css`
     max-width: 100%;
     display: grid;
     grid-row-gap: 15px;
+    max-width: 100%;
+    padding: 0 !important;
   `;
 
 export const containerStylesRight = css`
