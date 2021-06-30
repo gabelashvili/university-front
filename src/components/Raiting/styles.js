@@ -13,9 +13,10 @@ export const Stars = styled.div`
     flex-direction: row-reverse;
     justify-content: flex-end;
     & div {
-        height: 16px;
+        height: 100%;
+        width: 10px;
         &:nth-child(2n + 1) {
-            transform: scaleX(-1) translateX(0.45px);
+            transform: scaleX(-1);
         }
         ${({ isDisabled }) => !isDisabled && css`
             &:hover ~ ${IconWrapper} svg, :hover${IconWrapper} svg {
