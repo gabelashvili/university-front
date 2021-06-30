@@ -1,18 +1,24 @@
 import {
   Div, Tabs, containerStyle, buttonStyle,
 } from 'components/University/Header/styles';
+import { useSelector } from 'react-redux';
 import Container from 'components/Container';
 import Button from 'components/Button';
 import { useParams, useHistory } from 'react-router-dom';
+import {
+  selectors as getUniInfoSelectors,
+} from 'modules/University/GetUniInfo';
 
 const Header = () => {
   const { tabName } = useParams();
+  const uniInfo = useSelector(getUniInfoSelectors.selectGetUniInfo);
+
   const history = useHistory();
   const handleClick = (name) => {
     history.push(name);
   };
   return (
-    <Div>
+    <Div bgImg={uniInfo?.data?.university?.coverImage.split('\\images\\').join('/images/')}>
       <Container isCentered costumStyles={containerStyle}>
         <Tabs>
           <Button

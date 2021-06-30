@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
-import caucasusUniversity from 'assets/caucasusUniversity.png';
 
 export const Div = styled.div`
-    background-image: url(${caucasusUniversity});
+    background-image: url('${({ bgImg }) => bgImg}');
     background-size: cover;
     max-height: 530px;
     position: relative;

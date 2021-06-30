@@ -30,7 +30,7 @@ const getUniInfo = (state = initialState, action) => {
           isSucceed: true,
           isPending: false,
         },
-        data: action.response.data,
+        data: action.response.data.detailInfo,
         statusCode: action.response.status,
       };
     case constants.GET_UNI_INFO_FAILED:

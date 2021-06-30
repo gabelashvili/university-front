@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   containerStyles,
   SectionList,
@@ -14,7 +14,10 @@ import {
 import Container from 'components/Container';
 import Modal from 'components/Modal';
 import { Bar } from 'react-chartjs-2';
-import { actions as getUniInfoActions } from 'modules/University/GetUniInfo';
+import {
+  actions as getUniInfoActions,
+  selectors as getUniInfoSelectors,
+} from 'modules/University/GetUniInfo';
 
 const data = {
   labels: ['2011', '2012', '2013', '2014', '2015', '2016'],
@@ -63,6 +66,8 @@ const Details = () => {
   const [openSection, setOpenSection] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const uniInfo = useSelector(getUniInfoSelectors.selectGetUniInfo);
+
   const setOpen = (id) => {
     if (id === openSection) {
       setOpenSection(null);
@@ -71,6 +76,7 @@ const Details = () => {
     }
   };
 
+  // get uni info
   useEffect(() => {
     dispatch(getUniInfoActions.getUniInfo.request(1));
   }, []);
@@ -95,20 +101,9 @@ const Details = () => {
             >
               ზოგადი ინფრომაცია
             </SectionTitle>
-            <SectionDesc>
-              Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor
-              Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam,
-              Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.
-              Duis Aute Irure Dolor In Reprehenderit In
-              Voluptate Velit Esse Cillum Dolore Eu Fugiat Nulla Pariatur.
-              Excepteur Sint Occaecat Cupidatat Non Proident,
-              Sunt In Culpa Qui Officia Deserunt Mollit Anim Id Est Laborum.
-            </SectionDesc>
-            <SectionDesc>
-              Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor
-              Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam,
-              Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.
-            </SectionDesc>
+            {uniInfo?.data?.info && uniInfo.data.info.split(/\n/).filter((item) => item).map((el) => (
+              <SectionDesc key={el}>{el}</SectionDesc>
+            ))}
           </Section>
           <Section isOpen={openSection === 2}>
             <SectionTitle
