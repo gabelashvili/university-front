@@ -1,5 +1,4 @@
 import {
-  actions as getUniInfoActions,
   selectors as getUniInfoSelectors,
 } from 'modules/University/GetUniInfo';
 import {
@@ -36,13 +35,6 @@ export default () => {
     setModalOpen(true);
     dispatch(getGrantsDetailsActions.getGrantsDetails.request(facultyId));
   };
-
-  // get uni info
-  useEffect(() => {
-    dispatch(getUniInfoActions.getUniInfo.request(uniId));
-  }, []);
-
-  useEffect(() => () => dispatch(getUniInfoActions.getUniInfo.reset()), []);
 
   // get faculties
   useEffect(() => {

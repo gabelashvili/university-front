@@ -1,5 +1,5 @@
 import {
-  containerStyles,
+  Div,
   SectionList,
   RightSide,
   Section,
@@ -8,10 +8,20 @@ import {
   Ul,
   Li,
   modalStyles,
+  Box,
+  BoxIcon,
+  BoxContent,
+  BoxTitle,
+  BoxDesc,
+  RaitingWrapper,
 } from 'components/University/Details/styles';
-import Container from 'components/Container';
 import Modal from 'components/Modal';
 import { Bar } from 'react-chartjs-2';
+import EyeIcon from 'Icons/Raiting';
+import EmailIcon from 'Icons/Email';
+import LocationIcon from 'Icons/Location';
+import PhoneIcon from 'Icons/Phone';
+import Raiting from 'components/Raiting';
 import useDetailsHook from './hook';
 
 const Details = () => {
@@ -37,7 +47,7 @@ const Details = () => {
       >
         <Bar data={chartData} options={chartOptions} />
       </Modal>
-      <Container costumStyles={containerStyles}>
+      <Div>
         <SectionList>
           <Section isOpen={openSection === 1}>
             <SectionTitle
@@ -68,8 +78,47 @@ const Details = () => {
             </SectionDesc>
           </Section>
         </SectionList>
-        <RightSide>111</RightSide>
-      </Container>
+        <RightSide>
+          <Box>
+            <BoxIcon><EyeIcon /></BoxIcon>
+            <BoxContent>
+              <BoxTitle>რეიტინგი</BoxTitle>
+              <RaitingWrapper>
+                <Raiting raiting={3.5} isDisabled={false} />
+                <BoxDesc>{`(${uniInfo?.data?.university?.rateCnt})`}</BoxDesc>
+              </RaitingWrapper>
+            </BoxContent>
+          </Box>
+          <Box>
+            <BoxIcon><EmailIcon /></BoxIcon>
+            <BoxContent>
+              <BoxTitle>Email</BoxTitle>
+              <BoxDesc>{uniInfo?.data?.email}</BoxDesc>
+            </BoxContent>
+          </Box>
+          <Box>
+            <BoxIcon><PhoneIcon /></BoxIcon>
+            <BoxContent>
+              <BoxTitle>ტელეფონი</BoxTitle>
+              <BoxDesc>{uniInfo?.data?.firstNumber}</BoxDesc>
+            </BoxContent>
+          </Box>
+          <Box>
+            <BoxIcon><PhoneIcon /></BoxIcon>
+            <BoxContent>
+              <BoxTitle>ტელეფონი</BoxTitle>
+              <BoxDesc>{uniInfo?.data?.secondNumber}</BoxDesc>
+            </BoxContent>
+          </Box>
+          <Box>
+            <BoxIcon><LocationIcon /></BoxIcon>
+            <BoxContent>
+              <BoxTitle>მდებარეობა</BoxTitle>
+              <BoxDesc>{uniInfo?.data?.university?.location}</BoxDesc>
+            </BoxContent>
+          </Box>
+        </RightSide>
+      </Div>
     </>
   );
 };

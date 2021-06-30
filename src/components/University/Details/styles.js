@@ -1,12 +1,11 @@
-/* eslint-disable global-require */
 import { transparentize } from 'polished';
 import styled, { css } from 'styled-components';
 import TriangleIcon from 'assets/right-arrow.svg';
 import ArrowIcon from '../../../assets/doubleArrow.svg';
 
-export const containerStyles = css`
+export const Div = styled.div`
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2.5fr 1fr;
     grid-column-gap: 25px;
 `;
 
@@ -17,10 +16,59 @@ export const SectionList = styled.div`
 `;
 
 export const RightSide = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: green;
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 20px;
     height: max-content;
+    border: 2px solid #e8ecec;
+    border-radius: 8px;
+    padding: 30px;
+    cursor: pointer;
+`;
+
+export const BoxIcon = styled.div`
+    & > svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+        display: flex;
+        fill: ${({ theme }) => transparentize(0.3, theme.colors.blue)};
+        transition: all 0.3s;
+    }
+`;
+
+export const BoxContent = styled.div``;
+
+export const BoxTitle = styled.p`
+    font-size: 15px;
+    color: ${({ theme }) => transparentize(0.2, theme.colors.black)};
+    font-weight: 500;
+`;
+
+export const BoxDesc = styled.p`
+    color: ${({ theme }) => transparentize(0.4, theme.colors.black)};
+    margin-top: 7px;
+    font-size: 15px;
+    font-weight: 500;
+`;
+
+export const RaitingWrapper = styled.div`
+    margin-top: 7px;
+    display: flex;
+    & p {
+        margin-left: 4px;
+        margin-top: 0;
+    }
+`;
+
+export const Box = styled.div`
+    display: flex;
+    align-items: center;
+    &:hover > ${BoxIcon}{
+        & svg {
+         fill: ${({ theme }) => transparentize(0.3, theme.colors.lightGreen)};
+        }
+    }
 `;
 
 export const SectionDesc = styled.p`
