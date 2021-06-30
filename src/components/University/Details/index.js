@@ -24,8 +24,8 @@ const Details = () => {
     openSection,
     uniInfo,
     faculties,
+    handleModalOpen,
   } = useDetailsHook();
-  console.log(Array.isArray(faculties));
   return (
     <>
       <Modal
@@ -60,29 +60,12 @@ const Details = () => {
             <SectionDesc as="div">
               <Ul>
                 {Array.isArray(faculties) && faculties.map((faculty) => (
-                  <Li onClick={() => setModalOpen(true)} key={faculty.name}>
+                  <Li onClick={() => handleModalOpen(faculty.id)} key={faculty.name}>
                     {faculty.name}
                   </Li>
                 ))}
               </Ul>
             </SectionDesc>
-          </Section>
-          <Section isOpen={openSection === 3}>
-            <SectionTitle
-              onClick={() => setOpen(3)}
-              isOpen={openSection === 3}
-            >
-              რაღაც სათაყრუ
-            </SectionTitle>
-            <SectionDesc>
-              რომელმან შექმნა სამყარო ძალითა მით ძლიერითა, ზეგარდმო არსნი სულითა ყვნა
-            </SectionDesc>
-            <SectionDesc>
-              Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor
-              Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam,
-              Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.
-            </SectionDesc>
-
           </Section>
         </SectionList>
         <RightSide>111</RightSide>
