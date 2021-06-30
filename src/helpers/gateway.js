@@ -110,3 +110,5 @@ export const getPostReactionApi = ({
 }) => costumAxios.post(`/api/feed/post/emoji/${offset}/${limit}`, { postId, emojiId });
 
 export const getUniInfoApi = (uniId) => costumAxios.get(`/api/university/detail/${uniId}`);
+
+export const getFacultiesApi = (uniId) => costumAxios.post('/api/faculty/0/500', { universityId: uniId });

@@ -23,8 +23,9 @@ const Details = () => {
     setOpen,
     openSection,
     uniInfo,
+    faculties,
   } = useDetailsHook();
-
+  console.log(Array.isArray(faculties));
   return (
     <>
       <Modal
@@ -58,24 +59,11 @@ const Details = () => {
             </SectionTitle>
             <SectionDesc as="div">
               <Ul>
-                <Li onClick={() => setModalOpen(true)}>
-                  ბიზნეს ადმინისტრირება
-                </Li>
-                <Li onClick={() => setModalOpen(true)}>
-                  სამართალი
-                </Li>
-                <Li onClick={() => setModalOpen(true)}>
-                  ინფორმაციული ტექნოლოგიები
-                </Li>
-                <Li onClick={() => setModalOpen(true)}>
-                  ბიზნეს ადმინისტრირება
-                </Li>
-                <Li onClick={() => setModalOpen(true)}>
-                  სამართალი
-                </Li>
-                <Li onClick={() => setModalOpen(true)}>
-                  ინფორმაციული ტექნოლოგიები
-                </Li>
+                {Array.isArray(faculties) && faculties.map((faculty) => (
+                  <Li onClick={() => setModalOpen(true)} key={faculty.name}>
+                    {faculty.name}
+                  </Li>
+                ))}
               </Ul>
             </SectionDesc>
           </Section>

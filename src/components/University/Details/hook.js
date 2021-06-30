@@ -2,6 +2,10 @@ import {
   actions as getUniInfoActions,
   selectors as getUniInfoSelectors,
 } from 'modules/University/GetUniInfo';
+import {
+  actions as getFacultiesActions,
+  selectors as getFacultiesSelectors,
+} from 'modules/University/GetFaculties';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +15,7 @@ export default () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const uniInfo = useSelector(getUniInfoSelectors.selectGetUniInfo);
+  const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const { id: uniId } = useParams();
   const setOpen = (id) => {
     if (id === openSection) {
@@ -26,6 +31,11 @@ export default () => {
   }, []);
 
   useEffect(() => () => dispatch(getUniInfoActions.getUniInfo.reset()), []);
+
+  // get faculties
+  useEffect(() => {
+    dispatch(getFacultiesActions.getFaculties.request(uniId));
+  }, []);
 
   // charts
 
@@ -80,5 +90,6 @@ export default () => {
     setOpen,
     openSection,
     uniInfo,
+    faculties: faculties?.data?.faculties || [],
   };
 };
