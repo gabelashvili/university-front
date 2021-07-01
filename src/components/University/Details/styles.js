@@ -7,12 +7,14 @@ export const Div = styled.div`
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     grid-column-gap: 25px;
+    @media ${({ theme }) => theme.device.tablet} {
+        grid-template-columns: 1fr;
+    }
 `;
 
 export const SectionList = styled.div`
     display: flex;
     flex-direction: column;
-    padding-bottom: 50px;
 `;
 
 export const RightSide = styled.div`
@@ -24,6 +26,18 @@ export const RightSide = styled.div`
     border-radius: 8px;
     padding: 30px;
     cursor: pointer;
+    @media ${({ theme }) => theme.device.laptopL} {
+        grid-row-gap: 18px;
+        padding: 25px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        grid-row-gap: 16px;
+        padding: 20px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        grid-row-gap: 14px;
+        padding: 15px;
+    }
 `;
 
 export const BoxIcon = styled.div`
@@ -34,6 +48,15 @@ export const BoxIcon = styled.div`
         display: flex;
         fill: ${({ theme }) => transparentize(0.3, theme.colors.blue)};
         transition: all 0.3s;
+        @media ${({ theme }) => theme.device.laptopL} {
+            width: 24px;
+            height: 24px;
+        }
+        @media ${({ theme }) => theme.device.laptop} {
+            width: 20px;
+            height: 20px;
+        }
+
     }
 `;
 
@@ -43,6 +66,12 @@ export const BoxTitle = styled.p`
     font-size: 15px;
     color: ${({ theme }) => transparentize(0.2, theme.colors.black)};
     font-weight: 500;
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 15px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 14px;
+    }
 `;
 
 export const BoxDesc = styled.p`
@@ -50,6 +79,12 @@ export const BoxDesc = styled.p`
     margin-top: 7px;
     font-size: 15px;
     font-weight: 500;
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 15px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 14px;
+    }
 `;
 
 export const RaitingWrapper = styled.div`
@@ -78,6 +113,12 @@ export const SectionDesc = styled.p`
     line-height: 1.5;
     margin-bottom: 15px;
     overflow: hidden;
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 13px;
+    }
 `;
 
 export const Section = styled.section`
@@ -93,7 +134,7 @@ export const SectionTitle = styled.h1`
     font-size: 18px;
     font-weight: 500;
     background-color: ${({ theme }) => transparentize(0.95, theme.colors.lightGrey)};
-    padding: 10px 30px 10px;
+    padding: 10px 30px;
     border-left: 4px solid ${({ theme }) => transparentize(0.1, theme.colors.lightGreen)};
     margin-bottom: 20px;
     cursor: pointer;
@@ -108,6 +149,17 @@ export const SectionTitle = styled.h1`
         transition: all 0.3s;
         width: 16px;
         height: 16px;
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 16px;
+        padding: 9px 25px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        padding: 8px 15px;
     }
 `;
 
@@ -134,6 +186,12 @@ export const Li = styled.li`
         top: 0;
         left: 0;
         transform: translate(-200% , 70%);
+    }
+    @media ${({ theme }) => theme.device.laptopL} {
+        font-size: 14px;
+    }
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 13px;
     }
 `;
 
