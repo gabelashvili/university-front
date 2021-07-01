@@ -114,3 +114,5 @@ export const getUniInfoApi = (uniId) => costumAxios.get(`/api/university/detail/
 export const getFacultiesApi = (uniId) => costumAxios.post('/api/faculty/0/500', { universityId: uniId });
 
 export const getGrantsDetailsApi = (facultyId) => costumAxios.get(`/api/faculty/grants/${facultyId}`);
+
+export const updateUniRateApi = ({ universityId, rateNumber }) => costumAxios.put('/api/university/update-rate/', { universityId, rateNumber });

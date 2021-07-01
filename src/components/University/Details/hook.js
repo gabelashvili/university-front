@@ -9,6 +9,9 @@ import {
   actions as getGrantsDetailsActions,
   selectors as getGrantsDetailsSelectors,
 } from 'modules/University/GetGrantsDetails';
+import {
+  actions as updateUniRateActions,
+} from 'modules/University/UpdateRate';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -101,7 +104,10 @@ export default () => {
 
   // raiting change
   const handleRaitingChange = (raiting) => {
-    console.log(raiting);
+    dispatch(updateUniRateActions.updateRate.request({
+      universityId: parseInt(uniId, 10),
+      rateNumber: raiting,
+    }));
   };
 
   return {
