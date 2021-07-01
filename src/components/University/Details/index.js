@@ -35,6 +35,7 @@ const Details = () => {
     uniInfo,
     faculties,
     handleModalOpen,
+    handleRaitingChange,
   } = useDetailsHook();
   return (
     <>
@@ -84,7 +85,7 @@ const Details = () => {
             <BoxContent>
               <BoxTitle>რეიტინგი</BoxTitle>
               <RaitingWrapper>
-                <Raiting raiting={3.5} isDisabled={false} />
+                <Raiting raiting={3.5} isDisabled={false} handleClick={handleRaitingChange} />
                 <BoxDesc>{`(${uniInfo?.data?.university?.rateCnt})`}</BoxDesc>
               </RaitingWrapper>
             </BoxContent>

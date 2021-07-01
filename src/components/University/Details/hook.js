@@ -99,6 +99,11 @@ export default () => {
     },
   };
 
+  // raiting change
+  const handleRaitingChange = (raiting) => {
+    console.log(raiting);
+  };
+
   return {
     isModalOpen,
     setModalOpen,
@@ -109,5 +114,6 @@ export default () => {
     uniInfo,
     faculties: faculties?.data?.faculties || [],
     handleModalOpen,
+    handleRaitingChange,
   };
 };

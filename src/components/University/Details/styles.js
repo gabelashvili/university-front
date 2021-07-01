@@ -28,8 +28,8 @@ export const RightSide = styled.div`
 
 export const BoxIcon = styled.div`
     & > svg {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         margin-right: 20px;
         display: flex;
         fill: ${({ theme }) => transparentize(0.3, theme.colors.blue)};
