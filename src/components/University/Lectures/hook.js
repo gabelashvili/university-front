@@ -182,7 +182,7 @@ export default () => {
         text: comment,
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         userId: authedUser.userId,
-        user: {
+        user: isPrivate ? null : {
           firstname: authedUser.firstName,
           id: authedUser.userId,
           image: authedUser.image,
