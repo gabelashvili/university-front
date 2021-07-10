@@ -35,6 +35,9 @@ import {
   actions as updateCommentActions,
   selectors as updateCommentSelectors,
 } from 'modules/Lectures/UpdateComment';
+import {
+  actions as updateRateActions,
+} from 'modules/Lectures/UpdateRate';
 
 export default () => {
   const { id: uniId } = useParams();
@@ -299,6 +302,15 @@ export default () => {
     }
   }, [updateCommentState]);
 
+  // handle rate change
+
+  const setRate = (rate, lectId) => {
+    dispatch(updateRateActions.updateRate.request({
+      lecturerId: lectId,
+      rateNumber: rate,
+    }));
+  };
+
   return {
     isModalOpen,
     handleLectureClick,
@@ -330,5 +342,6 @@ export default () => {
     isEditing,
     handleEditCancel,
     handleEditSave,
+    setRate,
   };
 };

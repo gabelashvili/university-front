@@ -75,6 +75,7 @@ const LecturesComponent = () => {
     isEditing,
     handleEditCancel,
     handleEditSave,
+    setRate,
   } = useLecturesHook();
   return (
     <>
@@ -186,7 +187,11 @@ const LecturesComponent = () => {
                 ინფორმატიკა
               </LectureDesc>
               <RaitingWrapper>
-                <Raiting isDisabled={false} raiting={lecture.rate} />
+                <Raiting
+                  isDisabled={false}
+                  raiting={lecture.rate}
+                  handleClick={(raiting) => setRate(raiting, lecture.id)}
+                />
               </RaitingWrapper>
               <ButtonWrapper>
                 <Button
