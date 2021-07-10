@@ -276,4 +276,7 @@ export const ButtonsWrapper = styled.div`
     justify-content: flex-end;
     width: 100%;
     margin-top: 10px;
+    & div:first-child {
+        margin-right: auto;
+    }
 `;

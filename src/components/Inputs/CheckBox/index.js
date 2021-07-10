@@ -65,14 +65,16 @@ const CheckBox = forwardRef((props, ref) => {
     label, isError,
   } = { ...props };
   const [state, setSate] = useState(false);
-
   return (
     <Div>
       <Input
         {...props}
         type="checkbox"
         checked={state}
-        onChange={() => setSate(!state)}
+        onChange={() => {
+          setSate(!state);
+          props.handleChange(!state);
+        }}
         ref={ref}
         isError={isError}
       />

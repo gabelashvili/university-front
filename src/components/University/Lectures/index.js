@@ -40,6 +40,7 @@ import EditIcon from 'Icons/Edit';
 import RemoveIcon from 'Icons/Remove';
 import EmojiIcon from 'Icons/Emoji';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
+import CheckBox from 'components/Inputs/CheckBox';
 
 const LecturesComponent = () => {
   const {
@@ -63,6 +64,7 @@ const LecturesComponent = () => {
     setKeyword,
     setSelectedLecturer,
     handleCommentAdd,
+    handleCheckBoxChange,
   } = useLecturesHook();
   return (
     <>
@@ -86,6 +88,7 @@ const LecturesComponent = () => {
             ref={textareaRef}
           />
           <ButtonsWrapper>
+            <CheckBox label="ანონიმურად" handleChange={handleCheckBoxChange} />
             <Emoji ref={emojiRef}>
               <EmojiIcon onClick={toggleEmoji} />
               {showEmoji && (

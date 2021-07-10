@@ -30,6 +30,7 @@ export default () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
+  const [isPrivate, setPrivate] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [selectedLecturer, setSelectedLecturer] = useState(null);
 
@@ -120,7 +121,7 @@ export default () => {
     dispatch(addCommentActions.addComment.request({
       text: comment,
       lecturerId: selectedLecturer.id,
-      isPrivate: true,
+      isPrivate,
     }));
   };
 
@@ -131,6 +132,11 @@ export default () => {
       });
     }
   }, [addCommentState]);
+
+  const handleCheckBoxChange = (value) => {
+    setPrivate(value);
+    console.log(value);
+  };
 
   return {
     isModalOpen,
@@ -153,5 +159,6 @@ export default () => {
     setKeyword,
     setSelectedLecturer,
     handleCommentAdd,
+    handleCheckBoxChange,
   };
 };
