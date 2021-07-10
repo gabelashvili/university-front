@@ -134,3 +134,5 @@ export const addCommentLectureApi = (data) => costumAxios.post('/api/lecturer/co
 export const getLecturerCommentsApi = ({
   offset, limit, lecturerId,
 }) => costumAxios.post(`/api/lecturer/comment/${offset}/${limit}`, { lecturerId });
+
+export const removeCommentLectureApi = (comId) => costumAxios.delete(`/api/lecturer/comment/${comId}`);

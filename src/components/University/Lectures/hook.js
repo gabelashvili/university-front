@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import { useState, useRef, useEffect } from 'react';
+import moment from 'moment';
 import {
   actions as getLecturesActions,
   selectors as getLecturesSelectors,
@@ -26,7 +27,10 @@ import { useSnackbar } from 'notistack';
 import {
   hooks as authedUserHooks,
 } from 'modules/Authentication/AuthedUser';
-import moment from 'moment';
+import {
+  actions as removeCommentActions,
+  selectors as removeCommentSelectors,
+} from 'modules/Lectures/RemoveComment';
 
 export default () => {
   const { id: uniId } = useParams();
@@ -38,10 +42,12 @@ export default () => {
   const filteredLectures = useSelector(filterLecturersSelectors.selectFilterLecturers);
   const comments = useSelector(getLecturerCommentsSelectors.selectGetComments);
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
+  const removeCommentState = useSelector(removeCommentSelectors.selectRemoveComment);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
   const [isPrivate, setPrivate] = useState(false);
+  const [selectedComment, setSelectedComment] = useState(null);
   const [commentsList, setCommentsList] = useState({
     comments: [],
     totally: 0,
@@ -92,12 +98,24 @@ export default () => {
   // get lectures
 
   useEffect(() => {
-    dispatch(getLecturesActions.getLectures.request({
-      offset: 0,
-      limit: 500,
-      universityId: uniId,
-      facultyId: selectedFaculty,
-    }));
+    if (comments.statuses.isSucceed) {
+      dispatch(getLecturerCommentsActions.getComments.reset());
+      setCommentsList({
+        totally: 0,
+        comments: [],
+      });
+    }
+  }, [selectedLecturer]);
+
+  useEffect(() => {
+    if (uniId && selectedFaculty) {
+      dispatch(getLecturesActions.getLectures.request({
+        offset: 0,
+        limit: 500,
+        universityId: uniId,
+        facultyId: selectedFaculty,
+      }));
+    }
   }, [uniId, selectedFaculty]);
 
   // get faculties
@@ -205,13 +223,33 @@ export default () => {
 
   // delete comment
   const handleDeleteComment = (commentId) => {
-    console.log(commentId);
+    setSelectedComment(commentId);
     const answer = window.confirm('ნამდვილად გსურთ კომენტარის წაშლა?');
     if (answer) {
-      console.log('ki');
+      dispatch(removeCommentActions.removeComment.request(commentId));
+    } else {
+      setSelectedComment(null);
     }
   };
 
+  useEffect(() => {
+    if (removeCommentState.statuses.isFailed) {
+      enqueueSnackbar(removeCommentState.errorMessage.response.data, {
+        variant: 'error',
+      });
+    }
+    if (removeCommentState.statuses.isSucceed) {
+      enqueueSnackbar('კომენტარი წაიშალა', {
+        variant: 'success',
+      });
+      dispatch(removeCommentActions.removeComment.reset());
+      setCommentsList({
+        ...commentsList,
+        comments: commentsList.comments.filter((com) => com.id !== selectedComment),
+      });
+      setSelectedComment(null);
+    }
+  }, [removeCommentState, selectedComment]);
   return {
     isModalOpen,
     handleLectureClick,
