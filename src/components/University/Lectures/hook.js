@@ -31,6 +31,10 @@ import {
   actions as removeCommentActions,
   selectors as removeCommentSelectors,
 } from 'modules/Lectures/RemoveComment';
+import {
+  actions as updateCommentActions,
+  selectors as updateCommentSelectors,
+} from 'modules/Lectures/UpdateComment';
 
 export default () => {
   const { id: uniId } = useParams();
@@ -43,6 +47,7 @@ export default () => {
   const comments = useSelector(getLecturerCommentsSelectors.selectGetComments);
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
   const removeCommentState = useSelector(removeCommentSelectors.selectRemoveComment);
+  const updateCommentState = useSelector(updateCommentSelectors.selectUpdateComment);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
@@ -263,6 +268,37 @@ export default () => {
     setComment('');
     setEditing(false);
   };
+
+  const handleEditSave = () => {
+    dispatch(updateCommentActions.updateComment.request({
+      text: comment,
+      isPrivate,
+      commentId: selectedComment.id,
+    }));
+  };
+
+  useEffect(() => {
+    if (updateCommentState.statuses.isSucceed) {
+      setCommentsList({
+        ...commentsList,
+        comments: commentsList.comments.map((com) => {
+          if (com.id === selectedComment.id) {
+            const data = {
+              ...com,
+              isPrivate,
+              text: comment,
+              updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+              userId: isPrivate ? null : authedUser.userId,
+              user: isPrivate ? null : com.user,
+            };
+            return data;
+          }
+          return com;
+        }),
+      });
+    }
+  }, [updateCommentState]);
+
   return {
     isModalOpen,
     handleLectureClick,
@@ -293,5 +329,6 @@ export default () => {
     handleEditComment,
     isEditing,
     handleEditCancel,
+    handleEditSave,
   };
 };

@@ -74,6 +74,7 @@ const LecturesComponent = () => {
     handleEditComment,
     isEditing,
     handleEditCancel,
+    handleEditSave,
   } = useLecturesHook();
   return (
     <>
@@ -120,7 +121,12 @@ const LecturesComponent = () => {
               გაუქმება
             </Button>
             )}
-            <Button costumStyles={addButtonStyles} handleClick={handleCommentAdd}>{isEditing ? 'შენახვა' : 'დამატება'}</Button>
+            <Button
+              costumStyles={addButtonStyles}
+              handleClick={isEditing ? handleEditSave : handleCommentAdd}
+            >
+              {isEditing ? 'შენახვა' : 'დამატება'}
+            </Button>
           </ButtonsWrapper>
         </AddComment>
         <Comments onScroll={handleScroll}>
