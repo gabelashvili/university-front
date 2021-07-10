@@ -61,6 +61,8 @@ const LecturesComponent = () => {
     lectures,
     keyWord,
     setKeyword,
+    setSelectedLecturer,
+    handleCommentAdd,
   } = useLecturesHook();
   return (
     <>
@@ -69,7 +71,10 @@ const LecturesComponent = () => {
         costumeStyles={modalStyles}
         title="მაქსიმ იავიჩი"
         showClose
-        onClose={() => setModalOpen(false)}
+        onClose={() => {
+          setModalOpen(false);
+          setSelectedLecturer(null);
+        }}
       >
         <AddComment>
           <Textarea
@@ -95,7 +100,7 @@ const LecturesComponent = () => {
               </EmojiWrapper>
               )}
             </Emoji>
-            <Button costumStyles={addButtonStyles}>დამატება</Button>
+            <Button costumStyles={addButtonStyles} handleClick={handleCommentAdd}>დამატება</Button>
           </ButtonsWrapper>
         </AddComment>
         <Comments>
@@ -157,7 +162,7 @@ const LecturesComponent = () => {
               <ButtonWrapper>
                 <Button
                   costumStyles={buttonStyles}
-                  handleClick={handleLectureClick}
+                  handleClick={() => handleLectureClick(lecture)}
                 >
                   შეფასებები
                 </Button>

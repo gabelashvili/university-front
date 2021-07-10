@@ -12,20 +12,29 @@ import {
   actions as filterLecturersActions,
   selectors as filterLecturersSelectors,
 } from 'modules/Lectures/FilterLecturers';
+import {
+  actions as addCommentActions,
+  selectors as addCommentSelectors,
+} from 'modules/Lectures/AddComment';
 import { useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 export default () => {
   const { id: uniId } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
   const lectures = useSelector(getLecturesSelectors.selectGetLectures);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const filteredLectures = useSelector(filterLecturersSelectors.selectFilterLecturers);
+  const addCommentState = useSelector(addCommentSelectors.selectAddComment);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [selectedLecturer, setSelectedLecturer] = useState(null);
 
-  const handleLectureClick = () => {
+  const handleLectureClick = (lecture) => {
+    setSelectedLecturer(lecture);
     setModalOpen(true);
   };
 
@@ -105,6 +114,24 @@ export default () => {
     }
     return lectures?.data?.lecturers || [];
   };
+
+  // lecturer comments
+  const handleCommentAdd = () => {
+    dispatch(addCommentActions.addComment.request({
+      text: comment,
+      lecturerId: selectedLecturer.id,
+      isPrivate: true,
+    }));
+  };
+
+  useEffect(() => {
+    if (addCommentState.statuses.isFailed) {
+      enqueueSnackbar(addCommentState.errorMessage.response.data, {
+        variant: 'error',
+      });
+    }
+  }, [addCommentState]);
+
   return {
     isModalOpen,
     handleLectureClick,
@@ -124,5 +151,7 @@ export default () => {
     setSelectedFaculty,
     keyWord,
     setKeyword,
+    setSelectedLecturer,
+    handleCommentAdd,
   };
 };

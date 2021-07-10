@@ -124,3 +124,9 @@ export const getLecturesApi = ({
 export const filterRecturersApi = ({
   offset, limit, fullName,
 }) => costumAxios.post(`/api/lecturer/filter/${offset}/${limit}`, { fullName });
+
+export const addCommentLectureApi = (data) => costumAxios.post('/api/lecturer/comment', {
+  text: data.text,
+  lecturerId: data.lecturerId,
+  isPrivate: data.isPrivate,
+});
