@@ -28,6 +28,7 @@ import {
   ComAuthorWrapper,
   Emoji,
   EmojiWrapper,
+  deleteButtonStyles,
   ButtonsWrapper,
 } from 'components/University/Lectures/styles';
 import Container from 'components/Container';
@@ -70,6 +71,9 @@ const LecturesComponent = () => {
     selectedLecturer,
     authedUser,
     handleDeleteComment,
+    handleEditComment,
+    isEditing,
+    handleEditCancel,
   } = useLecturesHook();
   return (
     <>
@@ -108,7 +112,15 @@ const LecturesComponent = () => {
               </EmojiWrapper>
               )}
             </Emoji>
-            <Button costumStyles={addButtonStyles} handleClick={handleCommentAdd}>დამატება</Button>
+            {isEditing && (
+            <Button
+              costumStyles={deleteButtonStyles}
+              handleClick={handleEditCancel}
+            >
+              გაუქმება
+            </Button>
+            )}
+            <Button costumStyles={addButtonStyles} handleClick={handleCommentAdd}>{isEditing ? 'შენახვა' : 'დამატება'}</Button>
           </ButtonsWrapper>
         </AddComment>
         <Comments onScroll={handleScroll}>
@@ -125,7 +137,7 @@ const LecturesComponent = () => {
                   { authedUser.userId === item?.user?.id
                     && (
                       <EditCom>
-                        <EditIcon handleClick={() => console.log('Edit')} />
+                        <EditIcon handleClick={() => handleEditComment(item)} />
                         <RemoveIcon handleClick={() => handleDeleteComment(item.id)} />
                       </EditCom>
                     )}

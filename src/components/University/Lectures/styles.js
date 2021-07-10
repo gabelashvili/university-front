@@ -167,6 +167,23 @@ export const addButtonStyles = css`
     &:hover {
         background-color: ${({ theme }) => transparentize(0.05, theme.colors.lightGreen)};
     };
+    margin-left: 5px;
+`;
+
+export const deleteButtonStyles = css`
+    border: 1px solid ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.black};
+    height: max-content;
+    padding: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.white};
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: ${({ theme }) => transparentize(0.2, theme.colors.red)};
+    &:hover {
+        background-color: ${({ theme }) => transparentize(0.05, theme.colors.red)};
+    };
 `;
 
 export const Comments = styled.div`

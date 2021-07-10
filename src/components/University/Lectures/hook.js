@@ -52,6 +52,7 @@ export default () => {
     comments: [],
     totally: 0,
   });
+  const [isEditing, setEditing] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [selectedLecturer, setSelectedLecturer] = useState(null);
   const handleLectureClick = (lecture) => {
@@ -250,6 +251,18 @@ export default () => {
       setSelectedComment(null);
     }
   }, [removeCommentState, selectedComment]);
+
+  // edit comment
+  const handleEditComment = (com) => {
+    setSelectedComment(com);
+    setEditing(true);
+    setComment(com.text);
+  };
+
+  const handleEditCancel = () => {
+    setComment('');
+    setEditing(false);
+  };
   return {
     isModalOpen,
     handleLectureClick,
@@ -277,5 +290,8 @@ export default () => {
     selectedLecturer,
     authedUser,
     handleDeleteComment,
+    handleEditComment,
+    isEditing,
+    handleEditCancel,
   };
 };
