@@ -130,3 +130,7 @@ export const addCommentLectureApi = (data) => costumAxios.post('/api/lecturer/co
   lecturerId: data.lecturerId,
   isPrivate: data.isPrivate,
 });
+
+export const getLecturerCommentsApi = ({
+  offset, limit, lecturerId,
+}) => costumAxios.post(`/api/lecturer/comment/${offset}/${limit}`, { lecturerId });

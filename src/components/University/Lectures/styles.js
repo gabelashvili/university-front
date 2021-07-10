@@ -175,6 +175,7 @@ export const Comments = styled.div`
     margin-top: 15px;
     max-height: 100%;
     overflow: auto;
+    width: 100%;
     
 &::-webkit-scrollbar-track
     {
@@ -199,6 +200,7 @@ export const Comments = styled.div`
 export const Comment = styled.div`
     display: flex;
     margin-top: 15px;
+    width: 100%;
 `;
 
 export const ComAvatar = styled.div`
@@ -219,6 +221,7 @@ export const ComDetails = styled.div`
     margin-left: 10px;
     border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.colors.black)};
     padding-bottom: 10px;
+    width: 100%;
 `;
 
 export const ComAuthor = styled.p`

@@ -16,6 +16,10 @@ import {
   actions as addCommentActions,
   selectors as addCommentSelectors,
 } from 'modules/Lectures/AddComment';
+import {
+  actions as getLecturerCommentsActions,
+  selectors as getLecturerCommentsSelectors,
+} from 'modules/Lectures/GetComments';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
@@ -26,14 +30,18 @@ export default () => {
   const lectures = useSelector(getLecturesSelectors.selectGetLectures);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const filteredLectures = useSelector(filterLecturersSelectors.selectFilterLecturers);
+  const comments = useSelector(getLecturerCommentsSelectors.selectGetComments);
   const addCommentState = useSelector(addCommentSelectors.selectAddComment);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
   const [isPrivate, setPrivate] = useState(false);
+  const [commentsList, setCommentsList] = useState({
+    comments: [],
+    totally: 0,
+  });
   // eslint-disable-next-line no-unused-vars
   const [selectedLecturer, setSelectedLecturer] = useState(null);
-
   const handleLectureClick = (lecture) => {
     setSelectedLecturer(lecture);
     setModalOpen(true);
@@ -125,6 +133,10 @@ export default () => {
     }));
   };
 
+  const handleCheckBoxChange = (value) => {
+    setPrivate(value);
+  };
+
   useEffect(() => {
     if (addCommentState.statuses.isFailed) {
       enqueueSnackbar(addCommentState.errorMessage.response.data, {
@@ -133,8 +145,34 @@ export default () => {
     }
   }, [addCommentState]);
 
-  const handleCheckBoxChange = (value) => {
-    setPrivate(value);
+  useEffect(() => {
+    if (selectedLecturer) {
+      dispatch(getLecturerCommentsActions.getComments.request({
+        offset: 0,
+        limit: 10,
+        lecturerId: selectedLecturer.id,
+      }));
+    }
+  }, [selectedLecturer]);
+
+  useEffect(() => {
+    if (comments.statuses.isSucceed) {
+      setCommentsList({
+        totally: comments.data.totally,
+        comments: [...commentsList.comments, ...comments.data.comments],
+      });
+    }
+  }, [comments]);
+
+  const handleScroll = ({ target }) => {
+    if (target.scrollTop >= (target.scrollHeight - target.offsetHeight)
+        && commentsList.comments.length < commentsList.totally) {
+      dispatch(getLecturerCommentsActions.getComments.request({
+        offset: commentsList.comments.length,
+        limit: 10,
+        lecturerId: selectedLecturer.id,
+      }));
+    }
   };
 
   return {
@@ -159,5 +197,8 @@ export default () => {
     setSelectedLecturer,
     handleCommentAdd,
     handleCheckBoxChange,
+    comments: commentsList.comments,
+    handleScroll,
+    selectedLecturer,
   };
 };

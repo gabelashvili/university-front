@@ -65,13 +65,16 @@ const LecturesComponent = () => {
     setSelectedLecturer,
     handleCommentAdd,
     handleCheckBoxChange,
+    comments,
+    handleScroll,
+    selectedLecturer,
   } = useLecturesHook();
   return (
     <>
       <Modal
         isOpen={isModalOpen}
         costumeStyles={modalStyles}
-        title="მაქსიმ იავიჩი"
+        title={`${selectedLecturer?.firstname} ${selectedLecturer?.lastname}`}
         showClose
         onClose={() => {
           setModalOpen(false);
@@ -106,24 +109,24 @@ const LecturesComponent = () => {
             <Button costumStyles={addButtonStyles} handleClick={handleCommentAdd}>დამატება</Button>
           </ButtonsWrapper>
         </AddComment>
-        <Comments>
-          {new Array(20).fill().map(() => (
-            <Comment>
+        <Comments onScroll={handleScroll}>
+          {comments.map((item) => (
+            <Comment key={item.id}>
               <ComAvatar>
-                {false ? <ComAvatarImg src="" /> : <DefaultAvatar />}
+                {item?.user?.image ? <ComAvatarImg src={item.user.image} /> : <DefaultAvatar />}
               </ComAvatar>
               <ComDetails>
                 <ComAuthorWrapper>
-                  <ComAuthor>Lasha Gabelashvili</ComAuthor>
+                  <ComAuthor>
+                    {!item.user ? 'ანონიმური' : `${item.user.firstname} ${item.user.lastname}`}
+                  </ComAuthor>
                   <EditCom>
                     <EditIcon handleClick={() => console.log('Edit')} />
                     <RemoveIcon handleClick={() => console.log('Remove')} />
                   </EditCom>
                 </ComAuthorWrapper>
                 <ComText>
-                  qwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwqqwdqwqwdqwdqwdqwdqwdqwdqwqwqqwd
-                  wdqwqwdqwdqwqwdqwqwdqwdqwqwdqwqwdqwdqwdqwdqw
-                  qwdqwd
+                  {item.text}
                 </ComText>
               </ComDetails>
             </Comment>
