@@ -22,11 +22,16 @@ import {
 } from 'modules/Lectures/GetComments';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import {
+  hooks as authedUserHooks,
+} from 'modules/Authentication/AuthedUser';
+import moment from 'moment';
 
 export default () => {
   const { id: uniId } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const { authedUser } = authedUserHooks.useAuthedUser();
   const lectures = useSelector(getLecturesSelectors.selectGetLectures);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const filteredLectures = useSelector(filterLecturersSelectors.selectFilterLecturers);
@@ -143,6 +148,28 @@ export default () => {
         variant: 'error',
       });
     }
+    if (addCommentState.statuses.isSucceed) {
+      const data = {
+        createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+        id: addCommentState.data.id,
+        isPrivate,
+        lecturerId: selectedLecturer.id,
+        text: comment,
+        updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
+        userId: authedUser.userId,
+        user: {
+          firstname: authedUser.firstName,
+          id: authedUser.userId,
+          image: authedUser.image,
+          lastname: authedUser.lastName,
+        },
+      };
+      setCommentsList({
+        ...commentsList,
+        comments: [data, ...commentsList.comments],
+      });
+      setComment('');
+    }
   }, [addCommentState]);
 
   useEffect(() => {
@@ -200,5 +227,6 @@ export default () => {
     comments: commentsList.comments,
     handleScroll,
     selectedLecturer,
+    authedUser,
   };
 };

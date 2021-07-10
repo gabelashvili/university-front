@@ -68,6 +68,7 @@ const LecturesComponent = () => {
     comments,
     handleScroll,
     selectedLecturer,
+    authedUser,
   } = useLecturesHook();
   return (
     <>
@@ -120,10 +121,13 @@ const LecturesComponent = () => {
                   <ComAuthor>
                     {!item.user ? 'ანონიმური' : `${item.user.firstname} ${item.user.lastname}`}
                   </ComAuthor>
-                  <EditCom>
-                    <EditIcon handleClick={() => console.log('Edit')} />
-                    <RemoveIcon handleClick={() => console.log('Remove')} />
-                  </EditCom>
+                  { authedUser.userId === item?.user?.id
+                    && (
+                      <EditCom>
+                        <EditIcon handleClick={() => console.log('Edit')} />
+                        <RemoveIcon handleClick={() => console.log('Remove')} />
+                      </EditCom>
+                    )}
                 </ComAuthorWrapper>
                 <ComText>
                   {item.text}
