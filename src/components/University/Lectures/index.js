@@ -69,6 +69,7 @@ const LecturesComponent = () => {
     handleScroll,
     selectedLecturer,
     authedUser,
+    handleDeleteComment,
   } = useLecturesHook();
   return (
     <>
@@ -125,7 +126,7 @@ const LecturesComponent = () => {
                     && (
                       <EditCom>
                         <EditIcon handleClick={() => console.log('Edit')} />
-                        <RemoveIcon handleClick={() => console.log('Remove')} />
+                        <RemoveIcon handleClick={() => handleDeleteComment(item.id)} />
                       </EditCom>
                     )}
                 </ComAuthorWrapper>

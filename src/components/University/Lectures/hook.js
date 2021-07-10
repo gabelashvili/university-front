@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState, useRef, useEffect } from 'react';
 import {
   actions as getLecturesActions,
@@ -202,6 +203,15 @@ export default () => {
     }
   };
 
+  // delete comment
+  const handleDeleteComment = (commentId) => {
+    console.log(commentId);
+    const answer = window.confirm('ნამდვილად გსურთ კომენტარის წაშლა?');
+    if (answer) {
+      console.log('ki');
+    }
+  };
+
   return {
     isModalOpen,
     handleLectureClick,
@@ -228,5 +238,6 @@ export default () => {
     handleScroll,
     selectedLecturer,
     authedUser,
+    handleDeleteComment,
   };
 };
