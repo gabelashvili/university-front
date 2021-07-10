@@ -135,7 +135,6 @@ export default () => {
 
   const handleCheckBoxChange = (value) => {
     setPrivate(value);
-    console.log(value);
   };
 
   return {
