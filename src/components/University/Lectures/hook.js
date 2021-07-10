@@ -1,12 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
+import {
+  actions as getLecturesActions,
+  selectors as getLecturesSelectors,
+} from 'modules/Lectures/GetLectures';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default () => {
+  const dispatch = useDispatch();
+  const lectures = useSelector(getLecturesSelectors.selectGetLectures);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleLectureClick = () => {
     setModalOpen(true);
   };
 
+  console.log(lectures);
   // textarea
 
   const [comment, setComment] = useState('');
@@ -42,6 +50,17 @@ export default () => {
       document.removeEventListener('click', handleClickOutsideEmoji, true);
     };
   });
+
+  // get lectures
+
+  useEffect(() => {
+    dispatch(getLecturesActions.getLectures.request({
+      offset: 0,
+      limit: 500,
+      universityId: 2,
+      facultyId: 1,
+    }));
+  }, []);
 
   return {
     isModalOpen,
