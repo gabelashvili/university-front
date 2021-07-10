@@ -120,3 +120,7 @@ export const updateUniRateApi = ({ universityId, rateNumber }) => costumAxios.pu
 export const getLecturesApi = ({
   offset, limit, universityId, facultyId,
 }) => costumAxios.post(`/api/lecturer/${offset}/${limit}`, { universityId, facultyId });
+
+export const filterRecturersApi = ({
+  offset, limit, fullName,
+}) => costumAxios.post(`/api/lecturer/filter/${offset}/${limit}`, { fullName });

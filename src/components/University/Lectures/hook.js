@@ -8,6 +8,10 @@ import {
   actions as getFacultiesActions,
   selectors as getFacultiesSelectors,
 } from 'modules/University/GetFaculties';
+import {
+  actions as filterLecturersActions,
+  selectors as filterLecturersSelectors,
+} from 'modules/Lectures/FilterLecturers';
 import { useParams } from 'react-router-dom';
 
 export default () => {
@@ -16,6 +20,7 @@ export default () => {
   // eslint-disable-next-line no-unused-vars
   const lectures = useSelector(getLecturesSelectors.selectGetLectures);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
+  const filteredLectures = useSelector(filterLecturersSelectors.selectFilterLecturers);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [keyWord, setKeyword] = useState('');
@@ -77,10 +82,29 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    if (faculties.statuses.isSucceed && selectedFaculty === null) {
-      setSelectedFaculty(faculties.data.faculties[0].id);
+    if (faculties.statuses.isSucceed && selectedFaculty === null && keyWord.length === 0) {
+      setSelectedFaculty(faculties?.data?.faculties[0]?.id);
     }
-  }, [faculties, selectedFaculty]);
+  }, [faculties, selectedFaculty, keyWord]);
+
+  // filter lecturers
+  useEffect(() => {
+    if (keyWord.length > 0) {
+      setSelectedFaculty(null);
+      dispatch(filterLecturersActions.filterLecturers.request({
+        offset: 0,
+        limit: 500,
+        fullName: keyWord,
+      }));
+    }
+  }, [keyWord]);
+
+  const returnLectures = () => {
+    if (keyWord.length > 0) {
+      return filteredLectures?.data?.lecturers || [];
+    }
+    return lectures?.data?.lecturers || [];
+  };
   return {
     isModalOpen,
     handleLectureClick,
@@ -96,7 +120,7 @@ export default () => {
     onEmojiClick,
     faculties: faculties?.data.faculties || [],
     selectedFaculty,
-    lectures: lectures?.data?.lecturers || [],
+    lectures: returnLectures(),
     setSelectedFaculty,
     keyWord,
     setKeyword,
