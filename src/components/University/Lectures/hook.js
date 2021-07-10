@@ -4,17 +4,26 @@ import {
   selectors as getLecturesSelectors,
 } from 'modules/Lectures/GetLectures';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  actions as getFacultiesActions,
+  selectors as getFacultiesSelectors,
+} from 'modules/University/GetFaculties';
+import { useParams } from 'react-router-dom';
 
 export default () => {
+  const { id: uniId } = useParams();
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const lectures = useSelector(getLecturesSelectors.selectGetLectures);
+  const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedFaculty, setSelectedFaculty] = useState(null);
+  const [keyWord, setKeyword] = useState('');
 
   const handleLectureClick = () => {
     setModalOpen(true);
   };
 
-  console.log(lectures);
   // textarea
 
   const [comment, setComment] = useState('');
@@ -57,11 +66,21 @@ export default () => {
     dispatch(getLecturesActions.getLectures.request({
       offset: 0,
       limit: 500,
-      universityId: 2,
-      facultyId: 1,
+      universityId: uniId,
+      facultyId: selectedFaculty,
     }));
+  }, [uniId, selectedFaculty]);
+
+  // get faculties
+  useEffect(() => {
+    dispatch(getFacultiesActions.getFaculties.request(uniId));
   }, []);
 
+  useEffect(() => {
+    if (faculties.statuses.isSucceed && selectedFaculty === null) {
+      setSelectedFaculty(faculties.data.faculties[0].id);
+    }
+  }, [faculties, selectedFaculty]);
   return {
     isModalOpen,
     handleLectureClick,
@@ -75,5 +94,11 @@ export default () => {
     handleCursorPosition,
     textareaRef,
     onEmojiClick,
+    faculties: faculties?.data.faculties || [],
+    selectedFaculty,
+    lectures: lectures?.data?.lecturers || [],
+    setSelectedFaculty,
+    keyWord,
+    setKeyword,
   };
 };

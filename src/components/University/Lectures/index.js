@@ -55,6 +55,12 @@ const LecturesComponent = () => {
     handleCursorPosition,
     textareaRef,
     onEmojiClick,
+    faculties,
+    selectedFaculty,
+    setSelectedFaculty,
+    lectures,
+    keyWord,
+    setKeyword,
   } = useLecturesHook();
   return (
     <>
@@ -119,28 +125,34 @@ const LecturesComponent = () => {
       <Container costumStyles={containerStyles}>
         <Filters>
           <FilterTitle>ფილტრი</FilterTitle>
-          <Search type="text" placeholder="ლექტორის სახელი" />
+          <Search
+            value={keyWord}
+            onChange={(e) => setKeyword(e.target.value)}
+            type="text"
+            placeholder="ლექტორის სახელი"
+          />
           <Ul>
-            <Li>ინფორმატიკა</Li>
-            <Li>ინფორმატიკა</Li>
-            <Li>ინფორმატიკა</Li>
-            <Li>ინფორმატიკა</Li>
-            <Li>ინფორმატიკა</Li>
-            <Li>ინფორმატიკა</Li>
+            {faculties.map(({ name, id }) => (
+              <Li
+                key={id}
+                active={selectedFaculty === id}
+                onClick={() => setSelectedFaculty(id)}
+              >
+                {name}
+              </Li>
+            ))}
           </Ul>
         </Filters>
         <Lectures>
-          {new Array(10).fill().map(() => (
-            <Lecture>
+          {lectures.map((lecture) => (
+            <Lecture key={lecture.id}>
               <LectureImg src="https://deadline.com/wp-content/uploads/2020/03/jimhouston.jpg?w=360&h=383&crop=1" />
-              <LectureTitle>მაქსიმ იავიჩი</LectureTitle>
+              <LectureTitle>{`${lecture.firstname} ${lecture.lastname}`}</LectureTitle>
               <LectureDesc>
-                მოწვეული ლექტორი
-                <br />
                 ინფორმატიკა
               </LectureDesc>
               <RaitingWrapper>
-                <Raiting isDisabled={false} />
+                <Raiting isDisabled={false} raiting={lecture.rate} />
               </RaitingWrapper>
               <ButtonWrapper>
                 <Button

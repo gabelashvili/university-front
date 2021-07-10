@@ -32,10 +32,7 @@ const getLectures = (state = initialState, action) => {
           isSucceed: true,
           isPending: false,
         },
-        data: {
-          totally: action.response.data.totally,
-          universities: [...state.data.universities, ...action.response.data.universities],
-        },
+        data: action.response.data,
         statusCode: action.response.status,
       };
     case constants.GET_LECTURES_FAILED:

@@ -113,7 +113,7 @@ export const Li = styled.li`
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => transparentize(0.3, theme.colors.lightGrey)};
+    color: ${({ theme, active }) => transparentize(0.3, theme.colors[active ? 'lightGreen' : 'lightGrey'])};
     margin-bottom: 7px;
     transition: color 0.3s;
     &:hover {
