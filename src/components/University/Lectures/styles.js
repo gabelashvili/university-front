@@ -8,12 +8,26 @@ export const containerStyles = css`
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 50px;
+    @media (max-width: 1200px) {
+        grid-template-columns: 1.5fr 3fr;
+    }
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 export const Lectures = styled.div`
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+        max-width: 350px;
+        grid-template-columns: repeat(1, 1fr);
+        margin: auto;
+    }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -46,6 +60,9 @@ export const Lecture = styled.div`
         transition: 0.5s;
         padding-bottom: 68px;
         margin-bottom: -75px;
+        @media (max-width: 900px) {
+            margin-bottom: -38px;
+        }
         z-index: 1;
         & ${ButtonWrapper} {
             transform: scaleY(1) translateY(100%);
