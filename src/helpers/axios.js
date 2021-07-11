@@ -19,7 +19,7 @@ const responseSuccessHandler = (response) => response;
 
 const responseErrorHandler = (error) => {
   if (error.response && error.response.status === 401) {
-    window.location.replace('/login');
+    window.location.replace('/user/login');
   }
   return Promise.reject(error);
 };
