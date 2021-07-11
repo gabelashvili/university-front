@@ -11,7 +11,7 @@ export const containerStylesLeft = css`
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 10px;
     height: max-content;
-    padding: 10px !important;
+    padding: 20px !important;
     position: -webkit-sticky;
     position: sticky;
     top: 85px;
@@ -49,8 +49,8 @@ export const modalStyles = css`
 export const UniDetail = styled.div` 
     display: flex;
     align-items: center;
-    height: 45px;
     margin-bottom: 5px;
+    height: max-content;
 `;
 
 export const UniLogo = styled.img`
@@ -67,7 +67,17 @@ export const RightSide = styled.div`
     align-items: center;
 `;
 
-export const UniTitle = styled.p`
+export const UniTitle = styled.li`
     margin: 0;
     color: ${({ theme }) => transparentize(0.19, theme.colors.black)};
+    padding-bottom: 5px;
+    cursor: pointer;
+`;
+
+export const BoxTitle = styled.h1`
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 1px solid ${({ theme }) => transparentize(0.7, theme.colors.black)};
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 `;

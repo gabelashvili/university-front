@@ -6,9 +6,9 @@ import {
   containerStylesMiddle,
   modalStyles,
   UniDetail,
-  UniLogo,
   RightSide,
   UniTitle,
+  BoxTitle,
 } from 'components/University/Feed/styles';
 import Post from 'components/University/Feed/Post';
 import AddPost from 'components/University/Feed/AddPost';
@@ -25,6 +25,7 @@ const Feedback = () => {
     setModalOpen,
     reactionsData,
     uniList,
+    handleUniClick,
   } = useFeeHook();
   return (
     <>
@@ -40,11 +41,11 @@ const Feedback = () => {
       </Modal>
       <Div>
         <Container costumStyles={containerStylesLeft}>
+          <BoxTitle>TOP 5 უნივერსიტეტი</BoxTitle>
           {uniList.map((uni) => (
-            <UniDetail>
-              <UniLogo src={uni.image} />
+            <UniDetail key={uni.id}>
               <RightSide>
-                <UniTitle>{`${uni.name} (${uni.rate})`}</UniTitle>
+                <UniTitle onClick={() => handleUniClick(uni.id)}>{`${uni.name} (${uni.rate})`}</UniTitle>
               </RightSide>
             </UniDetail>
           ))}

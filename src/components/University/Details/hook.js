@@ -42,7 +42,7 @@ export default () => {
   // get faculties
   useEffect(() => {
     dispatch(getFacultiesActions.getFaculties.request(uniId));
-  }, []);
+  }, [uniId]);
 
   // charts
 

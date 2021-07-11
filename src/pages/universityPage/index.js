@@ -27,7 +27,7 @@ const universityPage = () => {
 
   useEffect(() => {
     dispatch(getUniInfoActions.getUniInfo.request(uniId));
-  }, []);
+  }, [uniId]);
 
   useEffect(() => () => dispatch(getUniInfoActions.getUniInfo.reset()), []);
 

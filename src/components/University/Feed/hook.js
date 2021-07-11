@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import {
   actions as getPostsActions,
   selectors as getPostsSelectors,
@@ -22,6 +22,7 @@ import {
 
 const useFeedHook = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [editPost, setEditPost] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const fetchedPosts = useSelector(fetchedPostsSelectors.selectFetchedPosts);
@@ -95,10 +96,14 @@ const useFeedHook = () => {
     if (!uniList.statuses.isSucceed) {
       dispatch(getUniListActions.getUniList.request({
         offset: 0,
-        limit: 4,
+        limit: 5,
       }));
     }
   }, []);
+
+  const handleUniClick = (uniId) => {
+    history.push(`/university/${uniId}/details`);
+  };
 
   return {
     fetchedPosts,
@@ -108,6 +113,7 @@ const useFeedHook = () => {
     setModalOpen,
     reactionsData: getPostReactions.data.userEmojiList,
     uniList: uniList?.data?.universities || [],
+    handleUniClick,
   };
 };
 
