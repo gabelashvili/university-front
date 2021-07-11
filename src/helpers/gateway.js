@@ -1,5 +1,5 @@
 import axios from 'axios';
-import costumAxios from 'helpers/axios';
+import { axiosInstance } from 'helpers/axios';
 
 export const getTodo = (todoId) => axios
   .get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
@@ -20,7 +20,7 @@ export const activateAccountApi = (token) => axios
     token,
   });
 
-export const checkTokenApi = () => costumAxios
+export const checkTokenApi = () => axiosInstance
   .get('/api/auth/status');
 
 export const forgotPasswordApi = (email) => axios
@@ -39,12 +39,12 @@ export const addNewPostApi = (image, data) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));
-  return costumAxios.post('/api/feed/post', formData);
+  return axiosInstance.post('/api/feed/post', formData);
 };
 
-export const getPostsApi = ({ offset, limit, uniId }) => costumAxios.post(`/api/feed/post/${offset}/${limit}`, { universityId: uniId });
+export const getPostsApi = ({ offset, limit, uniId }) => axiosInstance.post(`/api/feed/post/${offset}/${limit}`, { universityId: uniId });
 
-export const removePostApi = (postId) => costumAxios.delete(`/api/feed/post/${postId}`);
+export const removePostApi = (postId) => axiosInstance.delete(`/api/feed/post/${postId}`);
 
 export const updatePostApi = ({ image, data }) => {
   const formData = new FormData();
@@ -52,21 +52,21 @@ export const updatePostApi = ({ image, data }) => {
     formData.append('image', image);
   }
   formData.append('data', JSON.stringify(data));
-  return costumAxios.put('/api/feed/post', formData);
+  return axiosInstance.put('/api/feed/post', formData);
 };
 
 export const getCommentsApi = ({
   offset, limit, postId, parentId,
-}) => costumAxios.post(`/api/feed/comment/${offset}/${limit}`, { postId, parentId });
+}) => axiosInstance.post(`/api/feed/comment/${offset}/${limit}`, { postId, parentId });
 
 export const addCommentApi = ({ image, data }) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));
-  return costumAxios.post('/api/feed/comment', formData);
+  return axiosInstance.post('/api/feed/comment', formData);
 };
 
-export const removeCommentApi = (commentId) => costumAxios.delete(`/api/feed/comment/${commentId}`);
+export const removeCommentApi = (commentId) => axiosInstance.delete(`/api/feed/comment/${commentId}`);
 
 export const updateCommenApi = ({ image, data }) => {
   const formData = new FormData();
@@ -74,18 +74,18 @@ export const updateCommenApi = ({ image, data }) => {
     formData.append('image', image);
   }
   formData.append('data', JSON.stringify(data));
-  return costumAxios.put('/api/feed/comment', formData);
+  return axiosInstance.put('/api/feed/comment', formData);
 };
 
-export const sendComEmojiApi = ({ commentId, emojiId }) => costumAxios.post('/api/feed/comment/emoji', { commentId, emojiId });
+export const sendComEmojiApi = ({ commentId, emojiId }) => axiosInstance.post('/api/feed/comment/emoji', { commentId, emojiId });
 
-export const sendPostEmojiApi = ({ postId, emojiId }) => costumAxios.post('/api/feed/post/emoji', { postId, emojiId });
+export const sendPostEmojiApi = ({ postId, emojiId }) => axiosInstance.post('/api/feed/post/emoji', { postId, emojiId });
 
-export const getUniListApi = ({ offset, limit }) => costumAxios.get(`/api/university/${offset}/${limit}`);
+export const getUniListApi = ({ offset, limit }) => axiosInstance.get(`/api/university/${offset}/${limit}`);
 
-export const getFilteredUniListApi = ({ university, location }) => costumAxios.post('/api/university/filter', { university, location });
+export const getFilteredUniListApi = ({ university, location }) => axiosInstance.post('/api/university/filter', { university, location });
 
-export const getUserApi = (id) => costumAxios.get('/api/user', { id });
+export const getUserApi = (id) => axiosInstance.get('/api/user', { id });
 
 export const updateUserDataApi = ({ data, image }) => {
   const formData = new FormData();
@@ -96,10 +96,10 @@ export const updateUserDataApi = ({ data, image }) => {
     facebook: data.facebook,
     image: data.image,
   }));
-  return costumAxios.put('/api/user', formData);
+  return axiosInstance.put('/api/user', formData);
 };
 
-export const changePasswordApi = ({ password, newPassword, reNewPassword }) => costumAxios.put('/api/user/password', {
+export const changePasswordApi = ({ password, newPassword, reNewPassword }) => axiosInstance.put('/api/user/password', {
   password,
   newPassword,
   reNewPassword,
@@ -107,25 +107,25 @@ export const changePasswordApi = ({ password, newPassword, reNewPassword }) => c
 
 export const getPostReactionApi = ({
   offset, limit, postId, emojiId,
-}) => costumAxios.post(`/api/feed/post/emoji/${offset}/${limit}`, { postId, emojiId });
+}) => axiosInstance.post(`/api/feed/post/emoji/${offset}/${limit}`, { postId, emojiId });
 
-export const getUniInfoApi = (uniId) => costumAxios.get(`/api/university/detail/${uniId}`);
+export const getUniInfoApi = (uniId) => axiosInstance.get(`/api/university/detail/${uniId}`);
 
-export const getFacultiesApi = (uniId) => costumAxios.post('/api/faculty/0/500', { universityId: uniId });
+export const getFacultiesApi = (uniId) => axiosInstance.post('/api/faculty/0/500', { universityId: uniId });
 
-export const getGrantsDetailsApi = (facultyId) => costumAxios.get(`/api/faculty/grants/${facultyId}`);
+export const getGrantsDetailsApi = (facultyId) => axiosInstance.get(`/api/faculty/grants/${facultyId}`);
 
-export const updateUniRateApi = ({ universityId, rateNumber }) => costumAxios.put('/api/university/update-rate/', { universityId, rateNumber });
+export const updateUniRateApi = ({ universityId, rateNumber }) => axiosInstance.put('/api/university/update-rate/', { universityId, rateNumber });
 
 export const getLecturesApi = ({
   offset, limit, universityId, facultyId,
-}) => costumAxios.post(`/api/lecturer/${offset}/${limit}`, { universityId, facultyId });
+}) => axiosInstance.post(`/api/lecturer/${offset}/${limit}`, { universityId, facultyId });
 
 export const filterRecturersApi = ({
   offset, limit, fullName,
-}) => costumAxios.post(`/api/lecturer/filter/${offset}/${limit}`, { fullName });
+}) => axiosInstance.post(`/api/lecturer/filter/${offset}/${limit}`, { fullName });
 
-export const addCommentLectureApi = (data) => costumAxios.post('/api/lecturer/comment', {
+export const addCommentLectureApi = (data) => axiosInstance.post('/api/lecturer/comment', {
   text: data.text,
   lecturerId: data.lecturerId,
   isPrivate: data.isPrivate,
@@ -133,10 +133,10 @@ export const addCommentLectureApi = (data) => costumAxios.post('/api/lecturer/co
 
 export const getLecturerCommentsApi = ({
   offset, limit, lecturerId,
-}) => costumAxios.post(`/api/lecturer/comment/${offset}/${limit}`, { lecturerId });
+}) => axiosInstance.post(`/api/lecturer/comment/${offset}/${limit}`, { lecturerId });
 
-export const removeCommentLectureApi = (comId) => costumAxios.delete(`/api/lecturer/comment/${comId}`);
+export const removeCommentLectureApi = (comId) => axiosInstance.delete(`/api/lecturer/comment/${comId}`);
 
-export const updateCommentLectureApi = ({ text, isPrivate, commentId }) => costumAxios.put(`/api/lecturer/comment/${commentId}`, { text, isPrivate });
+export const updateCommentLectureApi = ({ text, isPrivate, commentId }) => axiosInstance.put(`/api/lecturer/comment/${commentId}`, { text, isPrivate });
 
-export const updateRateLectureApi = ({ lecturerId, rateNumber }) => costumAxios.post('/api/lecturer/update-rate', { lecturerId, rateNumber });
+export const updateRateLectureApi = ({ lecturerId, rateNumber }) => axiosInstance.post('/api/lecturer/update-rate', { lecturerId, rateNumber });

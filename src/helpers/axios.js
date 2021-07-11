@@ -2,8 +2,13 @@
 /* eslint-disable no-param-reassign */
 // First we need to import axios.js
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import { useHistory } from 'react-router-dom';
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:5000' });
+axios.defaults.baseURL = 'http://localhost:5000';
+
+export const axiosInstance = axios.create();
+
 axiosInstance.interceptors.request.use(
   (config) => {
     const { token } = JSON.parse(localStorage.getItem('authedUser')) || '';
@@ -15,18 +20,29 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-const responseSuccessHandler = (response) => response;
+export const ShowErrors = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
+  const responseSuccessHandler = (response) => response;
 
-const responseErrorHandler = (error) => {
-  if (error.response && error.response.status === 401) {
-    window.location.replace('/user/login');
-  }
-  return Promise.reject(error);
+  const responseErrorHandler = (error) => {
+    if (error.response && error.response.status === 401) {
+      history.push('/user/login');
+      enqueueSnackbar('ამ ქმედების განსახორციელებლად საჭიროა ავტორიზაცია', {
+        variant: 'error',
+      });
+    }
+    if (error.response && error.response.status === 403) {
+      enqueueSnackbar(error.response.data.message, {
+        variant: 'error',
+      });
+      return;
+    }
+    return Promise.reject(error);
+  };
+
+  axiosInstance.interceptors.response.use(
+    (response) => responseSuccessHandler(response),
+    (error) => responseErrorHandler(error),
+  );
 };
-
-axiosInstance.interceptors.response.use(
-  (response) => responseSuccessHandler(response),
-  (error) => responseErrorHandler(error),
-);
-
-export default axiosInstance;
