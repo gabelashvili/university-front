@@ -19,9 +19,13 @@ import {
 import {
   actions as getPostReactionsActions,
 } from 'modules/University/Feed/GetPostReactions';
+import {
+  hooks as authedUserHook,
+} from 'modules/Authentication/AuthedUser';
 
 const usePostHook = (post) => {
   const dispatch = useDispatch();
+  const { authedUser } = authedUserHook.useAuthedUser();
   const [showComment, setShowComment] = useState(false);
   const [selectedPostId, setselectedPostId] = useState(false);
   const [selectedReaction, setSelectedReaction] = useState(null);
@@ -148,6 +152,7 @@ const usePostHook = (post) => {
     getEmojiBytid,
     handleShowAllReaction,
     totalEmoji,
+    authedUser,
   };
 };
 

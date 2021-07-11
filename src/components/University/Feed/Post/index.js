@@ -48,6 +48,7 @@ const PostComponent = ({ post, setEditPost }) => {
     getEmojiBytid,
     handleShowAllReaction,
     totalEmoji,
+    authedUser,
   } = usePostHook(post);
   return (
     <Post id={`post-${post.id}`}>
@@ -79,10 +80,12 @@ const PostComponent = ({ post, setEditPost }) => {
           <AuthorName>{`${post.user.firstname} ${post.user.lastname}`}</AuthorName>
           <AuthorUni>{post.user.universityId || 'უნივერსიტეტიიიი'}</AuthorUni>
         </AuthorDetails>
+        {authedUser.userId === post.userId && (
         <EditPost>
           <EditIcon handleClick={() => setEditPost(post)} />
           <RemoveIcon handleClick={handlePostRemove} />
         </EditPost>
+        )}
       </PostHeader>
       <PostDesc>
         {post.text}

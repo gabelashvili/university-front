@@ -2,9 +2,13 @@ import Container from 'components/Container';
 import {
   Div,
   containerStylesLeft,
-  containerStylesRight,
+  // containerStylesRight,
   containerStylesMiddle,
   modalStyles,
+  UniDetail,
+  UniLogo,
+  RightSide,
+  UniTitle,
 } from 'components/University/Feed/styles';
 import Post from 'components/University/Feed/Post';
 import AddPost from 'components/University/Feed/AddPost';
@@ -20,6 +24,7 @@ const Feedback = () => {
     isModalOpen,
     setModalOpen,
     reactionsData,
+    uniList,
   } = useFeeHook();
   return (
     <>
@@ -35,7 +40,14 @@ const Feedback = () => {
       </Modal>
       <Div>
         <Container costumStyles={containerStylesLeft}>
-          LeftSide
+          {uniList.map((uni) => (
+            <UniDetail>
+              <UniLogo src={uni.image} />
+              <RightSide>
+                <UniTitle>{`${uni.name} (${uni.rate})`}</UniTitle>
+              </RightSide>
+            </UniDetail>
+          ))}
         </Container>
         <Container costumStyles={containerStylesMiddle}>
           <AddPost
@@ -51,9 +63,9 @@ const Feedback = () => {
           />
         ))}
         </Container>
-        <Container costumStyles={containerStylesRight}>
+        {/* <Container costumStyles={containerStylesRight}>
           RightSide
-        </Container>
+        </Container> */}
       </Div>
     </>
   );

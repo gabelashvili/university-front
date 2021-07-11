@@ -15,6 +15,10 @@ import {
   selectors as getPostReactionsSelectors,
   actions as getPostReactionsActions,
 } from 'modules/University/Feed/GetPostReactions';
+import {
+  actions as getUniListActions,
+  selectors as getUniListSelectors,
+} from 'modules/University/GetUniList';
 
 const useFeedHook = () => {
   const dispatch = useDispatch();
@@ -23,6 +27,7 @@ const useFeedHook = () => {
   const fetchedPosts = useSelector(fetchedPostsSelectors.selectFetchedPosts);
   const getPosts = useSelector(getPostsSelectors.selectGetPosts);
   const getPostReactions = useSelector(getPostReactionsSelectors.selectGetPostReactions);
+  const uniList = useSelector(getUniListSelectors.selectGetUniList);
   const { id: uniId } = useParams();
   const { updateList } = useFetchedPostsHook();
 
@@ -84,6 +89,15 @@ const useFeedHook = () => {
     }
   }, [isModalOpen]);
 
+  // get top 5 uni
+
+  useEffect(() => {
+    dispatch(getUniListActions.getUniList.request({
+      offset: 0,
+      limit: 4,
+    }));
+  }, []);
+
   return {
     fetchedPosts,
     editPost,
@@ -91,6 +105,7 @@ const useFeedHook = () => {
     isModalOpen,
     setModalOpen,
     reactionsData: getPostReactions.data.userEmojiList,
+    uniList: uniList?.data?.universities || [],
   };
 };
 
