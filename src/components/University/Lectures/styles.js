@@ -51,7 +51,10 @@ export const Lecture = styled.div`
             transform: scaleY(1) translateY(100%);
             transition: all 0.3s;
         }
-    }
+    };
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const LectureImg = styled.img`
@@ -65,6 +68,9 @@ export const LectureTitle = styled.h2`
     font-weight: 700;
     font-size: 22px;
     margin: 20px 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const LectureDesc = styled.p`
