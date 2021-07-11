@@ -1,9 +1,9 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 // First we need to import axios.js
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000';
-const axiosInstance = axios.create();
+const axiosInstance = axios.create({ baseURL: 'http://localhost:5000' });
 axiosInstance.interceptors.request.use(
   (config) => {
     const { token } = JSON.parse(localStorage.getItem('authedUser')) || '';
@@ -13,6 +13,20 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => Promise.reject(error),
+);
+
+const responseSuccessHandler = (response) => response;
+
+const responseErrorHandler = (error) => {
+  if (error.response && error.response.status === 401) {
+    window.location.replace('/login');
+  }
+  return Promise.reject(error);
+};
+
+axiosInstance.interceptors.response.use(
+  (response) => responseSuccessHandler(response),
+  (error) => responseErrorHandler(error),
 );
 
 export default axiosInstance;
