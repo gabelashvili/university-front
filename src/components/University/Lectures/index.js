@@ -184,7 +184,7 @@ const LecturesComponent = () => {
               <LectureImg src="https://deadline.com/wp-content/uploads/2020/03/jimhouston.jpg?w=360&h=383&crop=1" />
               <LectureTitle>{`${lecture.firstname} ${lecture.lastname}`}</LectureTitle>
               <LectureDesc>
-                ინფორმატიკა
+                {lecture.faculty}
               </LectureDesc>
               <RaitingWrapper>
                 <Raiting

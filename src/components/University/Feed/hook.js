@@ -92,10 +92,12 @@ const useFeedHook = () => {
   // get top 5 uni
 
   useEffect(() => {
-    dispatch(getUniListActions.getUniList.request({
-      offset: 0,
-      limit: 4,
-    }));
+    if (!uniList.statuses.isSucceed) {
+      dispatch(getUniListActions.getUniList.request({
+        offset: 0,
+        limit: 4,
+      }));
+    }
   }, []);
 
   return {
