@@ -24,6 +24,7 @@ export default () => {
   const uniInfo = useSelector(getUniInfoSelectors.selectGetUniInfo);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
   const grantsDetails = useSelector(getGrantsDetailsSelectors.selectGetGrantsDetails);
+  const [selectedFaculty, setSelectedFaculty] = useState(null);
   const { id: uniId } = useParams();
 
   const setOpen = (id) => {
@@ -34,9 +35,10 @@ export default () => {
     }
   };
 
-  const handleModalOpen = (facultyId) => {
+  const handleModalOpen = (faculty) => {
     setModalOpen(true);
-    dispatch(getGrantsDetailsActions.getGrantsDetails.request(facultyId));
+    setSelectedFaculty(faculty);
+    dispatch(getGrantsDetailsActions.getGrantsDetails.request(faculty.id));
   };
 
   // get faculties
@@ -121,5 +123,6 @@ export default () => {
     faculties: faculties?.data?.faculties || [],
     handleModalOpen,
     handleRaitingChange,
+    selectedFaculty,
   };
 };

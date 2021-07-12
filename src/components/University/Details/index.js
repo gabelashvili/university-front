@@ -36,13 +36,14 @@ const Details = () => {
     faculties,
     handleModalOpen,
     handleRaitingChange,
+    selectedFaculty,
   } = useDetailsHook();
   return (
     <>
       <Modal
         isOpen={isModalOpen}
         costumeStyles={modalStyles}
-        title="სტატისტიკა"
+        title={`${selectedFaculty?.name} - ${selectedFaculty?.price}₾`}
         showClose
         onClose={() => setModalOpen(false)}
       >
@@ -71,8 +72,8 @@ const Details = () => {
             <SectionDesc as="div">
               <Ul>
                 {Array.isArray(faculties) && faculties.map((faculty) => (
-                  <Li onClick={() => handleModalOpen(faculty.id)} key={faculty.name}>
-                    {faculty.name}
+                  <Li onClick={() => handleModalOpen(faculty)} key={faculty.name}>
+                    {`${faculty.name} ${uniInfo?.data?.university?.location !== faculty.place ? `- ${faculty.place}` : ''}`}
                   </Li>
                 ))}
               </Ul>
