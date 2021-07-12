@@ -101,6 +101,10 @@ const useFeedHook = () => {
     }
   }, []);
 
+  useEffect(() => () => {
+    dispatch(getUniListActions.getUniList.request());
+  }, []);
+
   const handleUniClick = (uniId) => {
     history.push(`/university/${uniId}/details`);
   };
