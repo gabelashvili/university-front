@@ -91,20 +91,12 @@ export const buttonStyles = css`
       width: 13px;
     }
   }
-  @media ${({ theme }) => theme.device.laptopL} {
+  @media ${({ theme }) => theme.device.tablet} {
     font-size: 13px;
     padding: 6px 10px;
     grid-column-gap: 8px;
     & > div > svg {
       width: 11px;
-    }
-  }
-  @media ${({ theme }) => theme.device.tablet} {
-    font-size: 12px;
-    padding: 5px 8px;
-    grid-column-gap: 6px;
-    & > div > svg {
-      width: 10px;
     }
   }
   @media ${({ theme }) => theme.device.mobileL} {
