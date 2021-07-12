@@ -20,10 +20,10 @@ export const Nav = styled.nav`
     z-index: 3;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
     @media ${({ theme }) => theme.device.laptopL} {
-      height: 60px;
+      height: 68px;
     }
     @media ${({ theme }) => theme.device.laptopL} {
-      height: 50px;
+      height: 60px;
     }
     @media ${({ theme }) => theme.device.tablet} {
       height: 40px;
