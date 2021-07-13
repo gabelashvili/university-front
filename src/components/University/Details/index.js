@@ -86,7 +86,11 @@ const Details = () => {
             <BoxContent>
               <BoxTitle>რეიტინგი</BoxTitle>
               <RaitingWrapper>
-                <Raiting raiting={3.5} isDisabled={false} handleClick={handleRaitingChange} />
+                <Raiting
+                  raiting={uniInfo?.data?.university?.rate}
+                  isDisabled={false}
+                  handleClick={handleRaitingChange}
+                />
                 <BoxDesc>{`(${uniInfo?.data?.university?.rateCnt})`}</BoxDesc>
               </RaitingWrapper>
             </BoxContent>

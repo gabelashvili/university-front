@@ -201,7 +201,7 @@ export default () => {
   }, [addCommentState]);
 
   useEffect(() => {
-    if (selectedLecturer) {
+    if (selectedLecturer && !commentsList.comments.length > 0) {
       dispatch(getLecturerCommentsActions.getComments.request({
         offset: 0,
         limit: 10,
@@ -212,6 +212,7 @@ export default () => {
 
   useEffect(() => {
     if (comments.statuses.isSucceed) {
+      dispatch(updateCommentActions.updateComment.reset());
       setCommentsList({
         totally: comments.data.totally,
         comments: [...commentsList.comments, ...comments.data.comments],
@@ -282,6 +283,8 @@ export default () => {
 
   useEffect(() => {
     if (updateCommentState.statuses.isSucceed) {
+      setEditing(false);
+      setComment('');
       setCommentsList({
         ...commentsList,
         comments: commentsList.comments.map((com) => {
@@ -301,6 +304,10 @@ export default () => {
       });
     }
   }, [updateCommentState]);
+
+  useEffect(() => () => {
+    dispatch(updateCommentActions.updateComment.reset());
+  }, []);
 
   // handle rate change
 
@@ -333,7 +340,7 @@ export default () => {
     setSelectedLecturer,
     handleCommentAdd,
     handleCheckBoxChange,
-    comments: commentsList.comments,
+    comments: commentsList?.comments || [],
     handleScroll,
     selectedLecturer,
     authedUser,
