@@ -91,7 +91,7 @@ const Details = () => {
                   isDisabled={false}
                   handleClick={handleRaitingChange}
                 />
-                <BoxDesc>{`(${uniInfo?.data?.university?.rateCnt})`}</BoxDesc>
+                <BoxDesc>{`(${uniInfo?.data?.university?.rateCnt || 0})`}</BoxDesc>
               </RaitingWrapper>
             </BoxContent>
           </Box>
