@@ -8,7 +8,7 @@ const Profile = () => {
   const { authedUser } = authedUserHook.useAuthedUser();
   return (
     <Container isCentered>
-      {parseInt(userId, 10) === authedUser.userId ? <MyProfile /> : <p>sxvisi</p>}
+      {parseInt(userId, 10) === authedUser.userId ? <MyProfile /> : <MyProfile />}
     </Container>
   );
 };
