@@ -1,5 +1,6 @@
 import {
   selectors as getUniInfoSelectors,
+  actions as getUniInfoActions,
 } from 'modules/University/GetUniInfo';
 import {
   actions as getFacultiesActions,
@@ -11,6 +12,7 @@ import {
 } from 'modules/University/GetGrantsDetails';
 import {
   actions as updateUniRateActions,
+  selectors as updateUniRateSelectros,
 } from 'modules/University/UpdateRate';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -23,6 +25,7 @@ export default () => {
   const dispatch = useDispatch();
   const uniInfo = useSelector(getUniInfoSelectors.selectGetUniInfo);
   const faculties = useSelector(getFacultiesSelectors.selectGetFaculties);
+  const uniRateState = useSelector(updateUniRateSelectros.selectUpdateRate);
   const grantsDetails = useSelector(getGrantsDetailsSelectors.selectGetGrantsDetails);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const { id: uniId } = useParams();
@@ -111,6 +114,13 @@ export default () => {
       rateNumber: raiting,
     }));
   };
+
+  useEffect(() => {
+    if (uniRateState.statuses.isSucceed) {
+      console.log(uniRateState);
+      dispatch(getUniInfoActions.getUniInfo.request(uniId));
+    }
+  }, [uniRateState]);
 
   return {
     isModalOpen,
