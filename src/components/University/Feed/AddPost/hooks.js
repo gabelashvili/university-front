@@ -91,6 +91,7 @@ const useAddPostHook = (editPost, setEditPost) => {
 
   useEffect(() => {
     if (addNewPostState.statuses.isSucceed) {
+      setPostDesc('');
       addPost({
         commentCnt: 0,
         createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),

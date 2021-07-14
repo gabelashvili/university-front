@@ -110,7 +110,8 @@ export const postButton = css`
     background-color: ${({ theme, isCancel }) => (isCancel ? theme.colors.red : theme.colors.green)};
     &:hover {
         background-color: ${({ theme, isCancel }) => (isCancel ? theme.colors.red : theme.colors.green)};
-    }
+    };
+    cursor: pointer;
 `;
 
 export const PostButtonWrapper = styled.div`

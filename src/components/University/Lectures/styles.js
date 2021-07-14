@@ -83,11 +83,14 @@ export const LectureImg = styled.img`
 
 export const LectureTitle = styled.h2`
     font-weight: 700;
-    font-size: 22px;
+    font-size: 20px;
     margin: 20px 0 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    @media ${({ theme }) => theme.device.laptop} {
+        font-size: 18px;
+    }
 `;
 
 export const LectureDesc = styled.p`
@@ -95,6 +98,9 @@ export const LectureDesc = styled.p`
     color:${({ theme }) => transparentize(0.2, theme.colors.lightGrey)};
     font-weight: 500;
     margin-bottom: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const RaitingWrapper = styled.div`

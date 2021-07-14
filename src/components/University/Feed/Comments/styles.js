@@ -5,6 +5,11 @@ import { transparentize } from 'polished';
 export const Comment = styled.div`
     display: flex;
     flex-direction: row;
+    & > svg:first-child {
+        width: 50px;
+        height: 50px;
+        margin-right: 8px;
+    }
 `;
 
 export const Avatar = styled.img`

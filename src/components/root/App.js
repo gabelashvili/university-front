@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import BaseLayout from 'pages/baseLayout';
+import BaseLayout from 'pages/BaseLayout';
 import {
   BrowserRouter as Router,
   Switch,
