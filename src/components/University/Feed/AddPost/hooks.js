@@ -92,6 +92,7 @@ const useAddPostHook = (editPost, setEditPost) => {
   useEffect(() => {
     if (addNewPostState.statuses.isSucceed) {
       setPostDesc('');
+      console.log(authedUser.universityName);
       addPost({
         commentCnt: 0,
         createdAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
@@ -111,6 +112,7 @@ const useAddPostHook = (editPost, setEditPost) => {
           firstname: authedUser.firstName,
           lastname: authedUser.lastName,
           universityId: authedUser.universityId,
+          university: { name: authedUser.universityName },
         },
         userId: authedUser.userId,
         yourEmoji: null,

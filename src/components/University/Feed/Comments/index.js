@@ -83,7 +83,7 @@ const Comments = ({
               <HeaderWrapper>
                 <ComAuthor href="/">
                   {`${comment.user.firstname} ${comment.user.lastname}`}
-                  <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
+                  <ComAuthorUni>1</ComAuthorUni>
                 </ComAuthor>
                 <EditComment>
                   <EditIcon handleClick={() => handleCommentEdit(comment)} />

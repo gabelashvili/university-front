@@ -181,7 +181,7 @@ const LecturesComponent = () => {
         <Lectures>
           {lectures.map((lecture) => (
             <Lecture key={lecture.id}>
-              <LectureImg src="https://deadline.com/wp-content/uploads/2020/03/jimhouston.jpg?w=360&h=383&crop=1" />
+              <LectureImg src={lecture.gender ? 'https://www.w3schools.com/howto/img_avatar2.png' : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'} />
               <LectureTitle>{`${lecture.firstname} ${lecture.lastname}`}</LectureTitle>
               <LectureDesc>
                 {lecture.faculty}

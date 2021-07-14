@@ -26,6 +26,7 @@ export const useAuthedUser = () => {
       exp: parsedToken.exp,
       iat: parsedToken.iat,
       token: data.token,
+      universityName: user.universityName,
     };
     localStorage.setItem('authedUser', JSON.stringify(localStorageData));
     dispatch(authedUserActions.authedUser.set(localStorageData));

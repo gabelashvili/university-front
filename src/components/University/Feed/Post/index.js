@@ -78,7 +78,7 @@ const PostComponent = ({ post, setEditPost }) => {
         </AuthorAvatar>
         <AuthorDetails>
           <AuthorName>{`${post.user.firstname} ${post.user.lastname}`}</AuthorName>
-          <AuthorUni>{post.user.universityId || 'უნივერსიტეტიიიი'}</AuthorUni>
+          <AuthorUni>{post?.user?.university?.name || ''}</AuthorUni>
         </AuthorDetails>
         {authedUser.userId === post.userId && (
         <EditPost>
