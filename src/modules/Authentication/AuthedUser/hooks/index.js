@@ -18,8 +18,8 @@ export const useAuthedUser = () => {
     const token = data.token.split(' ')[1];
     const parsedToken = parseJwt(token);
     const localStorageData = {
-      firstName: user.firstname,
-      lastName: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       image: user.image,
       userId: parsedToken.user.id,
       universityId: parsedToken.user.UniversityId,

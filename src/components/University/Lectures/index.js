@@ -82,7 +82,7 @@ const LecturesComponent = () => {
       <Modal
         isOpen={isModalOpen}
         costumeStyles={modalStyles}
-        title={`${selectedLecturer?.firstname} ${selectedLecturer?.lastname}`}
+        title={`${selectedLecturer?.firstName} ${selectedLecturer?.lastName}`}
         showClose
         onClose={() => {
           setModalOpen(false);
@@ -139,9 +139,9 @@ const LecturesComponent = () => {
               <ComDetails>
                 <ComAuthorWrapper>
                   <ComAuthor>
-                    {!item.user ? 'ანონიმური' : `${item.user.firstname} ${item.user.lastname}`}
+                    {!item.user ? 'ანონიმური' : `${item.user.firstName} ${item.user.lastName}`}
                   </ComAuthor>
-                  { authedUser.userId === item?.user?.id
+                  { authedUser.userId === item?.user?.id && authedUser.userId
                     && (
                       <EditCom>
                         <EditIcon handleClick={() => handleEditComment(item)} />
@@ -182,7 +182,7 @@ const LecturesComponent = () => {
           {lectures.map((lecture) => (
             <Lecture key={lecture.id}>
               <LectureImg src={lecture.gender ? 'https://www.w3schools.com/howto/img_avatar2.png' : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'} />
-              <LectureTitle>{`${lecture.firstname} ${lecture.lastname}`}</LectureTitle>
+              <LectureTitle>{`${lecture.firstName} ${lecture.lastName}`}</LectureTitle>
               <LectureDesc>
                 {lecture.faculty}
               </LectureDesc>

@@ -93,8 +93,8 @@ export default () => {
   useEffect(() => {
     if (userData.statuses.isSucceed) {
       reset({
-        firstName: userData.data.firstname,
-        lastName: userData.data.lastname,
+        firstName: userData.data.firstName,
+        lastName: userData.data.lastName,
         email: userData.data.email,
         facebook: userData.data.facebook,
       });

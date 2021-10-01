@@ -171,8 +171,9 @@ export default () => {
   };
 
   useEffect(() => {
-    if (addCommentState.statuses.isFailed) {
-      enqueueSnackbar(addCommentState.errorMessage.response.data, {
+    if (addCommentState.statuses.isFailed && addCommentState?.data?.response?.data) {
+      console.log(addCommentState);
+      enqueueSnackbar(addCommentState?.data?.response?.data, {
         variant: 'error',
       });
     }
@@ -186,10 +187,10 @@ export default () => {
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         userId: authedUser.userId,
         user: isPrivate ? null : {
-          firstname: authedUser.firstName,
+          firstName: authedUser.firstName,
           id: authedUser.userId,
           image: authedUser.image,
-          lastname: authedUser.lastName,
+          lastName: authedUser.lastName,
         },
       };
       setCommentsList({

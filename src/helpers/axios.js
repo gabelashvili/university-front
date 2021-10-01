@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom';
 
-axios.defaults.baseURL = 'https://ea42ab9a973d.ngrok.io';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 export const axiosInstance = axios.create();
 

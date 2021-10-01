@@ -82,8 +82,8 @@ const Comments = ({
             <CommentDetails>
               <HeaderWrapper>
                 <ComAuthor href="/">
-                  {`${comment.user.firstname} ${comment.user.lastname}`}
-                  <ComAuthorUni>1</ComAuthorUni>
+                  {`${comment.user.firstName} ${comment.user.lastName}`}
+                  <ComAuthorUni>{comment?.user?.university?.name || ''}</ComAuthorUni>
                 </ComAuthor>
                 <EditComment>
                   <EditIcon handleClick={() => handleCommentEdit(comment)} />
@@ -153,8 +153,8 @@ const Comments = ({
                 <CommentDetails>
                   <HeaderWrapper>
                     <ComAuthor href="/">
-                      {`${reply.user.firstname} ${reply.user.lastname}`}
-                      <ComAuthorUni>უნივერსიტეტიიიი</ComAuthorUni>
+                      {`${reply.user.firstName} ${reply.user.lastName}`}
+                      <ComAuthorUni>{reply?.user?.university?.name || ''}</ComAuthorUni>
                     </ComAuthor>
                     <EditComment>
                       <EditIcon handleClick={() => handleCommentEdit(reply)} />

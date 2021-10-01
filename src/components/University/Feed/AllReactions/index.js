@@ -53,7 +53,7 @@ const AllReaction = ({ data }) => {
               <UserReaction>{reactions[0].icon}</UserReaction>
             </AvatarWrapper>
             <UserDetail>
-              <UserName>{`${user.firstname} ${user.lastname}`}</UserName>
+              <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
               <UserUni>User</UserUni>
             </UserDetail>
           </User>

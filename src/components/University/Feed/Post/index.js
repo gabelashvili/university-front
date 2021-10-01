@@ -77,7 +77,7 @@ const PostComponent = ({ post, setEditPost }) => {
           {post.user.image ? <Avatar alt="" src={post.user.image} /> : <DefaultAvatar />}
         </AuthorAvatar>
         <AuthorDetails>
-          <AuthorName>{`${post.user.firstname} ${post.user.lastname}`}</AuthorName>
+          <AuthorName>{`${post.user.firstName} ${post.user.lastName}`}</AuthorName>
           <AuthorUni>{post?.user?.university?.name || ''}</AuthorUni>
         </AuthorDetails>
         {authedUser.userId === post.userId && (

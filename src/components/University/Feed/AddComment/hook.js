@@ -69,8 +69,8 @@ export default (postId, data, setSelectedCom, parent) => {
             updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
             user: {
               image: authedUser.image,
-              firstname: authedUser.firstName,
-              lastname: authedUser.lastName,
+              firstName: authedUser.firstName,
+              lastName: authedUser.lastName,
               universityId: authedUser.universityId,
             },
             userId: authedUser.userId,
@@ -97,8 +97,8 @@ export default (postId, data, setSelectedCom, parent) => {
             updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
             user: {
               image: authedUser.image,
-              firstname: authedUser.firstName,
-              lastname: authedUser.lastName,
+              firstName: authedUser.firstName,
+              lastName: authedUser.lastName,
               universityId: authedUser.universityId,
             },
             userId: authedUser.userId,

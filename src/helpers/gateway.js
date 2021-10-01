@@ -9,8 +9,8 @@ export const auth = (user) => axios
 
 export const registerApi = (user) => axios
   .post('/api/auth/signUp', {
-    lastname: user.lastName,
-    firstname: user.firstName,
+    lastName: user.lastName,
+    firstName: user.firstName,
     password: user.password,
     email: user.email,
   });
@@ -91,8 +91,8 @@ export const updateUserDataApi = ({ data, image }) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify({
-    firstname: data.firstName,
-    lastname: data.lastName,
+    firstName: data.firstName,
+    lastName: data.lastName,
     facebook: data.facebook,
     image: data.image,
   }));

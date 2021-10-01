@@ -109,8 +109,8 @@ const useAddPostHook = (editPost, setEditPost) => {
         updatedAt: moment(new Date()).format('DD-MM-YYYY h:mm:ss'),
         user: {
           image: authedUser.image,
-          firstname: authedUser.firstName,
-          lastname: authedUser.lastName,
+          firstName: authedUser.firstName,
+          lastName: authedUser.lastName,
           universityId: authedUser.universityId,
           university: { name: authedUser.universityName },
         },
